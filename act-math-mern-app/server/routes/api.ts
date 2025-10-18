@@ -3,7 +3,7 @@ import authMiddleware from '../middleware/authMiddleware';
 
 // Import all controller functions
 import { initUser, getUserSettings, updateUserSettings } from '../controllers/authController';
-import { getTodaysQuestions } from '../controllers/questionController';
+import { getTodaysQuestions, getPracticeMoreQuestions } from '../controllers/questionController';
 import { submitProgress } from '../controllers/progressController';
 import { getDashboardStats, getHeatmapStats, getPriorityMatrixStats } from '../controllers/statsController';
 
@@ -16,6 +16,7 @@ router.put('/settings', authMiddleware, updateUserSettings);
 
 // Practice
 router.get('/questions/today', authMiddleware, getTodaysQuestions);
+router.get('/questions/practice-more', authMiddleware, getPracticeMoreQuestions);
 router.post('/progress/submit', authMiddleware, submitProgress);
 
 // Stats

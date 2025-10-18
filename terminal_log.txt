@@ -1,33 +1,61 @@
-Delta compression using up to 12 threads
-Compressing objects: 100% (75/75), done.
-Writing objects: 100% (90/90), 3.21 MiB | 1.87 MiB/s, done.
-Total 90 (delta 5), reused 0 (delta 0), pack-reused 0 (from 0)
-remote: Resolving deltas: 100% (5/5), done.
-remote: error: GH013: Repository rule violations found for refs/heads/main.
-remote: 
-remote: - GITHUB PUSH PROTECTION
-remote:   ΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇö
-remote:     Resolve the following violations before pushing again
-remote:
-remote:     - Push cannot contain secrets
-remote:
-remote:
-remote:      (?) Learn how to resolve a blocked push
-remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
-remote:
-remote:
-remote:       ΓÇöΓÇö Google Cloud Service Account Credentials ΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇö
-remote:        locations:
-remote:          - commit: 2ac61c412ec03b36b4d36be29a4579dc85f66449
-remote:            path: act-math-mern-app/server/serviceAccountKey.json:1
-remote:
-remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
-remote:        https://github.com/adamrangwala/act-math-practice-web/security/secret-scanning/unblock-secret/34Fl4exGP3DCyi8Y21sj7m7gkw6
-remote:
-remote:
-remote:
-To https://github.com/adamrangwala/act-math-practice-web.git
- ! [remote rejected] main -> main (push declined due to repository rule violations)
-error: failed to push some refs to 'https://github.com/adamrangwala/act-math-practice-web.git'
 
-C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp>
+> server@1.0.0 build
+> tsc
+
+routes/api.ts:10:1 - error TS2304: Cannot find name 'router'.
+
+10 router.get('/questions/today', authMiddleware, getTodaysQuestions);
+   ~~~~~~
+
+routes/api.ts:11:1 - error TS2304: Cannot find name 'router'.
+
+11 router.get('/questions/practice-more', authMiddleware, getPracticeMoreQuestions);
+   ~~~~~~
+
+routes/api.ts:12:1 - error TS2304: Cannot find name 'router'.
+
+12 router.post('/progress/submit', authMiddleware, submitProgress);
+   ~~~~~~
+
+routes/api.ts:12:49 - error TS2304: Cannot find name 'submitProgress'.
+
+12 router.post('/progress/submit', authMiddleware, submitProgress);
+                                                   ~~~~~~~~~~~~~~
+
+routes/api.ts:16:1 - error TS2304: Cannot find name 'router'.
+
+16 router.get('/stats/dashboard', authMiddleware, getDashboardStats);
+   ~~~~~~
+
+routes/api.ts:16:48 - error TS2304: Cannot find name 'getDashboardStats'.
+
+16 router.get('/stats/dashboard', authMiddleware, getDashboardStats);
+                                                  ~~~~~~~~~~~~~~~~~
+
+routes/api.ts:17:1 - error TS2304: Cannot find name 'router'.
+
+17 router.get('/stats/heatmap', authMiddleware, getHeatmapStats);
+   ~~~~~~
+
+routes/api.ts:17:46 - error TS2304: Cannot find name 'getHeatmapStats'.
+
+17 router.get('/stats/heatmap', authMiddleware, getHeatmapStats);
+                                                ~~~~~~~~~~~~~~~
+
+routes/api.ts:18:1 - error TS2304: Cannot find name 'router'.
+
+18 router.get('/stats/priority-matrix', authMiddleware, getPriorityMatrixStats);
+   ~~~~~~
+
+routes/api.ts:18:54 - error TS2304: Cannot find name 'getPriorityMatrixStats'.
+
+18 router.get('/stats/priority-matrix', authMiddleware, getPriorityMatrixStats);
+                                                        ~~~~~~~~~~~~~~~~~~~~~~
+
+routes/api.ts:20:16 - error TS2304: Cannot find name 'router'.
+
+20 export default router;
+                  ~~~~~~
+
+
+Found 11 errors in the same file, starting at: routes/api.ts:10

@@ -24,7 +24,7 @@ const initUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 email,
                 displayName: name,
                 photoURL: picture,
-                dailyQuestionLimit: 20, // Default value
+                dailyQuestionLimit: 10, // Default value
                 createdAt: new Date(),
                 lastActiveAt: new Date(),
             });

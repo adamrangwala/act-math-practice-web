@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTodaysQuestions = void 0;
+exports.getPracticeMoreQuestions = exports.getTodaysQuestions = void 0;
 const firebase_1 = require("../config/firebase");
 const getTodaysQuestions = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (!req.user) {
@@ -57,21 +57,14 @@ const getTodaysQuestions = (req, res) => __awaiter(void 0, void 0, void 0, funct
                 usedQuestionIds.add(chosenDoc.id);
             }
         }
-        // If not enough due questions, fill with new ones
         if (sessionQuestions.length < practiceSessionSize) {
-            const newSubcategories = allSubcategories.filter(sc => !userProgress[sc]);
-            for (const subcategory of newSubcategories) {
-                if (sessionQuestions.length >= practiceSessionSize)
-                    break;
-                const qSnapshot = yield firebase_1.db.collection('questions')
-                    .where('subcategories', 'array-contains', subcategory)
-                    .limit(practiceSessionSize - sessionQuestions.length) // Fetch remaining needed
-                    .get();
-                for (const doc of qSnapshot.docs) {
-                    if (!usedQuestionIds.has(doc.id)) {
-                        sessionQuestions.push(doc.data());
-                        usedQuestionIds.add(doc.id);
-                    }
+            const allQuestions = (yield firebase_1.db.collection('questions').get()).docs;
+            while (sessionQuestions.length < practiceSessionSize && allQuestions.length > 0) {
+                const randomIndex = Math.floor(Math.random() * allQuestions.length);
+                const randomDoc = allQuestions.splice(randomIndex, 1)[0];
+                if (!usedQuestionIds.has(randomDoc.id)) {
+                    sessionQuestions.push(randomDoc.data());
+                    usedQuestionIds.add(randomDoc.id);
                 }
             }
         }
@@ -86,3 +79,31 @@ const getTodaysQuestions = (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
 });
 exports.getTodaysQuestions = getTodaysQuestions;
+const getPracticeMoreQuestions = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    if (!req.user) {
+        return res.status(401).send({ message: 'Unauthorized' });
+    }
+    try {
+        const allQuestionsSnapshot = yield firebase_1.db.collection('questions').get();
+        const allQuestions = allQuestionsSnapshot.docs.map(doc => doc.data());
+        const practiceMoreSize = 3;
+        const randomQuestions = [];
+        const usedIndices = new Set();
+        if (allQuestions.length <= practiceMoreSize) {
+            return res.status(200).json(allQuestions);
+        }
+        while (randomQuestions.length < practiceMoreSize) {
+            const randomIndex = Math.floor(Math.random() * allQuestions.length);
+            if (!usedIndices.has(randomIndex)) {
+                randomQuestions.push(allQuestions[randomIndex]);
+                usedIndices.add(randomIndex);
+            }
+        }
+        res.status(200).json(randomQuestions);
+    }
+    catch (error) {
+        console.error('Error fetching practice more questions:', error);
+        res.status(500).send({ message: 'Internal Server Error' });
+    }
+});
+exports.getPracticeMoreQuestions = getPracticeMoreQuestions;

@@ -58,15 +58,11 @@ export const getTodaysQuestions = async (req: AuthRequest, res: Response) => {
       }
     }
 
-    // [Existing logic for filling with new subcategories]...
-    }
-
-    // DEV ONLY: If still not enough questions, grab randomly to ensure a full session for testing
     if (sessionQuestions.length < practiceSessionSize) {
       const allQuestions = (await db.collection('questions').get()).docs;
       while (sessionQuestions.length < practiceSessionSize && allQuestions.length > 0) {
         const randomIndex = Math.floor(Math.random() * allQuestions.length);
-        const randomDoc = allQuestions.splice(randomIndex, 1)[0]; // Remove to avoid duplicates
+        const randomDoc = allQuestions.splice(randomIndex, 1)[0];
         if (!usedQuestionIds.has(randomDoc.id)) {
           sessionQuestions.push(randomDoc.data());
           usedQuestionIds.add(randomDoc.id);
@@ -82,6 +78,37 @@ export const getTodaysQuestions = async (req: AuthRequest, res: Response) => {
 
   } catch (error) {
     console.error('Error fetching questions:', error);
+    res.status(500).send({ message: 'Internal Server Error' });
+  }
+};
+
+export const getPracticeMoreQuestions = async (req: AuthRequest, res: Response) => {
+  if (!req.user) {
+    return res.status(401).send({ message: 'Unauthorized' });
+  }
+  try {
+    const allQuestionsSnapshot = await db.collection('questions').get();
+    const allQuestions = allQuestionsSnapshot.docs.map(doc => doc.data());
+    
+    const practiceMoreSize = 3;
+    const randomQuestions: DocumentData[] = [];
+    const usedIndices = new Set<number>();
+
+    if (allQuestions.length <= practiceMoreSize) {
+      return res.status(200).json(allQuestions);
+    }
+
+    while (randomQuestions.length < practiceMoreSize) {
+      const randomIndex = Math.floor(Math.random() * allQuestions.length);
+      if (!usedIndices.has(randomIndex)) {
+        randomQuestions.push(allQuestions[randomIndex]);
+        usedIndices.add(randomIndex);
+      }
+    }
+    
+    res.status(200).json(randomQuestions);
+  } catch (error) {
+    console.error('Error fetching practice more questions:', error);
     res.status(500).send({ message: 'Internal Server Error' });
   }
 };

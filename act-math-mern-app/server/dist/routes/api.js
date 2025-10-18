@@ -17,6 +17,7 @@ router.get('/settings', authMiddleware_1.default, authController_1.getUserSettin
 router.put('/settings', authMiddleware_1.default, authController_1.updateUserSettings);
 // Practice
 router.get('/questions/today', authMiddleware_1.default, questionController_1.getTodaysQuestions);
+router.get('/questions/practice-more', authMiddleware_1.default, questionController_1.getPracticeMoreQuestions);
 router.post('/progress/submit', authMiddleware_1.default, progressController_1.submitProgress);
 // Stats
 router.get('/stats/dashboard', authMiddleware_1.default, statsController_1.getDashboardStats);

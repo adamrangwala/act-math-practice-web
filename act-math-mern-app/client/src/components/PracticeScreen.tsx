@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Container, Card, Button, Spinner, ListGroup, Alert } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import PracticeSettings from './PracticeSettings';
 
 // Define the structure of a question object for TypeScript
 interface Question {
@@ -22,10 +21,6 @@ interface SessionData {
   subcategories: string[];
 }
 
-interface UserSettings {
-  dailyQuestionLimit?: number;
-}
-
 // Helper function to get ACT-style lettering
 const getOptionLetter = (index: number, totalOptions: number) => {
   const letters5alt = ['F', 'G', 'H', 'J', 'K'];
@@ -41,45 +36,34 @@ const PracticeScreen = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [sessionData, setSessionData] = useState<SessionData[]>([]);
-  const [userSettings, setUserSettings] = useState<UserSettings | null>(null);
-  const [savingSettings, setSavingSettings] = useState(false);
 
   // State for answer handling
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const startTimeRef = useRef<number>(Date.now());
 
-  const fetchUserSettings = async () => {
-    if (!currentUser) return;
-    try {
-      const token = await currentUser.getIdToken();
-      const response = await fetch('/api/settings', {
-        headers: { 'Authorization': `Bearer ${token}` },
-      });
-      if (!response.ok) throw new Error('Could not fetch user settings.');
-      const data = await response.json();
-      setUserSettings(data);
-      return data;
-    } catch (err: any) {
-      setError(err.message);
-      return null;
-    }
+  const handleRestartSession = () => {
+    setLoading(true);
+    setError(null);
+    setQuestions([]);
+    setCurrentQuestionIndex(0);
+    setSessionData([]);
+    fetchQuestions(true); // Explicitly fetch "practice more" questions
   };
 
-  const fetchQuestions = async (limit?: number) => {
+  const fetchQuestions = async (isPracticeMore = false) => {
     if (!currentUser) return;
     setLoading(true);
+    const endpoint = isPracticeMore ? '/api/questions/practice-more' : '/api/questions/today';
+
     try {
       const token = await currentUser.getIdToken();
-      const url = limit ? `/api/questions/today?limit=${limit}` : '/api/questions/today';
-      const response = await fetch(url, {
+      const response = await fetch(endpoint, {
         headers: { 'Authorization': `Bearer ${token}` },
       });
       if (!response.ok) throw new Error('Failed to fetch questions.');
       const data = await response.json();
       setQuestions(data);
-      setCurrentQuestionIndex(0);
-      setSessionData([]);
       startTimeRef.current = Date.now();
     } catch (err: any) {
       setError(err.message);
@@ -89,42 +73,8 @@ const PracticeScreen = () => {
   };
 
   useEffect(() => {
-    const init = async () => {
-      const settings = await fetchUserSettings();
-      if (settings && settings.dailyQuestionLimit) {
-        fetchQuestions(settings.dailyQuestionLimit);
-      } else {
-        setLoading(false); // Stop loading to show settings prompt
-      }
-    };
-    init();
+    fetchQuestions(false); // Initial fetch is for daily questions
   }, [currentUser]);
-
-  const handleSaveSettings = async (limit: number) => {
-    if (!currentUser) return;
-    setSavingSettings(true);
-    try {
-      const token = await currentUser.getIdToken();
-      await fetch('/api/settings', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify({ dailyQuestionLimit: limit }),
-      });
-      setUserSettings({ ...userSettings, dailyQuestionLimit: limit });
-      fetchQuestions(limit);
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setSavingSettings(false);
-    }
-  };
-
-  const handleRestartSession = () => {
-    fetchQuestions(userSettings?.dailyQuestionLimit);
-  };
 
   const submitProgressToServer = async (performanceRating: number, timeSpent: number) => {
     if (!currentUser) return;
@@ -211,11 +161,7 @@ const PracticeScreen = () => {
     return <Container className="text-center mt-5"><Alert variant="danger">Error: {error}</Alert></Container>;
   }
 
-  if (!userSettings?.dailyQuestionLimit) {
-    return <PracticeSettings onSave={handleSaveSettings} saving={savingSettings} />;
-  }
-
-  if (questions.length === 0 || currentQuestionIndex >= questions.length) {
+  if (questions.length === 0 && !loading) {
     return (
       <Container className="text-center mt-5">
         <h2>You've completed your session!</h2>
