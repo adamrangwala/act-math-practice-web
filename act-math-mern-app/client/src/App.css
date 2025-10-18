@@ -1,0 +1,51 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem; /* Remove top/bottom padding to let components control it */
+}
+
+/* Global Styles */
+:root {
+  --primary-green: #58a700;
+  --primary-green-hover: #6aae2a;
+  --light-gray-bg: #f7f7f7;
+  --border-radius: 12px;
+  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--light-gray-bg);
+  color: #333;
+}
+
+/* Override Bootstrap defaults for a softer feel */
+.btn-primary {
+  background-color: var(--primary-green);
+  border-color: var(--primary-green);
+  border-radius: var(--border-radius);
+  font-weight: 700;
+  padding: 10px 20px;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-green-hover);
+  border-color: var(--primary-green-hover);
+}
+
+.card {
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  border: none;
+}
+
+.navbar {
+  box-shadow: var(--card-shadow);
+}
+
+/* Specific style for the authentic question card */
+.question-card {
+  border-radius: 4px !important; /* Sharp corners */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+  background-color: #fff !important;
+}
