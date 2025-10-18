@@ -2,7 +2,7 @@ import express from 'express';
 import authMiddleware from '../middleware/authMiddleware';
 
 // Import all controller functions
-import { initUser } from '../controllers/authController';
+import { initUser, getUserSettings, updateUserSettings } from '../controllers/authController';
 import { getTodaysQuestions } from '../controllers/questionController';
 import { submitProgress } from '../controllers/progressController';
 import { getDashboardStats, getHeatmapStats, getPriorityMatrixStats } from '../controllers/statsController';
@@ -11,6 +11,8 @@ const router = express.Router();
 
 // Auth & User
 router.post('/users/init', authMiddleware, initUser);
+router.get('/settings', authMiddleware, getUserSettings);
+router.put('/settings', authMiddleware, updateUserSettings);
 
 // Practice
 router.get('/questions/today', authMiddleware, getTodaysQuestions);

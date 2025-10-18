@@ -23,7 +23,7 @@ export const initUser = async (req: AuthRequest, res: Response) => {
         email,
         displayName: name,
         photoURL: picture,
-        dailyQuestionLimit: 20, // Default value
+        dailyQuestionLimit: 10, // Default value
         createdAt: new Date(),
         lastActiveAt: new Date(),
       });

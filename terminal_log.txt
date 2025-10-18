@@ -1,10 +1,33 @@
-react-dom_client.js?v=a1e443ea:20103 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
-firebase.ts:16 Firebase Config: Object
-api/settings:1  Failed to load resource: the server responded with a status of 404 (Not Found)
-api/settings:1  Failed to load resource: the server responded with a status of 404 (Not Found)
+Delta compression using up to 12 threads
+Compressing objects: 100% (75/75), done.
+Writing objects: 100% (90/90), 3.21 MiB | 1.87 MiB/s, done.
+Total 90 (delta 5), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (5/5), done.
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+remote: 
+remote: - GITHUB PUSH PROTECTION
+remote:   ΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇö
+remote:     Resolve the following violations before pushing again
+remote:
+remote:     - Push cannot contain secrets
+remote:
+remote:
+remote:      (?) Learn how to resolve a blocked push
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
+remote:
+remote:
+remote:       ΓÇöΓÇö Google Cloud Service Account Credentials ΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇö
+remote:        locations:
+remote:          - commit: 2ac61c412ec03b36b4d36be29a4579dc85f66449
+remote:            path: act-math-mern-app/server/serviceAccountKey.json:1
+remote:
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/adamrangwala/act-math-practice-web/security/secret-scanning/unblock-secret/34Fl4exGP3DCyi8Y21sj7m7gkw6
+remote:
+remote:
+remote:
+To https://github.com/adamrangwala/act-math-practice-web.git
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'https://github.com/adamrangwala/act-math-practice-web.git'
 
-server output:
-
-[dotenv@17.2.3] injecting env (1) from .env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
-Firebase Admin SDK initialized successfully.
-Server is running on port 5000
+C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp>

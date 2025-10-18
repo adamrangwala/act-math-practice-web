@@ -13,6 +13,8 @@ const statsController_1 = require("../controllers/statsController");
 const router = express_1.default.Router();
 // Auth & User
 router.post('/users/init', authMiddleware_1.default, authController_1.initUser);
+router.get('/settings', authMiddleware_1.default, authController_1.getUserSettings);
+router.put('/settings', authMiddleware_1.default, authController_1.updateUserSettings);
 // Practice
 router.get('/questions/today', authMiddleware_1.default, questionController_1.getTodaysQuestions);
 router.post('/progress/submit', authMiddleware_1.default, progressController_1.submitProgress);

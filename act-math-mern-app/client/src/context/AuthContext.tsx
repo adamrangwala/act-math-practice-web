@@ -33,6 +33,26 @@ export function AuthProvider({ children }: AuthProviderProps) {
     return unsubscribe;
   }, []);
 
+  useEffect(() => {
+    const initializeUser = async (user: User) => {
+      try {
+        const token = await user.getIdToken();
+        await fetch('/api/users/init', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+      } catch (error) {
+        console.error("Failed to initialize user:", error);
+      }
+    };
+
+    if (currentUser) {
+      initializeUser(currentUser);
+    }
+  }, [currentUser]);
+
   const value = {
     currentUser,
   };

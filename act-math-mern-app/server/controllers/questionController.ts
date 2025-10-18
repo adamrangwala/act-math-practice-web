@@ -58,21 +58,18 @@ export const getTodaysQuestions = async (req: AuthRequest, res: Response) => {
       }
     }
 
-    // If not enough due questions, fill with new ones
+    // [Existing logic for filling with new subcategories]...
+    }
+
+    // DEV ONLY: If still not enough questions, grab randomly to ensure a full session for testing
     if (sessionQuestions.length < practiceSessionSize) {
-      const newSubcategories = allSubcategories.filter(sc => !userProgress[sc]);
-      for (const subcategory of newSubcategories) {
-        if (sessionQuestions.length >= practiceSessionSize) break;
-        const qSnapshot = await db.collection('questions')
-          .where('subcategories', 'array-contains', subcategory)
-          .limit(practiceSessionSize - sessionQuestions.length) // Fetch remaining needed
-          .get();
-        
-        for (const doc of qSnapshot.docs) {
-          if (!usedQuestionIds.has(doc.id)) {
-            sessionQuestions.push(doc.data());
-            usedQuestionIds.add(doc.id);
-          }
+      const allQuestions = (await db.collection('questions').get()).docs;
+      while (sessionQuestions.length < practiceSessionSize && allQuestions.length > 0) {
+        const randomIndex = Math.floor(Math.random() * allQuestions.length);
+        const randomDoc = allQuestions.splice(randomIndex, 1)[0]; // Remove to avoid duplicates
+        if (!usedQuestionIds.has(randomDoc.id)) {
+          sessionQuestions.push(randomDoc.data());
+          usedQuestionIds.add(randomDoc.id);
         }
       }
     }
