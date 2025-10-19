@@ -54,10 +54,26 @@ const PracticeScreen = () => {
   const fetchQuestions = async (isPracticeMore = false) => {
     if (!currentUser) return;
     setLoading(true);
-    const endpoint = isPracticeMore ? '/api/questions/practice-more' : '/api/questions/today';
+    
+    let endpoint = '/api/questions/today';
+    if (isPracticeMore) {
+      endpoint = '/api/questions/practice-more';
+    }
 
     try {
       const token = await currentUser.getIdToken();
+      
+      // For daily sessions, first get the user's settings for the limit
+      if (!isPracticeMore) {
+        const settingsResponse = await fetch('/api/settings', {
+          headers: { 'Authorization': `Bearer ${token}` },
+        });
+        if (settingsResponse.ok) {
+          const settings = await settingsResponse.json();
+          endpoint += `?limit=${settings.dailyQuestionLimit || 10}`;
+        }
+      }
+
       const response = await fetch(endpoint, {
         headers: { 'Authorization': `Bearer ${token}` },
       });
@@ -73,7 +89,7 @@ const PracticeScreen = () => {
   };
 
   useEffect(() => {
-    fetchQuestions(false); // Initial fetch is for daily questions
+    fetchQuestions(false); // Initial fetch for daily questions respects settings
   }, [currentUser]);
 
   const submitProgressToServer = async (performanceRating: number, timeSpent: number) => {

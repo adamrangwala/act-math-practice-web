@@ -49,37 +49,46 @@ To ensure a collaborative, stable, and easily debuggable process, we will follow
   - [x] **Frontend:** Submit answers and show feedback.
 
 - [x] **Phase 4: Subcategory & Visualization Overhaul**
-  - [x] **Docs:** Update `ACT_MATH_TOPICS.md` with the new official subcategory list.
-  - [x] **Data:** Update `questions.json` to use the new subcategories.
-  - [x] **Backend:** Evolve data model to track `totalTimeSpent` per subcategory.
+  - [ ] **Docs:** Update `ACT_MATH_TOPICS.md` with the new official subcategory list.
+  - [ ] **Data:** Update `questions.json` to use the new subcategories.
+  - [ ] **Backend:** Evolve data model to track `totalTimeSpent` per subcategory.
   - [x] **Backend:** Create `/api/stats/priority-matrix` endpoint.
   - [x] **Frontend:** Build `PriorityMatrix.tsx` visualization component.
   - [x] **Frontend:** Integrate the new visualization into the dashboard.
 
-- [x] **Phase 5: UI/UX Refinements**
+- [x] **Phase 5: UI/UX Refinements & Settings**
   - [x] **Frontend:** Create `SessionSummary.tsx` component for post-practice review.
-  - [x] **Frontend:** Redesign summary screen with color-coding, improved time formatting, and aligned layout.
-  - [x] **Frontend:** Implement badges and tooltips for a clean subcategory display.
+  - [x] **Frontend:** Redesign summary screen to be more engaging and scannable.
+  - [x] **Frontend:** Implement "Practice More" functionality for continuous learning.
+  - [x] **Frontend:** Redesign navbar with a user menu dropdown for a cleaner UI.
+  - [x] **Frontend:** Move brand title above the navbar for better visual hierarchy.
+  - [x] **Backend:** Re-implement `GET` and `PUT` endpoints for user settings.
+  - [x] **Backend:** Create `DELETE /api/progress/all` endpoint to reset user data.
+  - [x] **Frontend:** Build `Settings.tsx` page to manage daily limits and reset progress.
 
 - [ ] **Phase 6: Dashboard & Stats (Continued)**
   - [ ] **Frontend:** Add comparative feedback (user vs. global average) to the practice screen/dashboard.
   - [ ] **Backend:** Implement logic to dynamically calculate question difficulty from global stats.
 
-- [ ]  **Phase 7: Settings**
-  - [ ] **Backend:** Create `PUT /api/settings` endpoint to save user preferences.
-  - [ ] **Backend:** Create `GET /api/settings` endpoint to retrieve user preferences.
-  - [ ] **Backend:** Modify `GET /api/questions/today` to accept a `limit` parameter.
-  - [ ] **Frontend:** Build `PracticeSettings.tsx` component for first-time users.
-  - [ ] **Frontend:** Integrate settings prompt into the `PracticeScreen.tsx`.
-  - [ ] **Frontend:** Build `SettingsModal.tsx` component for dashboard access.
-  - [ ] **Frontend:** Integrate settings modal into the `Dashboard.tsx`.
-
-- [ ] **Phase 8: Finalization**
+- [ ] **Phase 7: Finalization**
   - [ ] Populate `questions.json` with 50+ questions
   - [ ] Create data seeding script/instructions
   - [ ] Finalize `README.md` with full setup instructions
 
-- [ ] **Phase 9: Mock Test Mode (Post-MVP)**
+- [ ] **Phase 8: Mock Test Mode (Post-MVP)**
   - [ ] **Backend:** Create `/api/questions/mock-test` endpoint.
   - [ ] **Frontend:** Build `MockTestScreen.tsx` component.
   - [ ] **Frontend:** Build `ResultsPage.tsx` component.
+
+---
+
+## Challenges & Solutions
+
+This section documents notable technical challenges encountered during development and the solutions implemented.
+
+1.  **Challenge:** During a major refactoring to implement `react-router-dom`, several bugs were introduced, including a `SyntaxError` due to stray comments in the JSX and a `ReferenceError` from a function being declared twice.
+    -   **Solution:** The component file (`App.tsx`) had been corrupted by a series of incomplete `replace` operations. The solution was to perform a clean `write_file` operation, completely overwriting the corrupted file with a correct, validated version. This restored stability and resolved the cascading errors.
+
+2.  **Challenge:** After cleaning up the `PracticeScreen.tsx` component, a `ReferenceError: handleSaveSettings is not defined` appeared because the function was removed but a child component (`PracticeSettings`) that depended on it was not.
+    -   **Solution:** The `PracticeSettings` component and its related state were legacy code from a feature that was not currently in scope. The solution was to remove the component and all related logic from `PracticeScreen.tsx`, simplifying the component and resolving the error. This highlighted the importance of ensuring all dependencies are accounted for during refactoring.
+

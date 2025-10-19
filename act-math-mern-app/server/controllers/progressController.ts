@@ -82,6 +82,32 @@ export const submitProgress = async (req: AuthRequest, res: Response) => {
   }
 };
 
+export const resetAllProgress = async (req: AuthRequest, res: Response) => {
+  if (!req.user) {
+    return res.status(401).send({ message: 'Unauthorized' });
+  }
+  const userId = req.user.uid;
+
+  try {
+    const snapshot = await db.collection('userSubcategoryProgress').where('userId', '==', userId).get();
+    if (snapshot.empty) {
+      return res.status(200).send({ message: 'No progress data to delete.' });
+    }
+
+    // Batch delete to handle large numbers of documents
+    const batch = db.batch();
+    snapshot.docs.forEach(doc => {
+      batch.delete(doc.ref);
+    });
+    await batch.commit();
+
+    res.status(200).send({ message: 'User progress has been successfully reset.' });
+  } catch (error) {
+    console.error('Error resetting user progress:', error);
+    res.status(500).send({ message: 'Internal Server Error' });
+  }
+};
+
 /**
  * Calculates a new mastery score based on performance.
  * A high rating from a low score results in a large gain.

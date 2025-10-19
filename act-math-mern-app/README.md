@@ -6,6 +6,13 @@ A MERN stack application using Google Firestore for spaced repetition learning o
 
 This project is a full-stack, production-ready MVP of an ACT Math Practice web application. The core feature is a spaced repetition learning system to help students practice and master ACT math questions efficiently.
 
+## Features
+
+-   **Spaced Repetition Algorithm:** The app intelligently schedules questions based on your performance to maximize long-term retention.
+-   **Priority Matrix:** A unique visualization that plots your accuracy against your average time for each subcategory, helping you instantly identify your biggest areas for improvement.
+-   **Engaging Session Summary:** Get immediate, Duolingo-style feedback after each session with a clear breakdown of your performance on each question.
+-   **Practice More:** Never run out of questions. After your daily session, you can keep practicing with a fresh set of random problems to sharpen your skills.
+
 ## Tech Stack
 
 -   **Frontend:** React (Vite), TypeScript, Bootstrap 5

@@ -8,4 +8,13 @@
 
 > "The subcategory taxonomy has been completely overhauled to be more granular, consistent, and pedagogically sound. The previous list was refined into a clear, de-duplicated set of specific mathematical skills. This architectural decision is critical for enabling advanced features, including effective targeted practice and insightful data visualizations for the user (e.g., the 'Priority Matrix' chart)."
 
+> "The Priority Matrix visualization has been updated to use a clear, three-color system to provide an at-a-glance understanding of a user's performance. **Green** represents mastery (accuracy ≥ 80% and average time ≤ 60s). **Red** indicates a significant weakness (accuracy < 60%). **Orange** serves as a middle ground, highlighting topics that need improvement in either speed or accuracy. This color-coding is designed to help users quickly identify and prioritize their weakest areas."
+
+> "The post-session summary screen has been redesigned from a simple table to a more engaging, Duolingo-style list. Using cards with clear icons (checkmarks/X's) and colors provides immediate, scannable feedback on performance, enhancing the user's sense of accomplishment and highlighting areas for improvement."
+
+> "To de-clutter the main navigation bar, user-specific actions have been consolidated into a **User Menu Dropdown**. This standard UX pattern groups 'Settings' and 'Sign Out' under the user's name, focusing the primary navigation on core tasks ('Dashboard' and 'Practice') and creating a scalable space for future user-related links."
+
+> "For a cleaner visual hierarchy, the main brand title, 'ACT Math Practice,' has been moved out of the navigation bar and into a dedicated, centered header above it. This separates the application's identity from its navigation, creating a more professional and organized user interface."
+
+
 > "The post-session summary screen has been redesigned to provide a more engaging and data-rich user experience, moving away from a simple table to a scannable, color-coded list. Key decisions include: 1) **Contextual Highlighting:** Each question row is given a light green or red background for immediate correct/incorrect feedback. 2) **Performance-Based Coloring:** The time spent on each question is color-coded (green, orange, red) to help users instantly identify questions that took too long. 3) **Clutter-Free Topic Display:** Subcategories are rendered as badges, with a tooltip to reveal the full list on hover, preventing visual clutter while keeping all information accessible. These changes are intended to make the summary more intuitive and actionable for the user."

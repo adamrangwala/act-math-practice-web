@@ -1,61 +1,158 @@
-
-> server@1.0.0 build
-> tsc
-
-routes/api.ts:10:1 - error TS2304: Cannot find name 'router'.
-
-10 router.get('/questions/today', authMiddleware, getTodaysQuestions);
-   ~~~~~~
-
-routes/api.ts:11:1 - error TS2304: Cannot find name 'router'.
-
-11 router.get('/questions/practice-more', authMiddleware, getPracticeMoreQuestions);
-   ~~~~~~
-
-routes/api.ts:12:1 - error TS2304: Cannot find name 'router'.
-
-12 router.post('/progress/submit', authMiddleware, submitProgress);
-   ~~~~~~
-
-routes/api.ts:12:49 - error TS2304: Cannot find name 'submitProgress'.
-
-12 router.post('/progress/submit', authMiddleware, submitProgress);
-                                                   ~~~~~~~~~~~~~~
-
-routes/api.ts:16:1 - error TS2304: Cannot find name 'router'.
-
-16 router.get('/stats/dashboard', authMiddleware, getDashboardStats);
-   ~~~~~~
-
-routes/api.ts:16:48 - error TS2304: Cannot find name 'getDashboardStats'.
-
-16 router.get('/stats/dashboard', authMiddleware, getDashboardStats);
-                                                  ~~~~~~~~~~~~~~~~~
-
-routes/api.ts:17:1 - error TS2304: Cannot find name 'router'.
-
-17 router.get('/stats/heatmap', authMiddleware, getHeatmapStats);
-   ~~~~~~
-
-routes/api.ts:17:46 - error TS2304: Cannot find name 'getHeatmapStats'.
-
-17 router.get('/stats/heatmap', authMiddleware, getHeatmapStats);
-                                                ~~~~~~~~~~~~~~~
-
-routes/api.ts:18:1 - error TS2304: Cannot find name 'router'.
-
-18 router.get('/stats/priority-matrix', authMiddleware, getPriorityMatrixStats);
-   ~~~~~~
-
-routes/api.ts:18:54 - error TS2304: Cannot find name 'getPriorityMatrixStats'.
-
-18 router.get('/stats/priority-matrix', authMiddleware, getPriorityMatrixStats);
-                                                        ~~~~~~~~~~~~~~~~~~~~~~
-
-routes/api.ts:20:16 - error TS2304: Cannot find name 'router'.
-
-20 export default router;
-                  ~~~~~~
+client@0.0.0 dev
+> vite
 
 
-Found 11 errors in the same file, starting at: routes/api.ts:10
+  VITE v7.1.10  ready in 685 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+10:39:01 AM [vite] (client) hmr update /src/App.tsx
+10:39:01 AM [vite] Internal server error: C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\src\App.tsx: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment <>...</>? (28:12)
+
+  26 |               </Navbar.Collapse>
+  27 | //...
+> 28 |             <Routes>
+     |             ^
+  29 |               <Route path="/dashboard" element={<Dashboard />} />
+  30 |               <Route path="/practice" element={<PracticeScreen />} />
+  31 |               <Route path="/summary" element={<SessionSummary />} />
+  Plugin: vite:react-babel
+  File: C:/Users/rangw/Dropbox/Websites/ACT_Math_webapp/act-math-mern-app/client/src/App.tsx:28:12
+  26 |                </Navbar.Collapse>
+  27 |  //...
+  28 |              <Routes>
+     |              ^
+  29 |                <Route path="/dashboard" element={<Dashboard />} />
+  30 |                <Route path="/practice" element={<PracticeScreen />} />
+      at constructor (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:367:19)
+      at TypeScriptParserMixin.raise (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:6630:19)   
+      at TypeScriptParserMixin.jsxParseElementAt (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:4775:18)
+      at TypeScriptParserMixin.jsxParseElement (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:4782:17)
+      at TypeScriptParserMixin.parseExprAtom (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:4792:19)
+      at TypeScriptParserMixin.parseExprSubscripts (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11085:23)
+      at TypeScriptParserMixin.parseUpdate (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11070:21)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11050:23)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:9857:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10903:61)
+      at TypeScriptParserMixin.parseExprOps (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10908:23)
+      at TypeScriptParserMixin.parseMaybeConditional (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10885:23)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10835:21)
+      at C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:9795:39
+      at TypeScriptParserMixin.tryParse (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:6938:20)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:9795:18)
+      at TypeScriptParserMixin.parseExpressionBase (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10788:23)
+      at C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10784:39
+      at TypeScriptParserMixin.allowInAnd (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:12431:16)
+      at TypeScriptParserMixin.parseExpression (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10784:17)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:12904:23)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:9532:18)
+      at TypeScriptParserMixin.parseStatementLike (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:12776:17)
+      at TypeScriptParserMixin.parseModuleItem (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:12753:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:13325:36)
+      at TypeScriptParserMixin.parseBlockBody (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:13318:10)
+      at TypeScriptParserMixin.parseProgram (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:12634:10)
+      at TypeScriptParserMixin.parseTopLevel (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:12624:25)
+      at TypeScriptParserMixin.parse (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:14501:10)  
+      at TypeScriptParserMixin.parse (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10149:18)  
+      at parse (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:14535:38)
+      at parser (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\core\lib\parser\index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\core\lib\transformation\normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\core\lib\transformation\index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\core\lib\transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\gensync\index.js:261:32)
+      at C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\gensync\index.js:273:13
+      at async.call.result.err.err (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\gensync\index.js:223:11)
+      at C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\gensync\index.js:189:28
+      at C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\core\lib\gensync-utils\async.js:67:7
+      at C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\gensync\index.js:113:33
+      at step (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\gensync\index.js:287:14)
+      at C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\gensync\index.js:273:13
+      at async.call.result.err.err (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\gensync\index.js:223:11)
+10:40:31 AM [vite] (client) Pre-transform error: C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\src\App.tsx: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment <>...</>? (28:12)
+
+  26 |               </Navbar.Collapse>
+  27 | //...
+> 28 |             <Routes>
+     |             ^
+  29 |               <Route path="/dashboard" element={<Dashboard />} />
+  30 |               <Route path="/practice" element={<PracticeScreen />} />
+  31 |               <Route path="/summary" element={<SessionSummary />} />
+  Plugin: vite:react-babel
+  File: C:/Users/rangw/Dropbox/Websites/ACT_Math_webapp/act-math-mern-app/client/src/App.tsx:28:12
+  26 |                </Navbar.Collapse>
+  27 |  //...
+  28 |              <Routes>
+     |              ^
+  29 |                <Route path="/dashboard" element={<Dashboard />} />
+  30 |                <Route path="/practice" element={<PracticeScreen />} />
+10:40:31 AM [vite] Internal server error: C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\src\App.tsx: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment <>...</>? (28:12)
+
+  26 |               </Navbar.Collapse>
+  27 | //...
+> 28 |             <Routes>
+     |             ^
+  29 |               <Route path="/dashboard" element={<Dashboard />} />
+  30 |               <Route path="/practice" element={<PracticeScreen />} />
+  31 |               <Route path="/summary" element={<SessionSummary />} />
+  Plugin: vite:react-babel
+  File: C:/Users/rangw/Dropbox/Websites/ACT_Math_webapp/act-math-mern-app/client/src/App.tsx:28:12
+  26 |                </Navbar.Collapse>
+  27 |  //...
+  28 |              <Routes>
+     |              ^
+  29 |                <Route path="/dashboard" element={<Dashboard />} />
+  30 |                <Route path="/practice" element={<PracticeScreen />} />
+      at constructor (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:367:19)
+      at TypeScriptParserMixin.raise (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:6630:19)   
+      at TypeScriptParserMixin.jsxParseElementAt (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:4775:18)
+      at TypeScriptParserMixin.jsxParseElement (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:4782:17)
+      at TypeScriptParserMixin.parseExprAtom (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:4792:19)
+      at TypeScriptParserMixin.parseExprSubscripts (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11085:23)
+      at TypeScriptParserMixin.parseUpdate (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11070:21)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11050:23)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:9857:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10903:61)
+      at TypeScriptParserMixin.parseExprOps (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10908:23)
+      at TypeScriptParserMixin.parseMaybeConditional (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10885:23)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10835:21)
+      at C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:9795:39
+      at TypeScriptParserMixin.tryParse (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:6938:20)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:9795:18)
+      at TypeScriptParserMixin.parseExpressionBase (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10788:23)
+      at C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10784:39
+      at TypeScriptParserMixin.allowInAnd (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:12431:16)
+      at TypeScriptParserMixin.parseExpression (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10784:17)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:12904:23)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:9532:18)
+      at TypeScriptParserMixin.parseStatementLike (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:12776:17)
+      at TypeScriptParserMixin.parseModuleItem (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:12753:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:13325:36)
+      at TypeScriptParserMixin.parseBlockBody (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:13318:10)
+      at TypeScriptParserMixin.parseProgram (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:12634:10)
+      at TypeScriptParserMixin.parseTopLevel (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:12624:25)
+      at TypeScriptParserMixin.parse (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:14501:10)  
+      at TypeScriptParserMixin.parse (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10149:18)  
+      at parse (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:14535:38)
+      at parser (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\core\lib\parser\index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\core\lib\transformation\normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\core\lib\transformation\index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\core\lib\transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\gensync\index.js:261:32)
+      at C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\gensync\index.js:273:13
+      at async.call.result.err.err (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\gensync\index.js:223:11)
+      at C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\gensync\index.js:189:28
+      at C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\core\lib\gensync-utils\async.js:67:7
+      at C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\gensync\index.js:113:33
+      at step (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\gensync\index.js:287:14)
+      at C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\gensync\index.js:273:13
+      at async.call.result.err.err (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\gensync\index.js:223:11)
+
