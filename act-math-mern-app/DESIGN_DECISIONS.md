@@ -16,5 +16,9 @@
 
 > "For a cleaner visual hierarchy, the main brand title, 'ACT Math Practice,' has been moved out of the navigation bar and into a dedicated, centered header above it. This separates the application's identity from its navigation, creating a more professional and organized user interface."
 
+> "**UI/UX Golden Rule:** The requirements are actually pretty simple. Good contrast, legible text, imagery/iconography that makes sense, clear CTAs. The simplest and most common thing to look at is visual hierarchy. What do your eyes look to first? The designer should be mindful of this and typically has a reason for it."
+
+> "To create a more engaging and pedagogically effective feedback loop, the practice screen was redesigned to use a **card-flip animation**. When a user answers, the card flips to reveal the solution on the back. This interaction focuses the user's attention, reinforces learning by showing the question and solution together, and makes the experience feel more polished and interactive."
+
 
 > "The post-session summary screen has been redesigned to provide a more engaging and data-rich user experience, moving away from a simple table to a scannable, color-coded list. Key decisions include: 1) **Contextual Highlighting:** Each question row is given a light green or red background for immediate correct/incorrect feedback. 2) **Performance-Based Coloring:** The time spent on each question is color-coded (green, orange, red) to help users instantly identify questions that took too long. 3) **Clutter-Free Topic Display:** Subcategories are rendered as badges, with a tooltip to reveal the full list on hover, preventing visual clutter while keeping all information accessible. These changes are intended to make the summary more intuitive and actionable for the user."
