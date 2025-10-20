@@ -8,6 +8,7 @@ interface ProgressSubmission {
   performanceRating: number; // 0.0 to 1.0
   timeSpent: number; // in seconds
   context: 'practice_session' | 'targeted_practice' | 'mock_test';
+  selectedAnswerIndex: number;
 }
 
 export const submitProgress = async (req: AuthRequest, res: Response) => {
@@ -15,10 +16,10 @@ export const submitProgress = async (req: AuthRequest, res: Response) => {
     return res.status(401).send({ message: 'Unauthorized' });
   }
 
-  const { questionId, performanceRating, timeSpent, context }: ProgressSubmission = req.body;
+  const { questionId, performanceRating, timeSpent, context, selectedAnswerIndex }: ProgressSubmission = req.body;
   const userId = req.user.uid;
 
-  if (!questionId || performanceRating === undefined || !context || timeSpent === undefined) {
+  if (!questionId || performanceRating === undefined || !context || timeSpent === undefined || selectedAnswerIndex === undefined) {
     return res.status(400).send({ message: 'Missing required progress data.' });
   }
 
@@ -28,7 +29,8 @@ export const submitProgress = async (req: AuthRequest, res: Response) => {
     if (!questionDoc.exists) {
       return res.status(404).send({ message: 'Question not found.' });
     }
-    const subcategories = questionDoc.data()?.subcategories || [];
+    const questionData = questionDoc.data()!;
+    const subcategories = questionData.subcategories || [];
 
     const isCorrect = performanceRating > 0;
 
@@ -66,12 +68,19 @@ export const submitProgress = async (req: AuthRequest, res: Response) => {
     }
 
     // Step 2: Update Global Question Stats (conditionally)
+    const updatePayload: { [key: string]: any } = {
+      globalTotalAttempts: FieldValue.increment(1),
+      globalCorrectAttempts: FieldValue.increment(isCorrect ? 1 : 0),
+      globalTotalTimeSpent: FieldValue.increment(timeSpent),
+    };
+
+    // Atomically increment the selected option count
+    if (typeof selectedAnswerIndex === 'number' && selectedAnswerIndex >= 0 && selectedAnswerIndex < (questionData.options?.length || 0)) {
+      updatePayload[`optionSelectionCounts.${selectedAnswerIndex}`] = FieldValue.increment(1);
+    }
+
     if (context === 'practice_session' || context === 'mock_test') {
-      await questionRef.update({
-        globalTotalAttempts: FieldValue.increment(1),
-        globalCorrectAttempts: FieldValue.increment(isCorrect ? 1 : 0),
-        globalTotalTimeSpent: FieldValue.increment(timeSpent),
-      });
+      await questionRef.update(updatePayload);
     }
 
     res.status(200).json({ message: 'Progress updated successfully.' });

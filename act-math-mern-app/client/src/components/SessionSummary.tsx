@@ -41,7 +41,7 @@ const SessionSummary = () => {
   );
 
   return (
-    <Container className="mt-4">
+    <div className="mt-4">
       <Card className="text-center shadow-sm">
         <Card.Body>
           <Card.Title as="h2" className="mb-4">Session Complete!</Card.Title>
@@ -49,13 +49,16 @@ const SessionSummary = () => {
             <Col>
               <div className="p-3 bg-light rounded">
                 <h4 className="mb-1">Accuracy</h4>
-                <p className="h2 mb-0">{sessionStats.accuracy.toFixed(1)}%</p>
+                <p className="h2 mb-0">
+                  {sessionStats.correctCount} / {sessionStats.totalCount} 
+                  <span className="fs-5 text-muted"> ({sessionStats.accuracy.toFixed(1)}%)</span>
+                </p>
               </div>
             </Col>
             <Col>
               <div className="p-3 bg-light rounded">
-                <h4 className="mb-1">Average Time</h4>
-                <p className="h2 mb-0">{formatTime(sessionStats.avgTime)}</p>
+                <h4 className="mb-1">Average Time per Question</h4>
+                <p className="h2 mb-0">{sessionStats.avgTime.toFixed(1)}s</p>
               </div>
             </Col>
           </Row>
@@ -102,7 +105,7 @@ const SessionSummary = () => {
           </div>
         </Card.Body>
       </Card>
-    </Container>
+    </div>
   );
 };
 

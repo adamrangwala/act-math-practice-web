@@ -1,160 +1,91 @@
+preview.html:167 Error fetching or parsing questions: SyntaxError: Bad escaped character in JSON at position 476 (line 8 column 11)
+fetchQuestions @ preview.html:167
 
-
-3:27:02 PM [vite] (client) hmr update /src/components/PracticeScreen.tsx (x3)
-
-
-
-3:27:02 PM [vite] Internal server error: C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\src\components\PracticeScreen.tsx: Expected corresponding JSX closing tag for <ListGroup.Item>. (153:18)
-
-  151 |                     <strong className="me-2">{getOptionLetter(index)}.</strong>
-  152 |                     <span dangerouslySetInnerHTML={{ __html: option }} />
-> 153 |                   </ListGoup.Item>
-      |                   ^
-  154 |                 ))}
-  155 |               </ListGroup>
-  156 |             </Card.Body>
-  Plugin: vite:react-babel
-  File: C:/Users/rangw/Dropbox/Websites/ACT_Math_webapp/act-math-mern-app/client/src/components/PracticeScreen.tsx:153:18
-  151 |                      <strong className="me-2">{getOptionLetter(index)}.</strong>
-  152 |                      <span dangerouslySetInnerHTML={{ __html: option }} />
-  153 |                    </ListGoup.Item>
-      |                    ^
-  154 |                  ))}
-  155 |                </ListGroup>
-      at constructor (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:367:19)
-      at TypeScriptParserMixin.raise (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:6630:19)  
-      at TypeScriptParserMixin.jsxParseElementAt (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:4760:16)
-      at TypeScriptParserMixin.jsxParseElement (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:4782:17)
-      at TypeScriptParserMixin.parseExprAtom (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:4792:19)
-      at TypeScriptParserMixin.parseExprSubscripts (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11085:23)
-      at TypeScriptParserMixin.parseUpdate (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11070:21)
-      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11050:23)
-      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:9857:18)
-      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10903:61)
-      at TypeScriptParserMixin.parseExprOps (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10908:23)
-      at TypeScriptParserMixin.parseMaybeConditional (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10885:23)
-      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10835:21)
-      at C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:9795:39
-      at TypeScriptParserMixin.tryParse (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:6938:20)
-      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:9795:18)
-      at C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10804:39
-      at TypeScriptParserMixin.allowInAnd (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:12436:12)
-      at TypeScriptParserMixin.parseMaybeAssignAllowIn (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10804:17)
-      at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:12503:17)
-      at TypeScriptParserMixin.parseParenAndDistinguishExpression (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11683:28)
-      at TypeScriptParserMixin.parseExprAtom (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11335:23)
-      at TypeScriptParserMixin.parseExprAtom (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:4797:20)
-      at TypeScriptParserMixin.parseExprSubscripts (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11085:23)
-      at TypeScriptParserMixin.parseUpdate (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11070:21)
-      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11050:23)
-      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:9857:18)
-      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10903:61)
-      at TypeScriptParserMixin.parseExprOps (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10908:23)
-      at TypeScriptParserMixin.parseMaybeConditional (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10885:23)
-      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10835:21)
-      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:9806:20)
-      at TypeScriptParserMixin.parseFunctionBody (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:12103:24)
-      at TypeScriptParserMixin.parseArrowExpression (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:12085:10)
-      at TypeScriptParserMixin.parseParenAndDistinguishExpression (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11695:12)
-      at TypeScriptParserMixin.parseExprAtom (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11335:23)
-      at TypeScriptParserMixin.parseExprAtom (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:4797:20)
-      at TypeScriptParserMixin.parseExprSubscripts (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11085:23)
-      at TypeScriptParserMixin.parseUpdate (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11070:21)
-      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11050:23)
-      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:9857:18)
-      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10903:61)
-      at TypeScriptParserMixin.parseExprOps (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10908:23)
-      at TypeScriptParserMixin.parseMaybeConditional (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10885:23)
-      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10835:21)
-      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:9806:20)
-      at C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10804:39
-      at TypeScriptParserMixin.allowInAnd (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:12436:12)
-      at TypeScriptParserMixin.parseMaybeAssignAllowIn (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10804:17)
-      at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:12503:17)
-3:27:10 PM [vite] (client) Pre-transform error: C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\src\components\PracticeScreen.tsx: Expected corresponding JSX closing tag for <ListGroup.Item>. (153:18)
-
-  151 |                     <strong className="me-2">{getOptionLetter(index)}.</strong>
-  152 |                     <span dangerouslySetInnerHTML={{ __html: option }} />
-> 153 |                   </ListGoup.Item>
-      |                   ^
-  154 |                 ))}
-  155 |               </ListGroup>
-  156 |             </Card.Body>
-  Plugin: vite:react-babel
-  File: C:/Users/rangw/Dropbox/Websites/ACT_Math_webapp/act-math-mern-app/client/src/components/PracticeScreen.tsx:153:18
-  151 |                      <strong className="me-2">{getOptionLetter(index)}.</strong>
-  152 |                      <span dangerouslySetInnerHTML={{ __html: option }} />
-  153 |                    </ListGoup.Item>
-      |                    ^
-  154 |                  ))}
-  155 |                </ListGroup>
-
-
-
-3:27:10 PM [vite] Internal server error: C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\src\components\PracticeScreen.tsx: Expected corresponding JSX closing tag for <ListGroup.Item>. (153:18)
-
-  151 |                     <strong className="me-2">{getOptionLetter(index)}.</strong>
-  152 |                     <span dangerouslySetInnerHTML={{ __html: option }} />
-> 153 |                   </ListGoup.Item>
-      |                   ^
-  154 |                 ))}
-  155 |               </ListGroup>
-  156 |             </Card.Body>
-  Plugin: vite:react-babel
-  File: C:/Users/rangw/Dropbox/Websites/ACT_Math_webapp/act-math-mern-app/client/src/components/PracticeScreen.tsx:153:18
-  151 |                      <strong className="me-2">{getOptionLetter(index)}.</strong>
-  152 |                      <span dangerouslySetInnerHTML={{ __html: option }} />
-  153 |                    </ListGoup.Item>
-      |                    ^
-  154 |                  ))}
-  155 |                </ListGroup>
-      at constructor (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:367:19)
-      at TypeScriptParserMixin.raise (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:6630:19)  
-      at TypeScriptParserMixin.jsxParseElementAt (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:4760:16)
-      at TypeScriptParserMixin.jsxParseElement (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:4782:17)
-      at TypeScriptParserMixin.parseExprAtom (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:4792:19)
-      at TypeScriptParserMixin.parseExprSubscripts (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11085:23)
-      at TypeScriptParserMixin.parseUpdate (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11070:21)
-      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11050:23)
-      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:9857:18)
-      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10903:61)
-      at TypeScriptParserMixin.parseExprOps (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10908:23)
-      at TypeScriptParserMixin.parseMaybeConditional (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10885:23)
-      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10835:21)
-      at C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:9795:39
-      at TypeScriptParserMixin.tryParse (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:6938:20)
-      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:9795:18)
-      at C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10804:39
-      at TypeScriptParserMixin.allowInAnd (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:12436:12)
-      at TypeScriptParserMixin.parseMaybeAssignAllowIn (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10804:17)
-      at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:12503:17)
-      at TypeScriptParserMixin.parseParenAndDistinguishExpression (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11683:28)
-      at TypeScriptParserMixin.parseExprAtom (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11335:23)
-      at TypeScriptParserMixin.parseExprAtom (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:4797:20)
-      at TypeScriptParserMixin.parseExprSubscripts (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11085:23)
-      at TypeScriptParserMixin.parseUpdate (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11070:21)
-      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11050:23)
-      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:9857:18)
-      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10903:61)
-      at TypeScriptParserMixin.parseExprOps (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10908:23)
-      at TypeScriptParserMixin.parseMaybeConditional (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10885:23)
-      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10835:21)
-      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:9806:20)
-      at TypeScriptParserMixin.parseFunctionBody (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:12103:24)
-      at TypeScriptParserMixin.parseArrowExpression (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:12085:10)
-      at TypeScriptParserMixin.parseParenAndDistinguishExpression (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11695:12)
-      at TypeScriptParserMixin.parseExprAtom (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11335:23)
-      at TypeScriptParserMixin.parseExprAtom (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:4797:20)
-      at TypeScriptParserMixin.parseExprSubscripts (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11085:23)
-      at TypeScriptParserMixin.parseUpdate (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11070:21)
-      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:11050:23)
-      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:9857:18)
-      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10903:61)
-      at TypeScriptParserMixin.parseExprOps (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10908:23)
-      at TypeScriptParserMixin.parseMaybeConditional (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10885:23)
-      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10835:21)
-      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:9806:20)
-      at C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10804:39
-      at TypeScriptParserMixin.allowInAnd (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:12436:12)
-      at TypeScriptParserMixin.parseMaybeAssignAllowIn (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:10804:17)
-      at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\client\node_modules\@babel\parser\lib\index.js:12503:17)
+terminal:
+Serving HTTP on :: port 8000 (http://[::]:8000/) ...
+::1 - - [19/Oct/2025 13:34:06] "GET /preview.html HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 13:34:06] "GET /new_questions.json?v=1760898846706 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 13:34:07] code 404, message File not found
+::1 - - [19/Oct/2025 13:34:07] "GET /favicon.ico HTTP/1.1" 404 -
+::1 - - [19/Oct/2025 13:36:18] "GET /preview.html HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 13:36:18] "GET /new_questions.json?v=1760898978792 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 13:36:25] "GET /preview.html HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 13:36:25] "GET /new_questions.json?v=1760898985215 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 14:39:35] "GET /new_questions.json?v=1760902775996 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 15:06:49] "GET /preview.html HTTP/1.1" 304 -
+::1 - - [19/Oct/2025 15:06:49] "GET /new_questions.json?v=1760904409568 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 15:12:49] "GET /preview.html HTTP/1.1" 304 -
+::1 - - [19/Oct/2025 15:12:49] "GET /new_questions.json?v=1760904769227 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 15:12:52] "GET /preview.html HTTP/1.1" 304 -
+::1 - - [19/Oct/2025 15:12:53] "GET /new_questions.json?v=1760904772999 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 15:23:56] "GET /preview.html HTTP/1.1" 304 -
+::1 - - [19/Oct/2025 15:23:56] "GET /new_questions.json?v=1760905436316 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 15:38:41] "GET /preview.html HTTP/1.1" 304 -
+::1 - - [19/Oct/2025 15:38:41] "GET /new_questions.json?v=1760906321606 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 15:48:20] "GET /preview.html HTTP/1.1" 304 -
+::1 - - [19/Oct/2025 15:48:20] "GET /preview.html HTTP/1.1" 304 -
+::1 - - [19/Oct/2025 15:48:20] "GET /new_questions.json?v=1760906900874 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 15:56:02] "GET /preview.html HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 15:56:02] "GET /new_questions.json?v=1760907362376 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 15:56:32] "GET /preview.html HTTP/1.1" 304 -
+::1 - - [19/Oct/2025 15:56:33] "GET /new_questions.json?v=1760907393063 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 16:02:45] "GET /preview.html HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 16:02:45] "GET /new_questions.json?v=1760907765678 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 16:21:41] "GET /preview.html HTTP/1.1" 304 -
+::1 - - [19/Oct/2025 16:21:41] "GET /new_questions.json?v=1760908901647 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 16:21:48] "GET /preview.html HTTP/1.1" 304 -
+::1 - - [19/Oct/2025 16:21:48] "GET /new_questions.json?v=1760908908857 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 16:24:26] "GET /preview.html HTTP/1.1" 304 -
+::1 - - [19/Oct/2025 16:24:26] "GET /new_questions.json?v=1760909066159 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 17:34:55] "GET /preview.html HTTP/1.1" 304 -
+::1 - - [19/Oct/2025 17:34:55] "GET /new_questions.json?v=1760913295834 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 17:54:30] "GET /preview.html HTTP/1.1" 304 -
+::1 - - [19/Oct/2025 17:54:30] "GET /new_questions.json?v=1760914470458 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 18:07:35] "GET /preview.html HTTP/1.1" 304 -
+::1 - - [19/Oct/2025 18:07:36] "GET /new_questions.json?v=1760915255997 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 18:39:44] "GET /preview.html HTTP/1.1" 304 -
+::1 - - [19/Oct/2025 18:39:44] "GET /new_questions.json?v=1760917184976 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 18:44:02] "GET /preview.html HTTP/1.1" 304 -
+::1 - - [19/Oct/2025 18:44:02] "GET /new_questions.json?v=1760917442049 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 18:46:33] "GET /preview.html HTTP/1.1" 304 -
+::1 - - [19/Oct/2025 18:46:33] "GET /new_questions.json?v=1760917593367 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 18:46:35] "GET /preview.html HTTP/1.1" 304 -
+::1 - - [19/Oct/2025 18:46:35] "GET /new_questions.json?v=1760917595731 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 18:46:38] "GET /preview.html HTTP/1.1" 304 -
+::1 - - [19/Oct/2025 18:46:38] "GET /new_questions.json?v=1760917598506 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 18:46:38] "GET /preview.html HTTP/1.1" 304 -
+::1 - - [19/Oct/2025 18:46:38] "GET /new_questions.json?v=1760917598864 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 18:46:42] code 404, message File not found
+::1 - - [19/Oct/2025 18:46:42] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 -
+::1 - - [19/Oct/2025 22:06:39] "GET /preview.html HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 22:06:39] code 404, message File not found
+::1 - - [19/Oct/2025 22:06:39] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 -
+::1 - - [19/Oct/2025 22:06:39] "GET /new_questions.json?v=1760929599317 HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 22:14:26] "GET /preview.html HTTP/1.1" 200 -
+::1 - - [19/Oct/2025 22:14:26] code 404, message File not found
+::1 - - [19/Oct/2025 22:14:26] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 -
+::1 - - [19/Oct/2025 22:14:26] "GET /new_questions.json?v=1760930066555 HTTP/1.1" 200 -
+::1 - - [20/Oct/2025 08:58:27] "GET /preview.html HTTP/1.1" 200 -
+::1 - - [20/Oct/2025 08:58:27] code 404, message File not found
+::1 - - [20/Oct/2025 08:58:27] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 -
+::1 - - [20/Oct/2025 08:58:27] "GET /new_questions.json?v=1760968707204 HTTP/1.1" 200 -
+::1 - - [20/Oct/2025 09:00:01] "GET /preview.html HTTP/1.1" 200 -
+::1 - - [20/Oct/2025 09:00:01] code 404, message File not found
+::1 - - [20/Oct/2025 09:00:01] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 -
+::1 - - [20/Oct/2025 09:00:02] "GET /new_questions.json?v=1760968802039 HTTP/1.1" 200 -
+::1 - - [20/Oct/2025 09:01:31] "GET /preview.html HTTP/1.1" 304 -
+::1 - - [20/Oct/2025 09:01:31] "GET /new_questions.json?v=1760968891489 HTTP/1.1" 200 -
+::1 - - [20/Oct/2025 09:03:59] "GET /preview.html HTTP/1.1" 304 -
+::1 - - [20/Oct/2025 09:04:00] "GET /new_questions.json?v=1760969040027 HTTP/1.1" 200 -
+::1 - - [20/Oct/2025 09:06:47] "GET /preview.html HTTP/1.1" 304 -
+::1 - - [20/Oct/2025 09:06:47] "GET /new_questions.json?v=1760969207701 HTTP/1.1" 200 -
+::1 - - [20/Oct/2025 09:21:37] "GET /preview.html HTTP/1.1" 304 -
+::1 - - [20/Oct/2025 09:21:38] "GET /new_questions.json?v=1760970098007 HTTP/1.1" 200 -
+::1 - - [20/Oct/2025 09:21:42] code 404, message File not found
+::1 - - [20/Oct/2025 09:21:42] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 -
+::1 - - [20/Oct/2025 09:22:40] "GET /preview.html HTTP/1.1" 200 -
+::1 - - [20/Oct/2025 09:22:40] code 404, message File not found
+::1 - - [20/Oct/2025 09:22:40] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 -
+::1 - - [20/Oct/2025 09:22:40] "GET /new_questions.json?v=1760970160590 HTTP/1.1" 200 -
+::1 - - [20/Oct/2025 09:23:27] code 404, message File not found
+::1 - - [20/Oct/2025 09:23:27] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 -

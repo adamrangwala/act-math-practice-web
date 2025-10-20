@@ -61,13 +61,11 @@ const PracticeScreen = () => {
   useEffect(() => { fetchQuestions(false); }, [currentUser]);
 
   useEffect(() => {
-    // This effect ensures the container has the correct height before any interaction.
     const setInitialHeight = () => {
       if (frontRef.current && !isFlipped) {
         setCardHeight(frontRef.current.scrollHeight);
       }
     };
-    // A small timeout allows the content to render fully before we measure it.
     const timer = setTimeout(setInitialHeight, 100);
     return () => clearTimeout(timer);
   }, [currentQuestionIndex, questions]);
@@ -80,7 +78,41 @@ const PracticeScreen = () => {
     setSessionData(prev => [...prev, { isCorrect, timeSpent, subcategories: questions[currentQuestionIndex].subcategories }]);
     setSelectedAnswerIndex(selectedIndex);
     
-    // Before flipping, calculate the max height of the front and back to ensure the container expands smoothly.
+    // --- Calculate Performance Rating ---
+    let performanceRating = 0.0;
+    if (isCorrect) {
+      const benchmark = 60; // 60 seconds
+      if (timeSpent <= benchmark) {
+        performanceRating = 1.0;
+      } else {
+        // Linearly decrease score for answers taking longer than the benchmark
+        performanceRating = Math.max(0.5, 1.0 - (timeSpent - benchmark) / (benchmark * 2));
+      }
+    }
+
+    // --- Submit Progress to Server ---
+    const submitProgress = async () => {
+      if (!currentUser) return;
+      try {
+        const token = await currentUser.getIdToken();
+        await fetch('/api/progress/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+          body: JSON.stringify({
+            questionId: questions[currentQuestionIndex].questionId,
+            performanceRating,
+            timeSpent,
+            context: 'practice_session',
+            selectedAnswerIndex: selectedIndex,
+          }),
+        });
+      } catch (err) {
+        console.error("Failed to submit progress:", err);
+      }
+    };
+    submitProgress();
+
+    // --- Handle UI Flip ---
     const frontHeight = frontRef.current?.scrollHeight || 0;
     const backHeight = backRef.current?.scrollHeight || 0;
     setCardHeight(Math.max(frontHeight, backHeight));
@@ -96,6 +128,8 @@ const PracticeScreen = () => {
       const sessionStats = {
         accuracy: (totalCorrect / sessionData.length) * 100,
         avgTime: totalTime / sessionData.length,
+        correctCount: totalCorrect,
+        totalCount: sessionData.length,
       };
       navigate('/summary', { state: { sessionStats, practiceQuestions: sessionData } });
       return;
@@ -107,7 +141,7 @@ const PracticeScreen = () => {
       setSelectedAnswerIndex(null);
       setCurrentQuestionIndex(nextIndex);
       startTimeRef.current = Date.now();
-    }, 300); // Wait for flip-back animation to mostly complete.
+    }, 300);
   };
 
   const getVariant = (index: number) => {

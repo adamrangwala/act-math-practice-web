@@ -20,8 +20,10 @@ All questions must be structured as a JSON object with the following fields. See
   "difficulty": "number",
   "diagramUrl": null,
   "diagramSvg": "string | null",
+  "solutionDiagramSvg": "string | null",
   "isActive": "boolean",
-  "avgTimeSeconds": null
+  "avgTimeSeconds": null,
+  "optionSelectionCounts": "[number]"
 }
 ```
 
@@ -29,38 +31,18 @@ All questions must be structured as a JSON object with the following fields. See
 
 ## 2. Field-by-Field Guidelines
 
--   **`questionId` (string):**
-    -   A unique identifier for each question.
-    -   **Convention:** Use the format `category_uniqueIdentifier` (e.g., `plane_geometry_001`, `pre_algebra_002`). This helps in organizing and retrieving questions.
-
--   **`category` (string):**
-    -   The main mathematical category the question belongs to (e.g., "Plane Geometry", "Pre-Algebra", "Intermediate Algebra").
-
--   **`subcategories` (array of strings):**
-    -   A list of more specific topics the question covers (e.g., "Pythagorean Theorem", "Mean, Median, & Mode").
-
--   **`questionText` (string):**
-    -   The body of the question.
-    -   Should be clear, concise, and formatted as plain text.
-
--   **`options` (array of 5 strings):**
-    -   **Crucially, there must be exactly 5 options** to match the standard ACT format.
-    -   The options should be provided as an array of strings in the correct order.
-
--   **`correctAnswerIndex` (number):**
-    -   The zero-based index of the correct answer in the `options` array. For example, if the first option is correct, this value should be `0`.
-
--   **`solutionText` (string):**
-    -   A detailed, step-by-step explanation of how to arrive at the correct answer.
-
--   **`difficulty` (number):**
-    -   A number from 1 to 3 representing the manually-assigned difficulty of the question (1 = Easy, 2 = Medium, 3 = Hard).
-    -   **Note:** This is a starting value. The long-term goal is for the system to dynamically calculate a more accurate difficulty rating based on global user performance data (e.g., average time spent, overall accuracy).
+-   ... (previous fields) ...
 
 -   **`diagramSvg` (string | null):**
     -   If a question requires a diagram, it must be provided as an **inline SVG string**.
-    -   SVGs should be reasonably sized (e.g., width around 250-300px) and styled with basic black strokes and fills unless color is necessary for the problem.
+    -   SVGs should be reasonably sized and styled with basic strokes and fills.
     -   If there is no diagram, this field should be `null`.
+
+-   **`solutionDiagramSvg` (string | null):**
+    -   An optional, separate SVG diagram that is only shown with the solution. This is useful for displaying annotated diagrams or step-by-step visual explanations.
+
+-   **`optionSelectionCounts` (array of numbers):**
+    -   An array (e.g., `[0, 0, 0, 0, 0]`) that tracks how many times each answer option has been selected by users. The index of the array corresponds to the index of the `options` array. This is used for analyzing common distractors.
 
 ---
 
@@ -80,6 +62,19 @@ To ensure mathematical formulas and symbols are rendered correctly and accessibl
 
 The frontend application will automatically detect these tags and use MathJax to render them as properly formatted mathematical equations.
 
+### Best Practice for Algebraic Steps
+
+For solutions that involve solving a multi-step equation, it is highly recommended to format the steps using a MathML `<mtable>`. This presents the logic clearly and is much easier for users to follow than a dense paragraph.
+
+-   **GOOD Example (Formatted):**
+    ```json
+    "solutionText": "The sum of the angles is 180°. Let x be the measure of ∠A.<br/><math display='block'><mtable>...</mtable></math>"
+    ```
+
+-   **BAD Example (Paragraph):**
+    ```json
+    "solutionText": "The sum of the angles is 180°. First, substitute 128.4 for Y, which gives you 2X + 128.4 = 180. Then, subtract 128.4 from both sides..."
+    ```
 ---
 
 ## 4. Frontend Formatting and Rendering
@@ -98,7 +93,31 @@ This ensures a consistent and professional presentation for every question.
 
 ---
 
-## 5. Progress Submission Data Model
+
+
+## 6. Quality Control Best Practices
+
+
+
+To ensure all questions are high-quality, authentic, and error-free, the following checks must be performed before a question is finalized:
+
+
+
+1.  **Unique Answer Choices:** All answer options must be mathematically unique. Fully simplify all expressions and radicals to confirm that no two choices are equivalent.
+
+2.  **Logical Scenarios:** Word problems must be logical and physically plausible. For example, the height of a falling object should decrease, not increase, over time.
+
+3.  **Numerical Order:** All answer choices that are real numbers must be listed in ascending order (from least to greatest).
+
+4.  **Consistent Math Rendering:** Use a single, consistent method for all mathematical notation (e.g., `<math>` tags) in both the `options` and `solutionText` to ensure uniform styling and prevent rendering errors.
+
+
+
+---
+
+
+
+## 7. Progress Submission Data Model
 
 When a user answers a question, the client must send a JSON object to the `/api/progress/submit` endpoint with the following structure. This data model is crucial for both tracking user progress and collecting accurate global question statistics.
 

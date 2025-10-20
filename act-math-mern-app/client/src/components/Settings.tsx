@@ -87,7 +87,7 @@ const Settings = () => {
 
   return (
     <>
-      <Container className="mt-4">
+      <div className="mt-4">
         <Card>
           <Card.Body>
             <Card.Title as="h2">Settings</Card.Title>
@@ -122,7 +122,7 @@ const Settings = () => {
             </div>
           </Card.Body>
         </Card>
-      </Container>
+      </div>
 
       <Modal show={showConfirmModal} onHide={() => setShowConfirmModal(false)} centered>
         <Modal.Header closeButton>

@@ -20,6 +20,7 @@ This document defines the official, granular list of subcategories used througho
 -   `Factoring & Quadratic Expressions`
 -   `Solving Quadratic Equations`
 -   `Exponent Rules (Integer & Fractional)`
+-   `Simplifying Radicals`
 -   `Logarithms`
 -   `Function Notation & Operations`
 -   `Composite & Inverse Functions`

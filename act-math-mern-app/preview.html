@@ -20,6 +20,35 @@
     .list-group-item { display: flex; align-items: center; }
     .option-letter { min-width: 25px; font-weight: bold; }
     #preview-container { max-width: 960px; }
+
+    /* Matrix Styling */
+    .matrix {
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 0.5em;
+      border-collapse: collapse;
+    }
+    .matrix::before, .matrix::after {
+      content: "";
+      position: absolute;
+      top: -2px;
+      bottom: -2px;
+      width: 5px;
+      border: 2px solid currentColor;
+    }
+    .matrix::before {
+      left: -8px;
+      border-right: none;
+    }
+    .matrix::after {
+      right: -8px;
+      border-left: none;
+    }
+    .matrix td {
+      padding: 2px 8px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -72,6 +101,7 @@
         <div class="alert alert-info mt-4">
           <strong>Solution:</strong>
           <div>${question.solutionText}</div>
+          ${question.solutionDiagramSvg ? `<div class="text-center mt-3">${question.solutionDiagramSvg}</div>` : ''}
         </div>
       `;
 
@@ -90,10 +120,18 @@
           </div>
         </div>
       `;
+      const container = document.getElementById('question-card-placeholder');
+
+      const typesetMath = () => {
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          window.MathJax.typesetPromise([container]);
+        } else {
+          setTimeout(typesetMath, 100); // Check again in 100ms
+        }
+      };
+
       container.innerHTML = cardHtml;
-      if (window.MathJax) {
-        window.MathJax.typesetPromise();
-      }
+      typesetMath();
     };
 
     const populateSelector = (questions) => {

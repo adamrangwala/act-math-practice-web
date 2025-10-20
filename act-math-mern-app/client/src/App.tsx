@@ -25,10 +25,10 @@ function App() {
   return (
     <>
       {currentUser ? (
-        <>
-          <Container className="mt-4 text-center">
+        <div className="app-container">
+          <div className="mt-4 text-center">
             <h1 className="display-4">ACT Math Practice</h1>
-          </Container>
+          </div>
           <Navbar bg="light" variant="light" expand="lg" className="mb-4 mt-2">
             <Container>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -49,7 +49,7 @@ function App() {
               </Navbar.Collapse>
             </Container>
           </Navbar>
-          <Container>
+          <div>
             <Routes>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/practice" element={<PracticeScreen />} />
@@ -57,8 +57,8 @@ function App() {
               <Route path="/settings" element={<Settings />} />
               <Route path="*" element={<Navigate to="/dashboard" />} />
             </Routes>
-          </Container>
-        </>
+          </div>
+        </div>
       ) : (
         <Login />
       )}

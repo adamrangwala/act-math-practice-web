@@ -1,7 +1,12 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 2rem; /* Remove top/bottom padding to let components control it */
+  /* padding is now handled by the app-container */
+}
+
+.app-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 /* Global Styles */
@@ -52,7 +57,7 @@ body {
 
 /* Card Flip Animation Styles */
 .flip-card-container {
-  perspective: 1000px;
+  perspective: 3000px; /* Increased perspective for a less dramatic 3D effect */
   transition: min-height 0.4s ease-in-out;
 }
 
@@ -60,7 +65,7 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 0.6s;
+  transition: transform 0.6s; /* Made the flip slightly faster */
   transform-style: preserve-3d;
 }
 
@@ -76,5 +81,65 @@ body {
 }
 
 .flip-card-back {
+
   transform: rotateY(180deg);
+
+}
+
+
+
+/* Matrix Styling */
+
+.matrix {
+
+  position: relative;
+
+  display: inline-block;
+
+  vertical-align: middle;
+
+  margin: 0 0.5em;
+
+  border-collapse: collapse;
+
+}
+
+.matrix::before, .matrix::after {
+
+  content: "";
+
+  position: absolute;
+
+  top: -2px;
+
+  bottom: -2px;
+
+  width: 5px;
+
+  border: 2px solid currentColor;
+
+}
+
+.matrix::before {
+
+  left: -8px;
+
+  border-right: none;
+
+}
+
+.matrix::after {
+
+  right: -8px;
+
+  border-left: none;
+
+}
+
+.matrix td {
+
+  padding: 2px 8px;
+
+  text-align: center;
+
 }
