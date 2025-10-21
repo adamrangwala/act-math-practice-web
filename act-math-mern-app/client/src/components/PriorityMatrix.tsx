@@ -19,6 +19,10 @@ interface MatrixData {
   avgTime: number;
 }
 
+import { authenticatedFetch } from '../utils/api';
+
+// ... (imports)
+
 const PriorityMatrix = () => {
   const { currentUser } = useAuth();
   const [matrixData, setMatrixData] = useState<MatrixData[]>([]);
@@ -29,12 +33,7 @@ const PriorityMatrix = () => {
     const fetchMatrixData = async () => {
       if (!currentUser) return;
       try {
-        const token = await currentUser.getIdToken();
-        const response = await fetch('/api/stats/priority-matrix', {
-          headers: { 'Authorization': `Bearer ${token}` },
-        });
-        if (!response.ok) throw new Error('Failed to fetch priority matrix data.');
-        const data = await response.json();
+        const data = await authenticatedFetch('/api/stats/priority-matrix');
         setMatrixData(data);
       } catch (err: any) {
         setError(err.message);

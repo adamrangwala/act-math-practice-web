@@ -1,6 +1,20 @@
-index-BoSmKMUj.js:1441 Firebase Config: Object
-index-BoSmKMUj.js:1445 Uncaught ReferenceError: PracticeScreen is not defined
-    at index-BoSmKMUj.js:1445:91951
-index-BoSmKMUj.js:1445 Uncaught (in promise) ReferenceError: currentUser is not defined
-    at wk (index-BoSmKMUj.js:1445:91646)
-    at index-BoSmKMUj.js:1445:91937
+Website view:
+"Failed to fetch priority matrix data"
+
+Console Log:
+index-CAwWp8Qt.js:1441 Firebase Config: Object
+dashboard:1  Failed to load resource: the server responded with a status of 404 ()
+api/stats/priority-matrix:1  Failed to load resource: the server responded with a status of 404 ()
+index-CAwWp8Qt.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
+t @ index-CAwWp8Qt.js:1261
+index-CAwWp8Qt.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
+t @ index-CAwWp8Qt.js:1261
+index-CAwWp8Qt.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
+t @ index-CAwWp8Qt.js:1261
+index-CAwWp8Qt.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
+t @ index-CAwWp8Qt.js:1261
+index-CAwWp8Qt.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
+t @ index-CAwWp8Qt.js:1261
+index-CAwWp8Qt.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
+t @ index-CAwWp8Qt.js:1261
+api/stats/priority-matrix:1  Failed to load resource: the server responded with a status of 404 ()
