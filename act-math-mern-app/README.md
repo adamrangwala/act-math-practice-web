@@ -40,22 +40,39 @@ This project is a full-stack, production-ready MVP of an ACT Math Practice web a
     npm install
     ```
 
-3.  **Set up Firebase Admin Credentials:**
-    *   Go to your Firebase project settings > "Service accounts".
-    *   Click "Generate new private key" and download the JSON file.
-    *   Move the downloaded file into this `server` directory and rename it to `serviceAccountKey.json`.
-    *   Create a file named `.env` in this `server` directory.
-    *   Add the following line to the `.env` file:
-        ```
-        GOOGLE_APPLICATION_CREDENTIALS=./serviceAccountKey.json
-        ```
-    *   **Important:** The `serviceAccountKey.json` file is secret and should not be committed to version control. The `.gitignore` file is already configured to ignore it.
+### 3. Environment Setup & Seeding
 
-4.  **Run the server:**
-    ```bash
-    # Run in development mode (watches for changes)
-    npm run dev
-    ```
+This project is configured to run in three separate environments: `development` (your local machine), `staging` (for beta testing), and `production` (for the live app). Each environment must have its own Firebase project.
+
+#### a. Set up Firebase Admin Credentials:
+
+For the backend to communicate with the correct Firebase project, you need to provide it with a "service account key" for each environment.
+
+1.  **For each of your three Firebase projects** (dev, staging, prod), go to your Firebase project settings > "Service accounts".
+2.  Click "Generate new private key" to download the JSON key file.
+3.  Rename the downloaded files and place them in the `server/config/` directory with the following names:
+    *   `serviceAccountKey-dev.json`
+    *   `serviceAccountKey-staging.json`
+    *   `serviceAccountKey-prod.json`
+4.  **Important:** These key files are secret and should never be committed to version control. The `.gitignore` file is already configured to ignore them.
+
+#### b. Run the Database Seeding Script:
+
+To populate your Firestore database with questions, you must run the seed script and specify which environment you are targeting.
+
+```bash
+# In the /server directory
+# Replace {env} with 'dev', 'staging', or 'prod'
+npm run seed -- --env={env}
+```
+
+### 4. Run the Server
+
+```bash
+# In the /server directory
+# This will automatically use your -dev credentials
+npm run dev
+```
 
 ### 2. Client Setup
 

@@ -6,6 +6,9 @@ node_modules
 
 # Service Account Keys
 serviceAccountKey.json
+serviceAccountKey-dev.json
+serviceAccountKey-staging.json
+serviceAccountKey-prod.json
 
 # Logs
 npm-debug.log*

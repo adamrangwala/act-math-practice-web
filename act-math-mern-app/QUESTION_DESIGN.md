@@ -76,7 +76,7 @@ If a question requires a table, the data must be embedded directly into the `que
 
 ### Solution Text Best Practices
 
--   **Algebraic Steps:** For solutions that involve solving a multi-step equation, it is highly recommended to format the steps using a MathML `<mtable>`.
+-   **Algebraic Steps:** For solutions that involve solving a multi-step equation, it is highly recommended to format the steps using a MathML `<mtable>`. To ensure proper alignment, use the `columnalign='right center left'` attribute. This right-aligns the left side of the equation, centers the equals signs, and left-aligns the right side.
 -   **Spacing:** To improve readability, add a `<br/>` tag between consecutive `<math display='block'>` elements or between the final line of text and the start of a math block.
 -   **Pro Tips:** To provide helpful test-taking strategies, add a "Pro Tip" at the end of the solution text, formatted in bold.
     -   **Example:** `...Therefore, the answer is 10.<br/><br/><b>Pro Tip:</b> The 3-4-5 triangle is a common Pythagorean triple.`

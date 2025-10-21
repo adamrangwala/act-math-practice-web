@@ -67,21 +67,31 @@ export const submitProgress = async (req: AuthRequest, res: Response) => {
       }
     }
 
-    // Step 2: Update Global Question Stats (conditionally)
-    const updatePayload: { [key: string]: any } = {
-      globalTotalAttempts: FieldValue.increment(1),
-      globalCorrectAttempts: FieldValue.increment(isCorrect ? 1 : 0),
-      globalTotalTimeSpent: FieldValue.increment(timeSpent),
-    };
-
     // Atomically increment the selected option count
-    if (typeof selectedAnswerIndex === 'number' && selectedAnswerIndex >= 0 && selectedAnswerIndex < (questionData.options?.length || 0)) {
-      updatePayload[`optionSelectionCounts.${selectedAnswerIndex}`] = FieldValue.increment(1);
-    }
+    await db.runTransaction(async (transaction) => {
+      const questionDoc = await transaction.get(questionRef);
+      if (!questionDoc.exists) {
+        throw new Error("Question not found in transaction.");
+      }
+      const questionData = questionDoc.data()!;
+      
+      const currentCounts = questionData.optionSelectionCounts || Array(questionData.options.length).fill(0);
+      
+      if (typeof selectedAnswerIndex === 'number' && selectedAnswerIndex >= 0 && selectedAnswerIndex < currentCounts.length) {
+        currentCounts[selectedAnswerIndex]++;
+      }
 
-    if (context === 'practice_session' || context === 'mock_test') {
-      await questionRef.update(updatePayload);
-    }
+      const updatePayload: { [key: string]: any } = {
+        globalTotalAttempts: FieldValue.increment(1),
+        globalCorrectAttempts: FieldValue.increment(isCorrect ? 1 : 0),
+        globalTotalTimeSpent: FieldValue.increment(timeSpent),
+        optionSelectionCounts: currentCounts,
+      };
+
+      if (context === 'practice_session' || context === 'mock_test') {
+        transaction.update(questionRef, updatePayload);
+      }
+    });
 
     res.status(200).json({ message: 'Progress updated successfully.' });
 

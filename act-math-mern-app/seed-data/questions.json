@@ -6,7 +6,7 @@
     "questionText": "In the right triangle shown below, what is the length of the hypotenuse (c)?",
     "options": ["10", "12", "14", "15", "16"],
     "correctAnswerIndex": 0,
-    "solutionText": "According to the Pythagorean theorem, the square of the two legs of a right triangle equals the square of the hypotenuse (<math><msup><mi>a</mi><mn>2</mn></msup><mo>+</mo><msup><mi>b</mi><mn>2</mn></msup><mo>=</mo><msup><mi>c</mi><mn>2</mn></msup></math>).<br/><math display='block'><mtable displaystyle='true' columnalign='right'><mtr><mtd><msup><mn>6</mn><mn>2</mn></msup><mo>+</mo><msup><mn>8</mn><mn>2</mn></msup></mtd><mtd><mo>=</mo></mtd><mtd><msup><mi>c</mi><mn>2</mn></msup></mtd></mtr><mtr><mtd><mn>36</mn><mo>+</mo><mn>64</mn></mtd><mtd><mo>=</mo></mtd><mtd><msup><mi>c</mi><mn>2</mn></msup></mtd></mtr><mtr><mtd><mn>100</mn></mtd><mtd><mo>=</mo></mtd><mtd><msup><mi>c</mi><mn>2</mn></msup></mtd></mtr><mtr><mtd><msqrt><mn>100</mn></msqrt></mtd><mtd><mo>=</mo></mtd><mtd><mi>c</mi></mtd></mtr><mtr><mtd><mn>10</mn></mtd><mtd><mo>=</mo></mtd><mtd><mi>c</mi></mtd></mtr></mtable></math><br/><br/><b>Pro Tip:</b> The 3-4-5 triangle is a common Pythagorean triple. Recognizing that this triangle is a multiple of that (3x2, 4x2, 5x2) can save you from having to do the full calculation with the Pythagorean theorem.",
+    "solutionText": "According to the Pythagorean theorem, the square of the two legs of a right triangle equals the square of the hypotenuse (<math><msup><mi>a</mi><mn>2</mn></msup><mo>+</mo><msup><mi>b</mi><mn>2</mn></msup><mo>=</mo><msup><mi>c</mi><mn>2</mn></msup></math>).<br/><math display='block'><mtable displaystyle='true' columnalign='right'><mtr><mtd><msup><mn>6</mn><mn>2</mn></msup><mo>+</mo><msup><mn>8</mn><mn>2</mn></msup></mtd><mtd><mo>=</mo></mtd><mtd><msup><mi>c</mi><mn>2</mn></msup></mtd></mtr><mtr><mtd><mn>36</mn><mo>+</mo><mn>64</mn></mtd><mtd><mo>=</mo></mtd><mtd><msup><mi>c</mi><mn>2</mn></msup></mtd></mtr><mtr><mtd><mn>100</mn></mtd><mtd><mo>=</mo></mtd><mtd><msup><mi>c</mi><mn>2</mn></msup></mtd></mtr><mtr><mtd><msqrt><mn>100</mn></msqrt></mtd><mtd><mo>=</mo></mtd><mtd><mi>c</mi></mtd></mtr><mtr><mtd><mn>10</mn></mtd><mtd><mo>=</mo></mtd><mtd><mi>c</mi></mtd></mtr></mtable></math><br/><b>Pro Tip:</b> The 3-4-5 triangle is a common Pythagorean triple. Recognizing that this triangle is a multiple of that (3x2, 4x2, 5x2) can save you from having to do the full calculation with the Pythagorean theorem.",
     "difficulty": 2,
     "diagramUrl": null,
     "diagramSvg": "<svg width='250' height='200' xmlns='http://www.w3.org/2000/svg'><polygon points='50,150 200,150 200,50' style='fill:none;stroke:black;stroke-width:2' /><text x='125' y='170' text-anchor='middle'>8</text><text x='210' y='100'>6</text><text x='120' y='90' style='font-style:italic;'>c</text></svg>",
@@ -76,7 +76,7 @@
     "questionText": "In triangle ∆XYZ, angle ∠X and angle ∠Z are congruent. The measure of angle ∠Y is 128.4°. What is the measure of angle ∠X?",
     "options": ["25.8°", "51.6°", "64.2°", "128.4°", "154.2°"],
     "correctAnswerIndex": 0,
-    "solutionText": "The sum of the angles in a triangle is always 180°. Since angles ∠X and ∠Z are congruent, we can set up the equation with m∠X = m∠Z. Let x be the measure of ∠X.<br/><br/><math display='block'><mtable displaystyle='true' columnalign='right'><mtr><mtd><mi>m</mi><mo>∠</mo><mi>X</mi><mo>+</mo><mi>m</mi><mo>∠</mo><mi>Y</mi><mo>+</mo><mi>m</mi><mo>∠</mo><mi>Z</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>180</mn><mo>°</mo></mtd></mtr><mtr><mtd><mi>x</mi><mo>+</mo><mn>128.4</mn><mo>°</mo><mo>+</mo><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>180</mn><mo>°</mo></mtd></mtr><mtr><mtd><mn>2</mn><mi>x</mi><mo>+</mo><mn>128.4</mn><mo>°</mo></mtd><mtd><mo>=</mo></mtd><mtd><mn>180</mn><mo>°</mo></mtd></mtr><mtr><mtd><mn>2</mn><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>180</mn><mo>°</mo><mo>-</mo><mn>128.4</mn><mo>°</mo></mtd></mtr><mtr><mtd><mn>2</mn><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>51.6</mn><mo>°</mo></mtd></mtr><mtr><mtd><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>25.8</mn><mo>°</mo></mtd></mtr></mtable></math><br/>Therefore, the measure of ∠X is 25.8°.",
+    "solutionText": "The sum of the angles in a triangle is always 180°. Since angles ∠X and ∠Z are congruent, we can set up the equation with m∠X = m∠Z. Let x be the measure of ∠X.<br/><br/><math display='block'><mtable style='width:100%' columnalign='right center left'><mtr><mtd><mi>m</mi><mo>∠</mo><mi>X</mi><mo>+</mo><mi>m</mi><mo>∠</mo><mi>Y</mi><mo>+</mo><mi>m</mi><mo>∠</mo><mi>Z</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>180</mn><mo>°</mo></mtd></mtr><mtr><mtd><mi>x</mi><mo>+</mo><mn>128.4</mn><mo>°</mo><mo>+</mo><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>180</mn><mo>°</mo></mtd></mtr><mtr><mtd><mn>2</mn><mi>x</mi><mo>+</mo><mn>128.4</mn><mo>°</mo></mtd><mtd><mo>=</mo></mtd><mtd><mn>180</mn><mo>°</mo></mtd></mtr><mtr><mtd><mn>2</mn><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>180</mn><mo>°</mo><mo>-</mo><mn>128.4</mn><mo>°</mo></mtd></mtr><mtr><mtd><mn>2</mn><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>51.6</mn><mo>°</mo></mtd></mtr><mtr><mtd><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>25.8</mn><mo>°</mo></mtd></mtr></mtable></math><br/>Therefore, the measure of ∠X is 25.8°.",
     "difficulty": 2,
     "diagramUrl": null,
     "diagramSvg": null,
@@ -156,6 +156,7 @@
     "diagramSvg": null,
     "solutionDiagramSvg": null,
     "isActive": true,
+    "avgTimeSeconds": null,
     "optionSelectionCounts": [0, 0, 0, 0, 0]
   },
   {
@@ -176,6 +177,7 @@
     "diagramSvg": null,
     "solutionDiagramSvg": null,
     "isActive": true,
+    "avgTimeSeconds": null,
     "optionSelectionCounts": [0, 0, 0, 0, 0]
   },
   {
@@ -288,6 +290,28 @@
     "diagramUrl": null,
     "diagramSvg": null,
     "solutionDiagramSvg": "<svg width='500' height='220' xmlns='http://www.w3.org/2000/svg'>\n  <!-- Proportional triangle (8-15-17) centered on a 500px canvas -->\n  <polygon points='210,185 290,185 290,35' style='fill:none;stroke:black;stroke-width:2' />\n  \n  <!-- Labels positioned relative to the new triangle coordinates -->\n  <text x='297' y='110' style='font-size:16px; fill: #d9534f;'>Opposite = 15</text>\n  <text x='250' y='205' text-anchor='middle' style='font-size:16px; fill: #0275d8;'>Adjacent = 8</text>\n  <text x='190' y='100' text-anchor='middle' style='font-size:16px;'>Hypotenuse = 17</text>\n  \n  <!-- Angle theta and its marker arc -->\n  <text x='230' y='175' style='font-size:20px;'>θ</text>\n  <path d='M 230 185 A 20 20 0 0 0 219.41 167.35' fill='none' stroke='black' stroke-width='1'/>\n</svg>",
+    "isActive": true,
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0, 0, 0, 0, 0]
+  },
+  {
+    "questionId": "algebra-systems-of-equations-no-solution-01",
+    "category": "Algebra",
+    "subcategories": ["Systems of Equations"],
+    "questionText": "Which of the following values, if any, is the x-value of the solution set to the system of equations below?<br/><br/><math display='block'><mtable columnalign='center'><mtr><mtd><mn>3</mn><mi>x</mi><mo>-</mo><mn>6</mn><mi>y</mi><mo>=</mo><mn>9</mn></mtd></mtr><mtr><mtd><mo>-</mo><mi>x</mi><mo>+</mo><mn>2</mn><mi>y</mi><mo>=</mo><mo>-</mo><mn>4</mn></mtd></mtr></mtable></math>",
+    "options": [
+      "<math><mn>-3</mn></math>",
+      "<math><mn>2</mn></math>",
+      "<math><mn>3</mn></math>",
+      "<math><mn>9</mn></math>",
+      "There is no such value for x."
+    ],
+    "correctAnswerIndex": 4,
+    "solutionText": "To solve this system, we can use the elimination method. First, try to eliminate one of the variables. If we multiply the second equation by 3, we can try to eliminate the x-variable: <math display='block'><mn>3</mn><mo>(</mo><mo>-</mo><mi>x</mi><mo>+</mo><mn>2</mn><mi>y</mi><mo>)</mo><mo>=</mo><mn>3</mn><mo>(</mo><mo>-</mo><mn>4</mn><mo>)</mo></math><math display='block'><mo>-</mo><mn>3</mn><mi>x</mi><mo>+</mo><mn>6</mn><mi>y</mi><mo>=</mo><mo>-</mo><mn>12</mn></math> Now, add this new equation to the first equation: <math display='block'><mtable columnalign='right'><mtr><mtd><mn>3</mn><mi>x</mi><mo>-</mo><mn>6</mn><mi>y</mi><mo>=</mo><mn>9</mn></mtd></mtr><mtr><mtd><mo>+</mo><mo>(</mo><mo>-</mo><mn>3</mn><mi>x</mi><mo>+</mo><mn>6</mn><mi>y</mi><mo>=</mo><mo>-</mo><mn>12</mn><mo>)</mo></mtd></mtr><mtr><mtd><mo>─────────────</mo></mtd></mtr><mtr><mtd><mn>0</mn><mo>=</mo><mo>-</mo><mn>3</mn></mtd></mtr></mtable></math> When solving a system of equations, if you arrive at a statement that is mathematically false (like 0 = -3), it means the two lines are parallel and never intersect. Therefore, there is no solution to the system, and no such value for x.",
+    "difficulty": 2,
+    "diagramUrl": null,
+    "diagramSvg": null,
+    "solutionDiagramSvg": null,
     "isActive": true,
     "avgTimeSeconds": null,
     "optionSelectionCounts": [0, 0, 0, 0, 0]
