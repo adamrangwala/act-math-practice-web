@@ -1,6 +1,6 @@
-✗ Build failed in 70ms
+✗ Build failed in 992ms
 error during build:
-[vite]: Rollup failed to resolve import "react-router-dom" from "/vercel/path0/act-math-mern-app/client/src/main.tsx".
+[vite]: Rollup failed to resolve import "react-chartjs-2" from "/vercel/path0/act-math-mern-app/client/src/components/PriorityMatrix.tsx".
 This is most likely unintended because it can break your application at runtime.
 If you do want to externalize this module explicitly add it to
 `build.rollupOptions.external`

@@ -20,7 +20,9 @@
     "react-dom": "^19.1.1",
     "react-router-dom": "^6.23.1",
     "typescript": "^5.9.3",
-    "vite": "^7.1.7"
+    "vite": "^7.1.7",
+    "chart.js": "^4.4.3",
+    "react-chartjs-2": "^5.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
