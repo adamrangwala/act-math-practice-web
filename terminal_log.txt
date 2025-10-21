@@ -1,17 +1,33 @@
-✗ Build failed in 992ms
-error during build:
-[vite]: Rollup failed to resolve import "react-chartjs-2" from "/vercel/path0/act-math-mern-app/client/src/components/PriorityMatrix.tsx".
-This is most likely unintended because it can break your application at runtime.
-If you do want to externalize this module explicitly add it to
-`build.rollupOptions.external`
-    at viteLog (file:///vercel/path0/act-math-mern-app/client/node_modules/vite/dist/node/chunks/dep-B0GuR2De.js:33864:57)
-    at file:///vercel/path0/act-math-mern-app/client/node_modules/vite/dist/node/chunks/dep-B0GuR2De.js:33898:73
-    at onwarn (file:///vercel/path0/act-math-mern-app/client/node_modules/@vitejs/plugin-react/dist/index.js:55:7)
-    at file:///vercel/path0/act-math-mern-app/client/node_modules/vite/dist/node/chunks/dep-B0GuR2De.js:33898:28
-    at onRollupLog (file:///vercel/path0/act-math-mern-app/client/node_modules/vite/dist/node/chunks/dep-B0GuR2De.js:33893:63)
-    at onLog (file:///vercel/path0/act-math-mern-app/client/node_modules/vite/dist/node/chunks/dep-B0GuR2De.js:33696:4)
-    at file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/node-entry.js:20937:32
-    at Object.logger [as onLog] (file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/node-entry.js:22823:9)
-    at ModuleLoader.handleInvalidResolvedId (file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/node-entry.js:21567:26)
-    at file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/node-entry.js:21525:26
-Error: Command "npm run build" exited with 1
+Running build in Washington, D.C., USA (East) – iad1
+11:13:37.302 
+Build machine configuration: 2 cores, 8 GB
+11:13:37.422 
+Cloning github.com/adamrangwala/act-math-practice-web (Branch: develop, Commit: 88caa5b)
+11:13:37.639 
+Skipping build cache, deployment was triggered without cache.
+11:13:38.954 
+Cloning completed: 1.531s
+11:13:39.677 
+Running "vercel build"
+11:13:40.220 
+Vercel CLI 48.2.9
+11:13:41.725 
+Installing dependencies...
+11:13:52.808 
+11:13:52.809 
+added 297 packages in 11s
+11:13:52.810 
+11:13:52.810 
+50 packages are looking for funding
+11:13:52.810 
+  run `npm fund` for details
+11:13:52.879 
+Running "npm run build"
+11:13:53.092 
+11:13:53.095 
+> client@0.0.0 build
+11:13:53.095 
+> vite build
+11:13:53.096 
+11:13:53.529 
+vite v7.1.10 building for production...
