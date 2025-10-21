@@ -1,23 +1,12 @@
 index-CGKO0Ag5.js:1441 Firebase Config: Object
-index-CGKO0Ag5.js:1441 Fetch finished loading: GET "https://act-math-app-staging.onrender.com/api/questions/practice-more".
-Fa @ index-CGKO0Ag5.js:1441
-await in Fa
-j @ index-CGKO0Ag5.js:1445
-onClick @ index-CGKO0Ag5.js:1445
-Sy @ index-CGKO0Ag5.js:48
-(anonymous) @ index-CGKO0Ag5.js:48
-Ag @ index-CGKO0Ag5.js:48
-Dd @ index-CGKO0Ag5.js:48
-Fd @ index-CGKO0Ag5.js:49
-Tw @ index-CGKO0Ag5.js:49
-index-CGKO0Ag5.js:1441 Fetch finished loading: GET "https://act-math-app-staging.onrender.com/api/questions/practice-more".
-Fa @ index-CGKO0Ag5.js:1441
-await in Fa
-j @ index-CGKO0Ag5.js:1445
-onClick @ index-CGKO0Ag5.js:1445
-Sy @ index-CGKO0Ag5.js:48
-(anonymous) @ index-CGKO0Ag5.js:48
-Ag @ index-CGKO0Ag5.js:48
-Dd @ index-CGKO0Ag5.js:48
-Fd @ index-CGKO0Ag5.js:49
-Tw @ index-CGKO0Ag5.js:49
+index-CGKO0Ag5.js:1462 Uncaught ReferenceError: currentUser is not defined
+    at Jj (index-CGKO0Ag5.js:1462:32911)
+    at Lf (index-CGKO0Ag5.js:48:48089)
+    at td (index-CGKO0Ag5.js:48:70893)
+    at Mv (index-CGKO0Ag5.js:48:81225)
+    at ay (index-CGKO0Ag5.js:48:116997)
+    at BT (index-CGKO0Ag5.js:48:116043)
+    at Sd (index-CGKO0Ag5.js:48:115875)
+    at Jv (index-CGKO0Ag5.js:48:112668)
+    at by (index-CGKO0Ag5.js:48:124589)
+    at Yr (index-CGKO0Ag5.js:48:123137)

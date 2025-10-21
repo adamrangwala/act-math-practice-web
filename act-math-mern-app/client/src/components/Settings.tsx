@@ -11,19 +11,22 @@ const Settings = () => {
   // ... (state declarations)
 
   useEffect(() => {
-    const fetchSettings = async () => {
-      if (!currentUser) return;
-      try {
-        const data = await authenticatedFetch('/api/settings');
-        setDailyQuestionLimit(data.dailyQuestionLimit || 10);
-      } catch (err: any) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchSettings();
+    if (currentUser) {
+      fetchSettings();
+    }
   }, [currentUser]);
+
+  const fetchSettings = async () => {
+    // No need for the null check here anymore
+    try {
+      const data = await authenticatedFetch('/api/settings');
+      setDailyQuestionLimit(data.dailyQuestionLimit || 10);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -21,20 +21,22 @@ const Dashboard = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchStats = async () => {
-      if (!currentUser) return;
-      try {
-        const data = await authenticatedFetch('/api/stats/dashboard');
-        setStats(data);
-      } catch (err: any) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchStats();
+    if (currentUser) {
+      fetchStats();
+    }
   }, [currentUser]);
+
+  const fetchStats = async () => {
+    // No need for the null check here anymore
+    try {
+      const data = await authenticatedFetch('/api/stats/dashboard');
+      setStats(data);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (loading) {
     return <div className="text-center mt-5"><Spinner animation="border" /></div>;

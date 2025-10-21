@@ -57,7 +57,9 @@ const PracticeScreen = () => {
   };
 
   useEffect(() => {
-    fetchQuestions(false);
+    if (currentUser) {
+      fetchQuestions(false);
+    }
   }, [currentUser]);
 
   useEffect(() => {
