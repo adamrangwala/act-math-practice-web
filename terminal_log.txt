@@ -1,7 +1,13 @@
-Deploy failed for c309bc3: Added seeding functionality for dev, staging and prod environments
-Exited with status 1 while building your code. Check your deploy logs for more information.
-October 21, 2025 at 9:59 AM
-
-Rollback
-First deploy started for c309bc3: Added seeding functionality for dev, staging and prod environments
-October 21, 2025 at 9:59 AM
+Node.js v22.16.0
+     ==> Deploying...
+==> Running 'node act-math-mern-app/server/dist/server.js'
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops
+Firebase Admin SDK initialized for 'staging' via environment variable.
+Server is running on port 10000
+     ==> Your service is live 🎉
+     ==> 
+     ==> ///////////////////////////////////////////////////////////
+     ==> 
+     ==> Available at your primary URL https://act-math-app-staging.onrender.com
+     ==> 
+     ==> ///////////////////////////////////////////////////////////

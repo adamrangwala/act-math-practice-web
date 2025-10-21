@@ -46,13 +46,15 @@ const PracticeScreen = () => {
     }
   }, [currentQuestionIndex, isFlipped]);
 
+  const baseURL = import.meta.env.PROD ? import.meta.env.VITE_API_URL : '';
+
   const fetchQuestions = async (isPracticeMore = false) => {
     if (!currentUser) return;
     setLoading(true);
     const endpoint = isPracticeMore ? '/api/questions/practice-more' : `/api/questions/today?limit=10`;
     try {
       const token = await currentUser.getIdToken();
-      const response = await fetch(endpoint, { headers: { 'Authorization': `Bearer ${token}` } });
+      const response = await fetch(`${baseURL}${endpoint}`, { headers: { 'Authorization': `Bearer ${token}` } });
       if (!response.ok) throw new Error('Failed to fetch questions.');
       const data = await response.json();
       setQuestions(data);
@@ -101,7 +103,7 @@ const PracticeScreen = () => {
       if (!currentUser) return;
       try {
         const token = await currentUser.getIdToken();
-        await fetch('/api/progress/submit', {
+        await fetch(`${baseURL}/api/progress/submit`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
           body: JSON.stringify({
