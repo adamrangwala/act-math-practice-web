@@ -1,20 +1,23 @@
-index-DkaBorG8.js:1441 Firebase Config: Object
-index-DkaBorG8.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
-t @ index-DkaBorG8.js:1261
-index-DkaBorG8.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
-t @ index-DkaBorG8.js:1261
-index-DkaBorG8.js:1366 Cross-Origin-Opener-Policy policy would block the window.close call.
-close @ index-DkaBorG8.js:1366
-index-DkaBorG8.js:1366 Cross-Origin-Opener-Policy policy would block the window.close call.
-close @ index-DkaBorG8.js:1366
-index-DkaBorG8.js:1462 Uncaught ReferenceError: currentUser is not defined
-    at Zj (index-DkaBorG8.js:1462:32913)
-    at Rf (index-DkaBorG8.js:48:48088)
-    at Wf (index-DkaBorG8.js:48:70893)
-    at Cv (index-DkaBorG8.js:48:81225)
-    at iy (index-DkaBorG8.js:48:116995)
-    at UT (index-DkaBorG8.js:48:116041)
-    at yd (index-DkaBorG8.js:48:115873)
-    at Qv (index-DkaBorG8.js:48:112666)
-    at vy (index-DkaBorG8.js:48:124587)
-    at Vr (index-DkaBorG8.js:48:123135)
+index-CGKO0Ag5.js:1441 Firebase Config: Object
+index-CGKO0Ag5.js:1441 Fetch finished loading: GET "https://act-math-app-staging.onrender.com/api/questions/practice-more".
+Fa @ index-CGKO0Ag5.js:1441
+await in Fa
+j @ index-CGKO0Ag5.js:1445
+onClick @ index-CGKO0Ag5.js:1445
+Sy @ index-CGKO0Ag5.js:48
+(anonymous) @ index-CGKO0Ag5.js:48
+Ag @ index-CGKO0Ag5.js:48
+Dd @ index-CGKO0Ag5.js:48
+Fd @ index-CGKO0Ag5.js:49
+Tw @ index-CGKO0Ag5.js:49
+index-CGKO0Ag5.js:1441 Fetch finished loading: GET "https://act-math-app-staging.onrender.com/api/questions/practice-more".
+Fa @ index-CGKO0Ag5.js:1441
+await in Fa
+j @ index-CGKO0Ag5.js:1445
+onClick @ index-CGKO0Ag5.js:1445
+Sy @ index-CGKO0Ag5.js:48
+(anonymous) @ index-CGKO0Ag5.js:48
+Ag @ index-CGKO0Ag5.js:48
+Dd @ index-CGKO0Ag5.js:48
+Fd @ index-CGKO0Ag5.js:49
+Tw @ index-CGKO0Ag5.js:49

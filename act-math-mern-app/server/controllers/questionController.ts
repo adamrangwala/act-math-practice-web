@@ -87,26 +87,30 @@ export const getPracticeMoreQuestions = async (req: AuthRequest, res: Response) 
     return res.status(401).send({ message: 'Unauthorized' });
   }
   try {
-    const allQuestionsSnapshot = await db.collection('questions').get();
-    const allQuestions = allQuestionsSnapshot.docs.map(doc => doc.data());
-    
-    const practiceMoreSize = 3;
-    const randomQuestions: DocumentData[] = [];
-    const usedIndices = new Set<number>();
+    const questionsRef = db.collection('questions');
+    // Firestore doesn't have a built-in random operator, so we simulate it.
+    // 1. Generate a random ID
+    const randomId = db.collection('questions').doc().id;
 
-    if (allQuestions.length <= practiceMoreSize) {
-      return res.status(200).json(allQuestions);
-    }
+    // 2. Query for documents "greater than" the random ID and take the first few
+    const snapshot = await questionsRef
+      .where(admin.firestore.FieldPath.documentId(), '>=', randomId)
+      .limit(10)
+      .get();
 
-    while (randomQuestions.length < practiceMoreSize) {
-      const randomIndex = Math.floor(Math.random() * allQuestions.length);
-      if (!usedIndices.has(randomIndex)) {
-        randomQuestions.push(allQuestions[randomIndex]);
-        usedIndices.add(randomIndex);
-      }
+    let questions = snapshot.docs.map(doc => doc.data());
+
+    // 3. If we didn't get enough, query "less than" to wrap around
+    if (questions.length < 10) {
+      const remaining = 10 - questions.length;
+      const remainingSnapshot = await questionsRef
+        .where(admin.firestore.FieldPath.documentId(), '<', randomId)
+        .limit(remaining)
+        .get();
+      questions = questions.concat(remainingSnapshot.docs.map(doc => doc.data()));
     }
     
-    res.status(200).json(randomQuestions);
+    res.status(200).json(questions);
   } catch (error) {
     console.error('Error fetching practice more questions:', error);
     res.status(500).send({ message: 'Internal Server Error' });
