@@ -48,7 +48,7 @@ const db = admin.firestore();
 
 const seedDatabase = async () => {
   try {
-    const questionsPath = path.join(__dirname, '../../final_questions.json');
+    const questionsPath = path.join(__dirname, '../../seed-data/questions.json');
     const questionsJson = fs.readFileSync(questionsPath, 'utf8');
     const questions = JSON.parse(questionsJson);
 
