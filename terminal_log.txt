@@ -1,1 +1,20 @@
-practice:1  Failed to load resource: the server responded with a status of 404 ()
+index-DkaBorG8.js:1441 Firebase Config: Object
+index-DkaBorG8.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
+t @ index-DkaBorG8.js:1261
+index-DkaBorG8.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
+t @ index-DkaBorG8.js:1261
+index-DkaBorG8.js:1366 Cross-Origin-Opener-Policy policy would block the window.close call.
+close @ index-DkaBorG8.js:1366
+index-DkaBorG8.js:1366 Cross-Origin-Opener-Policy policy would block the window.close call.
+close @ index-DkaBorG8.js:1366
+index-DkaBorG8.js:1462 Uncaught ReferenceError: currentUser is not defined
+    at Zj (index-DkaBorG8.js:1462:32913)
+    at Rf (index-DkaBorG8.js:48:48088)
+    at Wf (index-DkaBorG8.js:48:70893)
+    at Cv (index-DkaBorG8.js:48:81225)
+    at iy (index-DkaBorG8.js:48:116995)
+    at UT (index-DkaBorG8.js:48:116041)
+    at yd (index-DkaBorG8.js:48:115873)
+    at Qv (index-DkaBorG8.js:48:112666)
+    at vy (index-DkaBorG8.js:48:124587)
+    at Vr (index-DkaBorG8.js:48:123135)
