@@ -1,33 +1,15 @@
-Running build in Washington, D.C., USA (East) – iad1
-11:13:37.302 
-Build machine configuration: 2 cores, 8 GB
-11:13:37.422 
-Cloning github.com/adamrangwala/act-math-practice-web (Branch: develop, Commit: 88caa5b)
-11:13:37.639 
-Skipping build cache, deployment was triggered without cache.
-11:13:38.954 
-Cloning completed: 1.531s
-11:13:39.677 
-Running "vercel build"
-11:13:40.220 
-Vercel CLI 48.2.9
-11:13:41.725 
-Installing dependencies...
-11:13:52.808 
-11:13:52.809 
-added 297 packages in 11s
-11:13:52.810 
-11:13:52.810 
-50 packages are looking for funding
-11:13:52.810 
-  run `npm fund` for details
-11:13:52.879 
-Running "npm run build"
-11:13:53.092 
-11:13:53.095 
-> client@0.0.0 build
-11:13:53.095 
-> vite build
-11:13:53.096 
-11:13:53.529 
-vite v7.1.10 building for production...
+index-DlPmTfln.js:1441 Firebase Config: Object
+index-DlPmTfln.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
+t @ index-DlPmTfln.js:1261
+index-DlPmTfln.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
+t @ index-DlPmTfln.js:1261
+index-DlPmTfln.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
+t @ index-DlPmTfln.js:1261
+index-DlPmTfln.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
+t @ index-DlPmTfln.js:1261
+index-DlPmTfln.js:1366 Cross-Origin-Opener-Policy policy would block the window.close call.
+close @ index-DlPmTfln.js:1366
+index-DlPmTfln.js:1366 Cross-Origin-Opener-Policy policy would block the window.close call.
+close @ index-DlPmTfln.js:1366
+api/stats/dashboard:1  Failed to load resource: the server responded with a status of 404 ()
+api/users/init:1  Failed to load resource: the server responded with a status of 404 ()

@@ -20,6 +20,10 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
+import { authenticatedFetch } from '../utils/api';
+
+// ... (imports and context creation)
+
 export function AuthProvider({ children }: AuthProviderProps) {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -36,13 +40,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   useEffect(() => {
     const initializeUser = async (user: User) => {
       try {
-        const token = await user.getIdToken();
-        await fetch('/api/users/init', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-          },
-        });
+        await authenticatedFetch('/api/users/init', { method: 'POST' });
       } catch (error) {
         console.error("Failed to initialize user:", error);
       }

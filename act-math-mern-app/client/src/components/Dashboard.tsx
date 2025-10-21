@@ -10,6 +10,10 @@ interface DashboardStats {
   totalSubcategoriesTracked: number;
 }
 
+import { authenticatedFetch } from '../utils/api';
+
+// ... (imports)
+
 const Dashboard = () => {
   const { currentUser } = useAuth();
   const [stats, setStats] = useState<DashboardStats | null>(null);
@@ -20,14 +24,7 @@ const Dashboard = () => {
     const fetchStats = async () => {
       if (!currentUser) return;
       try {
-        const token = await currentUser.getIdToken();
-        const response = await fetch('/api/stats/dashboard', {
-          headers: { 'Authorization': `Bearer ${token}` },
-        });
-        if (!response.ok) {
-          throw new Error('Failed to fetch dashboard stats.');
-        }
-        const data = await response.json();
+        const data = await authenticatedFetch('/api/stats/dashboard');
         setStats(data);
       } catch (err: any) {
         setError(err.message);
