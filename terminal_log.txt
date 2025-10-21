@@ -1,4 +1,1 @@
-index-lprzEjFD.js:1441 Firebase Config: Object
-dashboard:1  Failed to load resource: the server responded with a status of 404 ()
 practice:1  Failed to load resource: the server responded with a status of 404 ()
-api/settings:1  Failed to load resource: the server responded with a status of 404 ()
