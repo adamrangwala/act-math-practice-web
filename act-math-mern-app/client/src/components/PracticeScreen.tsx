@@ -40,6 +40,12 @@ const PracticeScreen = () => {
   const backRef = useRef<HTMLDivElement>(null);
   const [cardHeight, setCardHeight] = useState<number | undefined>(undefined);
 
+  useEffect(() => {
+    if (window.MathJax) {
+      window.MathJax.typeset();
+    }
+  }, [currentQuestionIndex, isFlipped]);
+
   const fetchQuestions = async (isPracticeMore = false) => {
     if (!currentUser) return;
     setLoading(true);
@@ -195,6 +201,7 @@ const PracticeScreen = () => {
             <Card.Body>
               <Card.Title>Solution for Question {currentQuestionIndex + 1}</Card.Title>
               <hr />
+              {currentQuestion.diagramSvg && <div className="text-center mb-3" dangerouslySetInnerHTML={{ __html: currentQuestion.diagramSvg }} />}
               <Card.Text style={{ fontSize: '1.2rem' }} dangerouslySetInnerHTML={{ __html: currentQuestion.questionText }} />
               <ListGroup variant="flush">
                 {currentQuestion.options.map((option, index) => (

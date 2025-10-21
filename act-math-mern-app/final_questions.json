@@ -2,22 +2,24 @@
   {
     "questionId": "geometry_001",
     "category": "Geometry",
-    "subcategories": ["Pythagorean Theorem", "Properties of Triangles"],
+    "subcategories": ["Pythagorean Theorem", "Properties of Triangles", "Pythagorean Triple"],
     "questionText": "In the right triangle shown below, what is the length of the hypotenuse (c)?",
     "options": ["10", "12", "14", "15", "16"],
     "correctAnswerIndex": 0,
-    "solutionText": "According to the Pythagorean theorem, a² + b² = c². In this triangle, a = 6 and b = 8. So, 6² + 8² = c², which is 36 + 64 = 100. Therefore, c = √100 = 10.",
+    "solutionText": "According to the Pythagorean theorem, the square of the two legs of a right triangle equals the square of the hypotenuse (<math><msup><mi>a</mi><mn>2</mn></msup><mo>+</mo><msup><mi>b</mi><mn>2</mn></msup><mo>=</mo><msup><mi>c</mi><mn>2</mn></msup></math>).<br/><math display='block'><mtable displaystyle='true' columnalign='right'><mtr><mtd><msup><mn>6</mn><mn>2</mn></msup><mo>+</mo><msup><mn>8</mn><mn>2</mn></msup></mtd><mtd><mo>=</mo></mtd><mtd><msup><mi>c</mi><mn>2</mn></msup></mtd></mtr><mtr><mtd><mn>36</mn><mo>+</mo><mn>64</mn></mtd><mtd><mo>=</mo></mtd><mtd><msup><mi>c</mi><mn>2</mn></msup></mtd></mtr><mtr><mtd><mn>100</mn></mtd><mtd><mo>=</mo></mtd><mtd><msup><mi>c</mi><mn>2</mn></msup></mtd></mtr><mtr><mtd><msqrt><mn>100</mn></msqrt></mtd><mtd><mo>=</mo></mtd><mtd><mi>c</mi></mtd></mtr><mtr><mtd><mn>10</mn></mtd><mtd><mo>=</mo></mtd><mtd><mi>c</mi></mtd></mtr></mtable></math><br/><br/><b>Pro Tip:</b> The 3-4-5 triangle is a common Pythagorean triple. Recognizing that this triangle is a multiple of that (3x2, 4x2, 5x2) can save you from having to do the full calculation with the Pythagorean theorem.",
     "difficulty": 2,
     "diagramUrl": null,
     "diagramSvg": "<svg width='250' height='200' xmlns='http://www.w3.org/2000/svg'><polygon points='50,150 200,150 200,50' style='fill:none;stroke:black;stroke-width:2' /><text x='125' y='170' text-anchor='middle'>8</text><text x='210' y='100'>6</text><text x='120' y='90' style='font-style:italic;'>c</text></svg>",
+    "solutionDiagramSvg": null,
     "isActive": true,
-    "avgTimeSeconds": null
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0, 0, 0, 0, 0]
   },
   {
     "questionId": "statistics_probability_001",
     "category": "Statistics & Probability",
     "subcategories": ["Mean, Median, Mode, & Range", "Solving Linear Equations"],
-    "questionText": "For a work project, Maria tracked the number of items she sold on 4 consecutive days. The numbers were: 10, 15, 25, and 20. On the fifth day, she sold x items. The mean number of items she sold over these 5 days was 22. What is the value of x?",
+    "questionText": "For a work project, Maria tracked the number of items she sold on 4 consecutive days. The numbers were: 10, 15, 25, and 20. On the fifth day, she sold x items. The mean number of items she sold over these 5 days was 22. What is the value of x?", 
     "options": ["18", "22", "35", "40", "70"],
     "correctAnswerIndex": 3,
     "solutionText": "The mean is the sum of the values divided by the count of the values. The equation for the mean is (10 + 15 + 25 + 20 + x) / 5 = 22. First, sum the known values: 10 + 15 + 25 + 20 = 70. The equation becomes (70 + x) / 5 = 22. Multiply both sides by 5 to get 70 + x = 110. Subtract 70 from both sides to find x = 40.",
@@ -25,7 +27,8 @@
     "diagramUrl": null,
     "diagramSvg": null,
     "isActive": true,
-    "avgTimeSeconds": null
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0, 0, 0, 0, 0]
   },
   {
     "questionId": "statistics_probability_002",
@@ -39,22 +42,17 @@
     "diagramUrl": null,
     "diagramSvg": "<svg width=\"260\" height=\"240\" xmlns=\"http://www.w3.org/2000/svg\"><style>.txt{font-family:sans-serif;font-size:14px;}.label{font-size:18px;font-style:italic;text-anchor:middle;}</style><circle cx=\"90\" cy=\"90\" r=\"60\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2\"/><circle cx=\"170\" cy=\"90\" r=\"60\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2\"/><circle cx=\"130\" cy=\"159\" r=\"60\" fill=\"none\" stroke=\"#000000\" stroke-width=\"2\"/><text x=\"90\" y=\"50\" class=\"label\">S</text><text x=\"170\" y=\"50\" class=\"label\">B</text><text x=\"130\" y=\"210\" class=\"label\">A</text><text x=\"75\" y=\"95\" class=\"txt\">15</text><text x=\"185\" y=\"95\" class=\"txt\">8</text><text x=\"130\" y=\"175\" class=\"txt\" text-anchor=\"middle\">10</text><text x=\"130\" y=\"85\" class=\"txt\" text-anchor=\"middle\">7</text><text x=\"105\" y=\"135\" class=\"txt\">4</text><text x=\"155\" y=\"135\" class=\"txt\">6</text><text x=\"130\" y=\"120\" class=\"txt\" text-anchor=\"middle\">3</text></svg>",
     "isActive": true,
-    "avgTimeSeconds": null
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0, 0, 0, 0, 0]
   },
   {
     "questionId": "statistics_probability_003",
     "category": "Statistics & Probability",
-    "subcategories": ["Basic Probability", "Data Interpretation (Graphs & Tables)"],
-    "questionText": "A bag contains a mix of 4 types of colored marbles: Red, Blue, Green, and Yellow. For a probability experiment, a marble is drawn from the bag and then returned, 400 times. The results are in the table below. To make the experimental results better match the theoretical probability of 25% for each type, which of the following changes to the contents of the bag would be best?",
-    "tableData": {
-      "headers": ["Marble type", "Number of times drawn"],
-      "rows": [
-        { "Marble type": "Red", "Number of times drawn": 60 },
-        { "Marble type": "Blue", "Number of times drawn": 140 },
-        { "Marble type": "Green", "Number of times drawn": 105 },
-        { "Marble type": "Yellow", "Number of times drawn": 95 }
-      ]
-    },
+    "subcategories": [
+      "Basic Probability",
+      "Data Interpretation (Graphs & Tables)"
+    ],
+    "questionText": "A bag contains a mix of 4 types of colored marbles: Red, Blue, Green, and Yellow. For a probability experiment, a marble is drawn from the bag and then returned, 400 times. The results are in the table below. To make the experimental results better match the theoretical probability of 25% for each type, which of the following changes to the contents of the bag would be best?<br/><br/><table class='table table-bordered' style='width: auto; margin: 0 auto;'><thead><tr><th>Marble type</th><th>Number of times drawn</th></tr></thead><tbody><tr><td>Red</td><td>60</td></tr><tr><td>Blue</td><td>140</td></tr><tr><td>Green</td><td>105</td></tr><tr><td>Yellow</td><td>95</td></tr></tbody></table>",
     "options": [
       "Add Blue marbles and remove Green marbles.",
       "Add Red marbles and remove Yellow marbles.",
@@ -68,7 +66,8 @@
     "diagramUrl": null,
     "diagramSvg": null,
     "isActive": true,
-    "avgTimeSeconds": null
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0, 0, 0, 0, 0]
   },
   {
     "questionId": "geometry_002",
@@ -77,18 +76,19 @@
     "questionText": "In triangle ∆XYZ, angle ∠X and angle ∠Z are congruent. The measure of angle ∠Y is 128.4°. What is the measure of angle ∠X?",
     "options": ["25.8°", "51.6°", "64.2°", "128.4°", "154.2°"],
     "correctAnswerIndex": 0,
-    "solutionText": "The sum of the angles in a triangle is always 180°. Since angles ∠X and ∠Z are congruent, we can set up the equation with m∠X = m∠Z. Let x be the measure of ∠X.<br/><math display='block'><mtable displaystyle='true' columnalign='right'><mtr><mtd><mi>m</mi><mo>∠</mo><mi>X</mi><mo>+</mo><mi>m</mi><mo>∠</mo><mi>Y</mi><mo>+</mo><mi>m</mi><mo>∠</mo><mi>Z</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>180</mn><mo>°</mo></mtd></mtr><mtr><mtd><mi>x</mi><mo>+</mo><mn>128.4</mn><mo>°</mo><mo>+</mo><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>180</mn><mo>°</mo></mtd></mtr><mtr><mtd><mn>2</mn><mi>x</mi><mo>+</mo><mn>128.4</mn><mo>°</mo></mtd><mtd><mo>=</mo></mtd><mtd><mn>180</mn><mo>°</mo></mtd></mtr><mtr><mtd><mn>2</mn><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>180</mn><mo>°</mo><mo>-</mo><mn>128.4</mn><mo>°</mo></mtd></mtr><mtr><mtd><mn>2</mn><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>51.6</mn><mo>°</mo></mtd></mtr><mtr><mtd><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>25.8</mn><mo>°</mo></mtd></mtr></mtable></math><br/>Therefore, the measure of ∠X is 25.8°.",
+    "solutionText": "The sum of the angles in a triangle is always 180°. Since angles ∠X and ∠Z are congruent, we can set up the equation with m∠X = m∠Z. Let x be the measure of ∠X.<br/><br/><math display='block'><mtable displaystyle='true' columnalign='right'><mtr><mtd><mi>m</mi><mo>∠</mo><mi>X</mi><mo>+</mo><mi>m</mi><mo>∠</mo><mi>Y</mi><mo>+</mo><mi>m</mi><mo>∠</mo><mi>Z</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>180</mn><mo>°</mo></mtd></mtr><mtr><mtd><mi>x</mi><mo>+</mo><mn>128.4</mn><mo>°</mo><mo>+</mo><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>180</mn><mo>°</mo></mtd></mtr><mtr><mtd><mn>2</mn><mi>x</mi><mo>+</mo><mn>128.4</mn><mo>°</mo></mtd><mtd><mo>=</mo></mtd><mtd><mn>180</mn><mo>°</mo></mtd></mtr><mtr><mtd><mn>2</mn><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>180</mn><mo>°</mo><mo>-</mo><mn>128.4</mn><mo>°</mo></mtd></mtr><mtr><mtd><mn>2</mn><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>51.6</mn><mo>°</mo></mtd></mtr><mtr><mtd><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>25.8</mn><mo>°</mo></mtd></mtr></mtable></math><br/>Therefore, the measure of ∠X is 25.8°.",
     "difficulty": 2,
     "diagramUrl": null,
     "diagramSvg": null,
     "solutionDiagramSvg": "<svg width=\"270\" height=\"150\" xmlns=\"http://www.w3.org/2000/svg\"><style>.small{font-family:sans-serif;font-size:12px;} .label{font-style:italic;font-size:14px;}</style><polygon points=\"20,130 250,130 135,20\" style=\"fill:none;stroke:black;stroke-width:2\"/><text x=\"135\" y=\"15\" text-anchor=\"middle\" class=\"label\">Y</text><text x=\"5\" y=\"135\" class=\"label\">X</text><text x=\"257\" y=\"135\" class=\"label\">Z</text><text x=\"120\" y=\"50\" class=\"small\">128.4°</text><path d=\"M 50 130 A 30 30 0 0 0 42 109\" fill=\"none\" stroke=\"black\" stroke-width=\"1\"/><path d=\"M 220 130 A 30 30 0 0 1 228 109\" fill=\"none\" stroke=\"black\" stroke-width=\"1\"/><!-- Tick marks for congruence --><path d=\"M 43 121.5 L 53 118.5\" stroke=\"black\" stroke-width=\"2\"/><path d=\"M 217 118.5 L 227 121.5\" stroke=\"black\" stroke-width=\"2\"/></svg>",
     "isActive": true,
-    "avgTimeSeconds": null
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0, 0, 0, 0, 0]
   },
   {
     "questionId": "algebra_001",
     "category": "Algebra",
-    "subcategories": ["Factoring & Quadratic Expressions"],
+    "subcategories": ["Factoring Quadratic Expressions"],
     "questionText": "Which of the following expressions is equivalent to x² - 5x - 24?",
     "options": [
       "(x + 8)(x - 3)",
@@ -103,7 +103,8 @@
     "diagramUrl": null,
     "diagramSvg": null,
     "isActive": true,
-    "avgTimeSeconds": null
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0, 0, 0, 0, 0]
   },
   {
     "questionId": "number_quantity_001",
@@ -123,12 +124,14 @@
     "diagramUrl": null,
     "diagramSvg": null,
     "isActive": true,
-    "avgTimeSeconds": null
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0, 0, 0, 0, 0]
+
   },
   {
     "questionId": "number_quantity_002",
     "category": "Number & Quantity",
-    "subcategories": ["Properties of Numbers (Prime, Divisibility, etc.)"],
+    "subcategories": ["Number Properties (Prime, Divisibility, etc.)"],
     "questionText": "A school is preparing emergency kits for its classrooms. The school has 48 blankets and 80 bottles of water to distribute. Each classroom receives an identical kit with the same number of blankets and the same number of bottles of water, with nothing left over. What is the maximum number of classrooms that could be in the school?",
     "options": ["8", "12", "16", "24", "48"],
     "correctAnswerIndex": 2,
@@ -137,12 +140,14 @@
     "diagramUrl": null,
     "diagramSvg": null,
     "isActive": true,
-    "avgTimeSeconds": null
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0, 0, 0, 0, 0]
+
   },
   {
     "questionId": "number_quantity_003",
     "category": "Number & Quantity",
-    "subcategories": ["Properties of Numbers (Prime, Divisibility, etc.)"],
+    "subcategories": ["Number Properties (Prime, Divisibility, etc.)"],
     "questionText": "A teacher is organizing pencil bags for their classroom. The teacher has 48 pencils and 80 erasers to distribute. Each pencil bag must be identical, with the same number of pencils and the same number of erasers, and no supplies can be left over. What is the greatest number of identical pencil bags that can be created?",
     "options": ["8", "12", "16", "24", "48"],
     "correctAnswerIndex": 2,
@@ -171,6 +176,120 @@
     "diagramSvg": null,
     "solutionDiagramSvg": null,
     "isActive": true,
+    "optionSelectionCounts": [0, 0, 0, 0, 0]
+  },
+  {
+    "questionId": "algebra-solve-for-variable-01",
+    "category": "Algebra",
+    "subcategories": ["Solving Linear Equations"],
+    "questionText": "If <math><mn>4</mn><mi>a</mi><mo>=</mo><mn>3</mn><mi>b</mi><mo>+</mo><mn>5</mn></math>, then what is the value of <math><mi>b</mi></math> in terms of <math><mi>a</mi></math>?",
+    "options": [
+      "<math><mfrac><mrow><mn>4</mn><mi>a</mi><mo>-</mo><mn>5</mn></mrow><mn>3</mn></mfrac></math>",
+      "<math><mfrac><mrow><mn>4</mn><mi>a</mi></mrow><mn>3</mn></mfrac><mo>-</mo><mn>5</mn></math>",
+      "<math><mfrac><mrow><mn>4</mn><mi>a</mi><mo>-</mo><mn>3</mn></mrow><mn>5</mn></mfrac></math>",
+      "<math><mfrac><mrow><mn>5</mn><mi>a</mi><mo>+</mo><mn>3</mn></mrow><mn>4</mn></mfrac></math>",
+      "<math><mfrac><mrow><mn>4</mn><mi>&alpha;</mi><mo>+</mo><mn>5</mn></mrow><mn>3</mn></mfrac></math>"
+    ],
+    "correctAnswerIndex": 0,
+    "solutionText": "The goal is to isolate the variable b. Start with the given equation: <math display='block'><mtable columnalign='right center left'><mtr><mtd><mn>4</mn><mi>a</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>3</mn><mi>b</mi><mo>+</mo><mn>5</mn></mtd></mtr><mtr><mtd><mn>4</mn><mi>a</mi><mo>-</mo><mn>5</mn></mtd><mtd><mo>=</mo></mtd><mtd><mn>3</mn><mi>b</mi></mtd></mtr><mtr><mtd><mfrac><mrow><mn>4</mn><mi>a</mi><mo>-</mo><mn>5</mn></mrow><mn>3</mn></mfrac></mtd><mtd><mo>=</mo></mtd><mtd><mi>b</mi></mtd></mtr></mtable></math> Therefore, the correct expression for b is <math><mfrac><mrow><mn>4</mn><mi>a</mi><mo>-</mo><mn>5</mn></mrow><mn>3</mn></mfrac></math>.",
+    "difficulty": 1,
+    "diagramUrl": null,
+    "diagramSvg": null,
+    "solutionDiagramSvg": null,
+    "isActive": true,
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0, 0, 0, 0, 0]
+  },
+  {
+    "questionId": "number-quantity-unit-conversion-02",
+    "category": "Number & Quantity",
+    "subcategories": ["Unit Conversion"],
+    "questionText": "A rocket is traveling at a speed of 20 kilometers per second. What is the rocket's speed in miles per hour (mph)? (Note: 1 kilometer ≈ 0.621 miles)",
+    "options": [
+      "<math><mn>12.4</mn></math>",
+      "<math><mn>744</mn></math>",
+      "<math><mn>32,250</mn></math>",
+      "<math><mn>44,712</mn></math>",
+      "<math><mn>72,000</mn></math>"
+    ],
+    "correctAnswerIndex": 3,
+    "solutionText": "To solve this, we can set up a chain of conversions to cancel out units until we are left with miles per hour. We start with kilometers per second and multiply by the conversion factors for kilometers to miles and seconds to hours.<br/><math display='block'><mfrac><mrow><mn>20</mn><menclose notation='updiagonalstrike'><mtext> km</mtext></menclose></mrow><mrow><mn>1</mn><menclose notation='updiagonalstrike'><mtext> s</mtext></menclose></mrow></mfrac><mo>×</mo><mfrac><mrow><mn>0.621</mn><mtext> miles</mtext></mrow><mrow><mn>1</mn><menclose notation='updiagonalstrike'><mtext> km</mtext></menclose></mrow></mfrac><mo>×</mo><mfrac><mrow><mn>60</mn><menclose notation='updiagonalstrike'><mtext> s</mtext></menclose></mrow><mrow><mn>1</mn><menclose notation='updiagonalstrike'><mtext> min</mtext></menclose></mrow></mfrac><mo>×</mo><mfrac><mrow><mn>60</mn><menclose notation='updiagonalstrike'><mtext> min</mtext></menclose></mrow><mrow><mn>1</mn><mtext> hr</mtext></mrow></mfrac><mo>≈</mo><mn>44,712</mn><mtext> mph</mtext></math>",
+    "difficulty": 3,
+    "diagramUrl": null,
+    "diagramSvg": null,
+    "solutionDiagramSvg": null,
+    "isActive": true,
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0, 0, 0, 0, 0]
+  },
+  {
+    "questionId": "algebra-function-evaluation-01",
+    "category": "Algebra",
+    "subcategories": ["Function Notation & Operations"],
+    "questionText": "A diver jumps from a 10-meter high platform. The height of the diver, <math><mi>h</mi></math>, in meters, above the water <math><mi>t</mi></math> seconds after jumping is modeled by the equation <math><mi>h</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><mo>-</mo><mn>4.9</mn><msup><mi>t</mi><mn>2</mn></msup><mo>+</mo><mn>8</mn><mi>t</mi><mo>+</mo><mn>10</mn></math>. What is the height of the diver, in meters, after 1.5 seconds?",
+    "options": [
+      "<math><mn>8.95</mn></math>",
+      "<math><mn>10.975</mn></math>",
+      "<math><mn>12</mn></math>",
+      "<math><mn>15.525</mn></math>",
+      "<math><mn>22</mn></math>"
+    ],
+    "correctAnswerIndex": 1,
+    "solutionText": "To find the height of the diver after 1.5 seconds, we need to evaluate the function <math><mi>h</mi><mo>(</mo><mi>t</mi><mo>)</mo></math> at <math><mi>t</mi><mo>=</mo><mn>1.5</mn></math>. We substitute 1.5 for <math><mi>t</mi></math> in the equation: <math display='block'><mi>h</mi><mo>(</mo><mn>1.5</mn><mo>)</mo><mo>=</mo><mo>-</mo><mn>4.9</mn><mo>(</mo><mn>1.5</mn><msup><mo>)</mo><mn>2</mn></msup><mo>+</mo><mn>8</mn><mo>(</mo><mn>1.5</mn><mo>)</mo><mo>+</mo><mn>10</mn></math><math display='block'><mo>=</mo><mo>-</mo><mn>4.9</mn><mo>(</mo><mn>2.25</mn><mo>)</mo><mo>+</mo><mn>12</mn><mo>+</mo><mn>10</mn></math><math display='block'><mo>=</mo><mo>-</mo><mn>11.025</mn><mo>+</mo><mn>22</mn></math><math display='block'><mo>=</mo><mn>10.975</mn></math> Thus, the height of the diver after 1.5 seconds is 10.975 meters.",
+    "difficulty": 2,
+    "diagramUrl": null,
+    "diagramSvg": null,
+    "solutionDiagramSvg": null,
+    "isActive": true,
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0, 0, 0, 0, 0]
+  },
+  {
+    "questionId": "statistics-probability-basic-probability-01",
+    "category": "Statistics & Probability",
+    "subcategories": ["Basic Probability", "Number Properties (Prime, Divisibility, etc.)"],
+    "questionText": "The integers from 1 to 25, inclusive, are written on separate slips of paper and placed in a hat. One slip of paper is drawn at random. What is the probability that the number on the slip is a multiple of 3?",
+    "options": [
+      "<math><mfrac><mn>7</mn><mn>25</mn></mfrac></math>",
+      "<math><mfrac><mn>8</mn><mn>25</mn></mfrac></math>",
+      "<math><mfrac><mn>9</mn><mn>25</mn></mfrac></math>",
+      "<math><mfrac><mn>1</mn><mn>3</mn></mfrac></math>",
+      "<math><mfrac><mn>8</mn><mn>24</mn></mfrac></math>"
+    ],
+    "correctAnswerIndex": 1,
+    "solutionText": "First, identify the total number of possible outcomes. Since the integers are from 1 to 25 inclusive, there are 25 slips of paper in the hat. Next, identify the number of favorable outcomes, which are the multiples of 3 between 1 and 25. These are 3, 6, 9, 12, 15, 18, 21, and 24. There are 8 such numbers. The probability is the ratio of favorable outcomes to the total number of outcomes, which is <math><mfrac><mn>8</mn><mn>25</mn></mfrac></math>.",
+    "difficulty": 1,
+    "diagramUrl": null,
+    "diagramSvg": null,
+    "solutionDiagramSvg": null,
+    "isActive": true,
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0, 0, 0, 0, 0]
+  },
+  {
+    "questionId": "trigonometry-sohcahtoa-relationships-01",
+    "category": "Trigonometry",
+    "subcategories": [
+      "Right Triangle Trigonometry (SOHCAHTOA)",
+      "Trigonometric Identities & Ratios", 
+      "Pythagorean Triple"
+    ],
+    "questionText": "For an angle θ in a right triangle, <math><mi>cos</mi><mi>θ</mi><mo>=</mo><mfrac><mn>8</mn><mn>17</mn></mfrac></math>. What is the value of <math><mi>tan</mi><mi>θ</mi></math>",
+    "options": [
+      "<math><mfrac><mn>8</mn><mn>15</mn></mfrac></math>",
+      "<math><mfrac><mn>15</mn><mn>17</mn></mfrac></math>",
+      "<math><mfrac><mn>17</mn><mn>8</mn></mfrac></math>",
+      "<math><mfrac><mn>15</mn><mn>8</mn></mfrac></math>",
+      "<math><mfrac><mn>8</mn><mn>17</mn></mfrac></math>"
+    ],
+    "correctAnswerIndex": 3,
+    "solutionText": "The relationship for cosine is CAH (Cosine = Adjacent / Hypotenuse). From the given information, we know the adjacent side is 8 and the hypotenuse is 17. We can find the opposite side using the Pythagorean theorem: <math><msup><mi>a</mi><mn>2</mn></msup><mo>+</mo><msup><mi>b</mi><mn>2</mn></msup><mo>=</mo><msup><mi>c</mi><mn>2</mn></msup></math>, which becomes <math><msup><mi>a</mi><mn>2</mn></msup><mo>+</mo><msup><mn>8</mn><mn>2</mn></msup><mo>=</mo><msup><mn>17</mn><mn>2</mn></msup></math>. This simplifies to <math><msup><mi>a</mi><mn>2</mn></msup><mo>+</mo><mn>64</mn><mo>=</mo><mn>289</mn></math>. Solving for <math><mi>a</math>, we get <math><msup><mi>a</mi><mn>2</mn></msup><mo>=</mo><mn>225</mn></math>, so <math><mi>a</mi><mo>=</mo><mn>15</mn></math>. The relationship for tangent is TOA (Tangent = Opposite / Adjacent). Therefore, <math><mi>tan</mi><mi>θ</mi><mo>=</mo><mfrac><mn>15</mn><mn>8</mn></mfrac></math>.<br/><br/><b>Pro Tip:</b> The 8-15-17 triangle is a common Pythagorean triple. Recognizing this pattern can save you from having to do the full calculation with the Pythagorean theorem.",
+    "difficulty": 2,
+    "diagramUrl": null,
+    "diagramSvg": null,
+    "solutionDiagramSvg": "<svg width='500' height='220' xmlns='http://www.w3.org/2000/svg'>\n  <!-- Proportional triangle (8-15-17) centered on a 500px canvas -->\n  <polygon points='210,185 290,185 290,35' style='fill:none;stroke:black;stroke-width:2' />\n  \n  <!-- Labels positioned relative to the new triangle coordinates -->\n  <text x='297' y='110' style='font-size:16px; fill: #d9534f;'>Opposite = 15</text>\n  <text x='250' y='205' text-anchor='middle' style='font-size:16px; fill: #0275d8;'>Adjacent = 8</text>\n  <text x='190' y='100' text-anchor='middle' style='font-size:16px;'>Hypotenuse = 17</text>\n  \n  <!-- Angle theta and its marker arc -->\n  <text x='230' y='175' style='font-size:20px;'>θ</text>\n  <path d='M 230 185 A 20 20 0 0 0 219.41 167.35' fill='none' stroke='black' stroke-width='1'/>\n</svg>",
+    "isActive": true,
+    "avgTimeSeconds": null,
     "optionSelectionCounts": [0, 0, 0, 0, 0]
   }
 ]

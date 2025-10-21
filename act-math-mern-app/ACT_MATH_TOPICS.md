@@ -7,7 +7,9 @@ This document defines the official, granular list of subcategories used througho
 ### Number & Quantity
 -   `Operations with Fractions, Decimals, & Integers`
 -   `Ratios, Proportions, & Percentages`
--   `Properties of Numbers (Prime, Divisibility, etc.)`
+-   `Unit Conversion`
+-   `Rate Problems`
+-   `Number Properties (Prime, Divisibility, etc.)`
 -   `Complex & Imaginary Numbers`
 -   `Scientific Notation`
 -   `Matrices`
@@ -17,7 +19,7 @@ This document defines the official, granular list of subcategories used througho
 -   `Solving Linear Inequalities`
 -   `Systems of Equations`
 -   `Polynomial Arithmetic`
--   `Factoring & Quadratic Expressions`
+-   `Factoring Quadratic Expressions`
 -   `Solving Quadratic Equations`
 -   `Exponent Rules (Integer & Fractional)`
 -   `Simplifying Radicals`
@@ -28,17 +30,21 @@ This document defines the official, granular list of subcategories used througho
 -   `Graphing Quadratic & Polynomial Functions`
 -   `Graph Transformations`
 -   `Arithmetic & Geometric Sequences`
+-   `Translating Word Problems to Equations`
 
 ### Geometry
 -   `Angle Relationships & Parallel Lines`
 -   `Properties of Triangles`
 -   `Pythagorean Theorem`
+-   `Pythagorean Triple`
 -   `Special Right Triangles (30-60-90, 45-45-90)`
 -   `Similar Triangles`
 -   `Properties of Quadrilaterals & Polygons`
 -   `Area & Perimeter of Shapes`
 -   `Properties of Circles (Area, Circumference, Arcs)`
 -   `Volume & Surface Area of 3D Shapes`
+
+### Coordinate Geometry
 -   `The Coordinate Plane`
 -   `Distance & Midpoint Formulas`
 -   `Slope of a Line`
@@ -57,6 +63,6 @@ This document defines the official, granular list of subcategories used througho
 -   `Data Interpretation (Graphs & Tables)`
 -   `Basic Probability`
 -   `Probability of Multiple & Dependent Events`
--   `Permutations & Combinations`
+-   `Counting, Permutations, & Combinations`
 -   `Expected Value`
 -   `Line of Best Fit & Data Modeling`

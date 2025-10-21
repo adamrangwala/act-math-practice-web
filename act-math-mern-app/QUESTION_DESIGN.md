@@ -39,14 +39,16 @@ All questions must be structured as a JSON object with the following fields. See
     -   If there is no diagram, this field should be `null`.
 
 -   **`solutionDiagramSvg` (string | null):**
-    -   An optional, separate SVG diagram that is only shown with the solution. This is useful for displaying annotated diagrams or step-by-step visual explanations.
+    -   An optional, separate SVG diagram that is only shown with the solution. This should only be used for displaying **annotated diagrams** or step-by-step visual explanations. If the diagram from the question is sufficient, this field should be `null`, as the frontend will automatically display the main `diagramSvg` on the solution side.
 
 -   **`optionSelectionCounts` (array of numbers):**
-    -   An array (e.g., `[0, 0, 0, 0, 0]`) that tracks how many times each answer option has been selected by users. The index of the array corresponds to the index of the `options` array. This is used for analyzing common distractors.
+    -   **Required.** An array (e.g., `[0, 0, 0, 0, 0]`) that tracks how many times each answer option has been selected by users. The index of the array corresponds to the index of the `options` array. This is used for analyzing common distractors.
 
 ---
 
-## 3. Formatting Mathematical Notation (MathJax)
+## 3. Formatting & Content Best Practices
+
+### Formatting Mathematical Notation (MathJax)
 
 To ensure mathematical formulas and symbols are rendered correctly and accessibly, this project uses the [MathJax](https://www.mathjax.org/) library.
 
@@ -62,19 +64,23 @@ To ensure mathematical formulas and symbols are rendered correctly and accessibl
 
 The frontend application will automatically detect these tags and use MathJax to render them as properly formatted mathematical equations.
 
-### Best Practice for Algebraic Steps
+### Handling Tabular Data
 
-For solutions that involve solving a multi-step equation, it is highly recommended to format the steps using a MathML `<mtable>`. This presents the logic clearly and is much easier for users to follow than a dense paragraph.
+If a question requires a table, the data must be embedded directly into the `questionText` field as a standard HTML `<table>`.
 
--   **GOOD Example (Formatted):**
+-   **Rule:** Do not use a separate `tableData` field. The `preview.html` script and the main application do not support it.
+-   **Example:**
     ```json
-    "solutionText": "The sum of the angles is 180°. Let x be the measure of ∠A.<br/><math display='block'><mtable>...</mtable></math>"
+    "questionText": "The results are in the table below.<br/><br/><table class='table'>...</table>"
     ```
 
--   **BAD Example (Paragraph):**
-    ```json
-    "solutionText": "The sum of the angles is 180°. First, substitute 128.4 for Y, which gives you 2X + 128.4 = 180. Then, subtract 128.4 from both sides..."
-    ```
+### Solution Text Best Practices
+
+-   **Algebraic Steps:** For solutions that involve solving a multi-step equation, it is highly recommended to format the steps using a MathML `<mtable>`.
+-   **Spacing:** To improve readability, add a `<br/>` tag between consecutive `<math display='block'>` elements or between the final line of text and the start of a math block.
+-   **Pro Tips:** To provide helpful test-taking strategies, add a "Pro Tip" at the end of the solution text, formatted in bold.
+    -   **Example:** `...Therefore, the answer is 10.<br/><br/><b>Pro Tip:</b> The 3-4-5 triangle is a common Pythagorean triple.`
+
 ---
 
 ## 4. Frontend Formatting and Rendering
@@ -88,6 +94,9 @@ While the JSON data is raw, the frontend is responsible for rendering it in a sp
     -   The options will be rendered as a left-aligned list.
     -   The option letters (F, G, H, J, K) will be vertically aligned with each other.
     -   The option text (the numbers or phrases) will also be vertically aligned with each other, regardless of the width of the preceding letter.
+
+-   **Diagram Display in Solution:**
+    -   If a question contains a `diagramSvg`, the frontend must render that same diagram again within the solution view. This prevents the user from having to scroll up to reference the diagram while reading the explanation.
 
 This ensures a consistent and professional presentation for every question.
 
