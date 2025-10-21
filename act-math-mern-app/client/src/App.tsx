@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuth } from './context/AuthContext';
 import Login from './components/Login';
-import PracticeScreen from './components/PracticeScreen';
+import { PracticeScreen } from './components/PracticeScreen';
 import Dashboard from './components/Dashboard';
 import SessionSummary from './components/SessionSummary';
 import Settings from './components/Settings';

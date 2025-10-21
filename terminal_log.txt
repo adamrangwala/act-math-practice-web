@@ -1,16 +1,6 @@
-3: import Login from './components/Login';
-4: import PracticeScreen from './components/PracticeScreen';
-          ^
-5: import Dashboard from './components/Dashboard';
-6: import SessionSummary from './components/SessionSummary';
-    at getRollupError (file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/parseAst.js:401:41)
-    at error (file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/parseAst.js:397:42)
-    at Module.error (file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/node-entry.js:16939:16)
-    at Module.traceVariable (file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/node-entry.js:17391:29)
-    at ModuleScope.findVariable (file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/node-entry.js:15061:39)
-    at FunctionScope.findVariable (file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/node-entry.js:5642:38)
-    at FunctionBodyScope.findVariable (file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/node-entry.js:5642:38)
-    at Identifier.bind (file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/node-entry.js:5413:40)
-    at CallExpression.bind (file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/node-entry.js:2800:28)
-    at CallExpression.bind (file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/node-entry.js:12108:15)
-Error: Command "npm run build" exited with 1
+index-BoSmKMUj.js:1441 Firebase Config: Object
+index-BoSmKMUj.js:1445 Uncaught ReferenceError: PracticeScreen is not defined
+    at index-BoSmKMUj.js:1445:91951
+index-BoSmKMUj.js:1445 Uncaught (in promise) ReferenceError: currentUser is not defined
+    at wk (index-BoSmKMUj.js:1445:91646)
+    at index-BoSmKMUj.js:1445:91937
