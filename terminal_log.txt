@@ -1,20 +1,9 @@
-Website view:
-"Failed to fetch priority matrix data"
-
-Console Log:
-index-CAwWp8Qt.js:1441 Firebase Config: Object
-dashboard:1  Failed to load resource: the server responded with a status of 404 ()
-api/stats/priority-matrix:1  Failed to load resource: the server responded with a status of 404 ()
-index-CAwWp8Qt.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
-t @ index-CAwWp8Qt.js:1261
-index-CAwWp8Qt.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
-t @ index-CAwWp8Qt.js:1261
-index-CAwWp8Qt.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
-t @ index-CAwWp8Qt.js:1261
-index-CAwWp8Qt.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
-t @ index-CAwWp8Qt.js:1261
-index-CAwWp8Qt.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
-t @ index-CAwWp8Qt.js:1261
-index-CAwWp8Qt.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
-t @ index-CAwWp8Qt.js:1261
-api/stats/priority-matrix:1  Failed to load resource: the server responded with a status of 404 ()
+index-lprzEjFD.js:1441 Firebase Config: Object
+index-lprzEjFD.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
+t @ index-lprzEjFD.js:1261
+index-lprzEjFD.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
+t @ index-lprzEjFD.js:1261
+index-lprzEjFD.js:1366 Cross-Origin-Opener-Policy policy would block the window.close call.
+close @ index-lprzEjFD.js:1366
+index-lprzEjFD.js:1366 Cross-Origin-Opener-Policy policy would block the window.close call.
+close @ index-lprzEjFD.js:1366
