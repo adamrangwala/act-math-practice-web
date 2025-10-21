@@ -10,7 +10,23 @@ import apiRoutes from './routes/api';
 const app: Express = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+const allowedOrigins = [
+  'http://localhost:3000', // Your local dev frontend
+  'https://act-math-app-staging.vercel.app',
+  'https://act-math-app-staging-git-develop-adamrangwalas-projects.vercel.app'
+];
+
+const corsOptions = {
+  origin: function (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.get('/', (req: Request, res: Response) => {
