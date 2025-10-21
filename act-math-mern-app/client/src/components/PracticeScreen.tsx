@@ -42,3 +42,5 @@ import { authenticatedFetch } from '../utils/api';
     };
     submitProgress();
 // ... (rest of component)
+
+export default PracticeScreen;
