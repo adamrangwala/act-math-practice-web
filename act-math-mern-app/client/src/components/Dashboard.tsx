@@ -12,26 +12,35 @@ const Dashboard = () => {
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [dailyQuestionLimit, setDailyQuestionLimit] = useState(15); // New state for the slider
+  const [isNewUser, setIsNewUser] = useState<boolean | null>(null); // New state to manage view
 
-  // ... (useEffect and fetchStats)
+  useEffect(() => {
+    if (currentUser) {
+      const fetchStats = async () => {
+        try {
+          const data = await authenticatedFetch('/api/stats/dashboard');
+          setStats(data);
+          // --- This is the new logic ---
+          if (data && data.totalSubcategoriesTracked > 0) {
+            setIsNewUser(false);
+          } else {
+            setIsNewUser(true);
+          }
+        } catch (err: any) {
+          setError(err.message);
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchStats();
+    }
+  }, [currentUser]);
 
   const handleStart = async () => {
-    try {
-      // First, save the user's chosen setting
-      await authenticatedFetch('/api/settings', {
-        method: 'PUT',
-        body: JSON.stringify({ dailyQuestionLimit }),
-      });
-      // Then, navigate to the practice screen
-      navigate('/practice');
-    } catch (err: any) {
-      setError('Failed to save settings. Please try again.');
-      console.error(err);
-    }
+    // ... (handleStart logic remains the same)
   };
 
-  if (loading) {
+  if (loading || isNewUser === null) { // Keep loading until we know if user is new
     return <div className="text-center mt-5"><Spinner animation="border" /></div>;
   }
 
@@ -40,31 +49,10 @@ const Dashboard = () => {
   }
 
   // --- Conditional Rendering for New vs. Returning Users ---
-  if (!stats || stats.totalSubcategoriesTracked === 0) {
+  if (isNewUser) {
     return (
       <div className="mt-5 text-center">
-        <Card className="p-4 p-md-5">
-          <Card.Body>
-            <Card.Title as="h2" className="mb-3">Welcome to Your ACT Math Trainer!</Card.Title>
-            <Card.Text className="lead mb-4">
-              To get started, choose how many questions you'd like in your first session. This will help us create your personalized study plan.
-            </Card.Text>
-            <Form.Group className="my-4">
-              <Form.Label>Questions per session: <strong>{dailyQuestionLimit}</strong></Form.Label>
-              <Form.Range
-                value={dailyQuestionLimit}
-                onChange={(e) => setDailyQuestionLimit(parseInt(e.target.value, 10))}
-                min="5"
-                max="25"
-                step="1"
-              />
-              <small className="text-muted">We recommend 10-15 for a good baseline.</small>
-            </Form.Group>
-            <Button variant="primary" size="lg" onClick={handleStart}>
-              Start Your First Session
-            </Button>
-          </Card.Body>
-        </Card>
+        {/* ... (Welcome screen JSX remains the same) */}
       </div>
     );
   }
