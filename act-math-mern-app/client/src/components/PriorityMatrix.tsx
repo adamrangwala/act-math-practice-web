@@ -61,7 +61,7 @@ const PriorityMatrix = () => {
     }
   }, [currentUser]);
 
-  const maxTime = Math.max(...matrixData.map(d => d.avgTime), 300); // Default to 300s (5min)
+  const maxTime = Math.max(...matrixData.map(d => d.avgTime), 120); // Default to 120s (2min)
 
   const chartData = {
     datasets: [
