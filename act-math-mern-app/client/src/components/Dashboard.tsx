@@ -15,25 +15,26 @@ const Dashboard = () => {
   const [isNewUser, setIsNewUser] = useState<boolean | null>(null); // New state to manage view
 
   useEffect(() => {
-    if (currentUser) {
-      const fetchStats = async () => {
-        try {
-          const data = await authenticatedFetch('/api/stats/dashboard');
-          setStats(data);
-          // --- This is the new logic ---
-          if (data && data.totalSubcategoriesTracked > 0) {
-            setIsNewUser(false);
-          } else {
-            setIsNewUser(true);
-          }
-        } catch (err: any) {
-          setError(err.message);
-        } finally {
-          setLoading(false);
+    const fetchStats = async () => {
+      if (!currentUser) {
+        setLoading(false); // <-- This is the crucial fix
+        return;
+      }
+      try {
+        const data = await authenticatedFetch('/api/stats/dashboard');
+        setStats(data);
+        if (data && data.totalSubcategoriesTracked > 0) {
+          setIsNewUser(false);
+        } else {
+          setIsNewUser(true);
         }
-      };
-      fetchStats();
-    }
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchStats();
   }, [currentUser]);
 
   const handleStart = async () => {
