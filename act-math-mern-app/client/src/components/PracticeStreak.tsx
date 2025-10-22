@@ -18,7 +18,6 @@ const PracticeStreak: React.FC<PracticeStreakProps> = ({ practiceDays }) => {
   return (
     <Card className="mb-4">
       <Card.Body>
-        <Card.Title className="text-center">Your 7-Day Practice Streak</Card.Title>
         <div className="d-flex justify-content-around text-center mt-3">
           {weekDays.map((date, i) => {
             const dateString = date.toISOString().split('T')[0];

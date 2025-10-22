@@ -13,15 +13,14 @@ interface DashboardStats {
   totalSubcategoriesTracked: number;
 }
 
+import { Modal } from 'react-bootstrap'; // New import
+
+// ... (imports)
+
 const Dashboard = () => {
-  const { currentUser } = useAuth();
-  const navigate = useNavigate();
-  const [stats, setStats] = useState<DashboardStats | null>(null);
-  const [streakData, setStreakData] = useState<string[]>([]); // New state for streak
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [isNewUser, setIsNewUser] = useState<boolean | null>(null);
-  const [dailyQuestionLimit, setDailyQuestionLimit] = useState(15);
+  // ... (state declarations)
+  const [showStreakModal, setShowStreakModal] = useState(false);
+  const [streakLength, setStreakLength] = useState(0);
 
   useEffect(() => {
     const fetchDashboardData = async () => {
@@ -30,14 +29,29 @@ const Dashboard = () => {
         return;
       }
       try {
-        // Fetch stats and streak data in parallel
         const [statsData, streakResult] = await Promise.all([
           authenticatedFetch('/api/stats/dashboard'),
           authenticatedFetch('/api/stats/streak')
         ]);
         
         setStats(statsData);
-        setStreakData(streakResult.practiceDays || []);
+        const practiceDays = streakResult.practiceDays || [];
+        setStreakData(practiceDays);
+
+        // --- New Streak Celebration Logic ---
+        const today = new Date().toISOString().split('T')[0];
+        if (practiceDays.includes(today)) {
+          const celebrationShown = sessionStorage.getItem('streakCelebrationShown');
+          if (!celebrationShown) {
+            const currentStreak = calculateStreak(practiceDays);
+            if (currentStreak > 1) {
+              setStreakLength(currentStreak);
+              setShowStreakModal(true);
+              sessionStorage.setItem('streakCelebrationShown', 'true');
+            }
+          }
+        }
+        // --- End of New Logic ---
 
         if (statsData && statsData.totalSubcategoriesTracked > 0) {
           setIsNewUser(false);
@@ -54,94 +68,56 @@ const Dashboard = () => {
     fetchDashboardData();
   }, [currentUser]);
 
-  const handleStart = async () => {
-    try {
-      await authenticatedFetch('/api/settings', {
-        method: 'PUT',
-        body: JSON.stringify({ dailyQuestionLimit }),
-      });
-      navigate('/practice');
-    } catch (err: any) {
-      setError('Failed to save settings. Please try again.');
-      console.error(err);
+  const calculateStreak = (dates: string[]) => {
+    const sortedDates = [...new Set(dates)].sort((a, b) => new Date(b).getTime() - new Date(a).getTime());
+    let streak = 0;
+    const today = new Date();
+    
+    // Check if the most recent day is today or yesterday
+    if (sortedDates.length > 0) {
+      const mostRecentDate = new Date(sortedDates[0]);
+      const diffTime = today.getTime() - mostRecentDate.getTime();
+      const diffDays = diffTime / (1000 * 3600 * 24);
+
+      if (diffDays <= 1.5) { // Allow for timezone differences
+        streak = 1;
+        for (let i = 1; i < sortedDates.length; i++) {
+          const currentDate = new Date(sortedDates[i-1]);
+          const previousDate = new Date(sortedDates[i]);
+          const dayDiff = (currentDate.getTime() - previousDate.getTime()) / (1000 * 3600 * 24);
+          if (dayDiff <= 1.5) {
+            streak++;
+          } else {
+            break;
+          }
+        }
+      }
     }
+    return streak;
   };
 
-  if (loading || isNewUser === null) {
-    return <div className="text-center mt-5"><Spinner animation="border" /></div>;
-  }
-
-  if (error) {
-    return <div className="mt-5"><Alert variant="danger">{error}</Alert></div>;
-  }
-
-  if (isNewUser) {
-    return (
-      <div className="mt-5 text-center">
-        <Card className="p-4 p-md-5">
-          <Card.Body>
-            <Card.Title as="h2" className="mb-3">Welcome to Your ACT Math Trainer!</Card.Title>
-            <Card.Text className="lead mb-4">
-              To get started, choose how many questions you'd like in your first session. This will help us create your personalized study plan.
-            </Card.Text>
-            <Form.Group className="my-4">
-              <Form.Label>Questions per session: <strong>{dailyQuestionLimit}</strong></Form.Label>
-              <Form.Range
-                value={dailyQuestionLimit}
-                onChange={(e) => setDailyQuestionLimit(parseInt(e.target.value, 10))}
-                min="5"
-                max="25"
-                step="1"
-              />
-              <small className="text-muted">We recommend 10-15 for a good baseline.</small>
-            </Form.Group>
-            <Button variant="primary" size="lg" onClick={handleStart}>
-              Start Your First Session
-            </Button>
-          </Card.Body>
-        </Card>
-      </div>
-    );
-  }
+  // ... (handleStart, loading, error, and new user rendering)
 
   return (
-    <div className="mt-4">
-      <PracticeStreak practiceDays={streakData} />
-      <Row>
-        <Col md={4} className="mb-4">
-          <Card className="text-center h-100">
-            <Card.Body>
-              <h6 className="text-muted">Topics Due for Review</h6>
-              <Card.Text className="fs-1 fw-bold">{stats?.questionsDue}</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={4} className="mb-4">
-          <Card className="text-center h-100">
-            <Card.Body>
-              <h6 className="text-muted">Topics Mastered</h6>
-              <Card.Text className="fs-1 fw-bold">
-                {stats?.subcategoriesMastered}
-                <span className="fs-6"> / {stats?.totalSubcategoriesTracked}</span>
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={4} className="mb-4">
-          <Card className="text-center h-100">
-            <Card.Body>
-              <h6 className="text-muted">Overall Accuracy</h6>
-              <Card.Text className="fs-1 fw-bold">{stats?.overallAccuracy.toFixed(1)}%</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <PriorityMatrix />
-        </Col>
-      </Row>
-    </div>
+    <>
+      <div className="mt-4">
+        <PracticeStreak practiceDays={streakData} />
+        {/* ... (rest of dashboard) */}
+      </div>
+
+      <Modal show={showStreakModal} onHide={() => setShowStreakModal(false)} centered>
+        <Modal.Body className="text-center p-4">
+          <h1 style={{ fontSize: '4rem' }}>🔥</h1>
+          <h2>{streakLength}-Day Streak!</h2>
+          <p className="lead text-muted">
+            Great job! Consistency is the key to improving your score. Keep the flame alive!
+          </p>
+          <Button variant="primary" onClick={() => setShowStreakModal(false)}>
+            Continue
+          </Button>
+        </Modal.Body>
+      </Modal>
+    </>
   );
 };
 
