@@ -26,6 +26,11 @@ const corsOptions = {
   }
 };
 
+app.use((req, res, next) => {
+  console.log('Incoming request origin:', req.headers.origin);
+  next();
+});
+
 app.use(cors(corsOptions));
 app.use(express.json());
 
