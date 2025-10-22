@@ -94,8 +94,30 @@ const PriorityMatrix = () => {
         <Card.Subtitle className="mb-2 text-muted">
           Accuracy vs. Average Time per Topic
         </Card.Subtitle>
-        <div style={{ height: '400px' }}>
-          {matrixData.length > 0 ? <Scatter data={chartData} options={options} /> : <p className="text-muted mt-3">Complete a session to see your priority matrix!</p>}
+        <div style={{ position: 'relative', height: '400px' }}>
+          {matrixData.length > 0 ? (
+            <>
+              <div className="quadrant-label top-left">
+                <strong>Knowledge Gap</strong><br />
+                <small>Low Accuracy, Slow</small>
+              </div>
+              <div className="quadrant-label top-right">
+                <strong>Speed Trap</strong><br />
+                <small>High Accuracy, Slow</small>
+              </div>
+              <div className="quadrant-label bottom-left">
+                <strong>Weakness Zone</strong><br />
+                <small>Low Accuracy, Fast</small>
+              </div>
+              <div className="quadrant-label bottom-right">
+                <strong>Strength Zone</strong><br />
+                <small>High Accuracy, Fast</small>
+              </div>
+              <Scatter data={chartData} options={options} />
+            </>
+          ) : (
+            <p className="text-muted mt-3">Complete a session to see your priority matrix!</p>
+          )}
         </div>
       </Card.Body>
     </Card>

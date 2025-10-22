@@ -49,9 +49,9 @@ To ensure a collaborative, stable, and easily debuggable process, we will follow
   - [x] **Frontend:** Submit answers and show feedback.
 
 - [x] **Phase 4: Subcategory & Visualization Overhaul**
-  - [ ] **Docs:** Update `ACT_MATH_TOPICS.md` with the new official subcategory list.
-  - [ ] **Data:** Update `questions.json` to use the new subcategories.
-  - [ ] **Backend:** Evolve data model to track `totalTimeSpent` per subcategory.
+  - [x] **Docs:** Update `ACT_MATH_TOPICS.md` with the new official subcategory list.
+  - [x] **Data:** Update `questions.json` to use the new subcategories.
+  - [x] **Backend:** Evolve data model to track `totalTimeSpent` per subcategory.
   - [x] **Backend:** Create `/api/stats/priority-matrix` endpoint.
   - [x] **Frontend:** Build `PriorityMatrix.tsx` visualization component.
   - [x] **Frontend:** Integrate the new visualization into the dashboard.
@@ -66,14 +66,20 @@ To ensure a collaborative, stable, and easily debuggable process, we will follow
   - [x] **Backend:** Create `DELETE /api/progress/all` endpoint to reset user data.
   - [x] **Frontend:** Build `Settings.tsx` page to manage daily limits and reset progress.
 
-- [ ] **Phase 6: Dashboard & Stats (Continued)**
-  - [ ] **Frontend:** Add comparative feedback (user vs. global average) to the practice screen/dashboard.
-  - [ ] **Backend:** Implement logic to dynamically calculate question difficulty from global stats.
+- [x] **Phase 6: Deployment & Infrastructure**
+  - [x] **Environments:** Create separate Firebase projects for `dev`, `staging`, and `prod`.
+  - [x] **Backend:** Configure and deploy the server to Render for staging.
+  - [x] **Frontend:** Configure and deploy the client to Vercel for staging.
+  - [x] **Backend:** Implement environment-aware logic for credentials.
+  - [x] **Backend:** Overhaul seed script to be environment-aware.
+  - [x] **Frontend:** Implement environment-aware logic for API calls.
+  - [x] **Ops:** Debug and resolve all deployment, CORS, and build issues.
 
-- [ ] **Phase 7: Finalization**
-  - [ ] Populate `questions.json` with 50+ questions
-  - [ ] Create data seeding script/instructions
-  - [ ] Finalize `README.md` with full setup instructions
+- [ ] **Phase 7: MVP Finalization**
+  - [ ] **Backend:** Implement logic to dynamically calculate question difficulty from global stats.
+  - [ ] **Frontend:** Add comparative feedback (user vs. global average) to the practice screen/dashboard.
+  - [ ] **Data:** Populate `seed-data/questions.json` with 50+ high-quality questions.
+  - [ ] **Docs:** Finalize `README.md` with full setup and deployment instructions.
 
 - [ ] **Phase 8: Mock Test Mode (Post-MVP)**
   - [ ] **Backend:** Create `/api/questions/mock-test` endpoint.

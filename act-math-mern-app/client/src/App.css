@@ -145,3 +145,19 @@ body {
   text-align: center;
 
 }
+
+/* Priority Matrix Quadrant Labels */
+.quadrant-label {
+  position: absolute;
+  padding: 5px;
+  background-color: rgba(240, 240, 240, 0.8);
+  border-radius: 5px;
+  font-size: 0.8rem;
+  pointer-events: none; /* Make sure labels don't interfere with chart tooltips */
+  opacity: 0.7;
+}
+.top-left { top: 10px; left: 50px; text-align: left; }
+.top-right { top: 10px; right: 10px; text-align: right; }
+.bottom-left { bottom: 40px; left: 50px; text-align: left; }
+.bottom-right { bottom: 40px; right: 10px; text-align: right; }
+

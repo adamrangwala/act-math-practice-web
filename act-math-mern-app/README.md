@@ -89,3 +89,15 @@ cp .env.example .env
 # Run the client development server
 npm run dev
 ```
+
+## Deployment
+
+This project uses a Continuous Deployment (CD) workflow with separate staging and production environments.
+
+-   **Backend Hosting:** The Node.js/Express server is hosted on **Render**.
+-   **Frontend Hosting:** The React/Vite client is hosted on **Vercel**.
+
+### Workflow
+
+-   **Staging:** Pushing new commits to the `develop` branch will automatically trigger a new deployment to the staging environment.
+-   **Production:** Merging changes into the `main` branch will automatically trigger a new deployment to the live production environment.
