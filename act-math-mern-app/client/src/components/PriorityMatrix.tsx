@@ -79,13 +79,13 @@ const PriorityMatrix = () => {
     scales: {
       x: {
         title: { display: true, text: 'Accuracy (%)' },
-        min: -5,   // Grace padding
-        max: 105,  // Grace padding
+        min: -5,   // Grace padding to prevent cutoff
+        max: 105,  // Grace padding to prevent cutoff
       },
       y: {
         title: { display: true, text: 'Average Time (s)' },
         beginAtZero: true,
-        grace: '5%', // Add 5% padding to the top
+        grace: '5%', // Add 5% padding to the top to prevent cutoff
       },
     },
     plugins: {
@@ -93,7 +93,7 @@ const PriorityMatrix = () => {
       legend: { display: false },
     },
     layout: {
-      padding: { top: 10, bottom: 10 } // Ensure top padding is also handled
+      padding: { top: 20, right: 20 } // Ensure ample padding on all sides
     },
     maintainAspectRatio: false,
   };
@@ -110,9 +110,9 @@ const PriorityMatrix = () => {
           {matrixData.length > 0 ? <Scatter data={chartData} options={options as any} /> : <p className="text-muted mt-3">Complete a session to see your priority matrix!</p>}
         </div>
         <Row className="text-center mt-3 small text-muted">
-          <Col xs={12} md={6} className="mb-2"><strong>🔴 Knowledge Gap:</strong> Low accuracy, slow speed. Focus here first.</Col>
-          <Col xs={12} md={6} className="mb-2"><strong>🟠 Speed Trap / Weakness:</strong> Either slow but accurate, or fast but inaccurate. Drill these topics.</Col>
-          <Col xs={12} md={12}><strong>🟢 Strength Zone:</strong> High accuracy, fast speed. Maintain your skills here.</Col>
+          <Col><strong>🔴 Knowledge Gap:</strong> Low accuracy, slow speed. Focus here first.</Col>
+          <Col><strong>🟠 Speed Trap / Weakness:</strong> Either slow but accurate, or fast but inaccurate. Drill these topics.</Col>
+          <Col><strong>🟢 Strength Zone:</strong> High accuracy, fast speed. Maintain your skills here.</Col>
         </Row>
       </Card.Body>
     </Card>
