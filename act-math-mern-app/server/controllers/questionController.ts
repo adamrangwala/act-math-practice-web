@@ -1,4 +1,5 @@
 import { Response } from 'express';
+import admin from 'firebase-admin';
 import { db } from '../config/firebase';
 import { AuthRequest } from './authController';
 import { DocumentData } from 'firebase-admin/firestore';
