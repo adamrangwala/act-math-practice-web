@@ -82,6 +82,36 @@ export const getHeatmapStats = async (req: AuthRequest, res: Response) => {
   }
 };
 
+export const getStreakData = async (req: AuthRequest, res: Response) => {
+  if (!req.user) {
+    return res.status(401).send({ message: 'Unauthorized' });
+  }
+  const userId = req.user.uid;
+
+  try {
+    const progressSnapshot = await db.collection('userSubcategoryProgress').where('userId', '==', userId).get();
+    
+    if (progressSnapshot.empty) {
+      return res.status(200).json({ practiceDays: [] });
+    }
+
+    const practiceDates = new Set<string>();
+    progressSnapshot.forEach(doc => {
+      const progress = doc.data();
+      if (progress.lastReviewedAt) {
+        // Convert timestamp to YYYY-MM-DD format to count unique days
+        practiceDates.add(progress.lastReviewedAt.toDate().toISOString().split('T')[0]);
+      }
+    });
+
+    res.status(200).json({ practiceDays: Array.from(practiceDates) });
+
+  } catch (error) {
+    console.error('Error fetching streak data:', error);
+    res.status(500).send({ message: 'Internal Server Error' });
+  }
+};
+
 export const getPriorityMatrixStats = async (req: AuthRequest, res: Response) => {
   if (!req.user) {
     return res.status(401).send({ message: 'Unauthorized' });

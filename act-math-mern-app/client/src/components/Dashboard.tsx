@@ -1,3 +1,4 @@
+import PracticeStreak from './PracticeStreak'; // New import
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Card, Spinner, Alert, Button, Form } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
@@ -16,22 +17,29 @@ const Dashboard = () => {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
   const [stats, setStats] = useState<DashboardStats | null>(null);
+  const [streakData, setStreakData] = useState<string[]>([]); // New state for streak
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isNewUser, setIsNewUser] = useState<boolean | null>(null);
   const [dailyQuestionLimit, setDailyQuestionLimit] = useState(15);
 
   useEffect(() => {
-    // The fetch logic is now INSIDE the useEffect hook
-    const fetchStats = async () => {
+    const fetchDashboardData = async () => {
       if (!currentUser) {
-        setLoading(false); // Handle the case where the user logs out
+        setLoading(false);
         return;
       }
       try {
-        const data = await authenticatedFetch('/api/stats/dashboard');
-        setStats(data);
-        if (data && data.totalSubcategoriesTracked > 0) {
+        // Fetch stats and streak data in parallel
+        const [statsData, streakResult] = await Promise.all([
+          authenticatedFetch('/api/stats/dashboard'),
+          authenticatedFetch('/api/stats/streak')
+        ]);
+        
+        setStats(statsData);
+        setStreakData(streakResult.practiceDays || []);
+
+        if (statsData && statsData.totalSubcategoriesTracked > 0) {
           setIsNewUser(false);
         } else {
           setIsNewUser(true);
@@ -43,7 +51,7 @@ const Dashboard = () => {
       }
     };
 
-    fetchStats();
+    fetchDashboardData();
   }, [currentUser]);
 
   const handleStart = async () => {
@@ -98,6 +106,7 @@ const Dashboard = () => {
 
   return (
     <div className="mt-4">
+      <PracticeStreak practiceDays={streakData} />
       <Row>
         <Col md={4} className="mb-4">
           <Card className="text-center h-100">
