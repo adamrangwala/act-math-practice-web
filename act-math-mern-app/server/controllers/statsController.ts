@@ -16,6 +16,7 @@ export const getDashboardStats = async (req: AuthRequest, res: Response) => {
         questionsDue: 0,
         subcategoriesMastered: 0,
         overallAccuracy: 0,
+        totalSubcategoriesTracked: 0,
       });
     }
 
