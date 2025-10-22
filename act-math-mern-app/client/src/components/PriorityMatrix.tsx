@@ -13,32 +13,31 @@ interface MatrixData {
   avgTime: number;
 }
 
-// --- Chart.js Plugin for Quadrant Backgrounds ---
-const quadrantBackgrounds = {
-  id: 'quadrantBackgrounds',
+// --- Helper function for point color based on quadrant ---
+const getQuadrantColor = (accuracy: number, avgTime: number) => {
+  if (accuracy >= 75 && avgTime <= 60) return 'rgba(75, 192, 192, 0.9)'; // Strength Zone (Green)
+  if (accuracy < 75 && avgTime > 60) return 'rgba(255, 99, 132, 0.9)';   // Knowledge Gap (Red)
+  return 'rgba(255, 159, 64, 0.9)'; // Speed Trap or Weakness Zone (Orange)
+};
+
+// --- Chart.js Plugin for Target Zone Background ---
+const targetZoneBackground = {
+  id: 'targetZoneBackground',
   beforeDraw(chart: ChartJS) {
-    const { ctx, chartArea: { left, top, right, bottom }, scales: { x, y } } = chart;
-    const midX = x.getPixelForValue(75); // 75% accuracy threshold
-    const midY = y.getPixelForValue(60); // 60 seconds time threshold
+    const { ctx, chartArea: { top, bottom }, scales: { x, y } } = chart;
+    const lowerX = x.getPixelForValue(90);
+    const upperX = x.getPixelForValue(100);
+    const lowerY = y.getPixelForValue(0);
+    const upperY = y.getPixelForValue(60);
 
     ctx.save();
-    // Top-Left (Knowledge Gap - Red)
-    ctx.fillStyle = 'rgba(255, 99, 132, 0.1)';
-    ctx.fillRect(left, top, midX - left, midY - top);
-    // Top-Right (Speed Trap - Orange)
-    ctx.fillStyle = 'rgba(255, 159, 64, 0.1)';
-    ctx.fillRect(midX, top, right - midX, midY - top);
-    // Bottom-Left (Weakness Zone - also Orange)
-    ctx.fillStyle = 'rgba(255, 159, 64, 0.1)';
-    ctx.fillRect(left, midY, midX - left, bottom - midY);
-    // Bottom-Right (Strength Zone - Green)
-    ctx.fillStyle = 'rgba(75, 192, 192, 0.1)';
-    ctx.fillRect(midX, midY, right - midX, bottom - midY);
+    ctx.fillStyle = 'rgba(75, 192, 192, 0.1)'; // Light green
+    ctx.fillRect(lowerX, upperY, upperX - lowerX, lowerY - upperY);
     ctx.restore();
   },
 };
 
-ChartJS.register(quadrantBackgrounds);
+ChartJS.register(targetZoneBackground);
 
 const PriorityMatrix = () => {
   const { currentUser } = useAuth();
@@ -62,12 +61,14 @@ const PriorityMatrix = () => {
     }
   }, [currentUser]);
 
+  const maxTime = Math.max(...matrixData.map(d => d.avgTime), 300); // Default to 300s (5min)
+
   const chartData = {
     datasets: [
       {
         label: 'Subcategories',
         data: matrixData.map(d => ({ x: d.accuracy, y: d.avgTime, label: d.subcategory })),
-        backgroundColor: 'rgba(2, 117, 216, 0.8)', // A single, professional blue color
+        backgroundColor: matrixData.map(d => getQuadrantColor(d.accuracy, d.avgTime)),
         pointRadius: 8,
         borderColor: 'rgba(0,0,0,0.2)',
         borderWidth: 1,
@@ -79,21 +80,25 @@ const PriorityMatrix = () => {
     scales: {
       x: {
         title: { display: true, text: 'Accuracy (%)' },
-        min: -5,   // Grace padding to prevent cutoff
-        max: 105,  // Grace padding to prevent cutoff
+        min: 0,
+        max: 100,
       },
       y: {
-        title: { display: true, text: 'Average Time (s)' },
+        title: { display: true, text: 'Average Time' },
         beginAtZero: true,
-        grace: '5%', // Add 5% padding to the top to prevent cutoff
+        max: maxTime,
+        ticks: {
+          callback: function(value: any) {
+            const minutes = Math.floor(value / 60);
+            const seconds = (value % 60).toString().padStart(2, '0');
+            return `${minutes}:${seconds}`;
+          }
+        }
       },
     },
     plugins: {
       tooltip: { callbacks: { label: (c: any) => c.raw.label || '' } },
       legend: { display: false },
-    },
-    layout: {
-      padding: { top: 20, right: 20 } // Ensure ample padding on all sides
     },
     maintainAspectRatio: false,
   };
@@ -110,9 +115,9 @@ const PriorityMatrix = () => {
           {matrixData.length > 0 ? <Scatter data={chartData} options={options as any} /> : <p className="text-muted mt-3">Complete a session to see your priority matrix!</p>}
         </div>
         <Row className="text-center mt-3 small text-muted">
-          <Col><strong>🔴 Knowledge Gap:</strong> Low accuracy, slow speed. Focus here first.</Col>
-          <Col><strong>🟠 Speed Trap / Weakness:</strong> Either slow but accurate, or fast but inaccurate. Drill these topics.</Col>
-          <Col><strong>🟢 Strength Zone:</strong> High accuracy, fast speed. Maintain your skills here.</Col>
+          <Col><strong>🔴 Knowledge Gap:</strong> Low accuracy, slow speed.</Col>
+          <Col><strong>🟠 Speed Trap / Weakness:</strong> Inaccurate or slow.</Col>
+          <Col><strong>🟢 Strength Zone:</strong> High accuracy, fast speed.</Col>
         </Row>
       </Card.Body>
     </Card>
