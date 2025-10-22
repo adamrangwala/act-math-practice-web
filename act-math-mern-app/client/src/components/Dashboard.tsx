@@ -1,8 +1,16 @@
+import React, { useState, useEffect } from 'react';
+import { Row, Col, Card, Spinner, Alert, Button, Form } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { Button, Form } from 'react-bootstrap';
+import { authenticatedFetch } from '../utils/api';
+import PriorityMatrix from './PriorityMatrix';
 
-// ... (imports)
+interface DashboardStats {
+  questionsDue: number;
+  subcategoriesMastered: number;
+  overallAccuracy: number;
+  totalSubcategoriesTracked: number;
+}
 
 const Dashboard = () => {
   const { currentUser } = useAuth();
@@ -82,7 +90,40 @@ const Dashboard = () => {
 
   return (
     <div className="mt-4">
-      {/* ... (existing dashboard JSX) */}
+      <Row>
+        <Col md={4} className="mb-4">
+          <Card className="text-center h-100">
+            <Card.Body>
+              <h6 className="text-muted">Topics Due for Review</h6>
+              <Card.Text className="fs-1 fw-bold">{stats?.questionsDue}</Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={4} className="mb-4">
+          <Card className="text-center h-100">
+            <Card.Body>
+              <h6 className="text-muted">Topics Mastered</h6>
+              <Card.Text className="fs-1 fw-bold">
+                {stats?.subcategoriesMastered}
+                <span className="fs-6"> / {stats?.totalSubcategoriesTracked}</span>
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={4} className="mb-4">
+          <Card className="text-center h-100">
+            <Card.Body>
+              <h6 className="text-muted">Overall Accuracy</h6>
+              <Card.Text className="fs-1 fw-bold">{stats?.overallAccuracy.toFixed(1)}%</Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <PriorityMatrix />
+        </Col>
+      </Row>
     </div>
   );
 };
