@@ -10,11 +10,9 @@ export const authenticatedFetch = async (endpoint: string, options: RequestInit 
 
   const token = await currentUser.getIdToken();
 
-  const headers = {
-    ...options.headers,
-    'Authorization': `Bearer ${token}`,
-    'Content-Type': 'application/json',
-  };
+  const headers = new Headers(options.headers);
+  headers.set('Authorization', `Bearer ${token}`);
+  headers.set('Content-Type', 'application/json');
 
   const response = await fetch(`${baseURL}${endpoint}`, {
     ...options,
