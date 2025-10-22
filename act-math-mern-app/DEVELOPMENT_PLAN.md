@@ -21,51 +21,10 @@ To ensure a collaborative, stable, and easily debuggable process, we will follow
 ## Feature Checklist
 
 - [x] **Phase 1: Project Setup & Initialization**
-
-  - [x] Create project structure (`client`, `server`, `seed-data`)
-  - [x] Initialize React client with Vite
-  - [x] Initialize Node.js server
-  - [x] Create initial documentation (`README.md`, `DESIGN_DECISIONS.md`)
-  - [x] Create `DEVELOPMENT_PLAN.md`
-  - [x] Basic Express server setup
-
 - [x] **Phase 2: Authentication**
-
-  - [x] **Backend:** Create `.env` file for Firebase config
-  - [x] **Backend:** Setup Firebase Admin SDK
-  - [x] **Backend:** Create middleware to protect API routes
-  - [x] **Backend:** Create `/api/users/init` endpoint
-  - [x] **Frontend:** Create `.env` file for Firebase config
-  - [x] **Frontend:** Setup Firebase client-side SDK
-  - [x] **Frontend:** Build `Login.tsx` component with Google Sign-In
-  - [x] **Frontend:** Implement auth state management (React Context)
-
 - [x] **Phase 3: Core Practice Loop**
-  - [x] **Backend:** Implement concept-based spaced repetition model.
-  - [x] **Backend:** Create `/api/questions/today` endpoint with intelligent selection.
-  - [x] **Backend:** Create `/api/progress/submit` endpoint with nuanced progress tracking.
-  - [x] **Frontend:** Build `PracticeScreen.tsx` component.
-  - [x] **Frontend:** Fetch questions and display them.
-  - [x] **Frontend:** Submit answers and show feedback.
-
 - [x] **Phase 4: Subcategory & Visualization Overhaul**
-  - [x] **Docs:** Update `ACT_MATH_TOPICS.md` with the new official subcategory list.
-  - [x] **Data:** Update `questions.json` to use the new subcategories.
-  - [x] **Backend:** Evolve data model to track `totalTimeSpent` per subcategory.
-  - [x] **Backend:** Create `/api/stats/priority-matrix` endpoint.
-  - [x] **Frontend:** Build `PriorityMatrix.tsx` visualization component.
-  - [x] **Frontend:** Integrate the new visualization into the dashboard.
-
 - [x] **Phase 5: UI/UX Refinements & Settings**
-  - [x] **Frontend:** Create `SessionSummary.tsx` component for post-practice review.
-  - [x] **Frontend:** Redesign summary screen to be more engaging and scannable.
-  - [x] **Frontend:** Implement "Practice More" functionality for continuous learning.
-  - [x] **Frontend:** Redesign navbar with a user menu dropdown for a cleaner UI.
-  - [x] **Frontend:** Move brand title above the navbar for better visual hierarchy.
-  - [x] **Backend:** Re-implement `GET` and `PUT` endpoints for user settings.
-  - [x] **Backend:** Create `DELETE /api/progress/all` endpoint to reset user data.
-  - [x] **Frontend:** Build `Settings.tsx` page to manage daily limits and reset progress.
-
 - [x] **Phase 6: Deployment & Infrastructure**
   - [x] **Environments:** Create separate Firebase projects for `dev`, `staging`, and `prod`.
   - [x] **Backend:** Configure and deploy the server to Render for staging.
@@ -75,13 +34,17 @@ To ensure a collaborative, stable, and easily debuggable process, we will follow
   - [x] **Frontend:** Implement environment-aware logic for API calls.
   - [x] **Ops:** Debug and resolve all deployment, CORS, and build issues.
 
-- [ ] **Phase 7: MVP Finalization**
+- [ ] **Phase 7: Beta Readiness**
+  - [x] **Frontend:** Implement a welcoming onboarding screen for new users.
+  - [ ] **Frontend:** Polish the Priority Matrix with quadrant backgrounds and a simplified color scheme.
+  - [ ] **Data:** Populate `seed-data/questions.json` with at least 50 high-quality questions.
+
+- [ ] **Phase 8: MVP Finalization**
   - [ ] **Backend:** Implement logic to dynamically calculate question difficulty from global stats.
   - [ ] **Frontend:** Add comparative feedback (user vs. global average) to the practice screen/dashboard.
-  - [ ] **Data:** Populate `seed-data/questions.json` with 50+ high-quality questions.
   - [ ] **Docs:** Finalize `README.md` with full setup and deployment instructions.
 
-- [ ] **Phase 8: Mock Test Mode (Post-MVP)**
+- [ ] **Phase 9: Mock Test Mode (Post-MVP)**
   - [ ] **Backend:** Create `/api/questions/mock-test` endpoint.
   - [ ] **Frontend:** Build `MockTestScreen.tsx` component.
   - [ ] **Frontend:** Build `ResultsPage.tsx` component.
@@ -92,15 +55,12 @@ To ensure a collaborative, stable, and easily debuggable process, we will follow
 
 This section documents notable technical challenges encountered during development and the solutions implemented.
 
-1.  **Challenge:** During a major refactoring to implement `react-router-dom`, several bugs were introduced, including a `SyntaxError` due to stray comments in the JSX and a `ReferenceError` from a function being declared twice.
-    -   **Solution:** The component file (`App.tsx`) had been corrupted by a series of incomplete `replace` operations. The solution was to perform a clean `write_file` operation, completely overwriting the corrupted file with a correct, validated version. This restored stability and resolved the cascading errors.
+1.  **Challenge:** The initial deployment to a live environment failed due to a series of interconnected issues, including CORS errors, build failures, and client-side reference errors.
+    -   **Solution:** A multi-step debugging process was required.
+        1.  **Build Failures:** The `package.json` for both the client and server had to be modified to move build-time packages (like `typescript` and `@types/*`) from `devDependencies` to `dependencies`, as the hosting environment did not install dev dependencies.
+        2.  **CORS Errors:** The backend server (`server.ts`) required a specific CORS configuration to whitelist the frontend's Vercel domain, as the browser's security policy blocks cross-origin requests by default.
+        3.  **SPA Routing:** The frontend deployment on Vercel required a `vercel.json` file with a rewrite rule (`"rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]`) to correctly handle client-side routing.
+        4.  **Reference Errors:** A persistent `currentUser is not defined` error was traced to a race condition. The fix was to ensure that any `useEffect` hook that depended on the `currentUser` object first checked that the object was not `null` before attempting to make an API call.
 
-2.  **Challenge:** After cleaning up the `PracticeScreen.tsx` component, a `ReferenceError: handleSaveSettings is not defined` appeared because the function was removed but a child component (`PracticeSettings`) that depended on it was not.
-    -   **Solution:** The `PracticeSettings` component and its related state were legacy code from a feature that was not currently in scope. The solution was to remove the component and all related logic from `PracticeScreen.tsx`, simplifying the component and resolving the error. This highlighted the importance of ensuring all dependencies are accounted for during refactoring.
-
-3.  **Challenge:** Implementing the card-flip animation introduced several subtle but jarring UI bugs: misaligned text, a "jump" in the layout when the card appeared, and an unsmooth height transition between questions of different sizes.
-    -   **Solution:** A multi-step refinement process was required. 1) Text alignment was fixed by giving the option letters a `min-width`, creating a stable column. 2) The initial layout jump was resolved by using a `useEffect` hook to measure and set the card's height as soon as it rendered. 3) The transition between questions was smoothed by removing the code that collapsed the container's height, allowing CSS to handle the animation between the old and new heights gracefully.
-
-4.  **Challenge:** The main application layout felt too narrow, but attempts to widen it using Bootstrap's container system (`xl`, `xxl`, `fluid`) had no visible effect or produced inconsistent results.
-    -   **Solution:** A debugging process revealed that global styles were overriding the container's width. The root cause was a combination of a `max-width` property on the `#root` element in `App.css` and `display: flex` with `place-items: center` on the `body` in `index.css`. The solution was to remove these conflicting global styles and implement a custom `.app-container` class, which gave us direct and reliable control over the main content width.
-
+2.  **Challenge:** The `replace` tool repeatedly failed to modify files, sometimes corrupting them, due to the `old_string` not being an exact match.
+    -   **Solution:** The most robust solution was to pivot to a "read-modify-write" strategy. This involved reading the entire file content, performing the desired string manipulation in memory, and then using the `write_file` tool to completely overwrite the original file with the corrected content. For critical file corruption, `git rm --force` followed by `write_file` was used to ensure a clean slate.

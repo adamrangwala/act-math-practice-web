@@ -4,14 +4,7 @@ A MERN stack application using Google Firestore for spaced repetition learning o
 
 ## Overview
 
-This project is a full-stack, production-ready MVP of an ACT Math Practice web application. The core feature is a spaced repetition learning system to help students practice and master ACT math questions efficiently.
-
-## Features
-
--   **Spaced Repetition Algorithm:** The app intelligently schedules questions based on your performance to maximize long-term retention.
--   **Priority Matrix:** A unique visualization that plots your accuracy against your average time for each subcategory, helping you instantly identify your biggest areas for improvement.
--   **Engaging Session Summary:** Get immediate, Duolingo-style feedback after each session with a clear breakdown of your performance on each question.
--   **Practice More:** Never run out of questions. After your daily session, you can keep practicing with a fresh set of random problems to sharpen your skills.
+This project is a full-stack web application designed to help students master ACT math questions. It uses a spaced repetition algorithm to intelligently schedule questions and features a unique Priority Matrix to help users identify and focus on their weakest areas.
 
 ## Tech Stack
 
@@ -20,84 +13,74 @@ This project is a full-stack, production-ready MVP of an ACT Math Practice web a
 -   **Database:** Google Cloud Firestore
 -   **Authentication:** Firebase Authentication (Google Sign-In)
 
-## Setup and Installation
+---
 
-### Prerequisites
+## Environment Setup
 
--   Node.js (v18 or later)
--   npm
--   A Firebase project with Firestore and Google Authentication enabled.
+This project uses a three-environment setup: `development`, `staging`, and `production`.
 
-### 1. Server Setup
+1.  **Firebase:** Create three separate Firebase projects (e.g., `act-math-dev`, `act-math-staging`, `act-math-prod`). In each project, enable **Firestore** and **Google Authentication**.
+2.  **Service Account Keys:** For each Firebase project, go to Project Settings > Service Accounts and generate a new private key. Rename these files and place them in the `server/config/` directory as:
+    -   `serviceAccountKey-dev.json`
+    -   `serviceAccountKey-staging.json`
+    -   `serviceAccountKey-prod.json`
+3.  **Client Keys:** For each Firebase project, create a **Web App**. Copy the `firebaseConfig` object for each project.
 
-1.  **Navigate to the server directory:**
-    ```bash
-    cd server
-    ```
+---
 
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
+## Local Development Setup
 
-### 3. Environment Setup & Seeding
+### 1. Backend Server
 
-This project is configured to run in three separate environments: `development` (your local machine), `staging` (for beta testing), and `production` (for the live app). Each environment must have its own Firebase project.
+1.  Navigate to the `server/` directory.
+2.  Install dependencies: `npm install`.
+3.  Run the development server: `npm run dev`. The server will run on `http://localhost:5000` and will automatically use the `serviceAccountKey-dev.json`.
 
-#### a. Set up Firebase Admin Credentials:
+### 2. Frontend Client
 
-For the backend to communicate with the correct Firebase project, you need to provide it with a "service account key" for each environment.
+1.  Navigate to the `client/` directory.
+2.  Install dependencies: `npm install`.
+3.  Create a `.env` file by copying `.env.example`.
+4.  Paste the `firebaseConfig` keys from your **development** (`dev`) Firebase project into the `.env` file.
+5.  Run the development server: `npm run dev`. The app will be available at `http://localhost:3000`.
 
-1.  **For each of your three Firebase projects** (dev, staging, prod), go to your Firebase project settings > "Service accounts".
-2.  Click "Generate new private key" to download the JSON key file.
-3.  Rename the downloaded files and place them in the `server/config/` directory with the following names:
-    *   `serviceAccountKey-dev.json`
-    *   `serviceAccountKey-staging.json`
-    *   `serviceAccountKey-prod.json`
-4.  **Important:** These key files are secret and should never be committed to version control. The `.gitignore` file is already configured to ignore them.
+### 3. Seeding the Database
 
-#### b. Run the Database Seeding Script:
-
-To populate your Firestore database with questions, you must run the seed script and specify which environment you are targeting.
+To populate your database with questions, run the seed script from the `server/` directory, targeting the desired environment.
 
 ```bash
-# In the /server directory
 # Replace {env} with 'dev', 'staging', or 'prod'
 npm run seed -- --env={env}
 ```
 
-### 4. Run the Server
-
-```bash
-# In the /server directory
-# This will automatically use your -dev credentials
-npm run dev
-```
-
-### 2. Client Setup
-
-```bash
-# Navigate to the client directory
-cd client
-
-# Install dependencies
-npm install
-
-# Create a .env file and add your client-side Firebase configuration keys
-cp .env.example .env
-
-# Run the client development server
-npm run dev
-```
+---
 
 ## Deployment
 
-This project uses a Continuous Deployment (CD) workflow with separate staging and production environments.
+This project is configured for continuous deployment to a staging environment.
 
--   **Backend Hosting:** The Node.js/Express server is hosted on **Render**.
--   **Frontend Hosting:** The React/Vite client is hosted on **Vercel**.
+-   **Backend:** Hosted on **Render**. Connected to the `develop` branch.
+-   **Frontend:** Hosted on **Vercel**. Connected to the `develop` branch.
 
-### Workflow
+### Backend Deployment (Render)
 
--   **Staging:** Pushing new commits to the `develop` branch will automatically trigger a new deployment to the staging environment.
--   **Production:** Merging changes into the `main` branch will automatically trigger a new deployment to the live production environment.
+1.  Create a new **Web Service** on Render and connect it to your GitHub repository.
+2.  **Settings:**
+    -   **Name:** `act-math-app-staging`
+    -   **Root Directory:** (leave blank)
+    -   **Branch:** `develop`
+    -   **Build Command:** `cd act-math-mern-app/server && npm install && npm run build`
+    -   **Start Command:** `node act-math-mern-app/server/dist/server.js`
+3.  **Environment Variables:**
+    -   `NODE_ENV`: `staging`
+    -   `GOOGLE_CREDENTIALS_JSON`: Paste the entire content of your `serviceAccountKey-staging.json` file.
+
+### Frontend Deployment (Vercel)
+
+1.  Create a new **Project** on Vercel and connect it to your GitHub repository.
+2.  **Settings:**
+    -   **Project Name:** `act-math-app-staging`
+    -   **Framework Preset:** `Vite`
+    -   **Root Directory:** `act-math-mern-app/client`
+3.  **Git:** Set the **Production Branch** to `develop`.
+4.  **Environment Variables:** Add all the `VITE_` keys from your **staging** Firebase project's web app config.
