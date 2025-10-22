@@ -13,11 +13,14 @@ interface MatrixData {
   avgTime: number;
 }
 
-// --- Helper function for point color based on quadrant ---
+// --- Helper function for point color based on new logic ---
 const getQuadrantColor = (accuracy: number, avgTime: number) => {
-  if (accuracy >= 75 && avgTime <= 60) return 'rgba(75, 192, 192, 0.9)'; // Strength Zone (Green)
-  if (accuracy < 75 && avgTime > 60) return 'rgba(255, 99, 132, 0.9)';   // Knowledge Gap (Red)
-  return 'rgba(255, 159, 64, 0.9)'; // Speed Trap or Weakness Zone (Orange)
+  // Green: Target Zone
+  if (accuracy >= 90 && avgTime <= 60) return 'rgba(75, 192, 192, 0.9)'; 
+  // Orange: Needs Work
+  if (accuracy >= 50 && avgTime <= 120) return 'rgba(255, 159, 64, 0.9)';
+  // Red: Problem Area
+  return 'rgba(255, 99, 132, 0.9)';
 };
 
 // --- Chart.js Plugin for Target Zone Background ---
@@ -115,9 +118,9 @@ const PriorityMatrix = () => {
           {matrixData.length > 0 ? <Scatter data={chartData} options={options as any} /> : <p className="text-muted mt-3">Complete a session to see your priority matrix!</p>}
         </div>
         <Row className="text-center mt-3 small text-muted">
-          <Col><strong>🔴 Knowledge Gap:</strong> Low accuracy, slow speed.</Col>
-          <Col><strong>🟠 Speed Trap / Weakness:</strong> Inaccurate or slow.</Col>
-          <Col><strong>🟢 Strength Zone:</strong> High accuracy, fast speed.</Col>
+          <Col><strong>🔴 Problem Area:</strong> Low accuracy or very slow.</Col>
+          <Col><strong>🟠 Needs Work:</strong> Good accuracy, but slow.</Col>
+          <Col><strong>🟢 Target Zone:</strong> Fast and accurate!</Col>
         </Row>
       </Card.Body>
     </Card>
