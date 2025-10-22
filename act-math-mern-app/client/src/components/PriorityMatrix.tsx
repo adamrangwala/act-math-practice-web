@@ -61,6 +61,8 @@ const PriorityMatrix = () => {
         }
       };
       fetchMatrixData();
+    } else {
+      setLoading(false); // If no user, stop loading
     }
   }, [currentUser]);
 
