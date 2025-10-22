@@ -6,7 +6,7 @@ import './routes/api'; // Force import for debugging
 import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 import apiRoutes from './routes/api';
-
+// Trivial change to force redeploy
 const app: Express = express();
 const PORT = process.env.PORT || 5000;
 
