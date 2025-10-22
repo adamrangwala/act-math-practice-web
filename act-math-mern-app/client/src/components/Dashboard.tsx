@@ -59,6 +59,22 @@ const Dashboard = () => {
     );
   }
 
+  // A simple check for new users. If there's no stats or progress, show a welcome message.
+  if (!stats || stats.totalSubcategoriesTracked === 0) {
+    return (
+      <div className="mt-5 text-center">
+        <Card className="p-4 p-md-5">
+          <Card.Body>
+            <Card.Title as="h2" className="mb-3">Welcome!</Card.Title>
+            <Card.Text className="lead mb-4">
+              Complete your first practice session to unlock your personalized dashboard and Priority Matrix.
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      </div>
+    );
+  }
+
   return (
     <div className="mt-4">
       <Row>
