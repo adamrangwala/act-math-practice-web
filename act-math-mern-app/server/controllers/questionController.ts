@@ -14,9 +14,7 @@ export const getTodaysQuestions = async (req: AuthRequest, res: Response) => {
     const userDoc = await db.collection('users').doc(userId).get();
     const userData = userDoc.data();
 
-    const practiceSessionSize = req.query.limit 
-      ? parseInt(req.query.limit as string) 
-      : userData?.dailyQuestionLimit || 10;
+    const practiceSessionSize = userData?.dailyQuestionLimit || 10;
 
     const progressSnapshot = await db.collection('userSubcategoryProgress').where('userId', '==', userId).get();
     const userProgress: { [key: string]: any } = {};
