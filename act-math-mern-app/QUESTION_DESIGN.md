@@ -42,7 +42,7 @@ All questions must be structured as a JSON object with the following fields. See
     -   An optional, separate SVG diagram that is only shown with the solution. This should only be used for displaying **annotated diagrams** or step-by-step visual explanations. If the diagram from the question is sufficient, this field should be `null`, as the frontend will automatically display the main `diagramSvg` on the solution side.
 
 -   **`optionSelectionCounts` (array of numbers):**
-    -   **Required.** An array (e.g., `[0, 0, 0, 0, 0]`) that tracks how many times each answer option has been selected by users. The index of the array corresponds to the index of the `options` array. This is used for analyzing common distractors.
+    -   **Required.** An array (e.g., `[0,0,0,0,0]`) that tracks how many times each answer option has been selected by users. The index of the array corresponds to the index of the `options` array. This is used for analyzing common distractors.
 
 ---
 
@@ -76,7 +76,20 @@ If a question requires a table, the data must be embedded directly into the `que
 
 ### Solution Text Best Practices
 
--   **Algebraic Steps:** For solutions that involve solving a multi-step equation, it is highly recommended to format the steps using a MathML `<mtable>`. To ensure proper alignment, use the `columnalign='right center left'` attribute. This right-aligns the left side of the equation, centers the equals signs, and left-aligns the right side.
+-   **Algebraic Steps:** For solutions involving a multi-step equation, the steps should be centered on their own lines for maximum clarity. Use a `<math display='block'>` tag containing an `<mtable>` tag. To ensure proper alignment and spacing, add the following attributes to the `<mtable>` tag: `columnalign='right center left'` and `rowspacing='1ex'`.
+
+    -   **Example:**
+        ```html
+        ...so we can set up the equation: <br/><br/>
+        <math display='block'>
+          <mtable columnalign='right center left' rowspacing='1ex'>
+            <mtr><mtd><mn>7</x><mo>+</mo><mn>5</x><mo>+</mo><mn>3</x></mtd><mtd><mo>=</mo></mtd><mtd><mn>180</mn></mtd></mtr>
+            <mtr><mtd><mn>15</x></mtd><mtd><mo>=</mo></mtd><mtd><mn>180</mn></mtd></mtr>
+            <mtr><mtd><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>12</mn></mtd></mtr>
+          </mtable>
+        </math>
+        <br/>The question asks for...
+        ```
 -   **Spacing:** To improve readability, add a `<br/>` tag between consecutive `<math display='block'>` elements or between the final line of text and the start of a math block.
 -   **Pro Tips:** To provide helpful test-taking strategies, add a "Pro Tip" at the end of the solution text, formatted in bold.
     -   **Example:** `...Therefore, the answer is 10.<br/><br/><b>Pro Tip:</b> The 3-4-5 triangle is a common Pythagorean triple.`

@@ -5,6 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Question Preview</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #f8f9fa; }
+    .container { max-width: 800px; }
+    .card { margin-bottom: 1.5rem; }
+    .card-body { padding: 2rem; }
+    .question-text { font-size: 1.2rem; margin-bottom: 1.5rem; }
+    .option-list { list-style-type: none; padding-left: 0; }
+    .option-item { display: flex; align-items: flex-start; margin-bottom: 1rem; font-size: 1.1rem; }
+    .option-letter { font-weight: bold; margin-right: 0.8rem; min-width: 20px; }
+    .solution { border-top: 1px solid #dee2e6; padding-top: 1.5rem; margin-top: 2rem; }
+    .solution h5 { font-weight: bold; }
+    .category-badge { font-size: 0.9rem; }
+    .matrix, .matrix td { border: 1px solid #ccc; border-collapse: collapse; padding: 4px 8px; text-align: center; }
+    .matrix { margin: 0 4px; display: inline-block; vertical-align: middle; }
+    math { font-size: 1.1rem; }
+  </style>
   <script>
     MathJax = {
       tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
@@ -12,163 +28,73 @@
     };
   </script>
   <script type="text/javascript" id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js">
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
   </script>
-  <style>
-    body { background-color: #f8f9fa; }
-    .card { max-width: 800px; margin: 2rem auto; }
-    .list-group-item { display: flex; align-items: center; }
-    .option-letter { min-width: 25px; font-weight: bold; }
-    #preview-container { max-width: 960px; }
-
-    /* Matrix Styling */
-    .matrix {
-      position: relative;
-      display: inline-block;
-      vertical-align: middle;
-      margin: 0 0.5em;
-      border-collapse: collapse;
-    }
-    .matrix::before, .matrix::after {
-      content: "";
-      position: absolute;
-      top: -2px;
-      bottom: -2px;
-      width: 5px;
-      border: 2px solid currentColor;
-    }
-    .matrix::before {
-      left: -8px;
-      border-right: none;
-    }
-    .matrix::after {
-      right: -8px;
-      border-left: none;
-    }
-    .matrix td {
-      padding: 2px 8px;
-      text-align: center;
-    }
-  </style>
 </head>
 <body>
-  <div id="preview-container" class="container">
-    <div class="text-center mt-4">
-      <h1 class="display-6">Question Preview</h1>
-      <p class="lead">This page dynamically renders questions from <code>new_questions.json</code>.</p>
-    </div>
-
-    <div class="row justify-content-center mb-3">
-      <div class="col-md-6">
-        <label for="question-selector" class="form-label">Select a question to preview:</label>
-        <select id="question-selector" class="form-select"></select>
-      </div>
-    </div>
-
-    <div id="question-card-placeholder">
-      <!-- Question will be rendered here -->
-    </div>
+  <div class="container mt-5">
+    <h1 class="mb-4">Question Preview</h1>
+    <div id="question-container"></div>
   </div>
 
   <script>
-    let allQuestions = []; // Store all fetched questions
-    const selector = document.getElementById('question-selector');
-    const container = document.getElementById('question-card-placeholder');
+    const optionLetters = ['F', 'G', 'H', 'J', 'K'];
 
-    const getOptionLetter = (index) => {
-      const letters = ['F', 'G', 'H', 'J', 'K'];
-      return letters[index] || String.fromCharCode(65 + index);
-    };
-
-    const renderQuestion = (question) => {
-      if (!question) {
-        container.innerHTML = `
-          <div class="card"><div class="card-body">
-            <h5 class="card-title text-muted">No Question Loaded</h5>
-            <p class="card-text">Select a question from the dropdown.</p>
-          </div></div>`;
-        return;
-      }
-
-      const optionsHtml = question.options.map((option, index) => `
-        <li class="list-group-item">
-          <span class="option-letter">${getOptionLetter(index)}.</span>
-          <span>${option}</span>
-        </li>
-      `).join('');
-
-      const solutionHtml = `
-        <div class="alert alert-info mt-4">
-          <strong>Solution:</strong>
-          <div>${question.solutionText}</div>
-          ${question.solutionDiagramSvg ? `<div class="text-center mt-3">${question.solutionDiagramSvg}</div>` : ''}
-        </div>
-      `;
-
-      const cardHtml = `
-        <div class="card shadow-sm">
+    function renderQuestion(question) {
+      const container = document.getElementById('question-container');
+      const questionCard = `
+        <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Question ID: ${question.questionId}</h5>
-            <p class="card-subtitle mb-2 text-muted">Category: ${question.category} | Subcategories: ${question.subcategories.join(', ')}</p>
-            <hr />
-            ${question.diagramSvg ? `<div class="text-center mb-3">${question.diagramSvg}</div>` : ''}
-            <div class="card-text fs-5">${question.questionText}</div>
-            <ul class="list-group list-group-flush mt-3">
-              ${optionsHtml}
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="category-badge badge bg-secondary">${question.category}</span>
+              <span class="text-muted">ID: ${question.questionId}</span>
+            </div>
+            <div class="question-text">${question.questionText}</div>
+            ${question.diagramSvg ? `<div class="text-center mb-4">${question.diagramSvg}</div>` : ''}
+            <ul class="option-list">
+              ${question.options.map((opt, index) => `
+                <li class="option-item">
+                  <span class="option-letter">${optionLetters[index]}.</span>
+                  <div>${opt}</div>
+                </li>
+              `).join('')}
             </ul>
-            ${solutionHtml}
+            <div class="solution">
+              <h5>Solution</h5>
+              <p><strong>Correct Answer:</strong> ${optionLetters[question.correctAnswerIndex]}</p>
+              <div>${question.solutionText}</div>
+              ${question.solutionDiagramSvg ? `<div class="text-center mt-4">${question.solutionDiagramSvg}</div>` : ''}
+            </div>
           </div>
         </div>
       `;
-      const container = document.getElementById('question-card-placeholder');
-
-      const typesetMath = () => {
-        if (window.MathJax && window.MathJax.typesetPromise) {
-          window.MathJax.typesetPromise([container]);
-        } else {
-          setTimeout(typesetMath, 100); // Check again in 100ms
-        }
-      };
-
-      container.innerHTML = cardHtml;
-      typesetMath();
-    };
-
-    const populateSelector = (questions) => {
-      selector.innerHTML = ''; // Clear existing options
-      questions.forEach((q, index) => {
-        const option = document.createElement('option');
-        option.value = index;
-        option.textContent = `Question ${index + 1} (${q.questionId})`;
-        selector.appendChild(option);
-      });
-    };
-
-    selector.addEventListener('change', (event) => {
-      const selectedIndex = event.target.value;
-      renderQuestion(allQuestions[selectedIndex]);
-    });
-
-    const fetchQuestions = async () => {
-      try {
-        const response = await fetch(`new_questions.json?v=${new Date().getTime()}`);
-        if (!response.ok) {
-          console.error('Could not load new_questions.json');
-          return;
-        }
-        allQuestions = await response.json();
-        if (allQuestions.length > 0) {
-          populateSelector(allQuestions);
-          renderQuestion(allQuestions[0]); // Render the first question initially
-        } else {
-          container.innerHTML = '<div class="card"><div class="card-body"><p class="text-muted">No questions found in <code>new_questions.json</code>.</p></div></div>';
-        }
-      } catch (error) {
-        console.error('Error fetching or parsing questions:', error);
+      container.innerHTML = questionCard;
+      // Re-render MathJax for the new content
+      if (window.MathJax) {
+        window.MathJax.typesetPromise();
       }
-    };
+    }
 
-    fetchQuestions();
+    function loadQuestions() {
+      fetch('new_questions.json?v=' + new Date().getTime())
+        .then(response => response.json())
+        .then(data => {
+          if (data && data.length > 0) {
+            // Render the last question added
+            renderQuestion(data[data.length - 1]);
+          } else {
+            document.getElementById('question-container').innerHTML = '<p class="text-muted">No questions found in new_questions.json</p>';
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching or parsing new_questions.json:', error);
+          document.getElementById('question-container').innerHTML = '<p class="text-danger">Error loading question. See console for details.</p>';
+        });
+    }
+
+    // Wait for MathJax to be ready before loading questions
+    const mathJaxScript = document.getElementById('MathJax-script');
+    mathJaxScript.addEventListener('load', loadQuestions);
   </script>
 </body>
 </html>

@@ -1,0 +1,22 @@
+ {
+    "questionId": "algebra-solve-for-variable-01",
+    "category": "Algebra",
+    "subcategories": ["Solving Linear Equations"],
+    "questionText": "If <math><mn>4</mn><mi>a</mi><mo>=</mo><mn>3</mn><mi>b</mi><mo>+</mo><mn>5</mn></math>, then what is the value of <math><mi>b</mi></math> in terms of <math><mi>a</mi></math>?",
+    "options": [
+      "<math><mfrac><mrow><mn>4</mn><mi>a</mi><mo>-</mo><mn>5</mn></mrow><mn>3</mn></mfrac></math>",
+      "<math><mfrac><mrow><mn>4</mn><mi>a</mi></mrow><mn>3</mn></mfrac><mo>-</mo><mn>5</mn></math>",
+      "<math><mfrac><mrow><mn>4</mn><mi>a</mi><mo>-</mo><mn>3</mn></mrow><mn>5</mn></mfrac></math>",
+      "<math><mfrac><mrow><mn>5</mn><mi>a</mi><mo>+</mo><mn>3</mn></mrow><mn>4</mn></mfrac></math>",
+      "<math><mfrac><mrow><mn>4</mn><mi>a</mi><mo>+</mo><mn>5</mn></mrow><mn>3</mn></mfrac></math>"
+    ],
+    "correctAnswerIndex": 0,
+    "solutionText": "The goal is to isolate the variable b. Start with the given equation: <math display='block'><mtable columnalign='right center left'><mtr><mtd><mn>4</mn><mi>a</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>3</mn><mi>b</mi><mo>+</mo><mn>5</mn></mtd></mtr><mtr><mtd><mn>4</mn><mi>a</mi><mo>-</mo><mn>5</mn></mtd><mtd><mo>=</mo></mtd><mtd><mn>3</mn><mi>b</mi></mtd></mtr><mtr><mtd><mfrac><mrow><mn>4</mn><mi>a</mi><mo>-</mo><mn>5</mn></mrow><mn>3</mn></mfrac></mtd><mtd><mo>=</mo></mtd><mtd><mi>b</mi></mtd></mtr></mtable></math> Therefore, the correct expression for b is <math><mfrac><mrow><mn>4</mn><mi>a</mi><mo>-</mo><mn>5</mn></mrow><mn>3</mn></mfrac></math>.",
+    "difficulty": 1,
+    "diagramUrl": null,
+    "diagramSvg": null,
+    "solutionDiagramSvg": null,
+    "isActive": true,
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0, 0, 0, 0, 0]
+  },
