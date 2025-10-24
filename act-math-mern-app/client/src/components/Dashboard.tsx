@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Card, Spinner, Alert, Button, Form } from 'react-bootstrap';
+import { Spinner, Alert } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { authenticatedFetch } from '../utils/api';
-import PriorityMatrix from './PriorityMatrix';
+import './Dashboard.css';
 
-interface DashboardStats {
-  questionsDue: number;
-  subcategoriesMastered: number;
-  overallAccuracy: number;
-  totalSubcategoriesTracked: number;
+interface SubcategoryStat {
+  subcategory: string;
+  accuracy: number;
+  avgTime: number;
 }
 
 const Dashboard = () => {
-  const { currentUser } = useAuth();
+  const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
-  const [stats, setStats] = useState<DashboardStats | null>(null);
+  const [stats, setStats] = useState<SubcategoryStat[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [dailyQuestionLimit, setDailyQuestionLimit] = useState(15);
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -27,7 +25,7 @@ const Dashboard = () => {
         return;
       }
       try {
-        const data = await authenticatedFetch('/api/stats/dashboard');
+        const data = await authenticatedFetch('/api/stats/priority-matrix');
         setStats(data);
       } catch (err: any) {
         setError(err.message);
@@ -38,16 +36,19 @@ const Dashboard = () => {
     fetchStats();
   }, [currentUser]);
 
-  const handleStart = async () => {
+  const getAccuracyColor = (accuracy: number) => {
+    if (accuracy < 60) return 'accuracy-red';
+    if (accuracy >= 60 && accuracy <= 80) return 'accuracy-orange';
+    return 'accuracy-green';
+  };
+
+  const handleSignOut = async () => {
     try {
-      await authenticatedFetch('/api/settings', {
-        method: 'PUT',
-        body: JSON.stringify({ dailyQuestionLimit }),
-      });
-      navigate('/practice');
-    } catch (err: any) {
-      setError('Failed to save settings. Please try again.');
-      console.error(err);
+      await logout();
+      navigate('/login');
+    } catch (error) {
+      console.error("Failed to log out", error);
+      setError("Failed to sign out. Please try again.");
     }
   };
 
@@ -59,71 +60,45 @@ const Dashboard = () => {
     return <div className="mt-5"><Alert variant="danger">{error}</Alert></div>;
   }
 
-  if (!stats || stats.totalSubcategoriesTracked === 0) {
-    return (
-      <div className="mt-5 text-center">
-        <Card className="p-4 p-md-5">
-          <Card.Body>
-            <Card.Title as="h2" className="mb-3">Welcome to Your ACT Math Trainer!</Card.Title>
-            <Card.Text className="lead mb-4">
-              To get started, choose how many questions you'd like in your first session. This will help us create your personalized study plan.
-            </Card.Text>
-            <Form.Group className="my-4">
-              <Form.Label>Questions per session: <strong>{dailyQuestionLimit}</strong></Form.Label>
-              <Form.Range
-                value={dailyQuestionLimit}
-                onChange={(e) => setDailyQuestionLimit(parseInt(e.target.value, 10))}
-                min="5"
-                max="25"
-                step="1"
-              />
-              <small className="text-muted">We recommend 10-15 for a good baseline.</small>
-            </Form.Group>
-            <Button variant="primary" size="lg" onClick={handleStart}>
-              Start Your First Session
-            </Button>
-          </Card.Body>
-        </Card>
-      </div>
-    );
-  }
-
   return (
-    <div className="mt-4">
-      <Row>
-        <Col md={4} className="mb-4">
-          <Card className="text-center h-100">
-            <Card.Body>
-              <h6 className="text-muted">Topics Due for Review</h6>
-              <Card.Text className="fs-1 fw-bold">{stats?.questionsDue}</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={4} className="mb-4">
-          <Card className="text-center h-100">
-            <Card.Body>
-              <h6 className="text-muted">Topics Mastered</h6>
-              <Card.Text className="fs-1 fw-bold">
-                {stats?.subcategoriesMastered}
-                <span className="fs-6"> / {stats?.totalSubcategoriesTracked}</span>
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={4} className="mb-4">
-          <Card className="text-center h-100">
-            <Card.Body>
-              <h6 className="text-muted">Overall Accuracy</h6>
-              <Card.Text className="fs-1 fw-bold">{stats?.overallAccuracy.toFixed(1)}%</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <PriorityMatrix />
-        </Col>
-      </Row>
+    <div className="dashboard-container">
+      <header className="dashboard-header">
+        <h1 className="dashboard-title">ACT Math Practice</h1>
+        <nav className="dashboard-nav">
+          <a href="#settings">Settings</a>
+          <a href="#" onClick={handleSignOut}>Sign Out</a>
+        </nav>
+      </header>
+
+      <div className="welcome-message">
+        Welcome back, {currentUser?.displayName?.split(' ')[0] || 'friend'}! 👋
+      </div>
+
+      <div className="practice-button-container">
+        <button className="practice-button" onClick={() => navigate('/practice')}>
+          Begin Daily Practice
+        </button>
+      </div>
+
+      <h2 className="skills-breakdown-title">Skills Breakdown</h2>
+      <div className="skills-list">
+        {stats && stats.map((skill) => (
+          <div key={skill.subcategory} className="skill-item" onClick={() => alert(`Starting practice for ${skill.subcategory}`)}>
+            <div className="skill-item-header">
+              <span className="skill-name">{skill.subcategory}</span>
+              <span className={`skill-accuracy ${getAccuracyColor(skill.accuracy)}`}>
+                {skill.accuracy.toFixed(0)}%
+              </span>
+            </div>
+            <div className="progress-bar">
+              <div
+                className="progress-bar-inner"
+                style={{ width: `${skill.accuracy}%` }}
+              ></div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
