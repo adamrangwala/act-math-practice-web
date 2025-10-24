@@ -9,6 +9,7 @@ interface SubcategoryStat {
   subcategory: string;
   accuracy: number;
   avgTime: number;
+  totalAttempts: number;
 }
 
 interface DashboardStats {
@@ -32,7 +33,6 @@ const Dashboard = () => {
         return;
       }
       try {
-        // Fetch both sets of stats in parallel
         const [priorityData, dashboardData] = await Promise.all([
           authenticatedFetch('/api/stats/priority-matrix'),
           authenticatedFetch('/api/stats/dashboard')
@@ -48,11 +48,11 @@ const Dashboard = () => {
     fetchAllStats();
   }, [currentUser]);
 
-  const getAccuracyColor = (accuracy: number) => {
-    if (accuracy < 60) return 'accuracy-red';
-    if (accuracy >= 60 && accuracy <= 80) return 'accuracy-orange';
-    return 'accuracy-green';
-  };
+  const getPerformanceTier = (accuracy: number) => {
+    if (accuracy < 60) return <span className="tier-badge fair">Fair</span>;
+    if (accuracy >= 60 && accuracy <= 80) return <span className="tier-badge good">Good</span>;
+    return <span className="tier-badge great">Great</span>;
+  }
 
   if (loading) {
     return <div className="text-center mt-5"><Spinner animation="border" /></div>;
@@ -104,10 +104,16 @@ const Dashboard = () => {
         {skillStats && skillStats.map((skill) => (
           <div key={skill.subcategory} className="skill-item" onClick={() => alert(`Starting practice for ${skill.subcategory}`)}>
             <div className="skill-item-header">
-              <span className="skill-name">{skill.subcategory}</span>
-              <span className={`skill-accuracy ${getAccuracyColor(skill.accuracy)}`}>
-                {skill.accuracy.toFixed(0)}%
-              </span>
+              <div className="skill-name-group">
+                <div className="skill-icon"></div>
+                <span className="skill-name">{skill.subcategory}</span>
+              </div>
+              {getPerformanceTier(skill.accuracy)}
+            </div>
+            <div className="skill-details">
+              <span>🎯 Accuracy: {skill.accuracy.toFixed(0)}%</span>
+              <span>⏱️ Avg Time: {skill.avgTime.toFixed(1)}s</span>
+              <span>✏️ Problems: {skill.totalAttempts}</span>
             </div>
             <div className="progress-bar">
               <div

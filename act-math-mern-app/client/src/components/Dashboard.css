@@ -152,18 +152,45 @@
   margin-bottom: 1rem;
 }
 
+.skill-name-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.skill-icon {
+  width: 32px;
+  height: 32px;
+  background-color: #e3f2fd;
+  border-radius: 6px;
+  background-image: url('https://img.icons8.com/fluency-systems-filled/48/2979ff/calculator.png');
+  background-size: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .skill-name {
   font-weight: bold;
   color: #444;
 }
 
-.skill-accuracy {
+.tier-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
   font-weight: bold;
+  color: #fff;
 }
+.tier-badge.fair { background-color: #e53935; } /* Red */
+.tier-badge.good { background-color: #f57c00; } /* Orange */
+.tier-badge.great { background-color: #43a047; } /* Green */
 
-.accuracy-red { color: #e53935; }
-.accuracy-orange { color: #f57c00; }
-.accuracy-green { color: #43a047; }
+.skill-details {
+  display: flex;
+  justify-content: space-between;
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
 
 .progress-bar {
   height: 8px;

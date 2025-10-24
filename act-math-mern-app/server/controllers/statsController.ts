@@ -126,17 +126,22 @@ export const getPriorityMatrixStats = async (req: AuthRequest, res: Response) =>
       return res.status(200).json([]);
     }
 
-    const matrixData = progressSnapshot.docs.map(doc => {
+    const matrixData = progressSnapshot.docs.reduce((acc: any[], doc) => {
       const data = doc.data();
-      const accuracy = data.totalAttempts > 0 ? (data.correctAttempts / data.totalAttempts) * 100 : 0;
-      const avgTime = data.totalAttempts > 0 ? data.totalTimeSpent / data.totalAttempts : 0;
-      
-      return {
-        subcategory: data.subcategory,
-        accuracy: parseFloat(accuracy.toFixed(1)),
-        avgTime: parseFloat(avgTime.toFixed(1))
-      };
-    });
+      // Only include subcategories where the user has attempted at least 5 questions
+      if (data.totalAttempts >= 5) {
+        const accuracy = data.totalAttempts > 0 ? (data.correctAttempts / data.totalAttempts) * 100 : 0;
+        const avgTime = data.totalAttempts > 0 ? data.totalTimeSpent / data.totalAttempts : 0;
+        
+        acc.push({
+          subcategory: data.subcategory,
+          accuracy: parseFloat(accuracy.toFixed(1)),
+          avgTime: parseFloat(avgTime.toFixed(1)),
+          totalAttempts: data.totalAttempts
+        });
+      }
+      return acc;
+    }, []);
 
     res.status(200).json(matrixData);
 
