@@ -11,45 +11,47 @@ interface SubcategoryStat {
   avgTime: number;
 }
 
+interface DashboardStats {
+  questionsDue: number;
+  subcategoriesMastered: number;
+  overallAccuracy: number;
+}
+
 const Dashboard = () => {
-  const { currentUser, logout } = useAuth();
+  const { currentUser } = useAuth();
   const navigate = useNavigate();
-  const [stats, setStats] = useState<SubcategoryStat[] | null>(null);
+  const [skillStats, setSkillStats] = useState<SubcategoryStat[] | null>(null);
+  const [dashboardStats, setDashboardStats] = useState<DashboardStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchStats = async () => {
+    const fetchAllStats = async () => {
       if (!currentUser) {
         setLoading(false);
         return;
       }
       try {
-        const data = await authenticatedFetch('/api/stats/priority-matrix');
-        setStats(data);
+        // Fetch both sets of stats in parallel
+        const [priorityData, dashboardData] = await Promise.all([
+          authenticatedFetch('/api/stats/priority-matrix'),
+          authenticatedFetch('/api/stats/dashboard')
+        ]);
+        setSkillStats(priorityData);
+        setDashboardStats(dashboardData);
       } catch (err: any) {
         setError(err.message);
       } finally {
         setLoading(false);
       }
     };
-    fetchStats();
+    fetchAllStats();
   }, [currentUser]);
 
   const getAccuracyColor = (accuracy: number) => {
     if (accuracy < 60) return 'accuracy-red';
     if (accuracy >= 60 && accuracy <= 80) return 'accuracy-orange';
     return 'accuracy-green';
-  };
-
-  const handleSignOut = async () => {
-    try {
-      await logout();
-      navigate('/login');
-    } catch (error) {
-      console.error("Failed to log out", error);
-      setError("Failed to sign out. Please try again.");
-    }
   };
 
   if (loading) {
@@ -62,8 +64,33 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <div className="welcome-message">
-        Welcome back, {currentUser?.displayName?.split(' ')[0] || 'friend'}! 👋
+      <div className="welcome-header">
+        <h2>Welcome back, {currentUser?.displayName}! 👋</h2>
+        <p>Ready to practice some math today?</p>
+      </div>
+
+      <div className="stats-cards">
+        <div className="stat-card">
+          <div className="stat-icon due-today"></div>
+          <div className="stat-info">
+            <span className="stat-label">Due Today</span>
+            <span className="stat-value">{dashboardStats?.questionsDue ?? 0}</span>
+          </div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-icon mastered"></div>
+          <div className="stat-info">
+            <span className="stat-label">Mastered</span>
+            <span className="stat-value">{dashboardStats?.subcategoriesMastered ?? 0}</span>
+          </div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-icon accuracy"></div>
+          <div className="stat-info">
+            <span className="stat-label">Accuracy</span>
+            <span className="stat-value">{dashboardStats?.overallAccuracy.toFixed(1) ?? 0}%</span>
+          </div>
+        </div>
       </div>
 
       <div className="practice-button-container">
@@ -74,7 +101,7 @@ const Dashboard = () => {
 
       <h2 className="skills-breakdown-title">Skills Breakdown</h2>
       <div className="skills-list">
-        {stats && stats.map((skill) => (
+        {skillStats && skillStats.map((skill) => (
           <div key={skill.subcategory} className="skill-item" onClick={() => alert(`Starting practice for ${skill.subcategory}`)}>
             <div className="skill-item-header">
               <span className="skill-name">{skill.subcategory}</span>
