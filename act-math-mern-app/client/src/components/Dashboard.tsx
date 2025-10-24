@@ -62,14 +62,6 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <header className="dashboard-header">
-        <h1 className="dashboard-title">ACT Math Practice</h1>
-        <nav className="dashboard-nav">
-          <a href="#settings">Settings</a>
-          <a href="#" onClick={handleSignOut}>Sign Out</a>
-        </nav>
-      </header>
-
       <div className="welcome-message">
         Welcome back, {currentUser?.displayName?.split(' ')[0] || 'friend'}! 👋
       </div>

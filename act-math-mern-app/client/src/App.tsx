@@ -5,51 +5,19 @@ import PracticeScreen from './components/PracticeScreen';
 import Dashboard from './components/Dashboard';
 import SessionSummary from './components/SessionSummary';
 import Settings from './components/Settings';
-import { auth } from './config/firebase';
-import { signOut } from 'firebase/auth';
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
-import { Routes, Route, Link, Navigate } from 'react-router-dom';
+import Navbar from './components/Navbar'; // Import the new Navbar
+import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 
 function App() {
   const { currentUser } = useAuth();
 
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-    } catch (error) {
-      console.error("Error signing out: ", error);
-    }
-  };
-
   return (
     <>
       {currentUser ? (
-        <div className="app-container">
-          <div className="mt-4 text-center">
-            <h1 className="display-4">ACT Math Practice</h1>
-          </div>
-          <Navbar bg="light" variant="light" expand="lg" className="mb-4 mt-2">
-            <Container>
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="me-auto">
-                  <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
-                  <Nav.Link as={Link} to="/practice">Practice</Nav.Link>
-                </Nav>
-                <Nav>
-                  <NavDropdown title={currentUser.displayName || currentUser.email} id="basic-nav-dropdown" align="end">
-                    <NavDropdown.Item as={Link} to="/settings">Settings</NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item onClick={handleLogout}>
-                      Sign Out
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </Nav>
-              </Navbar.Collapse>
-            </Container>
-          </Navbar>
-          <div>
+        <>
+          <Navbar /> {/* Use the new Navbar component */}
+          <div className="app-container">
             <Routes>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/practice" element={<PracticeScreen />} />
@@ -58,7 +26,7 @@ function App() {
               <Route path="*" element={<Navigate to="/dashboard" />} />
             </Routes>
           </div>
-        </div>
+        </>
       ) : (
         <Login />
       )}
