@@ -1,17 +1,56 @@
-161 |    if (questions.length === 0 && !loading) {
-162 |      return (
-    |      ^
-163 |        <Container className="text-center mt-5">
-164 |          <h2>You've completed your session!</h2>
+
+✗ Build failed in 567ms
+error during build:
+[vite:esbuild] Transform failed with 1 error:
+/vercel/path0/act-math-mern-app/client/src/components/PracticeScreen.tsx:260:12: ERROR: Unexpected closing "Card" tag does not match opening "div" tag
+file: /vercel/path0/act-math-mern-app/client/src/components/PracticeScreen.tsx:260:12
+Unexpected closing "Card" tag does not match opening "div" tag
+258 |                </Card.Body>
+259 |              </Card>
+260 |            </Card>
+    |              ^
+261 |          </div>
+262 |        </div>
     at failureErrorWithLog (/vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:1467:15)
     at /vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:736:50
     at responseCallbacks.<computed> (/vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:603:9)
     at handleIncomingPacket (/vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:658:12)
     at Socket.readFromStdout (/vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:581:7)
-    at Socket.emit (node:events:519:28)
-    at addChunk (node:internal/streams/readable:561:12)
-    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
-    at Readable.push (node:internal/streams/readable:392:5)
-    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
-Error: Command "npm run build" exited with 1
 Deployment Summary
+Deployment Checks
+Assigning Custom Domains
+Runtime Logs
+
+View and debug runtime logs & errors
+
+Observability
+
+Monitor app health & performance
+
+Speed Insights
+
+No Data
+Performance metrics from real users
+
+Web Analytics
+
+Not Enabled
+Analyze visitors & traffic in real-time
+
+Home
+Docs
+Guides
+Academy
+Help
+Contact
+On-Demand Usage Invoices Delayed
+
+Select a display theme:
+
+system
+
+light
+
+dark
+act-math-app-staging – Deployment Overview – Vercel
+15:24:00

@@ -257,8 +257,7 @@ const PracticeScreen = () => {
                 </div>
               </Card.Body>
             </Card>
-          </Card>
-        </div>
+          </div>
       </div>
     </>
   );
