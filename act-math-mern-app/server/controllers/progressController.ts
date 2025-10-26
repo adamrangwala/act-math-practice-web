@@ -34,36 +34,38 @@ export const submitProgress = async (req: AuthRequest, res: Response) => {
 
     const isCorrect = performanceRating > 0;
 
-    // Step 1: Update User's Personal Subcategory Progress (always)
-    for (const subcategory of subcategories) {
-      const progressId = `${userId}_${subcategory.replace(/\s+/g, '-')}`;
-      const progressRef = db.collection('userSubcategoryProgress').doc(progressId);
-      const progressDoc = await progressRef.get();
+    // Only update the user's core spaced repetition progress if it's a standard practice session.
+    if (context === 'practice_session') {
+      for (const subcategory of subcategories) {
+        const progressId = `${userId}_${subcategory.replace(/\s+/g, '-')}`;
+        const progressRef = db.collection('userSubcategoryProgress').doc(progressId);
+        const progressDoc = await progressRef.get();
 
-      if (progressDoc.exists) {
-        const currentProgress = progressDoc.data()!;
-        const newMasteryScore = calculateNewMastery(currentProgress.masteryScore, performanceRating);
-        
-        await progressRef.update({
-          masteryScore: newMasteryScore,
-          lastReviewedAt: FieldValue.serverTimestamp(),
-          nextReviewDate: calculateNextReviewDate(newMasteryScore),
-          totalAttempts: FieldValue.increment(1),
-          correctAttempts: FieldValue.increment(isCorrect ? 1 : 0),
-          totalTimeSpent: FieldValue.increment(timeSpent),
-        });
-      } else {
-        const newMasteryScore = calculateNewMastery(0.1, performanceRating);
-        await progressRef.set({
-          userId,
-          subcategory,
-          masteryScore: newMasteryScore,
-          lastReviewedAt: FieldValue.serverTimestamp(),
-          nextReviewDate: calculateNextReviewDate(newMasteryScore),
-          totalAttempts: 1,
-          correctAttempts: isCorrect ? 1 : 0,
-          totalTimeSpent: timeSpent,
-        });
+        if (progressDoc.exists) {
+          const currentProgress = progressDoc.data()!;
+          const newMasteryScore = calculateNewMastery(currentProgress.masteryScore, performanceRating);
+          
+          await progressRef.update({
+            masteryScore: newMasteryScore,
+            lastReviewedAt: FieldValue.serverTimestamp(),
+            nextReviewDate: calculateNextReviewDate(newMasteryScore),
+            totalAttempts: FieldValue.increment(1),
+            correctAttempts: FieldValue.increment(isCorrect ? 1 : 0),
+            totalTimeSpent: FieldValue.increment(timeSpent),
+          });
+        } else {
+          const newMasteryScore = calculateNewMastery(0.1, performanceRating);
+          await progressRef.set({
+            userId,
+            subcategory,
+            masteryScore: newMasteryScore,
+            lastReviewedAt: FieldValue.serverTimestamp(),
+            nextReviewDate: calculateNextReviewDate(newMasteryScore),
+            totalAttempts: 1,
+            correctAttempts: isCorrect ? 1 : 0,
+            totalTimeSpent: timeSpent,
+          });
+        }
       }
     }
 
