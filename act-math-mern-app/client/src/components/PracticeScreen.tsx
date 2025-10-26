@@ -3,6 +3,7 @@ import { Container, Card, Button, Spinner, ListGroup, Alert } from 'react-bootst
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import { authenticatedFetch } from '../utils/api';
+import './PracticeScreen.css'; // Import the new styles
 
 interface Question {
   questionId: string;
@@ -37,10 +38,20 @@ const PracticeScreen = () => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number | null>(null);
   const startTimeRef = useRef<number>(Date.now());
+  const [timer, setTimer] = useState(0);
 
   const frontRef = useRef<HTMLDivElement>(null);
   const backRef = useRef<HTMLDivElement>(null);
   const [cardHeight, setCardHeight] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    const timerInterval = setInterval(() => {
+      if (!isFlipped) {
+        setTimer(Math.floor((Date.now() - startTimeRef.current) / 1000));
+      }
+    }, 1000);
+    return () => clearInterval(timerInterval);
+  }, [isFlipped]);
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -55,12 +66,12 @@ const PracticeScreen = () => {
       try {
         const data = await authenticatedFetch(endpoint);
         setQuestions(data);
-        // Reset session-specific state when new questions are loaded
         setCurrentQuestionIndex(0);
         setSessionData([]);
         setSelectedAnswerIndex(null);
         setIsFlipped(false);
         startTimeRef.current = Date.now();
+        setTimer(0);
       } catch (err: any) {
         setError(err.message);
       } finally {
@@ -71,13 +82,13 @@ const PracticeScreen = () => {
     if (currentUser) {
       fetchQuestions();
     }
-  }, [currentUser, subcategory, navigate]); // Added navigate to dependency array
+  }, [currentUser, subcategory, navigate]);
 
   useEffect(() => {
     if (window.MathJax) {
       window.MathJax.typeset();
     }
-  }, [currentQuestionIndex, isFlipped, questions]); // Added questions to dependency array
+  }, [currentQuestionIndex, isFlipped, questions]);
 
   useEffect(() => {
     const calculateHeight = () => {
@@ -91,7 +102,6 @@ const PracticeScreen = () => {
       }
     };
     
-    // Calculate height after a short delay to allow for rendering
     const timer = setTimeout(calculateHeight, 50);
     return () => clearTimeout(timer);
   }, [currentQuestionIndex, questions, isFlipped]);
@@ -153,7 +163,8 @@ const PracticeScreen = () => {
       setSelectedAnswerIndex(null);
       setCurrentQuestionIndex(nextIndex);
       startTimeRef.current = Date.now();
-    }, 300); // Delay matches the flip animation
+      setTimer(0);
+    }, 300);
   };
 
   const getVariant = (index: number) => {
@@ -180,8 +191,20 @@ const PracticeScreen = () => {
   const currentQuestion = questions[currentQuestionIndex];
   if (!currentQuestion) return null;
 
+  const progressPercentage = (currentQuestionIndex / questions.length) * 100;
+
   return (
     <>
+      <div className="practice-header mt-4">
+        <div className="timer">⏳ {timer}s</div>
+        <div className="progress-bar-container">
+          <div className="progress-bar-session">
+            <div className="progress-bar-session-inner" style={{ width: `${progressPercentage}%` }}></div>
+          </div>
+        </div>
+        <div className="calculator-icon" onClick={() => alert('Calculator coming soon!')}>🧮</div>
+      </div>
+
       {subcategory && (
         <Alert variant="info" className="mt-3 text-center">
           You're in a targeted practice session for <strong>{decodeURIComponent(subcategory)}</strong>. Progress here won't affect your overall stats.
