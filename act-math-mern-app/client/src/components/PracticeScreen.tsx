@@ -40,6 +40,7 @@ const PracticeScreen = () => {
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number | null>(null);
   const startTimeRef = useRef<number>(Date.now());
   const [timer, setTimer] = useState(0);
+  const [showCalculator, setShowCalculator] = useState(false);
 
   const frontRef = useRef<HTMLDivElement>(null);
   const backRef = useRef<HTMLDivElement>(null);
@@ -192,23 +193,20 @@ const PracticeScreen = () => {
   const currentQuestion = questions[currentQuestionIndex];
   if (!currentQuestion) return null;
 
-    const progressPercentage = (currentQuestionIndex / questions.length) * 100;
-  
-    const [showCalculator, setShowCalculator] = useState(false);
-  
-    return (
-      <>
-        {showCalculator && <Calculator onClose={() => setShowCalculator(false)} />}
-        <div className="practice-header mt-4">
-          <div className="timer">⏳ {timer}s</div>
-          <div className="progress-bar-container">
-            <div className="progress-bar-session">
-              <div className="progress-bar-session-inner" style={{ width: `${progressPercentage}%` }}></div>
+      const progressPercentage = (currentQuestionIndex / questions.length) * 100;
+    
+      return (
+        <>
+          {showCalculator && <Calculator onClose={() => setShowCalculator(false)} />}
+          <div className="practice-header mt-4">
+            <div className="timer">⏳ {timer}s</div>
+            <div className="progress-bar-container">
+              <div className="progress-bar-session">
+                <div className="progress-bar-session-inner" style={{ width: `${progressPercentage}%` }}></div>
+              </div>
             </div>
+            <div className="calculator-icon" onClick={() => setShowCalculator(true)}>🧮</div>
           </div>
-          <div className="calculator-icon" onClick={() => setShowCalculator(true)}>🧮</div>
-        </div>
-
       {subcategory && (
         <Alert variant="info" className="mt-3 text-center">
           You're in a targeted practice session for <strong>{decodeURIComponent(subcategory)}</strong>. Progress here won't affect your overall stats.
