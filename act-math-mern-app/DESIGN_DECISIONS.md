@@ -1,32 +1,21 @@
-> "To promote readability, maintainability, and modular design, all source code files in this project are limited to a maximum of 200 lines. Complex logic should be broken down into smaller, single-responsibility functions and components."
+# Design Decisions
 
-> "The project will be migrated from JavaScript to TypeScript. This decision was made to leverage TypeScript's static typing, which helps catch errors early in the development process, improves code clarity, and enhances the developer experience with better autocompletion and refactoring support. This aligns with modern web development best practices and supports the goal of building a robust, maintainable application."
+## Calculator UI
 
-> "For naming conventions, all React components and classes will use **PascalCase** (e.g., `PracticeScreen`, `StatsCard`). This is a standard convention in the React ecosystem that helps visually distinguish component constructors from regular HTML tags and JavaScript functions."
+### 1. Color Scheme and Layout
 
-> "The spaced repetition logic has been pivoted from a question-based model to a **concept-based (subcategory) model**. Instead of tracking progress on individual questions (like digital flashcards), the system will now track a user's mastery score for each mathematical subcategory (e.g., 'Pythagorean Theorem'). This allows the application to be a more effective learning tool by repeatedly testing concepts the user struggles with, using different questions each time. This approach is more flexible and better supports the goal of true concept mastery over rote memorization."
+-   **Color Scheme:** The calculator will feature a dark-mode color scheme with a dark gray or black background, white or light gray numbers, and orange or yellow accents for operators and functions. This will provide a modern, high-contrast look that is easy on the eyes.
+-   **Layout:** The calculator will have a clean, grid-based layout with responsive buttons that provide clear visual feedback on hover and click. The display will be large and easy to read, with a separate area for showing the history of calculations.
 
-> "The subcategory taxonomy has been completely overhauled to be more granular, consistent, and pedagogically sound. The previous list was refined into a clear, de-duplicated set of specific mathematical skills. This architectural decision is critical for enabling advanced features, including effective targeted practice and insightful data visualizations for the user (e.g., the 'Priority Matrix' chart)."
+### 2. Functionality
 
-> "The Priority Matrix visualization has been updated to use a clear, three-color system to provide an at-a-glance understanding of a user's performance. **Green** represents mastery (accuracy ≥ 80% and average time ≤ 60s). **Red** indicates a significant weakness (accuracy < 60%). **Orange** serves as a middle ground, highlighting topics that need improvement in either speed or accuracy. This color-coding is designed to help users quickly identify and prioritize their weakest areas."
+-   **Basic Operations:** The calculator will support all basic arithmetic operations, including addition, subtraction, multiplication, and division.
+-   **Trigonometric Functions:** The calculator will include buttons for sine, cosine, and tangent, as well as their inverse functions.
+-   **Exponents and Roots:** The calculator will support exponents, square roots, and other roots.
+-   **Parentheses and Order of Operations:** The calculator will correctly handle parentheses and follow the standard order of operations.
 
-> "The post-session summary screen has been redesigned from a simple table to a more engaging, Duolingo-style list. Using cards with clear icons (checkmarks/X's) and colors provides immediate, scannable feedback on performance, enhancing the user's sense of accomplishment and highlighting areas for improvement."
+### 3. User Experience
 
-> "To de-clutter the main navigation bar, user-specific actions have been consolidated into a **User Menu Dropdown**. This standard UX pattern groups 'Settings' and 'Sign Out' under the user's name, focusing the primary navigation on core tasks ('Dashboard' and 'Practice') and creating a scalable space for future user-related links."
-
-> "For a cleaner visual hierarchy, the main brand title, 'ACT Math Practice,' has been moved out of the navigation bar and into a dedicated, centered header above it. This separates the application's identity from its navigation, creating a more professional and organized user interface."
-
-> "**UI/UX Golden Rule:** The requirements are actually pretty simple. Good contrast, legible text, imagery/iconography that makes sense, clear CTAs. The simplest and most common thing to look at is visual hierarchy. What do your eyes look to first? The designer should be mindful of this and typically has a reason for it."
-
-> "To create a more engaging and pedagogically effective feedback loop, the practice screen was redesigned to use a **card-flip animation**. When a user answers, the card flips to reveal the solution on the back. This interaction focuses the user's attention, reinforces learning by showing the question and solution together, and makes the experience feel more polished and interactive."
-
-> "After experimenting with Bootstrap's responsive containers (`lg`, `xl`, `xxl`, `fluid`), the decision was made to implement a **custom fixed-width container** (`.app-container`). This provides more precise and consistent control over the main content width across all pages, avoiding the issue of layouts being either too narrow or too wide. A `max-width` of `960px` was chosen as a comfortable reading width, which can be easily adjusted from a single CSS rule."
-
-> "To improve clarity on the session summary page, the statistics were made more explicit. **Accuracy** is now displayed as a raw count (e.g., '8 / 10') alongside the percentage, providing a more concrete measure of performance. The time metric was relabeled to **'Average Time per Question'** to remove ambiguity. These changes make the user's performance data more transparent and actionable."
-
-
-> "The post-session summary screen has been redesigned to provide a more engaging and data-rich user experience, moving away from a simple table to a scannable, color-coded list. Key decisions include: 1) **Contextual Highlighting:** Each question row is given a light green or red background for immediate correct/incorrect feedback. 2) **Performance-Based Coloring:** The time spent on each question is color-coded (green, orange, red) to help users instantly identify questions that took too long. 3) **Clutter-Free Topic Display:** Subcategories are rendered as badges, with a tooltip to reveal the full list on hover, preventing visual clutter while keeping all information accessible. These changes are intended to make the summary more intuitive and actionable for the user."
-
-> "The dashboard has been significantly redesigned to provide a cleaner, more focused, and data-rich user experience. Key changes include: 1) **Dedicated Navigation Bar:** The main application navigation ('ACT Math Practice' brand, 'Settings', 'Sign Out') was moved into its own dedicated, persistent navbar at the top of the page. This declutters the main content area and establishes a consistent global navigation structure. 2) **At-a-Glance Stat Cards:** High-level summary statistics ('Due Today', 'Mastered', 'Accuracy') were introduced as prominent cards below the welcome message, giving users an immediate overview of their current standing. 3) **Detailed Skill Cards:** The 'Skills Breakdown' cards were enhanced to include not just accuracy, but also the total number of problems attempted and the user's average time, providing a more comprehensive view of their performance in each subcategory."
-
-> "To ensure that the 'Skills Breakdown' section provides statistically meaningful insights, a **five-question threshold** was implemented. A subcategory card will only be displayed on the dashboard after the user has answered at least five questions belonging to that subcategory. This prevents the system from making premature judgments about a user's proficiency based on a small, potentially unrepresentative, sample of answers."
+-   **Accessibility:** The calculator will be designed with accessibility in mind, including high-contrast colors, clear button labels, and keyboard support.
+-   **Responsiveness:** The calculator will be fully responsive and work seamlessly on both desktop and mobile devices.
+-   **Ease of Use:** The calculator will be intuitive and easy to use, with a clear and logical button layout.
