@@ -115,3 +115,36 @@ export const getPracticeMoreQuestions = async (req: AuthRequest, res: Response) 
     res.status(500).send({ message: 'Internal Server Error' });
   }
 };
+
+export const getTargetedPracticeQuestions = async (req: AuthRequest, res: Response) => {
+  if (!req.user) {
+    return res.status(401).send({ message: 'Unauthorized' });
+  }
+  const { subcategory } = req.query;
+
+  if (!subcategory || typeof subcategory !== 'string') {
+    return res.status(400).send({ message: 'A subcategory query parameter is required.' });
+  }
+
+  try {
+    const snapshot = await db.collection('questions')
+      .where('subcategories', 'array-contains', subcategory)
+      .get();
+
+    if (snapshot.empty) {
+      return res.status(200).json([]);
+    }
+
+    const allQuestions = snapshot.docs.map(doc => doc.data());
+
+    // Shuffle the array and take the first 5
+    const shuffled = allQuestions.sort(() => 0.5 - Math.random());
+    const selectedQuestions = shuffled.slice(0, 5);
+
+    res.status(200).json(selectedQuestions);
+
+  } catch (error) {
+    console.error('Error fetching targeted practice questions:', error);
+    res.status(500).send({ message: 'Internal Server Error' });
+  }
+};

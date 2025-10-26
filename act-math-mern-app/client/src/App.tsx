@@ -20,6 +20,7 @@ function App() {
           <div className="app-container">
             <Routes>
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/practice/:subcategory" element={<PracticeScreen />} />
               <Route path="/practice" element={<PracticeScreen />} />
               <Route path="/summary" element={<SessionSummary />} />
               <Route path="/settings" element={<Settings />} />

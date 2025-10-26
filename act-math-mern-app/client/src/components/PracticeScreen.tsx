@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Container, Card, Button, Spinner, ListGroup, Alert } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { authenticatedFetch } from '../utils/api';
 
 interface Question {
@@ -27,6 +27,7 @@ const getOptionLetter = (index: number) => ['F', 'G', 'H', 'J', 'K'][index];
 const PracticeScreen = () => {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
+  const { subcategory } = useParams<{ subcategory?: string }>();
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -41,26 +42,31 @@ const PracticeScreen = () => {
   const backRef = useRef<HTMLDivElement>(null);
   const [cardHeight, setCardHeight] = useState<number | undefined>(undefined);
 
-  const fetchQuestions = async (isPracticeMore = false) => {
-    if (!currentUser) return;
-    setLoading(true);
-    const endpoint = isPracticeMore ? '/api/questions/practice-more' : `/api/questions/today?limit=10`;
-    try {
-      const data = await authenticatedFetch(endpoint);
-      setQuestions(data);
-      startTimeRef.current = Date.now();
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchQuestions = async () => {
+      if (!currentUser) return;
+      setLoading(true);
+      
+      let endpoint = '/api/questions/today';
+      if (subcategory) {
+        endpoint = `/api/questions/targeted-practice?subcategory=${encodeURIComponent(subcategory)}`;
+      }
+
+      try {
+        const data = await authenticatedFetch(endpoint);
+        setQuestions(data);
+        startTimeRef.current = Date.now();
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     if (currentUser) {
-      fetchQuestions(false);
+      fetchQuestions();
     }
-  }, [currentUser]);
+  }, [currentUser, subcategory]);
 
   useEffect(() => {
     if (window.MathJax) {
@@ -101,7 +107,7 @@ const PracticeScreen = () => {
             questionId: questions[currentQuestionIndex].questionId,
             performanceRating,
             timeSpent,
-            context: 'practice_session',
+            context: subcategory ? 'targeted_practice' : 'practice_session',
             selectedAnswerIndex: selectedIndex,
           }),
         });
@@ -151,12 +157,13 @@ const PracticeScreen = () => {
   };
 
   if (loading) return <Container className="text-center mt-5"><Spinner animation="border" /></Container>;
-  if (error) return <Container className="text-center mt-5"><Alert variant="danger">{error}</Alert></Container>;
+  if (error) return <Container className="text-center mt-5"><Alert variant="danger">{error}</Container>;
   if (questions.length === 0 && !loading) {
     return (
       <Container className="text-center mt-5">
         <h2>You've completed your session!</h2>
-        <Button variant="primary" size="lg" onClick={() => fetchQuestions(true)}>Practice More</Button>
+        <p>There are no more questions available in this category right now.</p>
+        <Button variant="primary" size="lg" onClick={() => navigate('/dashboard')}>Back to Dashboard</Button>
       </Container>
     );
   }

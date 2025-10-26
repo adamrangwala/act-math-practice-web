@@ -36,6 +36,9 @@ To ensure a collaborative, stable, and easily debuggable process, we will follow
 
 - [ ] **Phase 7: Beta Readiness**
   - [x] **Frontend:** Implement a welcoming onboarding screen for new users.
+  - [x] **Frontend:** Overhaul Dashboard UI with stat cards and detailed skills breakdown.
+  - [ ] **Frontend:** Implement logic for targeted practice drills from dashboard.
+  - [ ] **Frontend:** Enhance Practice Screen UI (animations, timer, calculator, progress bar).
   - [ ] **Frontend:** Polish the Priority Matrix with quadrant backgrounds and a simplified color scheme.
   - [ ] **Data:** Populate `seed-data/questions.json` with at least 50 high-quality questions.
 

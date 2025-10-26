@@ -102,7 +102,7 @@ const Dashboard = () => {
       <h2 className="skills-breakdown-title">Skills Breakdown</h2>
       <div className="skills-list">
         {skillStats && skillStats.map((skill) => (
-          <div key={skill.subcategory} className="skill-item" onClick={() => alert(`Starting practice for ${skill.subcategory}`)}>
+          <div key={skill.subcategory} className="skill-item" onClick={() => navigate(`/practice/${encodeURIComponent(skill.subcategory)}`)}>
             <div className="skill-item-header">
               <div className="skill-name-group">
                 <div className="skill-icon"></div>
