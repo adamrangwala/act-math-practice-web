@@ -181,56 +181,63 @@ const PracticeScreen = () => {
   if (!currentQuestion) return null;
 
   return (
-    <div className={`flip-card-container mt-4 ${isFlipped ? 'is-flipped' : ''}`} style={{ minHeight: cardHeight }}>
-      <div className="flip-card-inner">
-        <div className="flip-card-front" ref={frontRef}>
-          <Card>
-            <Card.Body>
-              <Card.Title>Question {currentQuestionIndex + 1} of {questions.length}</Card.Title>
-              <hr />
-              {currentQuestion.diagramSvg && <div className="text-center mb-3" dangerouslySetInnerHTML={{ __html: currentQuestion.diagramSvg }} />}
-              <Card.Text style={{ fontSize: '1.2rem' }} dangerouslySetInnerHTML={{ __html: currentQuestion.questionText }} />
-              <ListGroup variant="flush">
-                {currentQuestion.options.map((option, index) => (
-                  <ListGroup.Item action key={index} as="button" onClick={() => handleAnswerSelect(index)} className="text-start d-flex align-items-baseline">
-                    <strong className="me-2" style={{ minWidth: '25px' }}>{getOptionLetter(index)}.</strong>
-                    <span dangerouslySetInnerHTML={{ __html: option }} />
-                  </ListGroup.Item>
-                ))}
-              </ListGroup>
-            </Card.Body>
-          </Card>
-        </div>
-        <div className="flip-card-back" ref={backRef}>
-          <Card>
-            <Card.Body>
-              <Card.Title>Solution for Question {currentQuestionIndex + 1}</Card.Title>
-              <hr />
-              {currentQuestion.diagramSvg && <div className="text-center mb-3" dangerouslySetInnerHTML={{ __html: currentQuestion.diagramSvg }} />}
-              <Card.Text style={{ fontSize: '1.2rem' }} dangerouslySetInnerHTML={{ __html: currentQuestion.questionText }} />
-              <ListGroup variant="flush">
-                {currentQuestion.options.map((option, index) => (
-                  <ListGroup.Item key={index} variant={getVariant(index)} className="text-start d-flex align-items-baseline">
-                    <strong className="me-2" style={{ minWidth: '25px' }}>{getOptionLetter(index)}.</strong>
-                    <span dangerouslySetInnerHTML={{ __html: option }} />
-                  </ListGroup.Item>
-                ))}
-              </ListGroup>
-              <Alert variant="info" className="mt-4">
-                <strong>Solution:</strong>
-                <div dangerouslySetInnerHTML={{ __html: currentQuestion.solutionText }} />
-                {currentQuestion.solutionDiagramSvg && <div className="text-center mt-3" dangerouslySetInnerHTML={{ __html: currentQuestion.solutionDiagramSvg }} />}
-              </Alert>
-              <div className="text-end">
-                <Button variant="primary" onClick={handleNextQuestion}>
-                  {currentQuestionIndex + 1 >= questions.length ? 'Finish Session' : 'Next Question'}
-                </Button>
-              </div>
-            </Card.Body>
+    <>
+      {subcategory && (
+        <Alert variant="info" className="mt-3 text-center">
+          You're in a targeted practice session for <strong>{decodeURIComponent(subcategory)}</strong>. Progress here won't affect your overall stats.
+        </Alert>
+      )}
+      <div className={`flip-card-container mt-4 ${isFlipped ? 'is-flipped' : ''}`} style={{ minHeight: cardHeight }}>
+        <div className="flip-card-inner">
+          <div className="flip-card-front" ref={frontRef}>
+            <Card>
+              <Card.Body>
+                <Card.Title>Question {currentQuestionIndex + 1} of {questions.length}</Card.Title>
+                <hr />
+                {currentQuestion.diagramSvg && <div className="text-center mb-3" dangerouslySetInnerHTML={{ __html: currentQuestion.diagramSvg }} />}
+                <Card.Text style={{ fontSize: '1.2rem' }} dangerouslySetInnerHTML={{ __html: currentQuestion.questionText }} />
+                <ListGroup variant="flush">
+                  {currentQuestion.options.map((option, index) => (
+                    <ListGroup.Item action key={index} as="button" onClick={() => handleAnswerSelect(index)} className="text-start d-flex align-items-baseline">
+                      <strong className="me-2" style={{ minWidth: '25px' }}>{getOptionLetter(index)}.</strong>
+                      <span dangerouslySetInnerHTML={{ __html: option }} />
+                    </ListGroup.Item>
+                  ))}
+                </ListGroup>
+              </Card.Body>
+            </Card>
+          </div>
+          <div className="flip-card-back" ref={backRef}>
+            <Card>
+              <Card.Body>
+                <Card.Title>Solution for Question {currentQuestionIndex + 1}</Card.Title>
+                <hr />
+                {currentQuestion.diagramSvg && <div className="text-center mb-3" dangerouslySetInnerHTML={{ __html: currentQuestion.diagramSvg }} />}
+                <Card.Text style={{ fontSize: '1.2rem' }} dangerouslySetInnerHTML={{ __html: currentQuestion.questionText }} />
+                <ListGroup variant="flush">
+                  {currentQuestion.options.map((option, index) => (
+                    <ListGroup.Item key={index} variant={getVariant(index)} className="text-start d-flex align-items-baseline">
+                      <strong className="me-2" style={{ minWidth: '25px' }}>{getOptionLetter(index)}.</strong>
+                      <span dangerouslySetInnerHTML={{ __html: option }} />
+                    </ListGroup.Item>
+                  ))}
+                </ListGroup>
+                <Alert variant="info" className="mt-4">
+                  <strong>Solution:</strong>
+                  <div dangerouslySetInnerHTML={{ __html: currentQuestion.solutionText }} />
+                  {currentQuestion.solutionDiagramSvg && <div className="text-center mt-3" dangerouslySetInnerHTML={{ __html: currentQuestion.solutionDiagramSvg }} />}
+                </Alert>
+                <div className="text-end">
+                  <Button variant="primary" onClick={handleNextQuestion}>
+                    {currentQuestionIndex + 1 >= questions.length ? 'Finish Session' : 'Next Question'}
+                  </Button>
+                </div>
+              </Card.Body>
+            </Card>
           </Card>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
