@@ -1,30 +1,28 @@
-50 packages are looking for funding
-  run `npm fund` for details
-Running "npm run build"
-> client@0.0.0 build
-> vite build
-vite v7.1.10 building for production...
-transforming...
-✓ 25 modules transformed.
-✗ Build failed in 622ms
-error during build:
-[vite:esbuild] Transform failed with 3 errors:
-/vercel/path0/act-math-mern-app/client/src/components/PracticeScreen.tsx:262:6: ERROR: Unexpected closing fragment tag does not match opening "div" tag
-/vercel/path0/act-math-mern-app/client/src/components/PracticeScreen.tsx:264:0: ERROR: The character "}" is not valid inside a JSX element
-/vercel/path0/act-math-mern-app/client/src/components/PracticeScreen.tsx:267:0: ERROR: Unexpected end of file before a closing fragment tag
-file: /vercel/path0/act-math-mern-app/client/src/components/PracticeScreen.tsx:262:6
-Unexpected closing fragment tag does not match opening "div" tag
-Deployment Summary
-Deployment Checks
-Assigning Custom Domains
+194 |    const progressPercentage = (currentQuestionIndex / questions.length) * 100;
+195 |  
+196 |  import Calculator from './Calculator'; // Import the Calculator component
+    |         ^
+197 |  
+198 |  // ... (inside the PracticeScreen component)
+    at failureErrorWithLog (/vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:1467:15)
+    at /vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:736:50
+    at responseCallbacks.<computed> (/vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:603:9)
+    at handleIncomingPacket (/vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:658:12)
+    at Socket.readFromStdout (/vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:581:7)
+    at Socket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
 
-264 |  };
-    |  ^
-265 |  
-266 |  export default PracticeScreen;
-Unexpected end of file before a closing fragment tag
-265 |  
-266 |  export default PracticeScreen;
-267 |  
-    |  ^
-s
+    error during build:
+[vite:esbuild] Transform failed with 1 error:
+/vercel/path0/act-math-mern-app/client/src/components/PracticeScreen.tsx:196:7: ERROR: Unexpected "Calculator"
+file: /vercel/path0/act-math-mern-app/client/src/components/PracticeScreen.tsx:196:7
+Unexpected "Calculator"
+194 |    const progressPercentage = (currentQuestionIndex / questions.length) * 100;
+195 |  
+196 |  import Calculator from './Calculator'; // Import the Calculator component
+    |         ^
+197 |  
+198 |  // ... (inside the PracticeScreen component)

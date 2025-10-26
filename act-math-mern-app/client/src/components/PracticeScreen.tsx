@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import { authenticatedFetch } from '../utils/api';
 import './PracticeScreen.css'; // Import the new styles
+import Calculator from './Calculator'; // Import the Calculator component
 
 interface Question {
   questionId: string;
@@ -191,28 +192,22 @@ const PracticeScreen = () => {
   const currentQuestion = questions[currentQuestionIndex];
   if (!currentQuestion) return null;
 
-  const progressPercentage = (currentQuestionIndex / questions.length) * 100;
-
-import Calculator from './Calculator'; // Import the Calculator component
-
-// ... (inside the PracticeScreen component)
-  const [showCalculator, setShowCalculator] = useState(false);
-
-// ... (inside the return statement)
-  return (
-    <>
-      {showCalculator && <Calculator onClose={() => setShowCalculator(false)} />}
-      <div className="practice-header mt-4">
-        <div className="timer">⏳ {timer}s</div>
-        <div className="progress-bar-container">
-          <div className="progress-bar-session">
-            <div className="progress-bar-session-inner" style={{ width: `${progressPercentage}%` }}></div>
+    const progressPercentage = (currentQuestionIndex / questions.length) * 100;
+  
+    const [showCalculator, setShowCalculator] = useState(false);
+  
+    return (
+      <>
+        {showCalculator && <Calculator onClose={() => setShowCalculator(false)} />}
+        <div className="practice-header mt-4">
+          <div className="timer">⏳ {timer}s</div>
+          <div className="progress-bar-container">
+            <div className="progress-bar-session">
+              <div className="progress-bar-session-inner" style={{ width: `${progressPercentage}%` }}></div>
+            </div>
           </div>
+          <div className="calculator-icon" onClick={() => setShowCalculator(true)}>🧮</div>
         </div>
-        <div className="calculator-icon" onClick={() => setShowCalculator(true)}>🧮</div>
-      </div>
-// ... (rest of the component)
-
 
       {subcategory && (
         <Alert variant="info" className="mt-3 text-center">
