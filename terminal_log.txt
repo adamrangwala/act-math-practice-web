@@ -1,2 +1,17 @@
-Incoming request origin: https://act-math-app-staging-git-develop-adamrangwalas-projects.vercel.app
-DEBUG: Allowing origin: https://act-math-app-staging-git-develop-adamrangwalas-projects.vercel.app
+161 |    if (questions.length === 0 && !loading) {
+162 |      return (
+    |      ^
+163 |        <Container className="text-center mt-5">
+164 |          <h2>You've completed your session!</h2>
+    at failureErrorWithLog (/vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:1467:15)
+    at /vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:736:50
+    at responseCallbacks.<computed> (/vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:603:9)
+    at handleIncomingPacket (/vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:658:12)
+    at Socket.readFromStdout (/vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:581:7)
+    at Socket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
+Error: Command "npm run build" exited with 1
+Deployment Summary

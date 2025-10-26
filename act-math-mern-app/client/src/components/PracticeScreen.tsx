@@ -55,6 +55,11 @@ const PracticeScreen = () => {
       try {
         const data = await authenticatedFetch(endpoint);
         setQuestions(data);
+        // Reset session-specific state when new questions are loaded
+        setCurrentQuestionIndex(0);
+        setSessionData([]);
+        setSelectedAnswerIndex(null);
+        setIsFlipped(false);
         startTimeRef.current = Date.now();
       } catch (err: any) {
         setError(err.message);
@@ -66,23 +71,30 @@ const PracticeScreen = () => {
     if (currentUser) {
       fetchQuestions();
     }
-  }, [currentUser, subcategory]);
+  }, [currentUser, subcategory, navigate]); // Added navigate to dependency array
 
   useEffect(() => {
     if (window.MathJax) {
       window.MathJax.typeset();
     }
-  }, [currentQuestionIndex, isFlipped]);
+  }, [currentQuestionIndex, isFlipped, questions]); // Added questions to dependency array
 
   useEffect(() => {
-    const setInitialHeight = () => {
-      if (frontRef.current && !isFlipped) {
-        setCardHeight(frontRef.current.scrollHeight);
+    const calculateHeight = () => {
+      const frontHeight = frontRef.current?.scrollHeight || 0;
+      const backHeight = backRef.current?.scrollHeight || 0;
+      
+      if (isFlipped) {
+        setCardHeight(backHeight > 0 ? backHeight : undefined);
+      } else {
+        setCardHeight(frontHeight > 0 ? frontHeight : undefined);
       }
     };
-    const timer = setTimeout(setInitialHeight, 100);
+    
+    // Calculate height after a short delay to allow for rendering
+    const timer = setTimeout(calculateHeight, 50);
     return () => clearTimeout(timer);
-  }, [currentQuestionIndex, questions]);
+  }, [currentQuestionIndex, questions, isFlipped]);
 
   const handleAnswerSelect = (selectedIndex: number) => {
     if (isFlipped) return;
@@ -116,10 +128,6 @@ const PracticeScreen = () => {
       }
     };
     submitProgress();
-
-    const frontHeight = frontRef.current?.scrollHeight || 0;
-    const backHeight = backRef.current?.scrollHeight || 0;
-    setCardHeight(Math.max(frontHeight, backHeight));
     
     setIsFlipped(true);
   };
@@ -145,7 +153,7 @@ const PracticeScreen = () => {
       setSelectedAnswerIndex(null);
       setCurrentQuestionIndex(nextIndex);
       startTimeRef.current = Date.now();
-    }, 300);
+    }, 300); // Delay matches the flip animation
   };
 
   const getVariant = (index: number) => {
@@ -157,7 +165,8 @@ const PracticeScreen = () => {
   };
 
   if (loading) return <Container className="text-center mt-5"><Spinner animation="border" /></Container>;
-  if (error) return <Container className="text-center mt-5"><Alert variant="danger">{error}</Container>;
+  if (error) return <Container className="text-center mt-5"><Alert variant="danger">{error}</Alert></Container>;
+  
   if (questions.length === 0 && !loading) {
     return (
       <Container className="text-center mt-5">
