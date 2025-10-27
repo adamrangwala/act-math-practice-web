@@ -2,18 +2,13 @@
 
 .practice-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   margin-bottom: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .progress-bar-container {
   flex-grow: 1;
-  margin: 0 1.5rem;
 }
 
 .progress-bar-session {
@@ -29,6 +24,16 @@
   background-color: #6a1b9a; /* Purple */
   border-radius: 50px;
   transition: width 0.3s ease-in-out;
+}
+
+.practice-widgets {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .timer, .calculator-icon {

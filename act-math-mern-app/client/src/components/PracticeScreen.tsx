@@ -198,16 +198,17 @@ const PracticeScreen = () => {
       return (
         <>
           {showCalculator && <Calculator onClose={() => setShowCalculator(false)} />}
-          <div className="practice-header mt-4">
-            <div className="timer">⏳ {timer}s</div>
-            <div className="progress-bar-container">
-              <div className="progress-bar-session">
-                <div className="progress-bar-session-inner" style={{ width: `${progressPercentage}%` }}></div>
-              </div>
-            </div>
-            <div className="calculator-icon" onClick={() => setShowCalculator(true)}>🧮</div>
-          </div>
-      {subcategory && (
+                <div className="practice-header mt-4">
+                  <div className="progress-bar-container">
+                    <div className="progress-bar-session">
+                      <div className="progress-bar-session-inner" style={{ width: `${progressPercentage}%` }}></div>
+                    </div>
+                  </div>
+                  <div className="practice-widgets">
+                    <div className="timer">⏳ {timer}s</div>
+                    <div className="calculator-icon" onClick={() => setShowCalculator(true)}>🧮</div>
+                  </div>
+                </div>      {subcategory && (
         <Alert variant="info" className="mt-3 text-center">
           You're in a targeted practice session for <strong>{decodeURIComponent(subcategory)}</strong>. Progress here won't affect your overall stats.
         </Alert>
