@@ -50,13 +50,28 @@ const Calculator: React.FC<CalculatorProps> = ({ onClose }) => {
         setExpression('');
       }
     } else {
-      if (display === '0' || display === 'Error' || isResultShown) {
-        setDisplay(value);
-        setExpression(value);
-        setIsResultShown(false);
+      if (isResultShown) {
+        if (['+', '-', '*', '/', '^'].includes(value)) {
+          setExpression(display + value);
+          setIsResultShown(false);
+        } else {
+          setDisplay(value);
+          setExpression(value);
+          setIsResultShown(false);
+        }
       } else {
-        setDisplay(display + value);
-        setExpression(expression + value);
+        if (display === '0' || display === 'Error') {
+          setDisplay(value);
+          setExpression(value);
+        } else {
+          const lastChar = expression.slice(-1);
+          if (['+', '-', '*', '/', '^'].includes(lastChar)) {
+            setDisplay(value);
+          } else {
+            setDisplay(display + value);
+          }
+          setExpression(expression + value);
+        }
       }
     }
   };
