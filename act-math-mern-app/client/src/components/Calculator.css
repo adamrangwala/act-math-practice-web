@@ -47,7 +47,12 @@
 .calculator-buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(6, 1fr);
   gap: 10px;
+}
+
+.calc-btn.col-span-2 {
+  grid-column: span 2;
 }
 
 .calc-btn {

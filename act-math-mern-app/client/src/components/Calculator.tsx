@@ -9,18 +9,22 @@ const Calculator: React.FC<CalculatorProps> = ({ onClose }) => {
   const [display, setDisplay] = useState('0');
   const [expression, setExpression] = useState('');
   const [mode, setMode] = useState<'Degrees' | 'Radians'>('Degrees');
+  const [isResultShown, setIsResultShown] = useState(false);
 
   const handleButtonClick = (value: string) => {
     if (value === 'C') {
       setDisplay('0');
       setExpression('');
+      setIsResultShown(false);
     } else if (value === 'Deg/Rad') {
       setMode(currentMode => currentMode === 'Degrees' ? 'Radians' : 'Degrees');
     } else if (value === '=') {
+      if (expression === '') return;
       try {
         const result = eval(expression.replace('^', '**'));
         setDisplay(result.toString());
         setExpression(result.toString());
+        setIsResultShown(true);
       } catch (error) {
         setDisplay('Error');
         setExpression('');
@@ -40,14 +44,16 @@ const Calculator: React.FC<CalculatorProps> = ({ onClose }) => {
         const finalResult = parseFloat(result.toFixed(10));
         setDisplay(finalResult.toString());
         setExpression(finalResult.toString());
+        setIsResultShown(true);
       } catch (error) {
         setDisplay('Error');
         setExpression('');
       }
     } else {
-      if (display === '0' || display === 'Error' || expression === display) {
+      if (display === '0' || display === 'Error' || isResultShown) {
         setDisplay(value);
         setExpression(value);
+        setIsResultShown(false);
       } else {
         setDisplay(display + value);
         setExpression(expression + value);
@@ -73,25 +79,30 @@ const Calculator: React.FC<CalculatorProps> = ({ onClose }) => {
           {renderButton('^', 'operator')}
           {renderButton('sqrt', 'operator')}
           {renderButton('/', 'operator')}
+          
           {renderButton('7')}
           {renderButton('8')}
           {renderButton('9')}
           {renderButton('*', 'operator')}
+          
           {renderButton('4')}
           {renderButton('5')}
           {renderButton('6')}
           {renderButton('-', 'operator')}
+          
           {renderButton('1')}
           {renderButton('2')}
           {renderButton('3')}
           {renderButton('+', 'operator')}
-          {renderButton('0')}
+          
+          {renderButton('0', 'col-span-2')}
           {renderButton('.')}
-          {renderButton('Deg/Rad', 'function')}
           {renderButton('=', 'operator')}
+
           {renderButton('sin', 'function')}
           {renderButton('cos', 'function')}
           {renderButton('tan', 'function')}
+          {renderButton('Deg/Rad', 'function')}
         </div>
       </div>
     </div>
