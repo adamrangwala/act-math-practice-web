@@ -68,7 +68,7 @@
 
 .stat-icon.due-today {
   background-color: #e3f2fd;
-  background-image: url('https://img.icons8.com/fluency-systems-filled/48/2979ff/calendar-check.png');
+  background-image: url('https://img.icons8.com/ios-glyphs/30/2979ff/overtime.png');
 }
 
 .stat-icon.mastered {
@@ -78,7 +78,7 @@
 
 .stat-icon.accuracy {
   background-color: #e0f7fa;
-  background-image: url('https://img.icons8.com/material-rounded/48/00bcd4/chart.png');
+  background-image: url('https://img.icons8.com/ios-filled/50/00bcd4/chart-line.png');
 }
 
 .stat-info {
