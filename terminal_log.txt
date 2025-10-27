@@ -1,4 +1,10 @@
 index-DkV5dMyr.js:1441 Firebase Config: Object
+securepubads.g.doubleclick.net/pagead/ppub_config?ippd=ibotta.com:1  Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+securepubads.g.doubleclick.net/pagead/managed/dict/m202510140101/gpt:1  Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+connect.facebook.net/en_US/fbevents.js:1  Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+Refused to frame 'https://authenticate.ibotta.com/' because an ancestor violates the following Content Security Policy directive: "frame-ancestors 'none'".
+
+content.js:1 Uncaught (in promise) Object
 index-DkV5dMyr.js:48 Uncaught Error: Minified React error #310; visit https://react.dev/errors/310 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
     at ze (index-DkV5dMyr.js:48:49261)
     at fi (index-DkV5dMyr.js:48:50328)
