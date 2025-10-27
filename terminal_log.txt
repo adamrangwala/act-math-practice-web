@@ -1,18 +1,3 @@
-index-DkV5dMyr.js:1441 Firebase Config: Object
-securepubads.g.doubleclick.net/pagead/ppub_config?ippd=ibotta.com:1  Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
-securepubads.g.doubleclick.net/pagead/managed/dict/m202510140101/gpt:1  Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
-connect.facebook.net/en_US/fbevents.js:1  Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
-Refused to frame 'https://authenticate.ibotta.com/' because an ancestor violates the following Content Security Policy directive: "frame-ancestors 'none'".
 
-content.js:1 Uncaught (in promise) Object
-index-DkV5dMyr.js:48 Uncaught Error: Minified React error #310; visit https://react.dev/errors/310 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
-    at ze (index-DkV5dMyr.js:48:49261)
-    at fi (index-DkV5dMyr.js:48:50328)
-    at Object.useState (index-DkV5dMyr.js:48:62545)
-    at react_production.useState (index-DkV5dMyr.js:17:8144)
-    at PracticeScreen (index-DkV5dMyr.js:1445:95253)
-    at Gs (index-DkV5dMyr.js:48:47983)
-    at co (index-DkV5dMyr.js:48:70784)
-    at Oc (index-DkV5dMyr.js:48:81116)
-    at rf (index-DkV5dMyr.js:48:116867)
-    at Dh (index-DkV5dMyr.js:48:115913)
+C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp>git push
+fatal: unable to access 'https://github.com/adamrangwala/act-math-practice-web.git/': Could not resolve host: github.com
