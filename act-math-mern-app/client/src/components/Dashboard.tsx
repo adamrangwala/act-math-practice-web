@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Spinner, Alert } from 'react-bootstrap';
+import { Spinner, Alert, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { authenticatedFetch } from '../utils/api';
@@ -16,6 +16,8 @@ interface DashboardStats {
   questionsDue: number;
   subcategoriesMastered: number;
   overallAccuracy: number;
+  totalSubcategoriesTracked: number;
+  totalPossibleSubcategories: number;
 }
 
 const Dashboard = () => {
@@ -81,7 +83,9 @@ const Dashboard = () => {
           <div className="stat-icon mastered"></div>
           <div className="stat-info">
             <span className="stat-label">Mastered</span>
-            <span className="stat-value">{dashboardStats?.subcategoriesMastered ?? 0}</span>
+            <span className="stat-value">
+              {dashboardStats?.subcategoriesMastered ?? 0} / {dashboardStats?.totalSubcategoriesTracked ?? 0}
+            </span>
           </div>
         </div>
         <div className="stat-card">
@@ -99,7 +103,24 @@ const Dashboard = () => {
         </button>
       </div>
 
-      <h2 className="skills-breakdown-title">Skills Breakdown</h2>
+      <div className="skills-breakdown-header">
+        <h2 className="skills-breakdown-title">Skills Breakdown</h2>
+        <div className="skills-header-info">
+          <span className="skill-count">
+            {dashboardStats?.totalSubcategoriesTracked ?? 0} / {dashboardStats?.totalPossibleSubcategories ?? 58} Skills Assessed
+          </span>
+          <OverlayTrigger
+            placement="top"
+            overlay={
+              <Tooltip id="skill-tooltip">
+                A skill appears here once you've answered at least 5 questions from its subcategory.
+              </Tooltip>
+            }
+          >
+            <span className="info-icon">ⓘ</span>
+          </OverlayTrigger>
+        </div>
+      </div>
       <div className="skills-list">
         {skillStats && skillStats.map((skill) => (
           <div key={skill.subcategory} className="skill-item" onClick={() => navigate(`/practice/${encodeURIComponent(skill.subcategory)}`)}>

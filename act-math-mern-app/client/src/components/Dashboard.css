@@ -119,11 +119,44 @@
   filter: brightness(0.9);
 }
 
+.skills-breakdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
 .skills-breakdown-title {
   font-size: 1.5rem;
   font-weight: bold;
-  margin-bottom: 1.5rem;
   color: #333;
+  margin-bottom: 0; /* Remove margin from the title itself */
+}
+
+.skills-header-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.skill-count {
+  font-size: 1rem;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.info-icon {
+  cursor: pointer;
+  font-weight: bold;
+  color: #6c757d;
+  border: 1px solid #6c757d;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-style: normal;
 }
 
 .skills-list {

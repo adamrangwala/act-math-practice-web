@@ -46,6 +46,7 @@ export const getDashboardStats = async (req: AuthRequest, res: Response) => {
       subcategoriesMastered,
       overallAccuracy: parseFloat(overallAccuracy.toFixed(2)),
       totalSubcategoriesTracked: progressSnapshot.size,
+      totalPossibleSubcategories: 58, // Add the total count here
     });
 
   } catch (error) {
