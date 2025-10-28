@@ -18,4 +18,10 @@
 
 -   **Accessibility:** The calculator will be designed with accessibility in mind, including high-contrast colors, clear button labels, and keyboard support.
 -   **Responsiveness:** The calculator will be fully responsive and work seamlessly on both desktop and mobile devices.
--   **Ease of Use:** The calculator will be intuitive and easy to use, with a clear and logical button layout.
+> "To ensure that the 'Skills Breakdown' section provides statistically meaningful insights, a **five-question threshold** was implemented. A subcategory card will only be displayed on the dashboard after the user has answered at least five questions belonging to that subcategory. This prevents the system from making premature judgments about a user's proficiency based on a small, potentially unrepresentative, sample of answers."
+
+> "A **floating calculator component** was designed and implemented to provide users with easy access to a calculator at any point during a practice session. Key design choices include: 1) **UI/Theme:** A dark-mode theme was chosen for a modern, high-contrast aesthetic. 2) **Input Logic:** A standard 'number-then-function' input flow was adopted for reliability, avoiding the complexity of a full mathematical parser. 3) **Functionality:** A toggle for 'Degrees' and 'Radians' was included to match the requirements of different ACT problem types."
+
+> "The Practice Screen UI was refined to improve focus and usability. The timer and calculator were moved out of the main content flow. The **calculator is now accessed via a floating action button**, and the **timer is a small, persistent widget**. This declutters the main question area and ensures these tools are always accessible without being intrusive. Additionally, answer choices were given a subtle lift-and-highlight animation on hover to improve interactivity."
+
+> "To improve the onboarding experience for new users, the 'Skills Breakdown' section on the dashboard was enhanced. A **progress counter** (e.g., '0/58 Skills Assessed') was added to show the user's progress against the total number of skills. An **info icon with a tooltip** was also added to proactively explain that skills only appear after five questions have been answered in that topic. This prevents user confusion and clarifies the path to populating the dashboard."
