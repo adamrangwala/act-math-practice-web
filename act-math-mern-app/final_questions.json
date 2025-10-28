@@ -705,5 +705,92 @@
       0,
       0
     ]
+  },
+  {
+    "questionId": "algebra-arithmetic-sequence-03",
+    "category": "Algebra",
+    "subcategories": [
+      "Arithmetic & Geometric Sequences",
+      "Translating Word Problems to Equations"
+    ],
+    "questionText": "A student starts a savings account. They deposit the same amount of money from their part-time job each week. At the end of the 1st week, the account has \\$50. At the end of the 4th week, the account has \\$87.50. What is the total amount of money in the account at the end of the 10th week?",
+    "options": [
+      "$150.00",
+      "$162.50",
+      "$175.00",
+      "$182.50",
+      "$190.00"
+    ],
+    "correctAnswerIndex": 1,
+    "solutionText": "This is an arithmetic sequence problem because the account balance increases by the same amount each week. Let 'a_1' be the amount after the first week and 'd' be the common difference (the weekly deposit).<br/><br/>We are given:<br/>- <math><msub><mi>a</mi><mn>1</mn></msub><mo>=</mo><mn>50</mn></math> (balance at week 1)<br/>- <math><msub><mi>a</mi><mn>4</mn></msub><mo>=</mo><mn>87.50</mn></math> (balance at week 4)<br/><br/>The formula for the n-th term of an arithmetic sequence is <math><msub><mi>a</mi><mi>n</mi></msub><mo>=</mo><msub><mi>a</mi><mn>1</mn></msub><mo>+</mo><mrow><mo>(</mo><mi>n</mi><mo>-</mo><mn>1</mn><mo>)</mo></mrow><mi>d</mi></math>.<br/><br/><b>1. Find the common difference (d):</b><br/>We can use the information for the 4th week to solve for 'd'.<br/><math display='block'><mtable columnalign='right center left' rowspacing='1ex'><mtr><mtd><msub><mi>a</mi><mn>4</mn></msub></mtd><mtd><mo>=</mo></mtd><mtd><msub><mi>a</mi><mn>1</mn></msub><mo>+</mo><mrow><mo>(</mo><mn>4</mn><mo>-</mo><mn>1</mn><mo>)</mo></mrow><mi>d</mi></mtd></mtr><mtr><mtd><mn>87.50</mn></mtd><mtd><mo>=</mo></mtd><mtd><mn>50</mn><mo>+</mo><mn>3</mn><mi>d</mi></mtd></mtr><mtr><mtd><mn>37.50</mn></mtd><mtd><mo>=</mo></mtd><mtd><mn>3</mn><mi>d</Mtd></mtr><mtr><mtd><mi>d</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>12.50</mn></mtd></mtr></mtable></math><br/>So, the student deposits $12.50 each week.<br/><br/><b>2. Find the balance at the 10th week (<math><msub><mi>a</mi><mn>10</mn></msub></math>):</b><br/>Now we use the same formula for n=10.<br/><math display='block'><mtable columnalign='right center left' rowspacing='1ex'><mtr><mtd><msub><mi>a</mi><mn>10</mn></msub></mtd><mtd><mo>=</mo></mtd><mtd><msub><mi>a</mi><mn>1</mn></msub><mo>+</mo><mrow><mo>(</mo><mn>10</mn><mo>-</mo><mn>1</mn><mo>)</mo></mrow><mi>d</mi></mtd></mtr><mtr><mtd><msub><mi>a</mi><mn>10</mn></msub></mtd><mtd><mo>=</mo></mtd><mtd><mn>50</mn><mo>+</mo><mn>9</mn><mrow><mo>(</mo><mn>12.50</mn><mo>)</mo></mrow></mtd></mtr><mtr><mtd><msub><mi>a</mi><mn>10</mn></msub></mtd><mtd><mo>=</mo></mtd><mtd><mn>50</mn><mo>+</mo><mn>112.50</mn></mtd></mtr><mtr><mtd><msub><mi>a</mi><mn>10</mn></msub></mtd><mtd><mo>=</mo></mtd><mtd><mn>162.50</mn></mtd></mtr></mtable></math><br/>The total amount in the account at the end of the 10th week will be $162.50.",
+    "difficulty": 3,
+    "diagramUrl": null,
+    "diagramSvg": null,
+    "solutionDiagramSvg": null,
+    "isActive": true,
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "questionId": "coord-geometry-intersections-01",
+    "category": "Coordinate Geometry",
+    "subcategories": [
+      "The Coordinate Plane",
+      "Equations of Circles & Conic Sections",
+      "Equations of Lines"
+    ],
+    "questionText": "In the standard (x,y) coordinate plane, how many points are both 10 coordinate units from the origin and 6 coordinate units from the line x = 0?",
+    "options": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "correctAnswerIndex": 2,
+    "solutionText": "The fastest way to solve this problem is by visualizing the shapes involved.<br/><br/><b>1. The first condition:</b> '10 coordinate units from the origin' describes a circle centered at (0,0) with a radius of 10.<br/><br/><b>2. The second condition:</b> '6 coordinate units from the line x = 0' describes two vertical lines, <math><mi>x</mi><mo>=</mo><mn>6</mn></math> and <math><mi>x</mi><mo>=</mo><mo>-</mo><mn>6</mn></math>.<br/><br/>The question is asking for the total number of times these two lines intersect the circle. As the solution diagram clearly shows, the two vertical lines are closer to the center of the circle than the radius (6 < 10), so each line must cross the circle twice.<br/><br/>By counting the red intersection points in the diagram, we can see there are a total of 4.",
+    "difficulty": 3,
+    "diagramUrl": null,
+    "diagramSvg": null,
+    "solutionDiagramSvg": "<svg width='220' height='220' viewBox='0 0 260 260' xmlns='http://www.w3.org/2000/svg'><!-- Axes --><line x1='10' y1='130' x2='250' y2='130' stroke='#aaa' stroke-width='1'/><line x1='130' y1='10' x2='130' y2='250' stroke='#aaa' stroke-width='1'/><text x='245' y='145' font-family='sans-serif' font-size='12px'>x</text><text x='115' y='20' font-family='sans-serif' font-size='12px'>y</text><!-- Circle --><circle cx='130' cy='130' r='100' stroke='black' stroke-width='2' fill='none'/><!-- Dashed Black Vertical Lines --><line x1='190' y1='20' x2='190' y2='240' stroke='black' stroke-width='2' fill='none'/><line x1='70' y1='20' x2='70' y2='240' stroke='black' stroke-width='2' fill='none'/><!-- Dashed Blue Lines from Origin --><line x1='130' y1='130' x2='190' y2='50' stroke='blue' stroke-width='2' stroke-dasharray='4,4'/><line x1='130' y1='130' x2='190' y2='210' stroke='blue' stroke-width='2' stroke-dasharray='4,4'/><line x1='130' y1='130' x2='70' y2='50' stroke='blue' stroke-width='2' stroke-dasharray='4,4'/><line x1='130' y1='130' x2='70' y2='210' stroke='blue' stroke-width='2' stroke-dasharray='4,4'/><!-- Intersection Points --><circle cx='190' cy='50' r='3' fill='red'/><circle cx='190' cy='210' r='3' fill='red'/><circle cx='70' cy='50' r='3' fill='red'/><circle cx='70' cy='210' r='3' fill='red'/><!-- Labels --><text x='195' y='125' font-family='sans-serif' font-size='12px' fill='black'>x=6</text><text x='42' y='125' font-family='sans-serif' font-size='12px' fill='black'>x=-6</text><text x='140' y='70' font-family='sans-serif' font-size='12px' fill='blue'>r=10</text></svg>",
+    "isActive": true,
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "questionId": "geometry-angle-side-relationship-01",
+    "category": "Geometry",
+    "subcategories": [
+      "Properties of Triangles"
+    ],
+    "questionText": "In △XYZ, the side lengths are XY = 14, YZ = 10, and XZ = 18. What is the correct ordering of the angle measures, from least to greatest?",
+    "options": [
+      "<math><mo>∠</mo><mi>X</mi><mo>,</mo><mo>∠</mo><mi>Y</mi><mo>,</mo><mo>∠</mo><mi>Z</mi></math>",
+      "<math><mo>∠</mo><mi>Y</mi><mo>,</mo><mo>∠</mo><mi>X</mi><mo>,</mo><mo>∠</mo><mi>Z</mi></math>",
+      "<math><mo>∠</mo><mi>Z</mi><mo>,</mo><mo>∠</mo><mi>Y</mi><mo>,</mo><mo>∠</mo><mi>X</mi></math>",
+      "<math><mo>∠</mo><mi>X</mi><mo>,</mo><mo>∠</mo><mi>Z</mi><mo>,</mo><mo>∠</mo><mi>Y</mi></math>",
+      "<math><mo>∠</mo><mi>Y</mi><mo>,</mo><mo>∠</mo><mi>Z</mi><mo>,</mo><mo>∠</mo><mi>X</mi></math>"
+    ],
+    "correctAnswerIndex": 3,
+    "solutionText": "A fundamental theorem in geometry states that the measure of an angle in a triangle is directly related to the length of the side opposite it. The smallest angle is opposite the shortest side, and the largest angle is opposite the longest side.<br/><br/><b>1. Order the side lengths:</b><br/>From the diagram, we can order the sides from shortest to longest:<br/><br/><math display='block'><mrow><mtext>YZ (10)</mtext><mo>&lt;</mo><mtext>XY (14)</mtext><mo>&lt;</mo><mtext>XZ (18)</mtext></mrow></math><br/><b>2. Find the corresponding opposite angles:</b><br/>The angles opposite these sides must be in the same order. The angle opposite YZ is ∠X, the angle opposite XY is ∠Z, and the angle opposite XZ is ∠Y.<br/><math display='block'><mrow><mo>∠</mo><mi>X</mi><mo>&lt;</mo><mo>∠</mo><mi>Z</mi><mo>&lt;</mo><mo>∠</mo><mi>Y</mi></mrow></math><br/>Therefore, the correct ordering of the angles from least to greatest is ∠X, ∠Z, ∠Y.",
+    "difficulty": 2,
+    "diagramUrl": null,
+    "diagramSvg": null,
+    "solutionDiagramSvg": "<svg width='250' height='200' viewBox='0 0 250 200' xmlns='http://www.w3.org/2000/svg'><polygon points='10,180 240,180 100,10' style='fill:none;stroke:black;stroke-width:2' /><text x='115' y='195' font-family='sans-serif' font-size='14px'>18</text><text x='30' y='100' font-family='sans-serif' font-size='14px'>14</text><text x='178' y='100' font-family='sans-serif' font-size='14px'>10</text><text x='97' y='35' font-family='sans-serif' font-size='16px' font-weight='bold'>Y</text><text x='20' y='175' font-family='sans-serif' font-size='16px' font-weight='bold'>X</text><text x='215' y='175' font-family='sans-serif' font-size='16px' font-weight='bold'>Z</text></svg>",
+    "isActive": true,
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0,0,0,0,0]
   }
 ]
