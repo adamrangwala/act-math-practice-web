@@ -45,6 +45,7 @@ try {
 }
 
 const db = admin.firestore();
+admin.firestore.setLogFunction(console.log);
 
 const seedDatabase = async () => {
   try {
@@ -58,8 +59,18 @@ const seedDatabase = async () => {
 
     for (const question of questions) {
       const docRef = questionsCollection.doc(question.questionId);
-      await docRef.set(question);
-      console.log(`Upserted question: ${question.questionId}`);
+      
+      console.log(`Attempting to write doc: ${question.questionId}...`);
+      
+      const writePromise = docRef.set(question);
+      
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Firestore write operation timed out after 15 seconds.')), 15000)
+      );
+
+      await Promise.race([writePromise, timeoutPromise]);
+      
+      console.log(`Successfully upserted question: ${question.questionId}`);
     }
 
     console.log('Seeding completed successfully!');
