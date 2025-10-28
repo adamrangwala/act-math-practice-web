@@ -64,6 +64,22 @@ To ensure mathematical formulas and symbols are rendered correctly and accessibl
 
 The frontend application will automatically detect these tags and use MathJax to render them as properly formatted mathematical equations.
 
+### Improving Square Root Spacing
+
+To prevent the square root symbol from appearing too close to the content inside it, we use the `<mpadded>` tag to add vertical spacing.
+
+-   **Rule:** Wrap the content of a `<msqrt>` tag with `<mpadded>`.
+    -   For fractions, use `height="1.2em"`.
+    -   For non-fractions, use `height="0.8em"`.
+
+-   **Example (Fraction):**
+    -   **Before:** `<math><msqrt><mfrac><mrow><mn>2</mn><mi>A</mi></mrow><mn>3</mn></mfrac></msqrt></math>`
+    -   **After:** `<math><msqrt><mpadded height="1.2em"><mfrac><mrow><mn>2</A</mi></mrow><mn>3</mn></mfrac></mpadded></msqrt></math>`
+
+-   **Example (Non-Fraction):**
+    -   **Before:** `<math><msqrt><mn>6</mn><mi>A</mi></msqrt></math>`
+    -   **After:** `<math><msqrt><mpadded height="0.8em"><mn>6</mn><mi>A</mi></mpadded></msqrt></math>`
+
 ### Handling Tabular Data
 
 If a question requires a table, the data must be embedded directly into the `questionText` field as a standard HTML `<table>`.

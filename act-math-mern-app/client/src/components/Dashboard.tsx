@@ -122,28 +122,35 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="skills-list">
-        {skillStats && skillStats.map((skill) => (
-          <div key={skill.subcategory} className="skill-item" onClick={() => navigate(`/practice/${encodeURIComponent(skill.subcategory)}`)}>
-            <div className="skill-item-header">
-              <div className="skill-name-group">
-                <div className="skill-icon"></div>
-                <span className="skill-name">{skill.subcategory}</span>
+        {skillStats && skillStats.length > 0 ? (
+          skillStats.map((skill) => (
+            <div key={skill.subcategory} className="skill-item" onClick={() => navigate(`/practice/${encodeURIComponent(skill.subcategory)}`)}>
+              <div className="skill-item-header">
+                <div className="skill-name-group">
+                  <div className="skill-icon"></div>
+                  <span className="skill-name">{skill.subcategory}</span>
+                </div>
+                {getPerformanceTier(skill.accuracy)}
               </div>
-              {getPerformanceTier(skill.accuracy)}
+              <div className="skill-details">
+                <span>🎯 Accuracy: {skill.accuracy.toFixed(0)}%</span>
+                <span>⏱️ Avg Time: {skill.avgTime.toFixed(1)}s</span>
+                <span>✏️ Problems: {skill.totalAttempts}</span>
+              </div>
+              <div className="progress-bar">
+                <div
+                  className="progress-bar-inner"
+                  style={{ width: `${skill.accuracy}%` }}
+                ></div>
+              </div>
             </div>
-            <div className="skill-details">
-              <span>🎯 Accuracy: {skill.accuracy.toFixed(0)}%</span>
-              <span>⏱️ Avg Time: {skill.avgTime.toFixed(1)}s</span>
-              <span>✏️ Problems: {skill.totalAttempts}</span>
-            </div>
-            <div className="progress-bar">
-              <div
-                className="progress-bar-inner"
-                style={{ width: `${skill.accuracy}%` }}
-              ></div>
-            </div>
+          ))
+        ) : (
+          <div className="skills-list-placeholder">
+            <h4>Your Skills Breakdown will appear here.</h4>
+            <p>Answer a few more questions in each category to unlock a detailed analysis of your strengths and weaknesses.</p>
           </div>
-        ))}
+        )}
       </div>
     </div>
   );

@@ -1,21 +1,23 @@
- {
-    "questionId": "algebra-solve-for-variable-01",
-    "category": "Algebra",
-    "subcategories": ["Solving Linear Equations"],
-    "questionText": "If <math><mn>4</mn><mi>a</mi><mo>=</mo><mn>3</mn><mi>b</mi><mo>+</mo><mn>5</mn></math>, then what is the value of <math><mi>b</mi></math> in terms of <math><mi>a</mi></math>?",
-    "options": [
-      "<math><mfrac><mrow><mn>4</mn><mi>a</mi><mo>-</mo><mn>5</mn></mrow><mn>3</mn></mfrac></math>",
-      "<math><mfrac><mrow><mn>4</mn><mi>a</mi></mrow><mn>3</mn></mfrac><mo>-</mo><mn>5</mn></math>",
-      "<math><mfrac><mrow><mn>4</mn><mi>a</mi><mo>-</mo><mn>3</mn></mrow><mn>5</mn></mfrac></math>",
-      "<math><mfrac><mrow><mn>5</mn><mi>a</mi><mo>+</mo><mn>3</mn></mrow><mn>4</mn></mfrac></math>",
-      "<math><mfrac><mrow><mn>4</mn><mi>a</mi><mo>+</mo><mn>5</mn></mrow><mn>3</mn></mfrac></math>"
+{
+    "questionId": "statistics_probability_003",
+    "category": "Statistics & Probability",
+    "subcategories": [
+      "Basic Probability",
+      "Data Interpretation (Graphs & Tables)"
     ],
-    "correctAnswerIndex": 0,
-    "solutionText": "The goal is to isolate the variable b. Start with the given equation: <math display='block'><mtable columnalign='right center left'><mtr><mtd><mn>4</mn><mi>a</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>3</mn><mi>b</mi><mo>+</mo><mn>5</mn></mtd></mtr><mtr><mtd><mn>4</mn><mi>a</mi><mo>-</mo><mn>5</mn></mtd><mtd><mo>=</mo></mtd><mtd><mn>3</mn><mi>b</mi></mtd></mtr><mtr><mtd><mfrac><mrow><mn>4</mn><mi>a</mi><mo>-</mo><mn>5</mn></mrow><mn>3</mn></mfrac></mtd><mtd><mo>=</mo></mtd><mtd><mi>b</mi></mtd></mtr></mtable></math> Therefore, the correct expression for b is <math><mfrac><mrow><mn>4</mn><mi>a</mi><mo>-</mo><mn>5</mn></mrow><mn>3</mn></mfrac></math>.",
-    "difficulty": 1,
+    "questionText": "A bag contains a mix of 4 types of colored marbles: Red, Blue, Green, and Yellow. For a probability experiment, a marble is drawn from the bag and then returned, 400 times. The results are in the table below. To make the experimental results better match the theoretical probability of 25% for each type, which of the following changes to the contents of the bag would be best?<br/><br/><table class='table table-bordered' style='width: auto; margin: 0 auto;'><thead><tr><th>Marble type</th><th>Number of times drawn</th></tr></thead><tbody><tr><td>Red</td><td>60</td></tr><tr><td>Blue</td><td>140</td></tr><tr><td>Green</td><td>105</td></tr><tr><td>Yellow</td><td>95</td></tr></tbody></table>",
+    "options": [
+      "Add Blue marbles and remove Green marbles.",
+      "Add Red marbles and remove Yellow marbles.",
+      "Add Red marbles and remove Blue marbles.",
+      "Add Green marbles and remove Blue marbles.",
+      "Remove Red marbles and add Yellow marbles."
+    ],
+    "correctAnswerIndex": 2,
+    "solutionText": "With 400 draws, the theoretical expectation for each of the 4 marble types is 25% of 400, which is 100 draws. The results show that 'Red' marbles were drawn far too few times (60) and 'Blue' marbles were drawn far too many times (140). Therefore, the best way to correct the mix is to increase the number of Red marbles and decrease the number of Blue marbles in the bag.",
+    "difficulty": 2,
     "diagramUrl": null,
     "diagramSvg": null,
-    "solutionDiagramSvg": null,
     "isActive": true,
     "avgTimeSeconds": null,
     "optionSelectionCounts": [0, 0, 0, 0, 0]

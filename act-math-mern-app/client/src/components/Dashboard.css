@@ -238,3 +238,24 @@
   border-radius: 4px;
   transition: width 0.5s ease-in-out;
 }
+
+.skills-list-placeholder {
+  grid-column: 1 / -1; /* Span across all columns */
+  text-align: center;
+  padding: 3rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.skills-list-placeholder h4 {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.75rem;
+}
+
+.skills-list-placeholder p {
+  color: #6c757d;
+  max-width: 500px;
+  margin: 0 auto;
+}

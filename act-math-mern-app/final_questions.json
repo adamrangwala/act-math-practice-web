@@ -491,5 +491,219 @@
     "isActive": true,
     "avgTimeSeconds": null,
     "optionSelectionCounts": [0, 0, 0, 0, 0]
+  },
+  {
+    "questionId": "number_quantity_006",
+    "category": "Number & Quantity",
+    "subcategories": [
+      "Unit Conversion",
+      "Ratios, Proportions, & Percentages"
+    ],
+    "questionText": "A recipe for a fruit punch concentrate requires a ratio of fruit juice to sparkling water of 2:15. How many ounces of fruit juice should be added to 3 quarts of sparkling water to make the punch according to the recipe? (Note: 1 quart = 32 ounces)",
+    "options": [
+      "6.4",
+      "12.8",
+      "15",
+      "32",
+      "96"
+    ],
+    "correctAnswerIndex": 1,
+    "solutionText": "First, we need to convert the amount of sparkling water from quarts to ounces to match the units in the ratio. We are given that 1 quart is equal to 32 ounces.<br/><br/><math display='block'><mn>3</mn><mtext>quarts</mtext><mo>×</mo><mfrac><mrow><mn>32</mn><mtext> ounces</mtext></mrow><mrow><mn>1</mn><mtext> quart</mtext></mrow></mfrac><mo>=</mo><mn>96</mn><mtext> ounces</mtext></math><br/>Now we can set up a proportion to find the required amount of fruit juice. Let 'x' be the number of ounces of fruit juice.<br/><math display='block'><mtable columnalign='right center left' rowspacing='1ex'><mtr><mtd><mfrac><mrow><mtext>fruit juice</mtext></mrow><mrow><mtext>sparkling water</mtext></mrow></mfrac></mtd><mtd><mo>=</mo></mtd><mtd><mfrac><mn>2</mn><mn>15</mn></mfrac></mtd></mtr><mtr><mtd><mfrac><mi>x</mi><mn>96</mn></mfrac></mtd><mtd><mo>=</mo></mtd><mtd><mfrac><mn>2</mn><mn>15</mn></mfrac></mtd></mtr><mtr><mtd><mn>15</mn><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>96</mn><mi>×</mi><mn>2</mn></mtd></mtr><mtr><mtd><mn>15</mn><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>192</mn></mtd></mtr><mtr><mtd><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mfrac><mn>192</mn><mn>15</mn></mfrac></mtd></mtr><mtr><mtd><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>12.8</mn></mtd></mtr></mtable></math><br/>Therefore, 12.8 ounces of fruit juice are needed.",
+    "difficulty": 2,
+    "diagramUrl": null,
+    "diagramSvg": null,
+    "solutionDiagramSvg": null,
+    "isActive": true,
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0,0,0,0,0]
+  },
+  {
+    "questionId": "algebra_009",
+    "category": "Algebra",
+    "subcategories": [
+      "Function Notation & Operations",
+      "Exponent Rules (Integer & Fractional)",
+      "Scientific Notation"
+    ],
+    "questionText": "Let <math><mi>h</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mn>4</mn><msup><mi>e</mi><mrow><mn>0.5</mn><mi>x</mi></mrow></msup><mo>-</mo><mn>10</mn></math>. Which of the following numbers is closest to the value of <math><mi>h</mi><mo>(</mo><mn>10</mn><mo>)</mo></math>?",
+    "options": [
+      "<math><mn>6</mn><mo>×</mo><msup><mn>10</mn><mn>1</mn></msup></math>",
+      "<math><mn>1</mn><mo>×</mo><msup><mn>10</mn><mn>2</mn></msup></math>",
+      "<math><mn>6</mn><mo>×</mo><msup><mn>10</mn><mn>2</mn></msup></math>",
+      "<math><mn>1</mn><mo>×</mo><msup><mn>10</mn><mn>3</mn></msup></math>",
+      "<math><mn>6</mn><mo>×</mo><msup><mn>10</mn><mn>3</mn></msup></math>"
+    ],
+    "correctAnswerIndex": 2,
+    "solutionText": "First, substitute <math><mi>x</mi><mo>=</mo><mn>10</mn></math> into the function <math><mi>h</mi><mo>(</mo><mi>x</mi><mo>)</mo></math>.<br/><br/><math display='block'><mtable columnalign='right center left' rowspacing='1ex'><mtr><mtd><mi>h</mi><mo>(</mo><mn>10</mn><mo>)</mo></mtd><mtd><mo>=</mo></mtd><mtd><mn>4</mn><msup><mi>e</mi><mrow><mn>0.5</mn><mo>(</mo><mn>10</mn><mo>)</mo></mrow></msup><mo>-</mo><mn>10</mn></mtd></mtr><mtr><mtd></mtd><mtd><mo>=</mo></mtd><mtd><mn>4</mn><msup><mi>e</mi><mn>5</mn></msup><mo>-</mo><mn>10</mn></mtd></mtr></mtable></math><br/>To estimate the value, we use the approximation <math><mi>e</mi><mo>≈</mo><mn>2.718</mn></math>. The value of <math><msup><mi>e</mi><mn>5</mn></msup></math> is approximately 148.4.<br/><br/>Now, substitute this value back into the equation:<br/><br/><math display='block'><mtable columnalign='right center left' rowspacing='1ex'><mtr><mtd><mi>h</mi><mo>(</mo><mn>10</mn><mo>)</mo></mtd><mtd><mo>≈</mo></mtd><mtd><mn>4</mn><mo>(</mo><mn>148.4</mn><mo>)</mo><mo>-</mo><mn>10</mn></mtd></mtr><mtr><mtd></mtd><mtd><mo>≈</mo></mtd><mtd><mn>593.6</mn><mo>-</mo><mn>10</mn></mtd></mtr><mtr><mtd></mtd><mtd><mo>≈</mo></mtd><mtd><mn>583.6</mn></mtd></mtr></mtable></math><br/>Now we compare this result to the answer choices:<br/>F. <math><mn>6</mn><mo>×</mo><msup><mn>10</mn><mn>1</mn></msup><mo>=</mo><mn>60</mn></math><br/>G. <math><mn>1</mn><mo>×</mo><msup><mn>10</mn><mn>2</mn></msup><mo>=</mo><mn>100</mn></math><br/>H. <math><mn>6</mn><mo>×</mo><msup><mn>10</mn><mn>2</mn></msup><mo>=</mo><mn>600</mn></math><br/>J. <math><mn>1</mn><mo>×</mo><msup><mn>10</mn><mn>3</mn></msup><mo>=</mo><mn>1,000</mn></math><br/>K. <math><mn>6</mn><mo>×</mo><msup><mn>10</mn><mn>3</mn></msup><mo>=</mo><mn>6,000</mn></math><br/><br/>The value <math><mn>583.6</mn></math> is closest to <math><mn>600</mn></math>.<br/><br/><b>Pro Tip:</b> For questions that require estimation with 'e', using your calculator is the fastest and most accurate method. Simply plug in the expression to get a precise value and then compare it to the answer choices.",
+    "difficulty": 3,
+    "diagramUrl": null,
+    "diagramSvg": null,
+    "solutionDiagramSvg": null,
+    "isActive": true,
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0,0,0,0,0]
+  },
+  {
+    "questionId": "trigonometry_002",
+    "category": "Trigonometry",
+    "subcategories": [
+      "The Unit Circle & Radians",
+      "Unit Conversion"
+    ],
+    "questionText": "Which of the following expresses 135° in radians?",
+    "options": [
+      "<math><mfrac><mrow><mn>2</mn><mi>π</mi></mrow><mn>3</mn></mfrac></math>",
+      "<math><mfrac><mrow><mn>3</mn><mi>π</mi></mrow><mn>4</mn></mfrac></math>",
+      "<math><mfrac><mrow><mn>4</mn><mi>π</mi></mrow><mn>5</mn></mfrac></math>",
+      "<math><mfrac><mrow><mn>5</mn><mi>π</mi></mrow><mn>6</mn></mfrac></math>",
+      "<math><mfrac><mrow><mn>7</mn><mi>π</mi></mrow><mn>8</mn></mfrac></math>"
+    ],
+    "correctAnswerIndex": 1,
+    "solutionText": "To convert an angle from degrees to radians, you multiply the degree measure by the conversion factor <math><mfrac><mi>π</mi><mn>180°</mn></mfrac></math>.<br/><br/><math display='block'><mn>135</mn><mo>°</mo><mo>×</mo><mfrac><mi>π</mi><mrow><mn>180</mn><mo>°</mo></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>135</mn><mi>π</mi></mrow><mn>180</mn></mfrac></math><br/>Now, we simplify the fraction. The greatest common divisor of 135 and 180 is 45.<br/><br/><math display='block'><mfrac><mrow><mn>135</mn><mo>÷</mo><mn>45</mn></mrow><mrow><mn>180</mn><mo>÷</mo><mn>45</mn></mrow></mfrac><mi>π</mi><mo>=</mo><mfrac><mrow><mn>3</mn><mi>π</mi></mrow><mn>4</mn></mfrac></math><br/><br/><b>Pro Tip:</b> It's helpful to memorize the radian conversions for common angles like 30°, 45°, 60°, and 90°. Knowing that <math><mn>45</mn><mo>°</mo><mo>=</mo><mfrac><mi>π</mi><mn>4</mn></mfrac></math> allows you to quickly recognize that 135° is <math><mn>3</mn><mo>×</mo><mn>45</mn><mo>°</mo></math>, which equals <math><mn>3</mn><mo>×</mo><mfrac><mi>π</mi><mn>4</mn></mfrac></math> or <math><mfrac><mrow><mn>3</mn><mi>π</mi></mrow><mn>4</mn></mfrac></math>.",
+    "difficulty": 2,
+    "diagramUrl": null,
+    "diagramSvg": null,
+    "solutionDiagramSvg": null,
+    "isActive": true,
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0,0,0,0,0]
+  },
+  {
+    "questionId": "trigonometry_003",
+    "category": "Trigonometry",
+    "subcategories": [
+      "The Unit Circle & Radians",
+      "Unit Conversion"
+    ],
+    "questionText": "Which of the following expresses 80° in radians?",
+    "options": [
+      "<math><mfrac><mrow><mn>2</mn><mi>π</mi></mrow><mn>9</mn></mfrac></math>",
+      "<math><mfrac><mrow><mn>4</mn><mi>π</mi></mrow><mn>9</mn></mfrac></math>",
+      "<math><mfrac><mrow><mn>2</mn><mi>π</mi></mrow><mn>3</mn></mfrac></math>",
+      "<math><mfrac><mrow><mn>9</mn><mi>π</mi></mrow><mn>4</mn></mfrac></math>",
+      "<math><mfrac><mrow><mn>8</mn><mi>π</mi></mrow><mn>9</mn></mfrac></math>"
+    ],
+    "correctAnswerIndex": 1,
+    "solutionText": "To convert an angle from degrees to radians, you multiply the degree measure by the conversion factor <math><mfrac><mi>π</mi><mn>180°</mn></mfrac></math>.<br/><br/><math display='block'><mn>80</mn><mo>°</mo><mo>×</mo><mfrac><mi>π</mi><mrow><mn>180</mn><mo>°</mo></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>80</mn><mi>π</mi></mrow><mn>180</mn></mfrac></math><br/><br/>Now, we simplify the fraction. The greatest common divisor of 80 and 180 is 20.<br/><br/><math display='block'><mfrac><mrow><mn>80</mn><mo>÷</mo><mn>20</mn></mrow><mrow><mn>180</mn><mo>÷</mo><mn>20</mn></mrow></mfrac><mi>π</mi><mo>=</mo><mfrac><mrow><mn>4</mn><mi>π</mi></mrow><mn>9</mn></mfrac></math><br/><br/><b>Pro Tip:</b> When simplifying fractions like 80/180, you can start by dividing by 10 to get 8/18, which is much easier to see simplifies to 4/9.",
+    "difficulty": 2,
+    "diagramUrl": null,
+    "diagramSvg": null,
+    "solutionDiagramSvg": null,
+    "isActive": true,
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0,0,0,0,0]
+  },
+  {
+    "questionId": "algebra_010",
+    "category": "Algebra",
+    "subcategories": [
+      "Graph Transformations",
+      "Function Notation & Operations"
+    ],
+    "questionText": "Let the function <math><mi>g</mi></math> be defined as <math><mi>g</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><msup><mi>x</mi><mn>3</mn></msup></math>. In the standard (x,y) coordinate plane, the graph of <math><mi>y</mi><mo>=</mo><mi>g</mi><mo>(</mo><mi>x</mi><mo>)</mo></math> undergoes a transformation such that the result is the graph of <math><mi>y</mi><mo>=</mo><mi>g</mi><mo>(</mo><mi>x</mi><mo>-</mo><mn>5</mn><mo>)</mo></math>. Under this transformation, the graph of <math><mi>y</mi><mo>=</mo><mi>g</mi><mo>(</mo><mi>x</mi><mo>)</mo></math> is:",
+    "options": [
+      "shifted upward 5 coordinate units.",
+      "shifted downward 5 coordinate units.",
+      "shifted left 5 coordinate units.",
+      "shifted right 5 coordinate units.",
+      "stretched vertically by a factor of 5."
+    ],
+    "correctAnswerIndex": 3,
+    "solutionText": "A transformation of the form <math><mi>y</mi><mo>=</mo><mi>f</mi><mo>(</mo><mi>x</mi><mo>-</mo><mi>h</mi><mo>)</mo></math> represents a horizontal shift of the graph of <math><mi>y</mi><mo>=</mo><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo></math>.<br/><br/>If <math><mi>h</mi></math> is positive, the shift is to the right.<br/>If <math><mi>h</mi></math> is negative, the shift is to the left.<br/><br/>In this case, the transformation is <math><mi>y</mi><mo>=</mo><mi>g</mi><mo>(</mo><mi>x</mi><mo>-</mo><mn>5</mn><mo>)</mo></math>, so <math><mi>h</mi><mo>=</mo><mn>5</mn></math>. Since <math><mi>h</mi></math> is positive, the graph is shifted 5 coordinate units to the right.<br/><br/><b>Pro Tip:</b> A common mistake is to see the minus sign and assume the shift is to the left. Remember that for horizontal shifts, the direction is the opposite of the sign you see inside the parentheses.",
+    "difficulty": 2,
+    "diagramUrl": null,
+    "diagramSvg": null,
+    "solutionDiagramSvg": null,
+    "isActive": true,
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0,0,0,0,0]
+  },
+  {
+    "questionId": "algebra_011",
+    "category": "Algebra",
+    "subcategories": [
+      "Solving Linear Equations",
+      "Simplifying Radicals"
+    ],
+    "questionText": "The formula for the area of a triangle is <math><mi>A</mi><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>b</mi><mi>h</mi></math>, where <math><mi>b</mi></math> is the base and <math><mi>h</mi></math> is the height. If the base of a triangle is 3 times its height, which of the following expressions is equal to the height of the triangle?",
+    "options": [
+      "<math><msqrt><mpadded height=\"1.2em\"><mfrac><mrow><mn>2</mn><mi>A</mi></mrow><mn>3</mn></mfrac></mpadded></msqrt></math>",
+      "<math><msqrt><mpadded height=\"1.2em\"><mfrac><mrow><mn>3</mn><mi>A</mi></mrow><mn>2</mn></mfrac></mpadded></msqrt></math>",
+      "<math><mfrac><mrow><mn>2</mn><mi>A</mi></mrow><mn>3</mn></mfrac></math>",
+      "<math><msqrt><mpadded height=\"0.8em\"><mn>6</mn><mi>A</mi></mpadded></msqrt></math>",
+      "<math><mn>3</mn><mi>A</mi></math>"
+    ],
+    "correctAnswerIndex": 0,
+    "solutionText": "We are given the formula for the area of a triangle, <math><mi>A</mi><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>b</mi><mi>h</mi></math>, and the relationship <math><mi>b</mi><mo>=</mo><mn>3</mn><mi>h</mi></math>. We can substitute the expression for <math><mi>b</mi></math> into the area formula to solve for <math><mi>h</mi></math>.<br/><br/><math display='block'><mtable columnalign='right center left' rowspacing='1ex'><mtr><mtd><mi>A</mi></mtd><mtd><mo>=</mo></mtd><mtd><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>(</mo><mn>3</mn><mi>h</mi><mo>)</mo><mi>h</mi></mtd></mtr><mtr><mtd><mi>A</mi></mtd><mtd><mo>=</mo></mtd><mtd><mfrac><mn>3</mn><mn>2</mn></mfrac><msup><mi>h</mi><mn>2</mn></msup></mtd></mtr></mtable></math><br/>Now, we need to isolate <math><mi>h</mi></math>.<br/><br/><math display='block'><mtable columnalign='right center left' rowspacing='1ex'><mtr><mtd><mn>3</mn><msup><mi>h</mi><mn>2</mn></msup></mtd><mtd><mo>=</mo></mtd><mtd><mn>2</mn><mi>A</mi></mtd></mtr><mtr><mtd><msup><mi>h</mi><mn>2</mn></msup></mtd><mtd><mo>=</mo></mtd><mtd><mfrac><mrow><mn>2</mn><mi>A</mi></mrow><mn>3</mn></mfrac></mtd></mtr><mtr><mtd><mi>h</mi></mtd><mtd><mo>=</mo></mtd><mtd><msqrt><mpadded height=\"1.2em\"><mfrac><mrow><mn>2</mn><mi>A</mi></mrow><mn>3</mn></mfrac></mpadded></msqrt></mtd></mtr></mtable></math><br/>Therefore, the expression for the height <math><mi>h</mi></math> is <math><msqrt><mpadded height=\"1.2em\"><mfrac><mrow><mn>2</mn><mi>A</mi></mrow><mn>3</mn></mfrac></mpadded></msqrt></math>.",
+    "difficulty": 2,
+    "diagramUrl": null,
+    "diagramSvg": null,
+    "solutionDiagramSvg": null,
+    "isActive": true,
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0,0,0,0,0]
+  },
+  {
+    "questionId": "stats-probability-table-01",
+    "category": "Statistics & Probability",
+    "subcategories": [
+      "Data Interpretation (Graphs & Tables)",
+      "Basic Probability"
+    ],
+    "questionText": "A high school surveyed its students on their favorite core subject. The results, categorized by grade level, are summarized in the table below. What is the probability that a student randomly selected from the 10th graders chose Science as their favorite subject?<br/><br/><table class='table table-bordered' style='width: auto; margin: 0 auto;'><thead><tr><th>Grade</th><th>Math</th><th>Science</th><th>English</th><th>History</th><th>Total</th></tr></thead><tbody><tr><td>9th</td><td>40</td><td>35</td><td>50</td><td>45</td><td>170</td></tr><tr><td>10th</td><td>42</td><td>48</td><td>45</td><td>35</td><td>170</td></tr><tr><td>11th</td><td>38</td><td>40</td><td>55</td><td>42</td><td>175</td></tr><tr><td>Total</td><td>120</td><td>123</td><td>150</td><td>122</td><td>515</td></tr></tbody></table>",
+    "options": [
+      "<math><mfrac><mn>48</mn><mn>515</mn></mfrac></math>",
+      "<math><mfrac><mn>48</mn><mn>170</mn></mfrac></math>",
+      "<math><mfrac><mn>48</mn><mn>123</mn></mfrac></math>",
+      "<math><mfrac><mn>123</mn><mn>515</mn></mfrac></math>",
+      "<math><mfrac><mn>170</mn><mn>515</mn></mfrac></math>"
+    ],
+    "correctAnswerIndex": 1,
+    "solutionText": "The question asks for the probability that a randomly selected student is a 10th grader who prefers Science. This is a conditional probability problem.<br/><br/>First, we need to identify the total number of 10th graders, which will be our sample space. According to the 'Total' column for the '10th' grade row, there are 170 students in the 10th grade.<br/><br/>Next, we find the number of students within this group who chose Science as their favorite subject. The intersection of the '10th' grade row and the 'Science' column shows this number is 48.<br/><br/>The probability is the ratio of the part (10th graders who prefer Science) to the whole (total 10th graders).<br/><br/><math display='block'><mrow><mi>P</mi><mo stretchy='false'>(</mo><mtext>Science</mtext><mo stretchy='false'>|</mo><mtext>10th Grade</mtext><mo stretchy='false'>)</mo><mo>=</mo><mfrac><mrow><mtext>Number of 10th Graders who prefer Science</mtext></mrow><mrow><mtext>Total Number of 10th Graders</mtext></mrow></mfrac><mo>=</mo><mfrac><mn>48</mn><mn>170</mn></mfrac></mrow></math><br/><b>Pro Tip:</b> Be careful to identify the correct sample space. The question specifies 'randomly selected from the 10th graders', not from all students, so the denominator must be the total for that specific group.",
+    "difficulty": 2,
+    "diagramUrl": null,
+    "diagramSvg": null,
+    "solutionDiagramSvg": null,
+    "isActive": true,
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+   {
+    "questionId": "geometry-inscribed-square-area-diff-02",
+    "category": "Geometry",
+    "subcategories": [
+      "Properties of Quadrilaterals & Polygons",
+      "Properties of Circles (Area, Circumference, Arcs)",
+      "Pythagorean Theorem"
+    ],
+    "questionText": "A square is inscribed in a circle with a radius of 10 inches, as shown. What is the area, in square inches, of the shaded region between the circle and the square?",
+    "options": [
+      "<math><mn>100</mn><mi>π</mi><mo>-</mo><mn>200</mn></math>",
+      "<math><mn>100</mn><mi>π</mi><mo>-</mo><mn>100</mn></math>",
+      "<math><mn>25</mn><mi>π</mi><mo>-</mo><mn>100</mn></math>",
+      "<math><mn>200</mn></math>",
+      "<math><mn>100</mn><mi>π</mi></math>"
+    ],
+    "correctAnswerIndex": 0,
+    "solutionText": "The area of the shaded region is the area of the circle minus the area of the square.<br/><br/><b>1. Find the area of the circle:</b><br/>The formula for the area of a circle is <math><mi>A</mi><mo>=</mo><mi>π</mi><msup><mi>r</mi><mn>2</mn></msup></math>.<br/><math display='block'><mrow><msub><mi>A</mi><mtext>circle</mtext></msub><mo>=</mo><mi>π</mi><msup><mrow><mo>(</mo><mn>10</mn><mo>)</mo></mrow><mn>2</mn></msup><mo>=</mo><mn>100</mn><mi>π</mi></mrow></math><br/><b>2. Find the area of the square:</b><br/>The diameter of the circle is the diagonal of the square. Diameter = <math><mn>2</mn><mi>r</mi><mo>=</mo><mn>20</mn></math>. Let 's' be the side length. Using the Pythagorean theorem:<br/><math display='block'><mtable columnalign='right center left' rowspacing='1ex'><mtr><mtd><msup><mi>s</mi><mn>2</mn></msup><mo>+</mo><msup><mi>s</mi><mn>2</mn></msup></mtd><mtd><mo>=</mo></mtd><mtd><msup><mrow><mo>(</mo><mn>20</mn><mo>)</mo></mrow><mn>2</mn></msup></mtd></mtr><mtr><mtd><mn>2</mn><msup><mi>s</mi><mn>2</msup></mtd><mtd><mo>=</mo></mtd><mtd><mn>400</mn></mtd></mtr><mtr><mtd><msup><mi>s</mi><mn>2</mn></msup></mtd><mtd><mo>=</mo></mtd><mtd><mn>200</mn></mtd></mtr></mtable></math><br/>The area of the square (<math><msup><mi>s</mi><mn>2</mn></msup></math>) is 200.<br/><br/><b>3. Find the difference:</b><br/><math display='block'><mrow><msub><mi>A</mi><mtext>shaded</mtext></msub><mo>=</mo><msub><mi>A</mi><mtext>circle</mtext></msub><mo>-</mo><msub><mi>A</mi><mtext>square</mtext></msub></mrow></math><br/><math display='block'><mrow><msub><mi>A</mi><mtext>shaded</mtext></msub><mo>=</mo><mn>100</mn><mi>π</mi><mo>-</mo><mn>200</mn></mrow></math>",
+    "difficulty": 3,
+    "diagramUrl": null,
+    "diagramSvg": "<svg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><defs><mask id='square-mask'><rect width='200' height='200' fill='white'/><rect x='32.83' y='32.83' width='134.34' height='134.34' fill='black'/></mask></defs><circle cx='100' cy='100' r='96' stroke='black' stroke-width='2' fill='#e9e9e9' mask='url(#square-mask)'/><rect x='32.83' y='32.83' width='134.34' height='134.34' stroke='black' stroke-width='2' fill='none'/><circle cx='100' cy='100' r='3' fill='black'/><line x1='100' y1='100' x2='167.17' y2='32.83' stroke='black' stroke-width='1'/><text x='135' y='80' font-family='sans-serif' font-size='14px'>10</text></svg>",
+    "solutionDiagramSvg": null,
+    "isActive": true,
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
   }
 ]

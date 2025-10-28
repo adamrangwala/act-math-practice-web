@@ -1,3 +1,5 @@
-
-C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp>git push
-fatal: unable to access 'https://github.com/adamrangwala/act-math-practice-web.git/': Could not resolve host: github.com
+npm error Missing script: "seed"
+npm error
+npm error To see a list of scripts, run:
+npm error   npm run
+npm error A complete log of this run can be found in: C:\Users\rangw\AppData\Local\npm-cache\_logs\2025-10-28T17_28_27_876Z-debug-0.log
