@@ -41,7 +41,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   useEffect(() => {
     const initializeUser = async (user: User) => {
       try {
-        await authenticatedFetch('/api/users/init', { method: 'POST' });
+        await authenticatedFetch('/api/init-user', { method: 'POST' });
       } catch (error) {
         console.error("Failed to initialize user:", error);
       }
