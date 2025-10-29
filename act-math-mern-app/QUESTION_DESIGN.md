@@ -149,6 +149,14 @@ To ensure all questions are high-quality, authentic, and error-free, the followi
 
 4.  **Consistent Math Rendering:** Use a single, consistent method for all mathematical notation (e.g., `<math>` tags) in both the `options` and `solutionText` to ensure uniform styling and prevent rendering errors.
 
+5.  **Verify All Calculations:** Every calculation in the `solutionText` and used to determine the `correctAnswerIndex` must be double-checked for accuracy.
+
+6.  **Design Plausible Distractors:** The incorrect `options` should be common mistakes that a student might make. Examples include off-by-one errors, the value of 'x' instead of the final answer, or results from a forgotten negative sign.
+
+7.  **Meticulous Final Preview:** The question must be rendered in `preview.html` to confirm there are no visual or formatting errors. Pay close attention to the precision of SVG diagrams, the clarity of MathML rendering, and the consistency of spacing (`<br/><br/>`) before equations.
+
+8.  **Pedagogical Review:** Read the `solutionText` from a student's perspective. Is the explanation clear and easy to follow? Does it teach a robust, scalable method? Could a 'Pro Tip' be added to help students avoid common traps?
+
 
 
 ---

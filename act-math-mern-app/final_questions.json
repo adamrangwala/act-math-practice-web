@@ -792,5 +792,103 @@
     "isActive": true,
     "avgTimeSeconds": null,
     "optionSelectionCounts": [0,0,0,0,0]
+  },
+  {
+    "questionId": "algebra-fractions-total-01",
+    "category": "Algebra",
+    "subcategories": [
+      "Translating Word Problems to Equations",
+      "Solving Linear Equations",
+      "Operations with Fractions, Decimals, & Integers"
+    ],
+    "questionText": "A library received a shipment of new items. Of the items received, <math><mfrac><mn>1</mn><mn>3</mn></mfrac></math> were fiction books, <math><mfrac><mn>1</mn><mn>2</mn></mfrac></math> were non-fiction books, 15 were graphic novels, and 5 were magazines. How many total items did the library receive in the shipment?",
+    "options": [
+      "60",
+      "80",
+      "120",
+      "150",
+      "180"
+    ],
+    "correctAnswerIndex": 2,
+    "solutionText": "Let 'T' represent the total number of items in the shipment. We can set up an equation to represent the sum of all the parts.<br/><br/>The number of fiction books is <math><mfrac><mn>1</mn><mn>3</mn></mfrac><mi>T</mi></math>.<br/>The number of non-fiction books is <math><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>T</mi></math>.<br/>The number of graphic novels is 15.<br/>The number of magazines is 5.<br/><br/>The sum of these parts must equal the total, T:<br/><br/><math display='block'><mrow><mfrac><mn>1</mn><mn>3</mn></mfrac><mi>T</mi><mo>+</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>T</mi><mo>+</mo><mn>15</mn><mo>+</mo><mn>5</mn><mo>=</mo><mi>T</mi></mrow></math><br/>First, combine the constant terms and find a common denominator for the fractions:<br/><br/><math display='block'><mrow><mfrac><mn>2</mn><mn>6</mn></mfrac><mi>T</mi><mo>+</mo><mfrac><mn>3</mn><mn>6</mn></mfrac><mi>T</mi><mo>+</mo><mn>20</mn><mo>=</mo><mi>T</mi></mrow></math><br/><math display='block'><mrow><mfrac><mn>5</mn><mn>6</mn></mfrac><mi>T</mi><mo>+</mo><mn>20</mn><mo>=</mo><mi>T</mi></mrow></math><br/>Now, isolate T by subtracting <math><mfrac><mn>5</mn><mn>6</mn></mfrac><mi>T</mi></math> from both sides:<br/><br/><math display='block'><mrow><mn>20</mn><mo>=</mo><mi>T</mi><mo>-</mo><mfrac><mn>5</mn><mn>6</mn></mfrac><mi>T</mi></mrow></math><br/><math display='block'><mrow><mn>20</mn><mo>=</mo><mfrac><mn>1</mn><mn>6</mn></mfrac><mi>T</mi></mrow></math><br/>Finally, multiply both sides by 6 to solve for T:<br/><br/><math display='block'><mrow><mi>T</mi><mo>=</mo><mn>20</mn><mo>×</mo><mn>6</mn><mo>=</mo><mn>120</mn></mrow></math><br/>The total number of items in the shipment was 120.",
+    "difficulty": 3,
+    "diagramUrl": null,
+    "diagramSvg": null,
+    "solutionDiagramSvg": null,
+    "isActive": true,
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0,0,0,0,0]
+  },
+  {
+    "questionId": "geometry-polygon-angles-01",
+    "category": "Geometry",
+    "subcategories": [
+      "Properties of Quadrilaterals & Polygons"
+    ],
+    "questionText": "The measures of the interior angles of a pentagon are 2x°, 3x°, 4x°, 5x°, and 6x°. What is the measure of the largest angle?",
+    "options": [
+      "27°",
+      "108°",
+      "135°",
+      "162°",
+      "540°"
+    ],
+    "correctAnswerIndex": 3,
+    "solutionText": "The first step is to find the sum of the interior angles of a pentagon. The formula for the sum of the interior angles of a polygon with 'n' sides is <math><mrow><mrow><mo>(</mo><mrow><mi>n</mi><mo>-</mo><mn>2</mn></mrow><mo>)</mo></mrow><mo>×</mo><mn>180</mn><mo>°</mo></mrow></math>.<br/><br/>For a pentagon, n=5. Therefore, the sum of the angles is:<br/><br/><math display='block'><mrow><mrow><mo>(</mo><mrow><mn>5</mn><mo>-</mo><mn>2</mn></mrow><mo>)</mo></mrow><mo>×</mo><mn>180</mn><mo>°</mo><mo>=</mo><mn>3</mn><mo>×</mo><mn>180</mn><mo>°</mo><mo>=</mo><mn>540</mn><mo>°</mo></mrow></math><br/><br/>Next, we set the sum of the given angle expressions equal to 540° and solve for x:<br/><br/><math display='block'><mtable columnalign='right center left' rowspacing='1ex'><mtr><mtd><mn>2</mn><mi>x</mi><mo>+</mo><mn>3</mn><mi>x</mi><mo>+</mo><mn>4</mn><mi>x</mi><mo>+</mo><mn>5</mn><mi>x</mi><mo>+</mo><mn>6</mn><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>540</mn></mtd></mtr><mtr><mtd><mn>20</mn><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>540</_td_</tr><mtr><mtd><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>27</mn></mtd></mtr></mtable></math><br/><br/>The question asks for the measure of the largest angle, which is 6x. We substitute the value of x to find the answer:<br/><br/><math display='block'><mrow><mtext>Largest Angle</mtext><mo>=</mo><mn>6</mn><mi>x</mi><mo>=</mo><mn>6</mn><mo>×</mo><mn>27</mn><mo>=</mo><mn>162</mn><mo>°</mo></mrow></math><br/><br/><b>Pro Tip:</b> Always re-read the final sentence of the question after solving for a variable. A common trap is to offer the value of 'x' (27°) as an answer choice, but the question asks for the measure of the largest angle (6x).",
+    "difficulty": 3,
+    "diagramUrl": null,
+    "diagramSvg": null,
+    "solutionDiagramSvg": null,
+    "isActive": true,
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0,0,0,0,0]
+  },
+  {
+    "questionId": "algebra-recursive-sequence-01",
+    "category": "Algebra",
+    "subcategories": [
+      "Arithmetic & Geometric Sequences"
+    ],
+    "questionText": "A sequence is defined for n ≥ 1 by the recursive formula <math><msub><mi>a</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mn>2</mn><msub><mi>a</mi><mi>n</mi></msub><mo>-</mo><mn>3</mn></math>. If <math><msub><mi>a</mi><mn>1</mn></msub><mo>=</mo><mn>4</mn></math>, what is the value of <math><msub><mi>a</mi><mn>4</mn></msub></math>?",
+    "options": [
+      "5",
+      "7",
+      "11",
+      "19",
+      "25"
+    ],
+    "correctAnswerIndex": 2,
+    "solutionText": "The problem gives a recursive formula, which means we need to calculate each term in order to find the next one. We are given the first term, <math><msub><mi>a</mi><mn>1</mn></msub><mo>=</mo><mn>4</mn></math>, and need to find the fourth term, <math><msub><mi>a</mi><mn>4</mn></msub></math>.<br/><br/><b>Step 1: Calculate <math><msub><mi>a</mi><mn>2</mn></msub></math></b><br/>Using the formula with n=1:<br/><math display='block'><mrow><msub><mi>a</mi><mn>2</mn></msub><mo>=</mo><mn>2</mn><msub><mi>a</mi><mn>1</mn></msub><mo>-</mo><mn>3</mn></mrow></math><br/><math display='block'><mrow><msub><mi>a</mi><mn>2</mn></msub><mo>=</mo><mn>2</mn><mrow><mo>(</mo><mn>4</mn><mo>)</mo></mrow><mo>-</mo><mn>3</mn><mo>=</mo><mn>8</mn><mo>-</mo><mn>3</mn><mo>=</mo><mn>5</mn></mrow></math><br/><br/><b>Step 2: Calculate <math><msub><mi>a</mi><mn>3</mn></msub></math></b><br/>Using the formula with n=2:<br/><math display='block'><mrow><msub><mi>a</mi><mn>3</mn></msub><mo>=</mo><mn>2</mn><msub><mi>a</mi><mn>2</mn></msub><mo>-</mo><mn>3</mn></mrow></math><br/><math display='block'><mrow><msub><mi>a</mi><mn>3</mn></msub><mo>=</mo><mn>2</mn><mrow><mo>(</mo><mn>5</mn><mo>)</mo></mrow><mo>-</mo><mn>3</mn><mo>=</mo><mn>10</mn><mo>-</mo><mn>3</mn><mo>=</mo><mn>7</mn></mrow></math><br/><br/><b>Step 3: Calculate <math><msub><mi>a</mi><mn>4</mn></msub></math></b><br/>Using the formula with n=3:<br/><math display='block'><mrow><msub><mi>a</mi><mn>4</mn></msub><mo>=</mo><mn>2</mn><msub><mi>a</mi><mn>3</mn></msub><mo>-</mo><mn>3</mn></mrow></math><br/><math display='block'><mrow><msub><mi>a</mi><mn>4</mn></msub><mo>=</mo><mn>2</mn><mrow><mo>(</mo><mn>7</mn><mo>)</mo></mrow><mo>-</mo><mn>3</mn><mo>=</mo><mn>14</mn><mo>-</mo><mn>3</mn><mo>=</mo><mn>11</mn></mrow></math>",
+    "difficulty": 3,
+    "diagramUrl": null,
+    "diagramSvg": null,
+    "solutionDiagramSvg": null,
+    "isActive": true,
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0,0,0,0,0]
+  },
+  {
+    "questionId": "number-quantity-integers-between-fractions-01",
+    "category": "Number & Quantity",
+    "subcategories": [
+      "Operations with Fractions, Decimals, & Integers"
+    ],
+    "questionText": "On the real number line, how many integers are between <math><mo>-</mo><mfrac><mn>29</mn><mn>4</mn></mfrac></math> and <math><mfrac><mn>31</mn><mn>5</mn></mfrac></math>?",
+    "options": [
+      "2",
+      "3",
+      "12",
+      "13",
+      "14"
+    ],
+    "correctAnswerIndex": 4,
+    "solutionText": "The first step is to convert the improper fractions into decimals to define the boundaries of our range.<br/><br/><b>1. Convert the fractions:</b><br/><math display='block'><mrow><mo>-</mo><mfrac><mn>29</mn><mn>4</mn></mfrac><mo>=</mo><mo>-</mo><mn>7.25</mn></mrow></math><br/><math display='block'><mrow><mfrac><mn>31</mn><mn>5</mn></mfrac><mo>=</mo><mn>6.2</mn></mrow></math><br/><br/><b>2. Identify the boundary integers:</b><br/>The integers must be greater than -7.25 and less than 6.2.<br/>The smallest integer in this range (the 'first') is -7.<br/>The largest integer in this range (the 'last') is 6.<br/><br/><b>3. Use the counting formula:</b><br/>To count the number of integers in an inclusive range, the most reliable method is the formula: <math><mtext>Last</mtext><mo>-</mo><mtext>First</mtext><mo>+</mo><mn>1</mn></math>.<br/><math display='block'><mrow><mn>6</mn><mo>-</mo><mrow><mo>(</mo><mo>-</mo><mn>7</mn><mo>)</mo></mrow><mo>+</mo><mn>1</mn><mo>=</mo><mn>6</mn><mo>+</mo><mn>7</mn><mo>+</mo><mn>1</mn><mo>=</mo><mn>14</mn></mrow></math><br/>There are 14 integers in this range.<br/><br/><b>Pro Tip:</b> The most common trap on this type of problem is forgetting to add 1. Simply subtracting the smallest from the largest integer (<math><mn>6</mn><mo>-</mo><mrow><mo>(</mo><mo>-</mo><mn>7</mn><mo>)</mo></mrow><mo>=</mo><mn>13</mn></math>) will almost always be an incorrect answer choice. Always use the `Last - First + 1` formula.",
+    "difficulty": 2,
+    "diagramUrl": null,
+    "diagramSvg": null,
+    "solutionDiagramSvg": null,
+    "isActive": true,
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0,0,0,0,0]
   }
 ]

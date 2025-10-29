@@ -161,3 +161,14 @@ body {
 .bottom-left { bottom: 40px; left: 50px; text-align: left; }
 .bottom-right { bottom: 40px; right: 10px; text-align: right; }
 
+.app-footer {
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #6c757d; /* A muted, bootstrap-like secondary text color */
+}
+
+.app-footer p {
+  margin: 0;
+}
+

@@ -27,6 +27,9 @@ function App() {
               <Route path="*" element={<Navigate to="/dashboard" />} />
             </Routes>
           </div>
+          <footer className="app-footer">
+            <p>ACT® is a registered trademark of ACT, Inc. This website is not endorsed or approved by ACT, Inc.</p>
+          </footer>
         </>
       ) : (
         <Login />
