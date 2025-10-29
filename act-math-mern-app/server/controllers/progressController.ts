@@ -31,7 +31,6 @@ const updateUserDashboardStats = async (userId: string, isCorrect: boolean) => {
       practiceStreak: 1,
       lastPracticeDate: Timestamp.fromDate(today),
     });
-    return;
   }
 
   const statsData = statsDoc.data()!;
