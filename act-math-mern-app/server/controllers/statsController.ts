@@ -9,45 +9,21 @@ export const getDashboardStats = async (req: AuthRequest, res: Response) => {
   const userId = req.user.uid;
 
   try {
-    const progressSnapshot = await db.collection('userSubcategoryProgress').where('userId', '==', userId).get();
+    const statsRef = db.collection('userStats').doc(userId);
+    const statsDoc = await statsRef.get();
 
-    if (progressSnapshot.empty) {
+    if (!statsDoc.exists) {
+      // Return a default object for new users who haven't answered any questions yet
       return res.status(200).json({
-        questionsDue: 0,
-        subcategoriesMastered: 0,
-        overallAccuracy: 0,
-        totalSubcategoriesTracked: 0,
+        practiceStreak: 0,
+        totalQuestionsAnswered: 0,
+        currentRollingAccuracy: 0,
+        previousRollingAccuracy: 0,
+        totalPracticeSessions: 0,
       });
     }
 
-    let totalAttempts = 0;
-    let correctAttempts = 0;
-    let questionsDue = 0;
-    let subcategoriesMastered = 0;
-    const now = new Date();
-
-    progressSnapshot.forEach(doc => {
-      const progress = doc.data();
-      totalAttempts += progress.totalAttempts || 0;
-      correctAttempts += progress.correctAttempts || 0;
-
-      if (progress.nextReviewDate.toDate() <= now) {
-        questionsDue++;
-      }
-      if (progress.masteryScore >= 0.9) { // Mastery threshold
-        subcategoriesMastered++;
-      }
-    });
-
-    const overallAccuracy = totalAttempts > 0 ? (correctAttempts / totalAttempts) * 100 : 0;
-
-    res.status(200).json({
-      questionsDue,
-      subcategoriesMastered,
-      overallAccuracy: parseFloat(overallAccuracy.toFixed(2)),
-      totalSubcategoriesTracked: progressSnapshot.size,
-      totalPossibleSubcategories: 58, // Add the total count here
-    });
+    res.status(200).json(statsDoc.data());
 
   } catch (error) {
     console.error('Error fetching dashboard stats:', error);
@@ -130,7 +106,7 @@ export const getPriorityMatrixStats = async (req: AuthRequest, res: Response) =>
     const matrixData = progressSnapshot.docs.reduce((acc: any[], doc) => {
       const data = doc.data();
       // Only include subcategories where the user has attempted at least 5 questions
-      if (data.totalAttempts >= 5) {
+      if (data.totalAttempts >= 3) {
         const accuracy = data.totalAttempts > 0 ? (data.correctAttempts / data.totalAttempts) * 100 : 0;
         const avgTime = data.totalAttempts > 0 ? data.totalTimeSpent / data.totalAttempts : 0;
         

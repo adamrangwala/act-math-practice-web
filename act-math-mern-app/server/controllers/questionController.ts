@@ -11,6 +11,24 @@ export const getTodaysQuestions = async (req: AuthRequest, res: Response) => {
   const userId = req.user.uid;
 
   try {
+    // --- NEW: Snapshot accuracy at the start of a session for trend arrow ---
+    const statsRef = db.collection('userStats').doc(userId);
+    const statsDoc = await statsRef.get();
+    if (statsDoc.exists) {
+      const statsData = statsDoc.data()!;
+      await statsRef.update({
+        previousRollingAccuracy: statsData.currentRollingAccuracy || 0,
+        totalPracticeSessions: admin.firestore.FieldValue.increment(1)
+      });
+    } else {
+      await statsRef.set({
+        totalPracticeSessions: 1,
+        previousRollingAccuracy: 0,
+        currentRollingAccuracy: 0,
+      });
+    }
+    // --- End of new logic ---
+
     const userDoc = await db.collection('users').doc(userId).get();
     const userData = userDoc.data();
 

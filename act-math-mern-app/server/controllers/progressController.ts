@@ -1,7 +1,7 @@
 import { Response } from 'express';
 import { db } from '../config/firebase';
 import { AuthRequest } from './authController';
-import { FieldValue } from 'firebase-admin/firestore';
+import { FieldValue, Timestamp } from 'firebase-admin/firestore';
 
 interface ProgressSubmission {
   questionId: string;
@@ -10,6 +10,64 @@ interface ProgressSubmission {
   context: 'practice_session' | 'targeted_practice' | 'mock_test';
   selectedAnswerIndex: number;
 }
+
+// --- NEW HELPER FUNCTION ---
+const updateUserDashboardStats = async (userId: string, isCorrect: boolean) => {
+  const statsRef = db.collection('userStats').doc(userId);
+  const statsDoc = await statsRef.get();
+
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  if (!statsDoc.exists) {
+    // First time user is submitting progress
+    await statsRef.set({
+      userId,
+      totalQuestionsAnswered: 1,
+      lastFiftyAnswers: [isCorrect ? 1 : 0],
+      currentRollingAccuracy: isCorrect ? 100 : 0,
+      previousRollingAccuracy: 0,
+      practiceStreak: 1,
+      lastPracticeDate: Timestamp.fromDate(today),
+    });
+    return;
+  }
+
+  const statsData = statsDoc.data()!;
+  
+  // --- Update Rolling Accuracy ---
+  const lastFifty = statsData.lastFiftyAnswers || [];
+  lastFifty.push(isCorrect ? 1 : 0);
+  if (lastFifty.length > 50) {
+    lastFifty.shift(); // Keep the array at a max length of 50
+  }
+  const correctInLastFifty = lastFifty.reduce((sum: number, val: number) => sum + val, 0);
+  const newRollingAccuracy = (correctInLastFifty / lastFifty.length) * 100;
+
+  // --- Update Practice Streak ---
+  let newStreak = statsData.practiceStreak || 1;
+  const lastPracticeDate = (statsData.lastPracticeDate as Timestamp).toDate();
+  const yesterday = new Date(today);
+  yesterday.setDate(today.getDate() - 1);
+
+  if (lastPracticeDate.getTime() < yesterday.getTime()) {
+    // If the last practice was before yesterday, reset streak
+    newStreak = 1;
+  } else if (lastPracticeDate.getTime() === yesterday.getTime()) {
+    // If the last practice was yesterday, increment streak
+    newStreak++;
+  }
+  // If last practice was today, streak doesn't change.
+
+  await statsRef.update({
+    totalQuestionsAnswered: FieldValue.increment(1),
+    lastFiftyAnswers: lastFifty,
+    currentRollingAccuracy: newRollingAccuracy,
+    practiceStreak: newStreak,
+    lastPracticeDate: Timestamp.fromDate(today),
+  });
+};
+
 
 export const submitProgress = async (req: AuthRequest, res: Response) => {
   if (!req.user) {
@@ -33,6 +91,9 @@ export const submitProgress = async (req: AuthRequest, res: Response) => {
     const subcategories = questionData.subcategories || [];
 
     const isCorrect = performanceRating > 0;
+
+    // --- NEW: Update the aggregate dashboard stats ---
+    await updateUserDashboardStats(userId, isCorrect);
 
     // Only update the user's core spaced repetition progress if it's a standard practice session.
     if (context === 'practice_session') {

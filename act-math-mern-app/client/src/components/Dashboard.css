@@ -66,19 +66,19 @@
   background-repeat: no-repeat;
 }
 
-.stat-icon.due-today {
-  background-color: #e3f2fd;
-  background-image: url('https://img.icons8.com/?size=100&id=89mMekprYMUs&format=png&color=000000');
-}
-
-.stat-icon.mastered {
-  background-color: #e8f5e9;
-  background-image: url('https://img.icons8.com/?size=100&id=kuU7I7uPlHfo&format=png&color=000000');
-}
-
 .stat-icon.accuracy {
-  background-color: #e0f7fa;
-  background-image: url('https://img.icons8.com/?size=100&id=LZtGgAmh0n0e&format=png&color=000000');
+  background-color: #e0f7fa; /* Light Cyan */
+  background-image: url('https://img.icons8.com/?size=100&id=42428&format=png&color=000000'); /* Trend Up Icon */
+}
+
+.stat-icon.streak {
+  background-color: #fff3e0; /* Light Orange */
+  background-image: url('https://img.icons8.com/?size=100&id=82758&format=png&color=000000'); /* Flame Icon */
+}
+
+.stat-icon.sessions {
+  background-color: #ede7f6; /* Light Purple */
+  background-image: url('https://img.icons8.com/?size=100&id=13362&format=png&color=000000'); /* Checklist Icon */
 }
 
 .stat-info {
@@ -94,6 +94,29 @@
 .stat-value {
   font-size: 1.75rem;
   font-weight: 700;
+}
+
+.stat-value-with-trend {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.trend-arrow {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.trend-arrow.up {
+  color: #43a047; /* Green */
+}
+
+.trend-arrow.down {
+  color: #e53935; /* Red */
+}
+
+.trend-arrow.neutral {
+  color: #6c757d; /* Gray */
 }
 
 .practice-button-container {

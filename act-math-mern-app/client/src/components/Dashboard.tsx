@@ -13,11 +13,10 @@ interface SubcategoryStat {
 }
 
 interface DashboardStats {
-  questionsDue: number;
-  subcategoriesMastered: number;
-  overallAccuracy: number;
-  totalSubcategoriesTracked: number;
-  totalPossibleSubcategories: number;
+  practiceStreak: number;
+  totalPracticeSessions: number;
+  currentRollingAccuracy: number;
+  previousRollingAccuracy: number;
 }
 
 const Dashboard = () => {
@@ -35,6 +34,7 @@ const Dashboard = () => {
         return;
       }
       try {
+        // The dashboardData fetch was already correct, just the interface and rendering were wrong.
         const [priorityData, dashboardData] = await Promise.all([
           authenticatedFetch('/api/stats/priority-matrix'),
           authenticatedFetch('/api/stats/dashboard')
@@ -56,6 +56,16 @@ const Dashboard = () => {
     return <span className="tier-badge great">Great</span>;
   }
 
+  const renderTrendArrow = (current: number, previous: number) => {
+    if (!previous || current === previous) {
+      return <span className="trend-arrow neutral">—</span>;
+    }
+    if (current > previous) {
+      return <span className="trend-arrow up">▲</span>;
+    }
+    return <span className="trend-arrow down">▼</span>;
+  };
+
   if (loading) {
     return <div className="text-center mt-5"><Spinner animation="border" /></div>;
   }
@@ -73,26 +83,27 @@ const Dashboard = () => {
 
       <div className="stats-cards">
         <div className="stat-card">
-          <div className="stat-icon due-today"></div>
-          <div className="stat-info">
-            <span className="stat-label">Due Today</span>
-            <span className="stat-value">{dashboardStats?.questionsDue ?? 0}</span>
-          </div>
-        </div>
-        <div className="stat-card">
-          <div className="stat-icon mastered"></div>
-          <div className="stat-info">
-            <span className="stat-label">Mastered</span>
-            <span className="stat-value">
-              {dashboardStats?.subcategoriesMastered ?? 0} / {dashboardStats?.totalSubcategoriesTracked ?? 0}
-            </span>
-          </div>
-        </div>
-        <div className="stat-card">
           <div className="stat-icon accuracy"></div>
           <div className="stat-info">
-            <span className="stat-label">Accuracy</span>
-            <span className="stat-value">{dashboardStats?.overallAccuracy.toFixed(1) ?? 0}%</span>
+            <span className="stat-label">Rolling Accuracy</span>
+            <div className="stat-value-with-trend">
+              <span className="stat-value">{dashboardStats?.currentRollingAccuracy.toFixed(0) ?? 0}%</span>
+              {dashboardStats && renderTrendArrow(dashboardStats.currentRollingAccuracy, dashboardStats.previousRollingAccuracy)}
+            </div>
+          </div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-icon streak"></div>
+          <div className="stat-info">
+            <span className="stat-label">Day Streak</span>
+            <span className="stat-value">{dashboardStats?.practiceStreak ?? 0}</span>
+          </div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-icon sessions"></div>
+          <div className="stat-info">
+            <span className="stat-label">Total Sessions</span>
+            <span className="stat-value">{dashboardStats?.totalPracticeSessions ?? 0}</span>
           </div>
         </div>
       </div>
@@ -107,13 +118,13 @@ const Dashboard = () => {
         <h2 className="skills-breakdown-title">Skills Breakdown</h2>
         <div className="skills-header-info">
           <span className="skill-count">
-            {dashboardStats?.totalSubcategoriesTracked ?? 0} / {dashboardStats?.totalPossibleSubcategories ?? 58} Skills Assessed
+            {skillStats?.length ?? 0} / 58 Skills Assessed
           </span>
           <OverlayTrigger
             placement="top"
             overlay={
               <Tooltip id="skill-tooltip">
-                A skill appears here once you've answered at least 5 questions from its subcategory.
+                A skill appears here once you've answered at least 3 questions from its subcategory.
               </Tooltip>
             }
           >
