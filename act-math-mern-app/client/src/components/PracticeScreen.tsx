@@ -147,15 +147,26 @@ const PracticeScreen = () => {
   const handleNextQuestion = () => {
     const nextIndex = currentQuestionIndex + 1;
     if (nextIndex >= questions.length) {
-      const totalCorrect = sessionData.filter(d => d.isCorrect).length;
-      const totalTime = sessionData.reduce((acc, d) => acc + d.timeSpent, 0);
-      const sessionStats = {
-        accuracy: (totalCorrect / sessionData.length) * 100,
-        avgTime: totalTime / sessionData.length,
-        correctCount: totalCorrect,
-        totalCount: sessionData.length,
-      };
-      navigate('/summary', { state: { sessionStats, practiceQuestions: sessionData } });
+      // This is the end of the session.
+      (async () => {
+        try {
+          // Increment the session count on the backend before navigating away.
+          await authenticatedFetch('/api/stats/complete-session', { method: 'POST' });
+        } catch (error) {
+          console.error("Failed to mark session as complete:", error);
+        } finally {
+          // Navigate to the summary screen regardless of whether the API call succeeded.
+          const totalCorrect = sessionData.filter(d => d.isCorrect).length;
+          const totalTime = sessionData.reduce((acc, d) => acc + d.timeSpent, 0);
+          const sessionStats = {
+            accuracy: (totalCorrect / sessionData.length) * 100,
+            avgTime: totalTime / sessionData.length,
+            correctCount: totalCorrect,
+            totalCount: sessionData.length,
+          };
+          navigate('/summary', { state: { sessionStats, practiceQuestions: sessionData } });
+        }
+      })();
       return;
     }
     

@@ -1,6 +1,34 @@
 import { Response } from 'express';
 import { db } from '../config/firebase';
 import { AuthRequest } from './authController';
+import { FieldValue } from 'firebase-admin/firestore';
+
+export const completePracticeSession = async (req: AuthRequest, res: Response) => {
+  if (!req.user) {
+    return res.status(401).send({ message: 'Unauthorized' });
+  }
+  const userId = req.user.uid;
+
+  try {
+    const statsRef = db.collection('userStats').doc(userId);
+    const statsDoc = await statsRef.get();
+
+    if (statsDoc.exists) {
+      await statsRef.update({
+        totalPracticeSessions: FieldValue.increment(1)
+      });
+    } else {
+      // This case is unlikely if a session has just been played, but is good for safety
+      await statsRef.set({
+        totalPracticeSessions: 1
+      }, { merge: true });
+    }
+    res.status(200).send({ message: 'Session count updated.' });
+  } catch (error) {
+    console.error('Error completing practice session:', error);
+    res.status(500).send({ message: 'Internal Server Error' });
+  }
+};
 
 export const getDashboardStats = async (req: AuthRequest, res: Response) => {
   if (!req.user) {

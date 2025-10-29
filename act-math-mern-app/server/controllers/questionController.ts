@@ -17,14 +17,7 @@ export const getTodaysQuestions = async (req: AuthRequest, res: Response) => {
     if (statsDoc.exists) {
       const statsData = statsDoc.data()!;
       await statsRef.update({
-        previousRollingAccuracy: statsData.currentRollingAccuracy || 0,
-        totalPracticeSessions: admin.firestore.FieldValue.increment(1)
-      });
-    } else {
-      await statsRef.set({
-        totalPracticeSessions: 1,
-        previousRollingAccuracy: 0,
-        currentRollingAccuracy: 0,
+        previousRollingAccuracy: statsData.currentRollingAccuracy || 0
       });
     }
     // --- End of new logic ---

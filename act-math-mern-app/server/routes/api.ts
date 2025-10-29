@@ -5,12 +5,12 @@ import authMiddleware from '../middleware/authMiddleware';
 import { initUser, getUserSettings, updateUserSettings } from '../controllers/authController';
 import { getTodaysQuestions, getPracticeMoreQuestions, getTargetedPracticeQuestions } from '../controllers/questionController';
 import { submitProgress, resetAllProgress } from '../controllers/progressController';
-import { getDashboardStats, getHeatmapStats, getPriorityMatrixStats, getStreakData } from '../controllers/statsController';
+import { getDashboardStats, getHeatmapStats, getPriorityMatrixStats, getStreakData, completePracticeSession } from '../controllers/statsController';
 
 const router = express.Router();
 
 // Auth & User
-router.post('/users/init', authMiddleware, initUser);
+router.post('/init-user', authMiddleware, initUser);
 router.get('/settings', authMiddleware, getUserSettings);
 router.put('/settings', authMiddleware, updateUserSettings);
 
@@ -26,5 +26,6 @@ router.get('/stats/dashboard', authMiddleware, getDashboardStats);
 router.get('/stats/heatmap', authMiddleware, getHeatmapStats);
 router.get('/stats/priority-matrix', authMiddleware, getPriorityMatrixStats);
 router.get('/stats/streak', authMiddleware, getStreakData);
+router.post('/stats/complete-session', authMiddleware, completePracticeSession);
 
 export default router;
