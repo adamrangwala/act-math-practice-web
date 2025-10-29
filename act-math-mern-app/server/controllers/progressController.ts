@@ -20,10 +20,11 @@ const updateUserDashboardStats = async (userId: string, isCorrect: boolean) => {
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
   if (!statsDoc.exists) {
-    // First time user is submitting progress
+    // First time user is submitting progress, create the complete document.
     await statsRef.set({
       userId,
       totalQuestionsAnswered: 1,
+      totalPracticeSessions: 1, // Add this field
       lastFiftyAnswers: [isCorrect ? 1 : 0],
       currentRollingAccuracy: isCorrect ? 100 : 0,
       previousRollingAccuracy: 0,
