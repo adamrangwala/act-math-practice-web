@@ -4,6 +4,8 @@ import { onAuthStateChanged, User, signOut } from 'firebase/auth';
 
 interface AuthContextType {
   currentUser: User | null;
+  isNewUser: boolean | null;
+  setIsNewUser: React.Dispatch<React.SetStateAction<boolean | null>>;
   logout: () => Promise<void>;
 }
 
@@ -23,16 +25,19 @@ interface AuthProviderProps {
 
 import { authenticatedFetch } from '../utils/api';
 
-// ... (imports and context creation)
-
 export function AuthProvider({ children }: AuthProviderProps) {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [isNewUser, setIsNewUser] = useState<boolean | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
       setCurrentUser(user);
-      setLoading(false);
+      if (!user) {
+        // If user logs out, reset the new user flag
+        setIsNewUser(null);
+        setLoading(false);
+      }
     });
 
     return unsubscribe;
@@ -41,9 +46,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
   useEffect(() => {
     const initializeUser = async (user: User) => {
       try {
-        await authenticatedFetch('/api/init-user', { method: 'POST' });
+        const response = await authenticatedFetch('/api/init-user', { method: 'POST' });
+        setIsNewUser(response.isNewUser);
       } catch (error) {
         console.error("Failed to initialize user:", error);
+      } finally {
+        setLoading(false); // Set loading to false after the API call is complete
       }
     };
 
@@ -58,6 +66,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   const value = {
     currentUser,
+    isNewUser,
+    setIsNewUser,
     logout,
   };
 

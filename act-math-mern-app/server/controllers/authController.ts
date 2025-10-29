@@ -27,10 +27,10 @@ export const initUser = async (req: AuthRequest, res: Response) => {
         createdAt: new Date(),
         lastActiveAt: new Date(),
       });
-      res.status(201).send({ message: 'User profile created.' });
+      res.status(201).json({ message: 'User profile created.', isNewUser: true });
     } else {
       await userRef.update({ lastActiveAt: new Date() });
-      res.status(200).send({ message: 'User profile updated.' });
+      res.status(200).json({ message: 'User profile updated.', isNewUser: false });
     }
   } catch (error) {
     console.error('Error initializing user:', error);
