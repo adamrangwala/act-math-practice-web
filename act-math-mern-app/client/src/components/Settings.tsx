@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { authenticatedFetch } from '../utils/api';
 
 const Settings = () => {
-  const { currentUser } = useAuth();
+  const { currentUser, setIsNewUser } = useAuth();
   const navigate = useNavigate();
   const [dailyQuestionLimit, setDailyQuestionLimit] = useState(10);
   const [loading, setLoading] = useState(true);
@@ -64,6 +64,7 @@ const Settings = () => {
       await authenticatedFetch('/api/progress/all', {
         method: 'DELETE',
       });
+      setIsNewUser(true);
       setSuccess('Your progress has been successfully reset.');
     } catch (err: any) {
       setError(err.message);
