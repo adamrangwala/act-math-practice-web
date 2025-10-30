@@ -7,6 +7,7 @@ import './Onboarding.css';
 const Onboarding = () => {
   const [step, setStep] = useState(1);
   const [role, setRole] = useState('');
+  const [testDate, setTestDate] = useState('');
   const [limit, setLimit] = useState(10);
   const [loading, setLoading] = useState(false);
   const { setIsNewUser } = useAuth();
@@ -14,7 +15,15 @@ const Onboarding = () => {
 
   const handleRoleSelect = (selectedRole: string) => {
     setRole(selectedRole);
-    setStep(2);
+    if (selectedRole === 'ms_student' || selectedRole === 'hs_student') {
+      setStep(2);
+    } else {
+      setStep(3);
+    }
+  };
+
+  const handleDateContinue = () => {
+    setStep(3);
   };
 
   const handleSubmit = async () => {
@@ -22,19 +31,13 @@ const Onboarding = () => {
     try {
       await authenticatedFetch('/api/settings', {
         method: 'PUT',
-        body: JSON.stringify({ dailyQuestionLimit: limit, role: role }),
+        body: JSON.stringify({ dailyQuestionLimit: limit, role: role, testDate: testDate }),
       });
-      // Mark the user as not new anymore
-      // This will be handled by the SessionSummary component after the first practice
-      // if (setIsNewUser) {
-      //   setIsNewUser(false);
-      // }
       // Navigate to the first practice session
       navigate('/practice');
     } catch (error) {
       console.error("Failed to save settings:", error);
       setLoading(false);
-      // You might want to show an error message to the user here
     }
   };
 
@@ -55,6 +58,24 @@ const Onboarding = () => {
         )}
 
         {step === 2 && (
+          <>
+            <h1>When is your test date?</h1>
+            <p>Knowing your test date helps us tailor your practice schedule. You can skip this for now.</p>
+            <div className="date-picker-container">
+              <input
+                type="date"
+                value={testDate}
+                onChange={(e) => setTestDate(e.target.value)}
+                className="date-picker"
+              />
+            </div>
+            <button onClick={handleDateContinue} className="continue-button">
+              Continue
+            </button>
+          </>
+        )}
+
+        {step === 3 && (
           <>
             <h1>Set Your Daily Goal</h1>
             <p>Set a goal for how many questions you'd like to practice in each daily session.</p>

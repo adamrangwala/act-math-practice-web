@@ -29,9 +29,9 @@ export const updateSettings = async (req: AuthRequest, res: Response) => {
     return res.status(401).send({ message: 'Unauthorized' });
   }
   const userId = req.user.uid;
-  const { dailyQuestionLimit, role } = req.body;
+  const { dailyQuestionLimit, role, testDate } = req.body;
 
-  const updateData: { dailyQuestionLimit?: number; role?: string } = {};
+  const updateData: { dailyQuestionLimit?: number; role?: string; testDate?: string } = {};
 
   if (dailyQuestionLimit !== undefined) {
     if (typeof dailyQuestionLimit !== 'number' || dailyQuestionLimit < 5 || dailyQuestionLimit > 50) {
@@ -46,6 +46,15 @@ export const updateSettings = async (req: AuthRequest, res: Response) => {
       return res.status(400).send({ message: 'Invalid role specified.' });
     }
     updateData.role = role;
+  }
+
+  if (testDate !== undefined) {
+    // Basic validation for YYYY-MM-DD format. 
+    // Note: An empty string is allowed for users who skip.
+    if (testDate !== '' && !/^\d{4}-\d{2}-\d{2}$/.test(testDate)) {
+      return res.status(400).send({ message: 'Invalid test date format.' });
+    }
+    updateData.testDate = testDate;
   }
 
   if (Object.keys(updateData).length === 0) {
