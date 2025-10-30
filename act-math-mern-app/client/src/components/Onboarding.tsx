@@ -29,8 +29,8 @@ const Onboarding = () => {
       // if (setIsNewUser) {
       //   setIsNewUser(false);
       // }
-      // Navigate to the main dashboard
-      navigate('/dashboard');
+      // Navigate to the first practice session
+      navigate('/practice');
     } catch (error) {
       console.error("Failed to save settings:", error);
       setLoading(false);

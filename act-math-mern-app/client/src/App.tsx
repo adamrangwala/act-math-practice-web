@@ -22,9 +22,10 @@ function App() {
           <div className="app-container">
             <Routes>
               {isNewUser ? (
-                // If the user is new, all paths lead to onboarding
+                // If the user is new, only allow onboarding and the first practice session
                 <>
                   <Route path="/onboarding" element={<Onboarding />} />
+                  <Route path="/practice" element={<PracticeScreen />} />
                   <Route path="*" element={<Navigate to="/onboarding" />} />
                 </>
               ) : (

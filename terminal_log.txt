@@ -1,16 +1,14 @@
-vite v7.1.10 building for production...
-transforming...
-✓ 373 modules transformed.
-src/components/Calculator.tsx (24:23): Use of eval in "src/components/Calculator.tsx" is strongly discouraged as it poses security risks and may cause issues with minification.
-[esbuild css minify]
-▲ [WARNING] Expected ":" [css-syntax-error]
-    <stdin>:76:20:
-      76 │   align-items-center;
-         │                     ^
-         ╵                     :
-rendering chunks...
-computing gzip size...
-dist/index.html                   0.82 kB │ gzip:   0.45 kB
-dist/assets/index-91HEL2H-.css  241.99 kB │ gzip:  33.76 kB
-dist/assets/index-9TptW-QA.js   507.19 kB │ gzip: 136.37 kB
-(!) Some chunks are larger than 500 kB after minificati
+Preview console log:
+
+index-B9RZrff5.js:1441 Firebase Config: Object
+index-B9RZrff5.js:1441 Failed to initialize user: TypeError: Failed to fetch
+    at Qn (index-B9RZrff5.js:1441:2023)
+    at async index-B9RZrff5.js:1441:2586
+(anonymous) @ index-B9RZrff5.js:1441
+
+Production vercel log:
+index-B9RZrff5.js:1441 Firebase Config: Object
+index-B9RZrff5.js:1441 Failed to initialize user: TypeError: Failed to fetch
+    at Qn (index-B9RZrff5.js:1441:2023)
+    at async index-B9RZrff5.js:1441:2586
+(anonymous) @ index-B9RZrff5.js:1441
