@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import { create, all } from 'mathjs';
 import './Calculator.css';
+
+const math = create(all);
 
 interface CalculatorProps {
   onClose: () => void;
@@ -21,7 +24,7 @@ const Calculator: React.FC<CalculatorProps> = ({ onClose }) => {
     } else if (value === '=') {
       if (expression === '') return;
       try {
-        const result = eval(expression.replace('^', '**'));
+        const result = math.evaluate(expression);
         setDisplay(result.toString());
         setExpression(result.toString());
         setIsResultShown(true);
