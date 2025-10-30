@@ -183,6 +183,10 @@ export const resetAllProgress = async (req: AuthRequest, res: Response) => {
     });
     await batch.commit();
 
+    // Also, delete the user's main stats document to reset streak, accuracy, etc.
+    const statsRef = db.collection('userStats').doc(userId);
+    await statsRef.delete();
+
     res.status(200).send({ message: 'User progress has been successfully reset.' });
   } catch (error) {
     console.error('Error resetting user progress:', error);
