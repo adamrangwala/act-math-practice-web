@@ -25,9 +25,10 @@ const Onboarding = () => {
         body: JSON.stringify({ dailyQuestionLimit: limit, role: role }),
       });
       // Mark the user as not new anymore
-      if (setIsNewUser) {
-        setIsNewUser(false);
-      }
+      // This will be handled by the SessionSummary component after the first practice
+      // if (setIsNewUser) {
+      //   setIsNewUser(false);
+      // }
       // Navigate to the main dashboard
       navigate('/dashboard');
     } catch (error) {

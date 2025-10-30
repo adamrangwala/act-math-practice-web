@@ -27,7 +27,7 @@ interface SessionData {
 const getOptionLetter = (index: number) => ['F', 'G', 'H', 'J', 'K'][index];
 
 const PracticeScreen = () => {
-  const { currentUser } = useAuth();
+  const { currentUser, isNewUser, setIsNewUser } = useAuth();
   const navigate = useNavigate();
   const { subcategory } = useParams<{ subcategory?: string }>();
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -152,6 +152,11 @@ const PracticeScreen = () => {
         try {
           // Increment the session count on the backend before navigating away.
           await authenticatedFetch('/api/stats/complete-session', { method: 'POST' });
+          
+          // If the user was new, this is their first session, so mark them as not new.
+          if (isNewUser) {
+            setIsNewUser(false);
+          }
         } catch (error) {
           console.error("Failed to mark session as complete:", error);
         } finally {
