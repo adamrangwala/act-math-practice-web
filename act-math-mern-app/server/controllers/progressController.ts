@@ -24,7 +24,6 @@ const updateUserDashboardStats = async (userId: string, isCorrect: boolean) => {
     await statsRef.set({
       userId,
       totalQuestionsAnswered: 1,
-      totalPracticeSessions: 1, // Add this field
       lastFiftyAnswers: [isCorrect ? 1 : 0],
       currentRollingAccuracy: isCorrect ? 100 : 0,
       previousRollingAccuracy: 0,
