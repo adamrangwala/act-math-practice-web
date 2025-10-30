@@ -1,5 +1,4 @@
-Render logs:
-[dotenv@17.2.3] injecting env (0) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
 Firebase Admin SDK initialized for 'staging' via environment variable.
 Server is running on port 10000
 Incoming request origin: undefined
@@ -11,5 +10,3 @@ Incoming request origin: undefined
      ==> 
      ==> ///////////////////////////////////////////////////////////
 Incoming request origin: undefined
-     ==> Detected service running on port 10000
-     ==> Docs on specifying a port: https://render.com/docs/web-services#port-binding
