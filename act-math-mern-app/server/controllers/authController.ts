@@ -29,8 +29,16 @@ export const initUser = async (req: AuthRequest, res: Response) => {
       });
       res.status(201).json({ message: 'User profile created.', isNewUser: true });
     } else {
-      await userRef.update({ lastActiveAt: new Date() });
-      res.status(200).json({ message: 'User profile updated.', isNewUser: false });
+      // Existing user, check if they need to be onboarded (e.g., after a reset)
+      const userData = doc.data();
+      if (!userData?.role) {
+        // If role is missing, they need to go through onboarding
+        res.status(200).json({ message: 'User requires onboarding.', isNewUser: true });
+      } else {
+        // Normal login for an existing, onboarded user
+        await userRef.update({ lastActiveAt: new Date() });
+        res.status(200).json({ message: 'User profile updated.', isNewUser: false });
+      }
     }
   } catch (error) {
     console.error('Error initializing user:', error);

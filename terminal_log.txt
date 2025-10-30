@@ -1,6 +1,15 @@
-C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp\act-math-mern-app\seed-data>npm run seed -- --env=staging
-npm error Missing script: "seed"
-npm error
-npm error To see a list of scripts, run:
-npm error   npm run
-npm error A complete log of this run can be found in: C:\Users\rangw\AppData\Local\npm-cache\_logs\2025-10-29T20_47_53_741Z-debug-0.log
+Render logs:
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+Firebase Admin SDK initialized for 'staging' via environment variable.
+Server is running on port 10000
+Incoming request origin: undefined
+     ==> Your service is live 🎉
+     ==> 
+     ==> ///////////////////////////////////////////////////////////
+     ==> 
+     ==> Available at your primary URL https://act-math-app-staging.onrender.com
+     ==> 
+     ==> ///////////////////////////////////////////////////////////
+Incoming request origin: undefined
+     ==> Detected service running on port 10000
+     ==> Docs on specifying a port: https://render.com/docs/web-services#port-binding
