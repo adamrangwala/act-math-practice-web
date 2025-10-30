@@ -29,11 +29,21 @@ export const initUser = async (req: AuthRequest, res: Response) => {
       });
       res.status(201).json({ message: 'User profile created.', isNewUser: true });
     } else {
-      // Existing user, check if they need to be onboarded (e.g., after a reset)
+      // Existing user
       const userData = doc.data();
       if (!userData?.role) {
-        // If role is missing, they need to go through onboarding
-        res.status(200).json({ message: 'User requires onboarding.', isNewUser: true });
+        // Role is missing. Differentiate between a legacy user and a reset user.
+        const statsRef = db.collection('userStats').doc(uid);
+        const statsDoc = await statsRef.get();
+
+        if (statsDoc.exists) {
+          // Legacy user: They have stats but no role. Silently migrate them.
+          await userRef.update({ role: 'hs_student', lastActiveAt: new Date() });
+          res.status(200).json({ message: 'User profile migrated and updated.', isNewUser: false });
+        } else {
+          // Reset user: They have no stats and no role. Send to onboarding.
+          res.status(200).json({ message: 'User requires onboarding.', isNewUser: true });
+        }
       } else {
         // Normal login for an existing, onboarded user
         await userRef.update({ lastActiveAt: new Date() });
