@@ -33,13 +33,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
       setCurrentUser(user);
-      if (!user) {
-        // If user logs out, reset the new user flag
-        setIsNewUser(null);
-        setLoading(false);
-      }
+      // The loading state will be managed by the initializeUser effect
     });
-
     return unsubscribe;
   }, []);
 
@@ -50,13 +45,20 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setIsNewUser(response.isNewUser);
       } catch (error) {
         console.error("Failed to initialize user:", error);
+        // If init fails, user might be logged out or there's a server issue.
+        // In either case, we should stop loading.
+        setIsNewUser(null); 
       } finally {
-        setLoading(false); // Set loading to false after the API call is complete
+        setLoading(false);
       }
     };
 
     if (currentUser) {
       initializeUser(currentUser);
+    } else {
+      // If there's no user, we are not loading anymore.
+      setLoading(false);
+      setIsNewUser(null);
     }
   }, [currentUser]);
 
