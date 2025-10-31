@@ -41,6 +41,17 @@
   margin: 0 auto; /* Center the matrix itself */
 }
 
+.matrix-dots-container {
+  position: absolute;
+  top: 30px; /* Align with the wrapper's padding */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+  pointer-events: none; /* Allow clicks to pass through the container */
+}
+
 .quadrant {
   position: relative;
   display: flex;
@@ -53,9 +64,8 @@
   font-size: 1.5rem;
   font-weight: 700;
   color: rgba(0, 0, 0, 0.5); /* Darker, but still a watermark */
-  z-index: 3; /* Bring label to the very top */
   text-align: center;
-  position: relative; /* Needed for z-index to apply */
+  cursor: pointer; /* Ensure it looks clickable */
 }
 
 .quadrant.strengths { background-color: rgba(40, 167, 69, 0.5); } /* Green */
@@ -71,7 +81,7 @@
   transform: translate(-50%, 50%);
   cursor: pointer;
   transition: transform 0.2s;
-  z-index: 2; /* Dots are above quadrant bg but below label */
+  pointer-events: auto; /* Make sure the dots themselves are clickable */
 }
 
 .matrix-dot:hover {

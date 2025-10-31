@@ -69,54 +69,27 @@ const PriorityMatrix = () => {
           <div className="priority-matrix">
             {/* Quadrants - Order defines the grid layout: top-left, top-right, bottom-left, bottom-right */}
             <div className="quadrant high-priority">
-              <OverlayTrigger
-                placement="top"
-                overlay={
-                  <Tooltip id="high-priority-tooltip">
-                    You're taking a while and still getting these wrong. Review the core concepts for these topics first.
-                  </Tooltip>
-                }
-              >
+              <OverlayTrigger placement="top" overlay={<Tooltip>You're taking a while and still getting these wrong. Review the core concepts for these topics first.</Tooltip>}>
                 <span className="quadrant-label">High Priority</span>
               </OverlayTrigger>
             </div>
             <div className="quadrant drill-for-speed">
-              <OverlayTrigger
-                placement="top"
-                overlay={
-                  <Tooltip id="drill-for-speed-tooltip">
-                    You know the material, but you're slow. Use targeted practice to build speed.
-                  </Tooltip>
-                }
-              >
+              <OverlayTrigger placement="top" overlay={<Tooltip>You know the material, but you're slow. Use targeted practice to build speed.</Tooltip>}>
                 <span className="quadrant-label">Drill for Speed</span>
               </OverlayTrigger>
             </div>
             <div className="quadrant review-concepts">
-              <OverlayTrigger
-                placement="bottom"
-                overlay={
-                  <Tooltip id="review-concepts-tooltip">
-                    You're answering fast but making mistakes. Slow down and double-check your work here.
-                  </Tooltip>
-                }
-              >
+              <OverlayTrigger placement="bottom" overlay={<Tooltip>You're answering fast but making mistakes. Slow down and double-check your work here.</Tooltip>}>
                 <span className="quadrant-label">Review Concepts</span>
               </OverlayTrigger>
             </div>
             <div className="quadrant strengths">
-              <OverlayTrigger
-                placement="bottom"
-                overlay={
-                  <Tooltip id="strengths-tooltip">
-                    You've mastered these! You're both fast and accurate.
-                  </Tooltip>
-                }
-              >
+              <OverlayTrigger placement="bottom" overlay={<Tooltip>You've mastered these! You're both fast and accurate.</Tooltip>}>
                 <span className="quadrant-label">Strengths</span>
               </OverlayTrigger>
             </div>
-
+          </div>
+          <div className="matrix-dots-container">
             {/* Data Points */}
             {matrixData.map(data => (
               <OverlayTrigger
