@@ -32,7 +32,7 @@ const updateUserDashboardStats = async (userId: string, isCorrect: boolean) => {
     });
   }
 
-  const statsData = statsDoc.data()!;
+  const statsData = statsDoc.data() || {};
   
   // --- Update Rolling Accuracy ---
   const lastFifty = statsData.lastFiftyAnswers || [];
@@ -45,7 +45,7 @@ const updateUserDashboardStats = async (userId: string, isCorrect: boolean) => {
 
   // --- Update Practice Streak ---
   let newStreak = statsData.practiceStreak || 1;
-  const lastPracticeDate = (statsData.lastPracticeDate as Timestamp).toDate();
+  const lastPracticeDate = statsData.lastPracticeDate ? (statsData.lastPracticeDate as Timestamp).toDate() : new Date(0); // Handle case where it might not exist
   const yesterday = new Date(today);
   yesterday.setDate(today.getDate() - 1);
 
