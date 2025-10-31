@@ -33,6 +33,12 @@ const Onboarding = () => {
         method: 'PUT',
         body: JSON.stringify({ dailyQuestionLimit: limit, role: role, testDate: testDate }),
       });
+      
+      // Set the user as not new BEFORE navigating to ensure the router has the correct state.
+      if (setIsNewUser) {
+        setIsNewUser(false);
+      }
+
       // Navigate to the first practice session
       navigate('/practice');
     } catch (error) {

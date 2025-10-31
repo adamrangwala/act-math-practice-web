@@ -1,17 +1,42 @@
-==> Uploading build...
-==> Uploaded in 4.8s. Compression took 1.4s
-==> Build successful 🎉
-==> Deploying...
+    ==> Deploying...
 ==> Running 'node act-math-mern-app/server/dist/server.js'
 [dotenv@17.2.3] injecting env (0) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
 Firebase Admin SDK initialized for 'staging' via environment variable.
 Server is running on port 10000
 Incoming request origin: undefined
-==> Your service is live 🎉
-==> 
-==> ///////////////////////////////////////////////////////////
-==> 
-==> Available at your primary URL https://act-math-app-staging.onrender.com
-==> 
-==> ///////////////////////////////////////////////////////////
+     ==> Your service is live 🎉
+     ==> 
+     ==> ///////////////////////////////////////////////////////////
+     ==> 
+     ==> Available at your primary URL https://act-math-app-staging.onrender.com
+     ==> 
+     ==> ///////////////////////////////////////////////////////////
 Incoming request origin: undefined
+     ==> Detected service running on port 10000
+     ==> Docs on specifying a port: https://render.com/docs/web-services#port-binding
+Incoming request origin: https://act-math-app-staging.vercel.app
+Incoming request origin: https://act-math-app-staging.vercel.app
+     ==> Deploying...
+==> Running 'node act-math-mern-app/server/dist/server.js'
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+Firebase Admin SDK initialized for 'staging' via environment variable.
+Server is running on port 10000
+Incoming request origin: undefined
+     ==> Your service is live 🎉
+     ==> 
+     ==> ///////////////////////////////////////////////////////////
+     ==> 
+     ==> Available at your primary URL https://act-math-app-staging.onrender.com
+     ==> 
+     ==> ///////////////////////////////////////////////////////////
+Incoming request origin: undefined
+Incoming request origin: https://act-math-app-staging.vercel.app
+Incoming request origin: https://act-math-app-staging.vercel.app
+Incoming request origin: https://act-math-app-staging.vercel.app
+Incoming request origin: https://act-math-app-staging.vercel.app
+Incoming request origin: https://act-math-app-staging.vercel.app
+Incoming request origin: https://act-math-app-staging.vercel.app
+Incoming request origin: https://act-math-app-staging.vercel.app
+Incoming request origin: https://act-math-app-staging.vercel.app
+Incoming request origin: https://act-math-app-staging.vercel.app
+Incoming request origin: https://act-math-app-staging.vercel.app
