@@ -1,6 +1,7 @@
-==> Deploying...
+  Render Logs: 
+     ==> Deploying...
 ==> Running 'node act-math-mern-app/server/dist/server.js'
-[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
 Firebase Admin SDK initialized for 'staging' via environment variable.
 Server is running on port 10000
 Incoming request origin: undefined
@@ -11,29 +12,41 @@ Incoming request origin: undefined
      ==> Available at your primary URL https://act-math-app-staging.onrender.com
      ==> 
      ==> ///////////////////////////////////////////////////////////
+Incoming request origin: undefined
 Incoming request origin: https://act-math-app-staging.vercel.app
 Incoming request origin: https://act-math-app-staging.vercel.app
 Incoming request origin: https://act-math-app-staging.vercel.app
 Incoming request origin: https://act-math-app-staging.vercel.app
-Incoming request origin: https://act-math-app-staging.vercel.app
-Incoming request origin: https://act-math-app-staging.vercel.app
-Incoming request origin: https://act-math-app-staging.vercel.app
-Incoming request origin: https://act-math-app-staging.vercel.app
-Incoming request origin: https://act-math-app-staging.vercel.app
-Incoming request origin: https://act-math-app-staging.vercel.app
-Incoming request origin: https://act-math-app-staging.vercel.app
-Incoming request origin: https://act-math-app-staging.vercel.app
-Incoming request origin: https://act-math-app-staging.vercel.app
-Incoming request origin: https://act-math-app-staging.vercel.app
-Incoming request origin: https://act-math-app-staging.vercel.app
-Error updating progress: TypeError: Cannot read properties of undefined (reading 'lastFiftyAnswers')
-    at /opt/render/project/src/act-math-mern-app/server/dist/controllers/progressController.js:35:33
-    at Generator.next (<anonymous>)
-    at fulfilled (/opt/render/project/src/act-math-mern-app/server/dist/controllers/progressController.js:5:58)
-Incoming request origin: https://act-math-app-staging.vercel.app
-Incoming request origin: https://act-math-app-staging.vercel.app
-Incoming request origin: https://act-math-app-staging.vercel.app
-Incoming request origin: https://act-math-app-staging.vercel.app
-Incoming request origin: https://act-math-app-staging.vercel.app
-Incoming request origin: https://act-math-app-staging.vercel.app
-Incoming request origin: https://act-math-app-staging.vercel.app
+
+firestore fields:
+createdAt
+30 October 2025 at 21:29:27 UTC-5
+(timestamp)
+
+
+dailyQuestionLimit
+5
+(number)
+
+
+displayName
+"adsa"
+(string)
+
+
+email
+"rangweezus@gmail.com"
+(string)
+
+
+lastActiveAt
+30 October 2025 at 21:29:27 UTC-5
+(timestamp)
+
+
+photoURL
+"https://lh3.googleusercontent.com/a/ACg8ocL3vjjISEEw_sfRbpRo43Xl7Xw83tGEkHNJQRvMfu8wUDB_QA=s96-c"
+(string)
+
+
+

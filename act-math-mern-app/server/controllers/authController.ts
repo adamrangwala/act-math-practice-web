@@ -82,17 +82,43 @@ export const updateUserSettings = async (req: AuthRequest, res: Response) => {
   if (!req.user) {
     return res.status(401).send({ message: 'Unauthorized' });
   }
-  const { dailyQuestionLimit } = req.body;
+  const userId = req.user.uid;
+  const { dailyQuestionLimit, role, testDate } = req.body;
 
-  if (typeof dailyQuestionLimit !== 'number' || dailyQuestionLimit < 5) {
-    return res.status(400).send({ message: 'Invalid daily question limit.' });
+  const updateData: { [key: string]: any } = {};
+
+  if (dailyQuestionLimit !== undefined) {
+    if (typeof dailyQuestionLimit !== 'number' || dailyQuestionLimit < 5 || dailyQuestionLimit > 50) {
+      return res.status(400).send({ message: 'Invalid daily question limit.' });
+    }
+    updateData.dailyQuestionLimit = dailyQuestionLimit;
+  }
+
+  if (role !== undefined) {
+    const allowedRoles = ['ms_student', 'hs_student', 'teacher', 'other'];
+    if (typeof role !== 'string' || !allowedRoles.includes(role)) {
+      return res.status(400).send({ message: 'Invalid role specified.' });
+    }
+    updateData.role = role;
+  }
+
+  if (testDate !== undefined) {
+    if (testDate !== '' && !/^\d{4}-\d{2}-\d{2}$/.test(testDate)) {
+      return res.status(400).send({ message: 'Invalid test date format.' });
+    }
+    updateData.testDate = testDate;
+  }
+
+  if (Object.keys(updateData).length === 0) {
+    return res.status(400).send({ message: 'No settings provided to update.' });
   }
 
   try {
-    const userRef = db.collection('users').doc(req.user.uid);
-    await userRef.update({ dailyQuestionLimit });
-    res.status(200).send({ message: 'Settings updated successfully.' });
+    const userRef = db.collection('users').doc(userId);
+    await userRef.set(updateData, { merge: true });
+    res.status(200).json({ message: 'Settings updated successfully.' });
   } catch (error) {
+    console.error('Error updating settings:', error);
     res.status(500).send({ message: 'Internal Server Error' });
   }
 };
