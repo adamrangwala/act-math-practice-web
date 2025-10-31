@@ -95,7 +95,7 @@
 }
 
 .axis.y-axis {
-  left: calc(50% - 300px - 50px); /* Adjust for centered matrix and label offset */
+  left: calc(50% - 450px); /* Adjust for centered matrix and label offset */
   top: 50%;
   transform: translateY(-50%) rotate(-90deg);
 }
