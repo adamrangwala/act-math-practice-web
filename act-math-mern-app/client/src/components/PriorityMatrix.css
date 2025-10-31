@@ -41,13 +41,24 @@
   margin: 0 auto;
 }
 
+.matrix-dots-overlay {
+  position: absolute;
+  top: 30px; /* Align with wrapper padding-top */
+  left: 50px; /* Align with wrapper padding-left */
+  width: calc(100% - 50px); /* Adjust width to match matrix area */
+  height: 400px;
+  transform: translateX(-50%);
+  pointer-events: none; /* Allow clicks to pass through to quadrants */
+  z-index: 1; /* Dots layer */
+}
+
 .quadrant {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  cursor: pointer; /* Make the whole quadrant clickable */
+  cursor: pointer;
 }
 
 .quadrant-label {
@@ -55,6 +66,7 @@
   font-weight: 700;
   color: rgba(0, 0, 0, 0.5);
   text-align: center;
+  cursor: pointer;
 }
 
 .quadrant.strengths { background-color: rgba(40, 167, 69, 0.5); }
@@ -70,7 +82,8 @@
   transform: translate(-50%, 50%);
   cursor: pointer;
   transition: transform 0.2s;
-  /* z-index is no longer needed here as dots will be re-introduced in a separate layer */
+  pointer-events: auto; /* Make dots clickable */
+  z-index: 2; /* Ensure dots are above quadrants */
 }
 
 .matrix-dot:hover {
