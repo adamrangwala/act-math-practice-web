@@ -24,17 +24,21 @@
 
 .priority-matrix-wrapper {
   position: relative;
-  padding: 30px 0 30px 50px; /* Make space for axes */
+  padding: 30px 0; /* Removed padding-left */
+  display: flex;
+  justify-content: center; /* Center the matrix horizontally */
 }
 
 .priority-matrix {
   position: relative;
   width: 100%;
+  max-width: 600px; /* Set a max-width to allow centering */
   height: 400px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   border: 1px solid #e0e0e0;
+  margin: 0 auto; /* Center the matrix itself */
 }
 
 .quadrant {
@@ -91,7 +95,7 @@
 }
 
 .axis.y-axis {
-  left: 0;
+  left: calc(50% - 300px - 50px); /* Adjust for centered matrix and label offset */
   top: 50%;
   transform: translateY(-50%) rotate(-90deg);
 }
