@@ -67,7 +67,7 @@ const PriorityMatrix = () => {
       {matrixData.length > 0 ? (
         <div className="priority-matrix-wrapper">
           <div className="priority-matrix">
-            {/* Quadrants - Order defines the grid layout: top-left, top-right, bottom-left, bottom-right */}
+            {/* Quadrants */}
             <div className="quadrant high-priority">
               <OverlayTrigger placement="top" overlay={<Tooltip>You're taking a while and still getting these wrong. Review the core concepts for these topics first.</Tooltip>}>
                 <span className="quadrant-label">High Priority</span>
@@ -88,8 +88,7 @@ const PriorityMatrix = () => {
                 <span className="quadrant-label">Strengths</span>
               </OverlayTrigger>
             </div>
-          </div>
-          <div className="matrix-dots-container">
+
             {/* Data Points */}
             {matrixData.map(data => (
               <OverlayTrigger

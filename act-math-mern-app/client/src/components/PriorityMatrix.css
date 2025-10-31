@@ -32,24 +32,13 @@
 .priority-matrix {
   position: relative;
   width: 100%;
-  max-width: 600px; /* Set a max-width to allow centering */
+  max-width: 600px;
   height: 400px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   border: 1px solid #e0e0e0;
-  margin: 0 auto; /* Center the matrix itself */
-}
-
-.matrix-dots-container {
-  position: absolute;
-  top: 30px; /* Align with the wrapper's padding */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 600px;
-  height: 400px;
-  pointer-events: none; /* Allow clicks to pass through the container */
+  margin: 0 auto;
 }
 
 .quadrant {
@@ -57,21 +46,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden; /* Hide label overflow */
+  overflow: hidden;
 }
 
 .quadrant-label {
   font-size: 1.5rem;
   font-weight: 700;
-  color: rgba(0, 0, 0, 0.5); /* Darker, but still a watermark */
+  color: rgba(0, 0, 0, 0.5);
   text-align: center;
-  cursor: pointer; /* Ensure it looks clickable */
+  cursor: pointer;
+  position: relative; /* Required for z-index */
+  z-index: 2; /* Bring label above dots */
 }
 
-.quadrant.strengths { background-color: rgba(40, 167, 69, 0.5); } /* Green */
-.quadrant.drill-for-speed { background-color: rgba(255, 193, 7, 0.5); } /* Yellow */
-.quadrant.review-concepts { background-color: rgba(255, 159, 64, 0.5); } /* Orange */
-.quadrant.high-priority { background-color: rgba(220, 53, 69, 0.5); } /* Red */
+.quadrant.strengths { background-color: rgba(40, 167, 69, 0.5); }
+.quadrant.drill-for-speed { background-color: rgba(255, 193, 7, 0.5); }
+.quadrant.review-concepts { background-color: rgba(255, 159, 64, 0.5); }
+.quadrant.high-priority { background-color: rgba(220, 53, 69, 0.5); }
 
 .matrix-dot {
   position: absolute;
@@ -81,7 +72,7 @@
   transform: translate(-50%, 50%);
   cursor: pointer;
   transition: transform 0.2s;
-  pointer-events: auto; /* Make sure the dots themselves are clickable */
+  z-index: 1; /* Position dots below labels */
 }
 
 .matrix-dot:hover {
