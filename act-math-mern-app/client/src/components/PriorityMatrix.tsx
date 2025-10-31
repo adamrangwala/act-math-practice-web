@@ -51,39 +51,44 @@ const PriorityMatrix = () => {
       <h3 className="matrix-title">Priority Matrix</h3>
       {matrixData.length > 0 ? (
         <div className="matrix-wrapper">
-          <div className="y-axis-label">Avg. Time (s)</div>
-          <div className="x-axis-label">Accuracy (%)</div>
           <div className="y-axis">
-            <span>{maxTime}</span>
-            <span>{maxTime / 2}</span>
-            <span>0</span>
+            <span>{maxTime}s</span>
+            <span>60s</span>
+            <span>0s</span>
           </div>
-          <div className="matrix">
-            <div className="quadrant high-priority"><span>High Priority</span></div>
-            <div className="quadrant drill-for-speed"><span>Drill for Speed</span></div>
-            <div className="quadrant review-concepts"><span>Review Concepts</span></div>
-            <div className="quadrant strengths"><span>Strengths</span></div>
-            
-            {matrixData.map(data => (
-              <OverlayTrigger
-                key={data.subcategory}
-                placement="top"
-                overlay={<Tooltip id={`tooltip-${data.subcategory}`}>{data.subcategory}</Tooltip>}
-              >
-                <div
-                  className="matrix-dot"
-                  style={{
-                    left: `${data.accuracy}%`,
-                    bottom: `${Math.min(100, (data.avgTime / maxTime) * 100)}%`,
-                  }}
-                ></div>
-              </OverlayTrigger>
-            ))}
-          </div>
-          <div className="x-axis">
-            <span>0</span>
-            <span>50</span>
-            <span>100</span>
+          <div className="matrix-content">
+            <div className="y-axis-label">Avg. Time (s)</div>
+            <div className="matrix">
+              <div className="quadrant high-priority"><span>High Priority</span></div>
+              <div className="quadrant drill-for-speed"><span>Drill for Speed</span></div>
+              <div className="quadrant review-concepts"><span>Review Concepts</span></div>
+              <div className="quadrant strengths"><span>Strengths</span></div>
+
+              <div className="divider-x" style={{ bottom: `${(60 / maxTime) * 100}%` }}></div>
+              <div className="divider-y" style={{ left: '80%' }}></div>
+
+              {matrixData.map(data => (
+                <OverlayTrigger
+                  key={data.subcategory}
+                  placement="top"
+                  overlay={<Tooltip id={`tooltip-${data.subcategory}`}>{data.subcategory}</Tooltip>}
+                >
+                  <div
+                    className="matrix-dot"
+                    style={{
+                      left: `${data.accuracy}%`,
+                      bottom: `${Math.min(100, (data.avgTime / maxTime) * 100)}%`,
+                    }}
+                  ></div>
+                </OverlayTrigger>
+              ))}
+            </div>
+            <div className="x-axis">
+              <span>0</span>
+              <span>80</span>
+              <span>100</span>
+            </div>
+            <div className="x-axis-label">Accuracy (%)</div>
           </div>
         </div>
       ) : (

@@ -15,81 +15,92 @@
 }
 
 .matrix-wrapper {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: 1fr auto;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
   position: relative;
-  padding-left: 30px; /* Space for Y-axis labels */
-  padding-bottom: 30px; /* Space for X-axis labels */
+}
+
+.y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: right;
+  padding-right: 10px;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.matrix-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .matrix {
-  grid-column: 2;
-  grid-row: 1;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  border: 1px solid #ccc;
+  grid-template-columns: 80% 20%;
+  grid-template-rows: 50% 50%;
+  height: 400px;
   position: relative;
-  height: 400px; /* Or any fixed height */
+  width: 100%;
 }
 
 .quadrant {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
 }
 
 .quadrant span {
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 0.3rem 0.8rem;
+  border-radius: 8px;
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
-.quadrant.high-priority { background-color: rgba(229, 57, 53, 0.2); border-left: 1px solid #ccc; }
-.quadrant.drill-for-speed { background-color: rgba(253, 216, 53, 0.2); }
-.quadrant.review-concepts { background-color: rgba(255, 152, 0, 0.2); border-top: 1px solid #ccc; border-left: 1px solid #ccc;}
-.quadrant.strengths { background-color: rgba(76, 175, 80, 0.2); border-top: 1px solid #ccc; }
+.quadrant.high-priority { background-color: #ef9a9a; } /* Light Red */
+.quadrant.drill-for-speed { background-color: #fff59d; } /* Light Yellow */
+.quadrant.review-concepts { background-color: #ffcc80; } /* Light Orange */
+.quadrant.strengths { background-color: #a5d6a7; } /* Light Green */
+
+.divider-x, .divider-y {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+.divider-x { width: 100%; height: 1px; }
+.divider-y { width: 1px; height: 100%; }
 
 .matrix-dot {
   position: absolute;
   width: 12px;
   height: 12px;
   background-color: #b71c1c; /* Dark Red */
+  border: 2px solid #fff;
   border-radius: 50%;
-  transform: translate(-50%, 50%); /* Center the dot on the coordinate */
+  transform: translate(-50%, 50%);
   transition: all 0.3s ease-in-out;
   cursor: pointer;
+  z-index: 3;
 }
 
 .matrix-dot:hover {
-  transform: translate(-50%, 50%) scale(1.5);
-  z-index: 10;
-}
-
-/* --- AXES --- */
-.y-axis, .x-axis {
-  color: #6c757d;
-  font-size: 0.9rem;
-}
-
-.y-axis {
-  grid-column: 1;
-  grid-row: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-align: right;
-  padding-right: 10px;
+  transform: translate(-50%, 50%) scale(1.6);
 }
 
 .x-axis {
-  grid-column: 2;
-  grid-row: 2;
   display: flex;
   justify-content: space-between;
   padding-top: 5px;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+.x-axis span:nth-child(2) {
+  transform: translateX(-50%);
 }
 
 .x-axis-label, .y-axis-label {
@@ -99,15 +110,15 @@
 }
 
 .x-axis-label {
-  bottom: 0;
+  bottom: -25px;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .y-axis-label {
   top: 50%;
-  left: 0;
-  transform: translateY(-50%) rotate(-90deg);
+  left: -40px;
+  transform: translateY(50%) rotate(-90deg);
 }
 
 .matrix-placeholder {
