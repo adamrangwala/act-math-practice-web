@@ -107,20 +107,25 @@ const PriorityMatrix = () => {
                 <div
                   className={`matrix-dot ${getQuadrant(data.accuracy, data.avgTime)}`}
                   style={{
-                    left: `${data.accuracy}%`,
-                    bottom: `${(data.avgTime / maxTime) * 100}%`,
+                    left: `${Math.max(0, Math.min(100, data.accuracy))}%`,
+                    bottom: `${Math.max(0, Math.min(100, (data.avgTime / maxTime) * 100))}%`,
                   }}
                 />
               </OverlayTrigger>
             ))}
           </div>
-          {/* Axes */}
-          <div className="axis x-axis">
-            <span>Accuracy (%)</span>
+          {/* Axes and Labels */}
+          <div className="axis x-axis"><span>Accuracy (%)</span></div>
+          <div className="axis y-axis"><span>Avg. Time (s)</span></div>
+          <div className="x-axis-labels">
+            <span>0</span><span>25</span><span>50</span><span>75</span><span>100</span>
           </div>
-          <div className="axis y-axis">
-            <span>Avg. Time (s)</span>
+          <div className="y-axis-labels">
+            <span>{maxTime}s</span><span>{(maxTime * 0.75).toFixed(0)}s</span><span>{(maxTime * 0.5).toFixed(0)}s</span><span>{(maxTime * 0.25).toFixed(0)}s</span><span>0s</span>
           </div>
+          {/* Quadrant Dividers */}
+          <div className="divider-x" style={{ bottom: `${(75 / maxTime) * 100}%` }}></div>
+          <div className="divider-y" style={{ left: '75%' }}></div>
         </div>
       ) : (
         <div className="matrix-placeholder">

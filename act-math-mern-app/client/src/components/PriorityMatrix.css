@@ -120,3 +120,45 @@
   height: 200px;
   color: #6c757d;
 }
+
+.x-axis-labels, .y-axis-labels {
+  position: absolute;
+  display: flex;
+  color: #6c757d;
+  font-size: 0.8rem;
+}
+
+.x-axis-labels {
+  width: 100%;
+  justify-content: space-between;
+  bottom: -20px;
+  left: 0;
+  padding: 0 5px;
+}
+
+.y-axis-labels {
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  left: -35px;
+  top: 0;
+  text-align: right;
+}
+
+.divider-x, .divider-y {
+  position: absolute;
+  background-color: #e0e0e0;
+  z-index: 0;
+}
+
+.divider-x {
+  width: 100%;
+  height: 1px;
+  left: 0;
+}
+
+.divider-y {
+  width: 1px;
+  height: 100%;
+  top: 0;
+}
