@@ -136,7 +136,7 @@
   transform: translateY(-50%);
 }
 .y-axis span:nth-child(3) { /* 0s */
-  bottom: 0;
+  bottom: 20px;
   transform: translateY(50%);
 }
 
@@ -151,9 +151,9 @@
   position: absolute;
   bottom: -15px;
 }
-.x-axis span:nth-child(1) { left: 0; transform: translateX(-50%); }
-.x-axis span:nth-child(2) { left: var(--accuracy-threshold); transform: translateX(-50%); }
-.x-axis span:nth-child(3) { right: 0; transform: translateX(50%); }
+.x-axis span:nth-child(1) { left: 0; transform: translateX(-50%); bottom: -25px }
+.x-axis span:nth-child(2) { left: var(--accuracy-threshold); transform: translateX(-50%); bottom: -25px }
+.x-axis span:nth-child(3) { right: 0; transform: translateX(50%); bottom: -25px }
 
 .y-axis-label {
   position: absolute;
