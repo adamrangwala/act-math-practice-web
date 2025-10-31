@@ -42,7 +42,7 @@
   height: 400px;
   position: relative;
   width: 100%;
-  border: 1px solid #ccc;
+  border: none; /* Removed border */
 }
 
 /* --- Quadrant Backgrounds --- */
@@ -90,10 +90,10 @@
 .quadrant-label span {
   color: rgba(0, 0, 0, 0.5);
   background-color: rgba(255, 255, 255, 0.7);
-  padding: 0.3rem 0.8rem;
-  border-radius: 8px;
+  padding: 0.2rem 0.6rem; /* Smaller padding */
+  border-radius: 6px; /* Smaller border-radius */
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 0.9rem; /* Smaller font size */
 }
 .high-priority-label { top: 25%; left: 40%; transform: translate(-50%, -50%); }
 .drill-for-speed-label { top: 25%; left: 90%; transform: translate(-50%, -50%); }
@@ -128,13 +128,13 @@
 
 .x-axis {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around; /* Changed to space-around */
   padding-top: 5px;
   color: #6c757d;
   font-size: 0.9rem;
 }
 .x-axis span:nth-child(2) {
-  transform: translateX(-50%);
+  transform: none; /* Removed transform */
 }
 
 .x-axis-label, .y-axis-label {
