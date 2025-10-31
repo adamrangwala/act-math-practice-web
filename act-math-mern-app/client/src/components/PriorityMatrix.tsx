@@ -45,7 +45,6 @@ const PriorityMatrix = () => {
 
   if (loading) return <div className="text-center my-4"><Spinner animation="border" /></div>;
   if (error) return <Alert variant="danger" className="my-4">{error}</Alert>;
-// ... (rest of the component)
           <div className="divider-x" style={{ bottom: `${(60 / maxTime) * 100}%` }}></div>
           <div className="divider-y" style={{ left: '80%' }}></div>
         </div>
