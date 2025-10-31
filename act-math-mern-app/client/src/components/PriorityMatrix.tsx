@@ -65,16 +65,42 @@ const PriorityMatrix = () => {
               <div className="quadrant-bg strengths-bg"></div>
 
               {/* Labels */}
-              <div className="quadrant-label high-priority-label"><span>High Priiority</span></div>
-              <div className="quadrant-label drill-for-speed-label"><span>Drill for Speed</span></div>
-              <div className="quadrant-label review-concepts-label"><span>Review Concepts</span></div>
-              <div className="quadrant-label strengths-label"><span>Strengths</span></div>
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip id="high-priority-tooltip">Low accuracy and high time. Focus here first!</Tooltip>}
+              >
+                <div className="quadrant-label high-priority-label"><span>High Priority</span></div>
+              </OverlayTrigger>
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip id="drill-for-speed-tooltip">High accuracy but high time. Practice for speed!</Tooltip>}
+              >
+                <div className="quadrant-label drill-for-speed-label"><span>Drill for Speed</span></div>
+              </OverlayTrigger>
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip id="review-concepts-tooltip">Low accuracy but low time. Review the underlying concepts.</Tooltip>}
+              >
+                <div className="quadrant-label review-concepts-label"><span>Review Concepts</span></div>
+              </OverlayTrigger>
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip id="strengths-tooltip">High accuracy and low time. Your strong areas!</Tooltip>}
+              >
+                <div className="quadrant-label strengths-label"><span>Strengths</span></div>
+              </OverlayTrigger>
 
               {matrixData.map(data => (
                 <OverlayTrigger
                   key={data.subcategory}
                   placement="top"
-                  overlay={<Tooltip id={`tooltip-${data.subcategory}`}>{data.subcategory}</Tooltip>}
+                  overlay={
+                    <Tooltip id={`tooltip-${data.subcategory}`}>
+                      <strong>{data.subcategory}</strong><br/>
+                      Accuracy: {data.accuracy.toFixed(0)}%<br/>
+                      Avg Time: {data.avgTime.toFixed(1)}s
+                    </Tooltip>
+                  }
                 >
                   <div
                     className="matrix-dot"
