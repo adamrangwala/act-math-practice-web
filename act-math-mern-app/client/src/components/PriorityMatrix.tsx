@@ -54,7 +54,6 @@ const PriorityMatrix = () => {
           <div className="y-axis">
             <span>{maxTime}s</span>
             <span>60s</span>
-            <span>0s</span>
           </div>
           <div className="matrix-content">
             <div className="y-axis-label">Avg. Time (s)</div>
@@ -70,9 +69,6 @@ const PriorityMatrix = () => {
               <div className="quadrant-label drill-for-speed-label"><span>Drill for Speed</span></div>
               <div className="quadrant-label review-concepts-label"><span>Review Concepts</span></div>
               <div className="quadrant-label strengths-label"><span>Strengths</span></div>
-
-              <div className="divider-x" style={{ bottom: `${(60 / maxTime) * 100}%` }}></div>
-              <div className="divider-y" style={{ left: '80%' }}></div>
 
               {matrixData.map(data => (
                 <OverlayTrigger
@@ -91,9 +87,9 @@ const PriorityMatrix = () => {
               ))}
             </div>
             <div className="x-axis">
-              <span>0</span>
-              <span>80</span>
-              <span>100</span>
+              <span className="x-axis-0">0</span>
+              <span className="x-axis-80">80</span>
+              <span className="x-axis-100">100</span>
             </div>
             <div className="x-axis-label">Accuracy (%)</div>
           </div>

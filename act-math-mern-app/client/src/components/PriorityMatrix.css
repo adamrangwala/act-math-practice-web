@@ -29,6 +29,13 @@
   padding-right: 10px;
   color: #6c757d;
   font-size: 0.9rem;
+  height: 400px; /* Match matrix height */
+  position: relative; /* For absolute positioning of 0 */
+}
+.y-axis span:last-child {
+  position: absolute;
+  bottom: -8px; /* Align with x-axis 0 */
+  right: 10px;
 }
 
 .matrix-content {
@@ -42,7 +49,7 @@
   height: 400px;
   position: relative;
   width: 100%;
-  border: none; /* Removed border */
+  border: 1px solid #ccc; /* Re-added border for matrix outline */
 }
 
 /* --- Quadrant Backgrounds --- */
@@ -90,24 +97,19 @@
 .quadrant-label span {
   color: rgba(0, 0, 0, 0.5);
   background-color: rgba(255, 255, 255, 0.7);
-  padding: 0.2rem 0.6rem; /* Smaller padding */
-  border-radius: 6px; /* Smaller border-radius */
+  padding: 0.1rem 0.4rem; /* Smaller padding */
+  border-radius: 4px; /* Smaller border-radius */
   font-weight: bold;
-  font-size: 0.9rem; /* Smaller font size */
+  font-size: 0.8rem; /* Smaller font size */
+  white-space: nowrap; /* Prevent text wrapping */
 }
 .high-priority-label { top: 25%; left: 40%; transform: translate(-50%, -50%); }
 .drill-for-speed-label { top: 25%; left: 90%; transform: translate(-50%, -50%); }
 .review-concepts-label { top: 75%; left: 40%; transform: translate(-50%, -50%); }
 .strengths-label { top: 75%; left: 90%; transform: translate(-50%, -50%); }
 
-
-.divider-x, .divider-y {
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.2);
-  z-index: 2;
-}
-.divider-x { width: 100%; height: 1px; }
-.divider-y { width: 1px; height: 100%; }
+/* --- Dividers (now part of matrix border) --- */
+/* Removed explicit divider-x and divider-y */
 
 .matrix-dot {
   position: absolute;
@@ -128,13 +130,27 @@
 
 .x-axis {
   display: flex;
-  justify-content: space-around; /* Changed to space-around */
+  justify-content: space-between;
   padding-top: 5px;
   color: #6c757d;
   font-size: 0.9rem;
+  position: relative; /* For absolute positioning of 80 */
 }
-.x-axis span:nth-child(2) {
-  transform: none; /* Removed transform */
+.x-axis-0 {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.x-axis-80 {
+  position: absolute;
+  left: 80%;
+  transform: translateX(-50%); /* Center 80 at 80% mark */
+  bottom: 0;
+}
+.x-axis-100 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 .x-axis-label, .y-axis-label {
@@ -151,7 +167,7 @@
 
 .y-axis-label {
   top: 50%;
-  left: -40px;
+  left: -60px; /* Shift further left */
   transform: translateY(50%) rotate(-90deg);
 }
 
