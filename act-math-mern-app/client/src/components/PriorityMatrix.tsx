@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Spinner, Alert, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
 import { authenticatedFetch } from '../utils/api';
+import './PriorityMatrix.css';
 
 interface MatrixData {
   subcategory: string;
