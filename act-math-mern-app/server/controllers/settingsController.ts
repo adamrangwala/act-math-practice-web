@@ -28,10 +28,13 @@ export const updateSettings = async (req: AuthRequest, res: Response) => {
   if (!req.user) {
     return res.status(401).send({ message: 'Unauthorized' });
   }
+  
+  console.log('Received settings update request with body:', req.body); // Debugging line
+
   const userId = req.user.uid;
   const { dailyQuestionLimit, role, testDate } = req.body;
 
-  const updateData: { dailyQuestionLimit?: number; role?: string; testDate?: string } = {};
+  const updateData: { [key: string]: any } = {};
 
   if (dailyQuestionLimit !== undefined) {
     if (typeof dailyQuestionLimit !== 'number' || dailyQuestionLimit < 5 || dailyQuestionLimit > 50) {
@@ -49,8 +52,6 @@ export const updateSettings = async (req: AuthRequest, res: Response) => {
   }
 
   if (testDate !== undefined) {
-    // Basic validation for YYYY-MM-DD format. 
-    // Note: An empty string is allowed for users who skip.
     if (testDate !== '' && !/^\d{4}-\d{2}-\d{2}$/.test(testDate)) {
       return res.status(400).send({ message: 'Invalid test date format.' });
     }
@@ -63,7 +64,7 @@ export const updateSettings = async (req: AuthRequest, res: Response) => {
 
   try {
     const userRef = db.collection('users').doc(userId);
-    await userRef.set(updateData, { merge: true }); // Use set with merge to create/update
+    await userRef.set(updateData, { merge: true });
     res.status(200).json({ message: 'Settings updated successfully.' });
   } catch (error) {
     console.error('Error updating settings:', error);

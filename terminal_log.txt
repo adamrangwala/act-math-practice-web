@@ -1,25 +1,17 @@
-index-CAt3gVSO.js:1441 Firebase Config: Object
-index-CAt3gVSO.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
-e @ index-CAt3gVSO.js:1261
-index-CAt3gVSO.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
-e @ index-CAt3gVSO.js:1261
-index-CAt3gVSO.js:1445 Error signing in with Google:  FirebaseError: Firebase: Error (auth/cancelled-popup-request).
-    at rg (index-CAt3gVSO.js:451:758)
-    at Un (index-CAt3gVSO.js:451:68)
-    at ws.cancel (index-CAt3gVSO.js:1261:1081)
-    at new ws (index-CAt3gVSO.js:1261:395)
-    at YR (index-CAt3gVSO.js:1261:190)
-    at t (index-CAt3gVSO.js:1445:72361)
-    at rb (index-CAt3gVSO.js:48:128664)
-    at index-CAt3gVSO.js:48:133987
-    at u0 (index-CAt3gVSO.js:48:15140)
-    at Wp (index-CAt3gVSO.js:48:129909)
-t @ index-CAt3gVSO.js:1445
-index-CAt3gVSO.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
-e @ index-CAt3gVSO.js:1261
-index-CAt3gVSO.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
-e @ index-CAt3gVSO.js:1261
-index-CAt3gVSO.js:1366 Cross-Origin-Opener-Policy policy would block the window.close call.
-close @ index-CAt3gVSO.js:1366
-index-CAt3gVSO.js:1366 Cross-Origin-Opener-Policy policy would block the window.close call.
-close @ index-CAt3gVSO.js:1366
+==> Uploading build...
+==> Uploaded in 4.8s. Compression took 1.4s
+==> Build successful 🎉
+==> Deploying...
+==> Running 'node act-math-mern-app/server/dist/server.js'
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+Firebase Admin SDK initialized for 'staging' via environment variable.
+Server is running on port 10000
+Incoming request origin: undefined
+==> Your service is live 🎉
+==> 
+==> ///////////////////////////////////////////////////////////
+==> 
+==> Available at your primary URL https://act-math-app-staging.onrender.com
+==> 
+==> ///////////////////////////////////////////////////////////
+Incoming request origin: undefined
