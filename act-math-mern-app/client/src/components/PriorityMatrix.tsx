@@ -51,12 +51,12 @@ const PriorityMatrix = () => {
       <h3 className="matrix-title">Priority Matrix</h3>
       {matrixData.length > 0 ? (
         <div className="matrix-wrapper">
+          <div className="y-axis-label">Avg. Time (s)</div>
           <div className="y-axis">
             <span>{maxTime}s</span>
             <span>60s</span>
           </div>
           <div className="matrix-content">
-            <div className="y-axis-label">Avg. Time (s)</div>
             <div className="matrix">
               {/* Background Quadrants */}
               <div className="quadrant-bg high-priority-bg"></div>
@@ -87,9 +87,9 @@ const PriorityMatrix = () => {
               ))}
             </div>
             <div className="x-axis">
-              <span className="x-axis-0">0</span>
-              <span className="x-axis-80">80</span>
-              <span className="x-axis-100">100</span>
+              <span>0</span>
+              <span>80</span>
+              <span>100</span>
             </div>
             <div className="x-axis-label">Accuracy (%)</div>
           </div>

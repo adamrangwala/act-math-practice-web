@@ -15,33 +15,20 @@
 }
 
 .matrix-wrapper {
+  /* --- Layout Variables --- */
+  --accuracy-threshold: 80%;
+  --time-threshold-percent: 50%; /* 60s of 120s maxTime */
+  --y-axis-width: 40px;
+  --x-axis-height: 25px;
+  
   display: flex;
-  flex-direction: row;
-  align-items: stretch;
   position: relative;
-}
-
-.y-axis {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-align: right;
-  padding-right: 10px;
-  color: #6c757d;
-  font-size: 0.9rem;
-  height: 400px; /* Match matrix height */
-  position: relative; /* For absolute positioning of 0 */
-}
-.y-axis span:last-child {
-  position: absolute;
-  bottom: -8px; /* Align with x-axis 0 */
-  right: 10px;
+  padding-left: var(--y-axis-width);
+  padding-bottom: var(--x-axis-height);
 }
 
 .matrix-content {
   flex-grow: 1;
-  display: flex;
-  flex-direction: column;
   position: relative;
 }
 
@@ -49,7 +36,6 @@
   height: 400px;
   position: relative;
   width: 100%;
-  border: 1px solid #ccc; /* Re-added border for matrix outline */
 }
 
 /* --- Quadrant Backgrounds --- */
@@ -61,61 +47,56 @@
   background-color: #ef9a9a; /* Light Red */
   top: 0;
   left: 0;
-  width: 80%;
-  height: 50%;
+  width: var(--accuracy-threshold);
+  height: var(--time-threshold-percent);
 }
 .drill-for-speed-bg {
   background-color: #fff59d; /* Light Yellow */
   top: 0;
   right: 0;
-  width: 20%;
-  height: 50%;
+  width: calc(100% - var(--accuracy-threshold));
+  height: var(--time-threshold-percent);
 }
 .review-concepts-bg {
   background-color: #ffcc80; /* Light Orange */
   bottom: 0;
   left: 0;
-  width: 80%;
-  height: 50%;
+  width: var(--accuracy-threshold);
+  height: calc(100% - var(--time-threshold-percent));
 }
 .strengths-bg {
   background-color: #a5d6a7; /* Light Green */
   bottom: 0;
   right: 0;
-  width: 20%;
-  height: 50%;
+  width: calc(100% - var(--accuracy-threshold));
+  height: calc(100% - var(--time-threshold-percent));
 }
 
 /* --- Quadrant Labels --- */
 .quadrant-label {
   position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 4;
+  z-index: 2;
 }
 .quadrant-label span {
   color: rgba(0, 0, 0, 0.5);
   background-color: rgba(255, 255, 255, 0.7);
-  padding: 0.1rem 0.4rem; /* Smaller padding */
-  border-radius: 4px; /* Smaller border-radius */
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
   font-weight: bold;
-  font-size: 0.8rem; /* Smaller font size */
-  white-space: nowrap; /* Prevent text wrapping */
+  font-size: 0.8rem;
+  white-space: nowrap;
 }
-.high-priority-label { top: 25%; left: 40%; transform: translate(-50%, -50%); }
-.drill-for-speed-label { top: 25%; left: 90%; transform: translate(-50%, -50%); }
-.review-concepts-label { top: 75%; left: 40%; transform: translate(-50%, -50%); }
-.strengths-label { top: 75%; left: 90%; transform: translate(-50%, -50%); }
+.high-priority-label { top: 25%; left: calc(var(--accuracy-threshold) / 2); transform: translate(-50%, -50%); }
+.drill-for-speed-label { top: 25%; left: calc(var(--accuracy-threshold) + (100% - var(--accuracy-threshold)) / 2); transform: translate(-50%, -50%); }
+.review-concepts-label { top: 75%; left: calc(var(--accuracy-threshold) / 2); transform: translate(-50%, -50%); }
+.strengths-label { top: 75%; left: calc(var(--accuracy-threshold) + (100% - var(--accuracy-threshold)) / 2); transform: translate(-50%, -50%); }
 
-/* --- Dividers (now part of matrix border) --- */
-/* Removed explicit divider-x and divider-y */
-
+/* --- Dots --- */
 .matrix-dot {
   position: absolute;
   width: 12px;
   height: 12px;
-  background-color: #b71c1c; /* Dark Red */
+  background-color: #b71c1c;
   border: 2px solid #fff;
   border-radius: 50%;
   transform: translate(-50%, 50%);
@@ -123,52 +104,62 @@
   cursor: pointer;
   z-index: 3;
 }
-
 .matrix-dot:hover {
   transform: translate(-50%, 50%) scale(1.6);
 }
 
-.x-axis {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 5px;
+/* --- Axes --- */
+.y-axis, .x-axis {
   color: #6c757d;
   font-size: 0.9rem;
-  position: relative; /* For absolute positioning of 80 */
-}
-.x-axis-0 {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-}
-.x-axis-80 {
-  position: absolute;
-  left: 80%;
-  transform: translateX(-50%); /* Center 80 at 80% mark */
-  bottom: 0;
-}
-.x-axis-100 {
-  position: absolute;
-  right: 0;
-  bottom: 0;
 }
 
-.x-axis-label, .y-axis-label {
+.y-axis {
   position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: var(--y-axis-width);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: right;
+  padding-right: 10px;
+}
+.y-axis span:first-child { transform: translateY(-50%); }
+.y-axis span:last-child { transform: translateY(50%); }
+
+.x-axis {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--x-axis-height);
+}
+.x-axis span {
+  position: absolute;
+  bottom: 0;
+}
+.x-axis span:nth-child(1) { left: 0; transform: translateX(-50%); }
+.x-axis span:nth-child(2) { left: var(--accuracy-threshold); transform: translateX(-50%); }
+.x-axis span:nth-child(3) { right: 0; transform: translateX(50%); }
+
+.y-axis-label {
+  position: absolute;
+  left: -25px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
   color: #6c757d;
   font-weight: 500;
 }
 
 .x-axis-label {
-  bottom: -75px;
+  position: absolute;
+  bottom: -5px;
   left: 50%;
   transform: translateX(-50%);
-}
-
-.y-axis-label {
-  top: 50%;
-  left: -60px; /* Shift further left */
-  transform: translateY(50%) rotate(-90deg);
+  color: #6c757d;
+  font-weight: 500;
 }
 
 .matrix-placeholder {
