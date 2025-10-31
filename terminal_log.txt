@@ -1,52 +1,26 @@
-  Render Logs: 
-     ==> Deploying...
-==> Running 'node act-math-mern-app/server/dist/server.js'
-[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
-Firebase Admin SDK initialized for 'staging' via environment variable.
-Server is running on port 10000
-Incoming request origin: undefined
-     ==> Your service is live 🎉
-     ==> 
-     ==> ///////////////////////////////////////////////////////////
-     ==> 
-     ==> Available at your primary URL https://act-math-app-staging.onrender.com
-     ==> 
-     ==> ///////////////////////////////////////////////////////////
-Incoming request origin: undefined
-Incoming request origin: https://act-math-app-staging.vercel.app
-Incoming request origin: https://act-math-app-staging.vercel.app
-Incoming request origin: https://act-math-app-staging.vercel.app
-Incoming request origin: https://act-math-app-staging.vercel.app
-
-firestore fields:
-createdAt
-30 October 2025 at 21:29:27 UTC-5
-(timestamp)
-
-
-dailyQuestionLimit
-5
-(number)
-
-
-displayName
-"adsa"
-(string)
-
-
-email
-"rangweezus@gmail.com"
-(string)
-
-
-lastActiveAt
-30 October 2025 at 21:29:27 UTC-5
-(timestamp)
-
-
-photoURL
-"https://lh3.googleusercontent.com/a/ACg8ocL3vjjISEEw_sfRbpRo43Xl7Xw83tGEkHNJQRvMfu8wUDB_QA=s96-c"
-(string)
-
-
-
+vite v7.1.10 building for production...
+transforming...
+✓ 41 modules transformed.
+✗ Build failed in 814ms
+error during build:
+[vite:esbuild] Transform failed with 1 error:
+/vercel/path0/act-math-mern-app/client/src/components/PriorityMatrix.tsx:51:15: ERROR: Expected ";" but found "className"
+file: /vercel/path0/act-math-mern-app/client/src/components/PriorityMatrix.tsx:51:15
+Expected ";" but found "className"
+49 |            {/* Quadrant Dividers */}
+50 |            <div className="divider-x" style={{ bottom: `${(60 / maxTime) * 100}%` }}></div>
+51 |            <div className="divider-y" style={{ left: '80%' }}></div>
+   |                 ^
+52 |          </div>
+53 |        ) : (
+    at failureErrorWithLog (/vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:1467:15)
+    at /vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:736:50
+    at responseCallbacks.<computed> (/vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:603:9)
+    at handleIncomingPacket (/vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:658:12)
+    at Socket.readFromStdout (/vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:581:7)
+    at Socket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
+Error: Command "npm run build" exited with 1
