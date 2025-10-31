@@ -140,9 +140,9 @@
   position: absolute;
   bottom: 0;
 }
-.x-axis span:nth-child(1) { left: 0; transform: translateX(-50%); bottom: -15px; }
-.x-axis span:nth-child(2) { left: var(--accuracy-threshold); transform: translateX(-50%); bottom: -15px; }
-.x-axis span:nth-child(3) { right: 0; transform: translateX(50%); bottom: -15px; }
+.x-axis span:nth-child(1) { left: 0; transform: translateX(-50%); bottom: -25px; }
+.x-axis span:nth-child(2) { left: var(--accuracy-threshold); transform: translateX(-50%); bottom: -25px; }
+.x-axis span:nth-child(3) { right: 0; transform: translateX(50%); bottom: -25px; }
 
 .y-axis-label {
   position: absolute;
