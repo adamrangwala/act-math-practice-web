@@ -18,9 +18,9 @@ const Onboarding = () => {
   const handleRoleSelect = (selectedRole: string) => {
     setRole(selectedRole);
     if (selectedRole === 'ms_student' || selectedRole === 'hs_student') {
-      setStep(2);
+      setStep(2); // Go to Date Picker
     } else {
-      setStep(3); // Skip to scores step
+      setStep(3); // Skip Date Picker and go to Scores
     }
   };
 
