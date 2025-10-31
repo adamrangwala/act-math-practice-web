@@ -65,7 +65,7 @@ const PriorityMatrix = () => {
               <div className="quadrant-bg strengths-bg"></div>
 
               {/* Labels */}
-              <div className="quadrant-label high-priority-label"><span>High Priority</span></div>
+              <div className="quadrant-label high-priority-label"><span>High Priiority</span></div>
               <div className="quadrant-label drill-for-speed-label"><span>Drill for Speed</span></div>
               <div className="quadrant-label review-concepts-label"><span>Review Concepts</span></div>
               <div className="quadrant-label strengths-label"><span>Strengths</span></div>
