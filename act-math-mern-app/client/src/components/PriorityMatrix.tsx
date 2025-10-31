@@ -37,16 +37,54 @@ const PriorityMatrix = () => {
   const maxTime = 120; // Static max time for a stable Y-axis
 
   const getQuadrant = (accuracy: number, avgTime: number) => {
-    if (accuracy >= 80 && avgTime <= 60) return 'strengths';
-    if (accuracy >= 80 && avgTime > 60) return 'drill-for-speed';
-    if (accuracy < 80 && avgTime <= 60) return 'review-concepts';
-    return 'high-priority';
+    if (accuracy >= 80 && avgTime < 60) return 'strengths';
+    if (accuracy >= 80 && avgTime >= 60) return 'drill-for-speed';
+    if (accuracy < 80 && avgTime < 60) return 'review-concepts';
+    return 'high-priority'; // accuracy < 80 && avgTime >= 60
   };
 
   if (loading) return <div className="text-center my-4"><Spinner animation="border" /></div>;
   if (error) return <Alert variant="danger" className="my-4">{error}</Alert>;
-          <div className="divider-x" style={{ bottom: `${(60 / maxTime) * 100}%` }}></div>
-          <div className="divider-y" style={{ left: '80%' }}></div>
+
+  return (
+    <div className="priority-matrix-container">
+      <h3 className="matrix-title">Priority Matrix</h3>
+      {matrixData.length > 0 ? (
+        <div className="matrix-wrapper">
+          <div className="y-axis-label">Avg. Time (s)</div>
+          <div className="x-axis-label">Accuracy (%)</div>
+          <div className="y-axis">
+            <span>{maxTime}</span>
+            <span>{maxTime / 2}</span>
+            <span>0</span>
+          </div>
+          <div className="matrix">
+            <div className="quadrant high-priority"><span>High Priority</span></div>
+            <div className="quadrant drill-for-speed"><span>Drill for Speed</span></div>
+            <div className="quadrant review-concepts"><span>Review Concepts</span></div>
+            <div className="quadrant strengths"><span>Strengths</span></div>
+            
+            {matrixData.map(data => (
+              <OverlayTrigger
+                key={data.subcategory}
+                placement="top"
+                overlay={<Tooltip id={`tooltip-${data.subcategory}`}>{data.subcategory}</Tooltip>}
+              >
+                <div
+                  className="matrix-dot"
+                  style={{
+                    left: `${data.accuracy}%`,
+                    bottom: `${Math.min(100, (data.avgTime / maxTime) * 100)}%`,
+                  }}
+                ></div>
+              </OverlayTrigger>
+            ))}
+          </div>
+          <div className="x-axis">
+            <span>0</span>
+            <span>50</span>
+            <span>100</span>
+          </div>
         </div>
       ) : (
         <div className="matrix-placeholder">
@@ -55,6 +93,7 @@ const PriorityMatrix = () => {
       )}
     </div>
   );
+};
 };
 
 export default PriorityMatrix;

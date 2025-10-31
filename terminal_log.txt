@@ -1,18 +1,18 @@
 vite v7.1.10 building for production...
 transforming...
 ✓ 41 modules transformed.
-✗ Build failed in 750ms
+✗ Build failed in 797ms
 error during build:
 [vite:esbuild] Transform failed with 1 error:
-/vercel/path0/act-math-mern-app/client/src/components/PriorityMatrix.tsx:50:15: ERROR: Expected ";" but found "className"
-file: /vercel/path0/act-math-mern-app/client/src/components/PriorityMatrix.tsx:50:15
+/vercel/path0/act-math-mern-app/client/src/components/PriorityMatrix.tsx:49:15: ERROR: Expected ";" but found "className"
+file: /vercel/path0/act-math-mern-app/client/src/components/PriorityMatrix.tsx:49:15
 Expected ";" but found "className"
-48 |  // ... (rest of the component)
-49 |            <div className="divider-x" style={{ bottom: `${(60 / maxTime) * 100}%` }}></div>
-50 |            <div className="divider-y" style={{ left: '80%' }}></div>
+47 |    if (error) return <Alert variant="danger" className="my-4">{error}</Alert>;
+48 |            <div className="divider-x" style={{ bottom: `${(60 / maxTime) * 100}%` }}></div>
+49 |            <div className="divider-y" style={{ left: '80%' }}></div>
    |                 ^
-51 |          </div>
-52 |        ) : (
+50 |          </div>
+51 |        ) : (
     at failureErrorWithLog (/vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:1467:15)
     at /vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:736:50
     at responseCallbacks.<computed> (/vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:603:9)

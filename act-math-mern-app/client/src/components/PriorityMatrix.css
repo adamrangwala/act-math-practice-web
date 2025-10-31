@@ -1,158 +1,117 @@
-/* --- Priority Matrix Styles --- */
-.priority-matrix-card {
+/* PriorityMatrix.css */
+.priority-matrix-container {
   background-color: #fff;
-  padding: 1.5rem;
+  padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  margin-bottom: 3rem;
+  margin-top: 2rem;
 }
 
-.priority-matrix-header {
+.matrix-title {
   text-align: center;
-  margin-bottom: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 2.5rem;
+  color: #333;
 }
 
-.priority-matrix-header h3 {
-  font-weight: 700;
-  margin-bottom: 0.25rem;
-}
-
-.priority-matrix-header p {
-  color: #6c757d;
-  margin-bottom: 0;
-}
-
-.priority-matrix-wrapper {
-  position: relative;
-  padding: 10px 10px 40px 50px; /* Top, Right, Bottom, Left for axes */
-}
-
-.priority-matrix {
-  position: relative;
-  width: 100%;
-  height: 400px;
+.matrix-wrapper {
   display: grid;
-  grid-template-columns: 80% 20%; /* Split at 80% accuracy */
-  grid-template-rows: 50% 50%; /* Split at 60s (since maxTime is 120s) */
-  border: 1px solid #ccc;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr auto;
+  position: relative;
+  padding-left: 30px; /* Space for Y-axis labels */
+  padding-bottom: 30px; /* Space for X-axis labels */
 }
 
-.matrix-dots-overlay {
-  position: absolute;
-  top: 10px;
-  left: 50px;
-  right: 10px;
-  bottom: 40px;
-  pointer-events: none;
+.matrix {
+  grid-column: 2;
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  border: 1px solid #ccc;
+  position: relative;
+  height: 400px; /* Or any fixed height */
 }
 
 .quadrant {
-  position: relative;
   display: flex;
-  align-items: center;
   justify-content: center;
-  overflow: hidden;
-  cursor: pointer;
+  align-items: center;
+  position: relative;
 }
 
-.quadrant-label {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: rgba(0, 0, 0, 0.1);
-  text-align: center;
+.quadrant span {
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: bold;
+  font-size: 1.1rem;
 }
 
-.quadrant.strengths { background-color: rgba(40, 167, 69, 0.1); }
-.quadrant.drill-for-speed { background-color: rgba(255, 193, 7, 0.1); }
-.quadrant.review-concepts { background-color: rgba(255, 159, 64, 0.1); }
-.quadrant.high-priority { background-color: rgba(220, 53, 69, 0.1); }
+.quadrant.high-priority { background-color: rgba(229, 57, 53, 0.2); border-left: 1px solid #ccc; }
+.quadrant.drill-for-speed { background-color: rgba(253, 216, 53, 0.2); }
+.quadrant.review-concepts { background-color: rgba(255, 152, 0, 0.2); border-top: 1px solid #ccc; border-left: 1px solid #ccc;}
+.quadrant.strengths { background-color: rgba(76, 175, 80, 0.2); border-top: 1px solid #ccc; }
 
 .matrix-dot {
   position: absolute;
   width: 12px;
   height: 12px;
+  background-color: #b71c1c; /* Dark Red */
   border-radius: 50%;
-  transform: translate(-50%, 50%);
+  transform: translate(-50%, 50%); /* Center the dot on the coordinate */
+  transition: all 0.3s ease-in-out;
   cursor: pointer;
-  transition: transform 0.2s;
-  pointer-events: auto;
-  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .matrix-dot:hover {
   transform: translate(-50%, 50%) scale(1.5);
+  z-index: 10;
 }
 
-.matrix-dot.strengths { background-color: #28a745; }
-.matrix-dot.drill-for-speed { background-color: #ffc107; }
-.matrix-dot.review-concepts { background-color: #ff9f40; }
-.matrix-dot.high-priority { background-color: #dc3545; }
-
-.axis {
-  position: absolute;
+/* --- AXES --- */
+.y-axis, .x-axis {
   color: #6c757d;
-  font-weight: 500;
   font-size: 0.9rem;
 }
 
-.axis.x-axis {
-  bottom: 10px;
+.y-axis {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.x-axis {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 5px;
+}
+
+.x-axis-label, .y-axis-label {
+  position: absolute;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.x-axis-label {
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.axis.y-axis {
-  left: 10px;
+.y-axis-label {
   top: 50%;
+  left: 0;
   transform: translateY(-50%) rotate(-90deg);
 }
 
-.x-axis-labels, .y-axis-labels {
-  position: absolute;
-  display: flex;
-  color: #6c757d;
-  font-size: 0.8rem;
-  pointer-events: none;
-}
-
-.x-axis-labels {
-  width: 100%;
-  justify-content: space-between;
-  bottom: -20px;
-  left: 0;
-}
-
-.y-axis-labels {
-  height: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  left: -35px;
-  top: 0;
-  text-align: right;
-}
-
-.divider-x, .divider-y {
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.15);
-  pointer-events: none;
-}
-
-.divider-x {
-  width: 100%;
-  height: 2px;
-  left: 0;
-}
-
-.divider-y {
-  width: 2px;
-  height: 100%;
-  top: 0;
-}
-
 .matrix-placeholder {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
+  text-align: center;
+  padding: 4rem;
   color: #6c757d;
 }
