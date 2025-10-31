@@ -55,6 +55,7 @@ const PriorityMatrix = () => {
           <div className="y-axis">
             <span>{maxTime}s</span>
             <span>60s</span>
+            <span>0s</span>
           </div>
           <div className="matrix-content">
             <div className="matrix">
