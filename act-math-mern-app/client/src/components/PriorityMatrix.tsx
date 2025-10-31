@@ -59,10 +59,17 @@ const PriorityMatrix = () => {
           <div className="matrix-content">
             <div className="y-axis-label">Avg. Time (s)</div>
             <div className="matrix">
-              <div className="quadrant high-priority"><span>High Priority</span></div>
-              <div className="quadrant drill-for-speed"><span>Drill for Speed</span></div>
-              <div className="quadrant review-concepts"><span>Review Concepts</span></div>
-              <div className="quadrant strengths"><span>Strengths</span></div>
+              {/* Background Quadrants */}
+              <div className="quadrant-bg high-priority-bg"></div>
+              <div className="quadrant-bg drill-for-speed-bg"></div>
+              <div className="quadrant-bg review-concepts-bg"></div>
+              <div className="quadrant-bg strengths-bg"></div>
+
+              {/* Labels */}
+              <div className="quadrant-label high-priority-label"><span>High Priority</span></div>
+              <div className="quadrant-label drill-for-speed-label"><span>Drill for Speed</span></div>
+              <div className="quadrant-label review-concepts-label"><span>Review Concepts</span></div>
+              <div className="quadrant-label strengths-label"><span>Strengths</span></div>
 
               <div className="divider-x" style={{ bottom: `${(60 / maxTime) * 100}%` }}></div>
               <div className="divider-y" style={{ left: '80%' }}></div>
