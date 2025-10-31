@@ -89,8 +89,8 @@ const PriorityMatrix = () => {
               </OverlayTrigger>
             </div>
 
-            {/* Data Points */}
-            {matrixData.map(data => (
+            {/* Data Points (Temporarily Commented Out for Debugging) */}
+            {/* {matrixData.map(data => (
               <OverlayTrigger
                 key={data.subcategory}
                 placement="top"
@@ -110,7 +110,7 @@ const PriorityMatrix = () => {
                   }}
                 />
               </OverlayTrigger>
-            ))}
+            ))} */}
           </div>
           {/* Axes */}
           <div className="axis x-axis">
