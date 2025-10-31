@@ -47,6 +47,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  cursor: pointer; /* Make the whole quadrant clickable */
 }
 
 .quadrant-label {
@@ -54,9 +55,6 @@
   font-weight: 700;
   color: rgba(0, 0, 0, 0.5);
   text-align: center;
-  cursor: pointer;
-  position: relative; /* Required for z-index */
-  z-index: 2; /* Bring label above dots */
 }
 
 .quadrant.strengths { background-color: rgba(40, 167, 69, 0.5); }
@@ -72,7 +70,7 @@
   transform: translate(-50%, 50%);
   cursor: pointer;
   transition: transform 0.2s;
-  z-index: 1; /* Position dots below labels */
+  /* z-index is no longer needed here as dots will be re-introduced in a separate layer */
 }
 
 .matrix-dot:hover {
