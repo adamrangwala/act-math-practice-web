@@ -55,13 +55,7 @@ const PriorityMatrix = () => {
             placement="top"
             overlay={
               <Tooltip id="matrix-info-tooltip">
-                This chart helps you decide what to study next by plotting all your skills based on <strong>Accuracy</strong> (right vs. wrong) and <strong>Average Time</strong>.<br/><br/>
-                <ul>
-                  <li><strong>High Priority (Top-Left):</strong> You're taking a while and still getting these wrong. Review the core concepts for these topics first.</li>
-                  <li><strong>Drill for Speed (Top-Right):</strong> You know the material, but you're slow. Use targeted practice to build speed.</li>
-                  <li><strong>Review Concepts (Bottom-Left):</strong> You're answering fast but making mistakes. Slow down and double-check your work here.</li>
-                  <li><strong>Strengths (Bottom-Right):</strong> You've mastered these! You're both fast and accurate.</li>
-                </ul>
+                The position of each skill dot on this chart is based on your rolling average performance (accuracy and time) over your recent attempts. This gives you a stable and accurate view of your long-term mastery.
               </Tooltip>
             }
           >
@@ -74,10 +68,54 @@ const PriorityMatrix = () => {
         <div className="priority-matrix-wrapper">
           <div className="priority-matrix">
             {/* Quadrants - Order defines the grid layout: top-left, top-right, bottom-left, bottom-right */}
-            <div className="quadrant high-priority"><span className="quadrant-label">High Priority</span></div>
-            <div className="quadrant drill-for-speed"><span className="quadrant-label">Drill for Speed</span></div>
-            <div className="quadrant review-concepts"><span className="quadrant-label">Review Concepts</span></div>
-            <div className="quadrant strengths"><span className="quadrant-label">Strengths</span></div>
+            <div className="quadrant high-priority">
+              <OverlayTrigger
+                placement="top"
+                overlay={
+                  <Tooltip id="high-priority-tooltip">
+                    You're taking a while and still getting these wrong. Review the core concepts for these topics first.
+                  </Tooltip>
+                }
+              >
+                <span className="quadrant-label">High Priority</span>
+              </OverlayTrigger>
+            </div>
+            <div className="quadrant drill-for-speed">
+              <OverlayTrigger
+                placement="top"
+                overlay={
+                  <Tooltip id="drill-for-speed-tooltip">
+                    You know the material, but you're slow. Use targeted practice to build speed.
+                  </Tooltip>
+                }
+              >
+                <span className="quadrant-label">Drill for Speed</span>
+              </OverlayTrigger>
+            </div>
+            <div className="quadrant review-concepts">
+              <OverlayTrigger
+                placement="bottom"
+                overlay={
+                  <Tooltip id="review-concepts-tooltip">
+                    You're answering fast but making mistakes. Slow down and double-check your work here.
+                  </Tooltip>
+                }
+              >
+                <span className="quadrant-label">Review Concepts</span>
+              </OverlayTrigger>
+            </div>
+            <div className="quadrant strengths">
+              <OverlayTrigger
+                placement="bottom"
+                overlay={
+                  <Tooltip id="strengths-tooltip">
+                    You've mastered these! You're both fast and accurate.
+                  </Tooltip>
+                }
+              >
+                <span className="quadrant-label">Strengths</span>
+              </OverlayTrigger>
+            </div>
 
             {/* Data Points */}
             {matrixData.map(data => (
