@@ -8,6 +8,8 @@ const Onboarding = () => {
   const [step, setStep] = useState(1);
   const [role, setRole] = useState('');
   const [testDate, setTestDate] = useState('');
+  const [currentScore, setCurrentScore] = useState('');
+  const [targetScore, setTargetScore] = useState('');
   const [limit, setLimit] = useState(10);
   const [loading, setLoading] = useState(false);
   const { setIsNewUser } = useAuth();
@@ -18,7 +20,7 @@ const Onboarding = () => {
     if (selectedRole === 'ms_student' || selectedRole === 'hs_student') {
       setStep(2);
     } else {
-      setStep(3);
+      setStep(3); // Skip to scores step
     }
   };
 
@@ -26,20 +28,27 @@ const Onboarding = () => {
     setStep(3);
   };
 
+  const handleScoresContinue = () => {
+    setStep(4);
+  };
+
   const handleSubmit = async () => {
     setLoading(true);
     try {
       await authenticatedFetch('/api/settings', {
         method: 'PUT',
-        body: JSON.stringify({ dailyQuestionLimit: limit, role: role, testDate: testDate }),
+        body: JSON.stringify({ 
+          dailyQuestionLimit: limit, 
+          role: role, 
+          testDate: testDate,
+          currentScore: currentScore ? parseInt(currentScore, 10) : undefined,
+          targetScore: targetScore ? parseInt(targetScore, 10) : undefined,
+        }),
       });
       
-      // Set the user as not new BEFORE navigating to ensure the router has the correct state.
       if (setIsNewUser) {
         setIsNewUser(false);
       }
-
-      // Navigate to the first practice session
       navigate('/practice');
     } catch (error) {
       console.error("Failed to save settings:", error);
@@ -83,6 +92,42 @@ const Onboarding = () => {
 
         {step === 3 && (
           <>
+            <h1>What are your score goals? (Optional)</h1>
+            <p>If you know your current and target ACT Math scores, we can help track your progress.</p>
+            <div className="score-inputs-container">
+              <div className="score-input-group">
+                <label htmlFor="current-score">Current Score</label>
+                <input
+                  type="number"
+                  id="current-score"
+                  min="1"
+                  max="36"
+                  value={currentScore}
+                  onChange={(e) => setCurrentScore(e.target.value)}
+                  placeholder="e.g., 22"
+                />
+              </div>
+              <div className="score-input-group">
+                <label htmlFor="target-score">Target Score</label>
+                <input
+                  type="number"
+                  id="target-score"
+                  min="1"
+                  max="36"
+                  value={targetScore}
+                  onChange={(e) => setTargetScore(e.target.value)}
+                  placeholder="e.g., 28"
+                />
+              </div>
+            </div>
+            <button onClick={handleScoresContinue} className="continue-button">
+              Continue
+            </button>
+          </>
+        )}
+
+        {step === 4 && (
+          <>
             <h1>Set Your Daily Goal</h1>
             <p>Set a goal for how many questions you'd like to practice in each daily session.</p>
             
@@ -112,6 +157,7 @@ const Onboarding = () => {
       </div>
     </div>
   );
+
 };
 
 export default Onboarding;

@@ -70,3 +70,15 @@ This section documents notable technical challenges encountered during developme
 
 2.  **Challenge:** The `replace` tool repeatedly failed to modify files, sometimes corrupting them, due to the `old_string` not being an exact match.
     -   **Solution:** The most robust solution was to pivot to a "read-modify-write" strategy. This involved reading the entire file content, performing the desired string manipulation in memory, and then using the `write_file` tool to completely overwrite the original file with the corrected content. For critical file corruption, `git rm --force` followed by `write_file` was used to ensure a clean slate.
+
+3.  **Challenge:** The deployed application consistently failed with a generic "Failed to fetch" error, even though the backend was running.
+    -   **Solution:** This was traced to a missing environment variable on the frontend. The `VITE_API_URL` variable was not set in the Vercel deployment, so the client-side code did not know the address of the Render backend. The fix was to add the `VITE_API_URL` environment variable to the Vercel project settings, pointing it to the correct Render service URL.
+
+4.  **Challenge:** User data (like `testDate`) was not being saved, and the application was unable to load any data from the database.
+    -   **Solution:** The default Firestore security rules were `allow read, write: if false;`, which blocks all database access. The fix was to implement a new set of rules that explicitly granted authenticated users permission to read and write to their own documents in the `users`, `userStats`, and `userSubcategoryProgress` collections, while allowing read-only access to public collections like `questions`.
+
+5.  **Challenge:** After adding a `role` field to the user profile, existing users were incorrectly forced into the onboarding flow.
+    -   **Solution:** The backend's `initUser` function was updated to handle this data migration scenario. When it detects a user profile that is missing the new `role` field, it performs a second check for existing stats. If stats are found, it identifies the user as a "legacy user," automatically assigns them a default role, and bypasses the onboarding flow, ensuring a seamless experience for existing users.
+
+6.  **Challenge:** Several race conditions were causing bugs, including the first practice session being counted twice and the onboarding screen looping instead of navigating away.
+    -   **Solution:** The fixes involved making state updates and navigation more declarative and sequential. The double-counting was resolved by consolidating the session-counting logic into a single backend function. The onboarding loop was fixed by removing a manual `navigate()` call and instead letting the top-level router in `App.tsx` handle the redirection automatically after the `isNewUser` state was updated.

@@ -138,3 +138,33 @@
   width: 100%;
   max-width: 300px;
 }
+
+.score-inputs-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 2.5rem 0;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.score-input-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.score-input-group label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.score-input-group input {
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 100%;
+}

@@ -83,7 +83,7 @@ export const updateUserSettings = async (req: AuthRequest, res: Response) => {
     return res.status(401).send({ message: 'Unauthorized' });
   }
   const userId = req.user.uid;
-  const { dailyQuestionLimit, role, testDate } = req.body;
+  const { dailyQuestionLimit, role, testDate, currentScore, targetScore } = req.body;
 
   const updateData: { [key: string]: any } = {};
 
@@ -107,6 +107,20 @@ export const updateUserSettings = async (req: AuthRequest, res: Response) => {
       return res.status(400).send({ message: 'Invalid test date format.' });
     }
     updateData.testDate = testDate;
+  }
+
+  if (currentScore !== undefined) {
+    if (typeof currentScore !== 'number' || currentScore < 1 || currentScore > 36) {
+      return res.status(400).send({ message: 'Invalid current score.' });
+    }
+    updateData.currentScore = currentScore;
+  }
+
+  if (targetScore !== undefined) {
+    if (typeof targetScore !== 'number' || targetScore < 1 || targetScore > 36) {
+      return res.status(400).send({ message: 'Invalid target score.' });
+    }
+    updateData.targetScore = targetScore;
   }
 
   if (Object.keys(updateData).length === 0) {
