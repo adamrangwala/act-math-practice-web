@@ -1,46 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Spinner, Alert, Row, Col } from 'react-bootstrap';
+import { Spinner, Alert, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
-import { Scatter } from 'react-chartjs-2';
-import { Chart as ChartJS, LinearScale, PointElement, LineElement, Tooltip, Legend } from 'chart.js';
 import { authenticatedFetch } from '../utils/api';
-
-ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
 
 interface MatrixData {
   subcategory: string;
   accuracy: number;
   avgTime: number;
 }
-
-// --- Helper function for point color based on new logic ---
-const getQuadrantColor = (accuracy: number, avgTime: number) => {
-  // Green: Target Zone
-  if (accuracy >= 90 && avgTime <= 60) return 'rgba(75, 192, 192, 0.9)'; 
-  // Orange: Needs Work
-  if (accuracy >= 50 && avgTime <= 120) return 'rgba(255, 159, 64, 0.9)';
-  // Red: Problem Area
-  return 'rgba(255, 99, 132, 0.9)';
-};
-
-// --- Chart.js Plugin for Target Zone Background ---
-const targetZoneBackground = {
-  id: 'targetZoneBackground',
-  beforeDraw(chart: ChartJS) {
-    const { ctx, chartArea: { top, bottom }, scales: { x, y } } = chart;
-    const lowerX = x.getPixelForValue(90);
-    const upperX = x.getPixelForValue(100);
-    const lowerY = y.getPixelForValue(0);
-    const upperY = y.getPixelForValue(60);
-
-    ctx.save();
-    ctx.fillStyle = 'rgba(75, 192, 192, 0.1)'; // Light green
-    ctx.fillRect(lowerX, upperY, upperX - lowerX, lowerY - upperY);
-    ctx.restore();
-  },
-};
-
-ChartJS.register(targetZoneBackground);
 
 const PriorityMatrix = () => {
   const { currentUser } = useAuth();
@@ -62,70 +29,73 @@ const PriorityMatrix = () => {
       };
       fetchMatrixData();
     } else {
-      setLoading(false); // If no user, stop loading
+      setLoading(false);
     }
   }, [currentUser]);
 
-  const maxTime = Math.max(...matrixData.map(d => d.avgTime), 120); // Default to 120s (2min)
+  const maxTime = Math.max(...matrixData.map(d => d.avgTime), 90);
 
-  const chartData = {
-    datasets: [
-      {
-        label: 'Subcategories',
-        data: matrixData.map(d => ({ x: d.accuracy, y: d.avgTime, label: d.subcategory })),
-        backgroundColor: matrixData.map(d => getQuadrantColor(d.accuracy, d.avgTime)),
-        pointRadius: 8,
-        borderColor: 'rgba(0,0,0,0.2)',
-        borderWidth: 1,
-      },
-    ],
+  const getQuadrant = (accuracy: number, avgTime: number) => {
+    if (accuracy < 75 && avgTime > 75) return 'high-priority'; // Red
+    if (accuracy < 75 && avgTime <= 75) return 'review-concepts'; // Orange
+    if (accuracy >= 75 && avgTime > 75) return 'drill-for-speed'; // Yellow
+    return 'strengths'; // Green
   };
 
-  const options = {
-    scales: {
-      x: {
-        title: { display: true, text: 'Accuracy (%)' },
-        min: 0,
-        max: 100,
-      },
-      y: {
-        title: { display: true, text: 'Average Time' },
-        beginAtZero: true,
-        max: maxTime,
-        ticks: {
-          callback: function(value: any) {
-            const minutes = Math.floor(value / 60);
-            const seconds = (value % 60).toString().padStart(2, '0');
-            return `${minutes}:${seconds}`;
-          }
-        }
-      },
-    },
-    plugins: {
-      tooltip: { callbacks: { label: (c: any) => c.raw.label || '' } },
-      legend: { display: false },
-    },
-    maintainAspectRatio: false,
-  };
-
-  if (loading) return <div className="text-center mt-3"><Spinner animation="border" /></div>;
-  if (error) return <Alert variant="danger" className="mt-3">{error}</Alert>;
+  if (loading) return <div className="text-center my-4"><Spinner animation="border" /></div>;
+  if (error) return <Alert variant="danger" className="my-4">{error}</Alert>;
 
   return (
-    <Card className="mt-4">
-      <Card.Body>
-        <Card.Title>Priority Matrix</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">Your Performance Quadrants</Card.Subtitle>
-        <div style={{ position: 'relative', height: '400px' }}>
-          {matrixData.length > 0 ? <Scatter data={chartData} options={options as any} /> : <p className="text-muted mt-3">Complete a session to see your priority matrix!</p>}
+    <div className="priority-matrix-card">
+      <div className="priority-matrix-header">
+        <h3>Priority Matrix</h3>
+        <p>Your skills, visualized by accuracy and speed.</p>
+      </div>
+      {matrixData.length > 0 ? (
+        <div className="priority-matrix">
+          {/* Quadrants */}
+          <div className="quadrant strengths"><span className="quadrant-label">Strengths</span></div>
+          <div className="quadrant drill-for-speed"><span className="quadrant-label">Drill for Speed</span></div>
+          <div className="quadrant review-concepts"><span className="quadrant-label">Review Concepts</span></div>
+          <div className="quadrant high-priority"><span className="quadrant-label">High Priority</span></div>
+
+          {/* Data Points */}
+          {matrixData.map(data => (
+            <OverlayTrigger
+              key={data.subcategory}
+              placement="top"
+              overlay={
+                <Tooltip id={`tooltip-${data.subcategory}`}>
+                  <strong>{data.subcategory}</strong><br />
+                  Accuracy: {data.accuracy.toFixed(0)}%<br />
+                  Avg. Time: {data.avgTime.toFixed(1)}s
+                </Tooltip>
+              }
+            >
+              <div
+                className={`matrix-dot ${getQuadrant(data.accuracy, data.avgTime)}`}
+                style={{
+                  left: `${data.accuracy}%`,
+                  bottom: `${(data.avgTime / maxTime) * 100}%`,
+                }}
+              />
+            </OverlayTrigger>
+          ))}
+
+          {/* Axes */}
+          <div className="axis x-axis">
+            <span>Accuracy (%)</span>
+          </div>
+          <div className="axis y-axis">
+            <span>Avg. Time (s)</span>
+          </div>
         </div>
-        <Row className="text-center mt-3 small text-muted">
-          <Col><strong>🔴 Problem Area:</strong> Low accuracy or very slow.</Col>
-          <Col><strong>🟠 Needs Work:</strong> Good accuracy, but slow.</Col>
-          <Col><strong>🟢 Target Zone:</strong> Fast and accurate!</Col>
-        </Row>
-      </Card.Body>
-    </Card>
+      ) : (
+        <div className="matrix-placeholder">
+          <p>Complete a practice session to see your Priority Matrix!</p>
+        </div>
+      )}
+    </div>
   );
 };
 
