@@ -94,6 +94,6 @@ const PriorityMatrix = () => {
     </div>
   );
 };
-};
+
 
 export default PriorityMatrix;
