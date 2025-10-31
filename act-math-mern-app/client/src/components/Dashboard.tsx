@@ -84,14 +84,25 @@ const Dashboard = () => {
       <div className="stats-cards">
         <div className="stat-card">
           <div className="stat-icon accuracy"></div>
-          <div className="stat-info">
-            <span className="stat-label">Rolling Accuracy</span>
-            <div className="stat-value-with-trend">
-              <span className="stat-value">{dashboardStats?.currentRollingAccuracy.toFixed(0) ?? 0}%</span>
-              {dashboardStats && renderTrendArrow(dashboardStats.currentRollingAccuracy, dashboardStats.previousRollingAccuracy)}
-            </div>
-          </div>
-        </div>
+                      <div className="stat-info">
+                        <div className="d-flex align-items-center gap-2">
+                          <span className="stat-label">Rolling Accuracy</span>
+                          <OverlayTrigger
+                            placement="top"
+                            overlay={
+                              <Tooltip id="rolling-accuracy-tooltip">
+                                Your accuracy over your last 50 questions. This gives you a dynamic view of your recent performance.
+                              </Tooltip>
+                            }
+                          >
+                            <span className="info-icon">ⓘ</span>
+                          </OverlayTrigger>
+                        </div>
+                        <div className="stat-value-with-trend">
+                          <span className="stat-value">{dashboardStats?.currentRollingAccuracy.toFixed(0) ?? 0}%</span>
+                          {dashboardStats && renderTrendArrow(dashboardStats.currentRollingAccuracy, dashboardStats.previousRollingAccuracy)}
+                        </div>
+                      </div>        </div>
         <div className="stat-card">
           <div className="stat-icon streak"></div>
           <div className="stat-info">

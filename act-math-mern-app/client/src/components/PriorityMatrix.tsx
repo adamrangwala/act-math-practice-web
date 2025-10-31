@@ -49,8 +49,26 @@ const PriorityMatrix = () => {
   return (
     <div className="priority-matrix-card">
       <div className="priority-matrix-header">
-        <h3>Priority Matrix</h3>
-        <p>Your skills, visualized by accuracy and speed.</p>
+        <div className="d-flex justify-content-center align-items-center gap-2">
+          <h3>Your Action Plan</h3>
+          <OverlayTrigger
+            placement="top"
+            overlay={
+              <Tooltip id="matrix-info-tooltip">
+                This chart helps you decide what to study next by plotting all your skills based on <strong>Accuracy</strong> (right vs. wrong) and <strong>Average Time</strong>.<br/><br/>
+                <ul>
+                  <li><strong>High Priority (Top-Left):</strong> You're taking a while and still getting these wrong. Review the core concepts for these topics first.</li>
+                  <li><strong>Drill for Speed (Top-Right):</strong> You know the material, but you're slow. Use targeted practice to build speed.</li>
+                  <li><strong>Review Concepts (Bottom-Left):</strong> You're answering fast but making mistakes. Slow down and double-check your work here.</li>
+                  <li><strong>Strengths (Bottom-Right):</strong> You've mastered these! You're both fast and accurate.</li>
+                </ul>
+              </Tooltip>
+            }
+          >
+            <span className="info-icon">ⓘ</span>
+          </OverlayTrigger>
+        </div>
+        <p>Where to focus next, based on your speed and accuracy.</p>
       </div>
       {matrixData.length > 0 ? (
         <div className="priority-matrix-wrapper">
