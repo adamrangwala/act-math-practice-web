@@ -48,7 +48,14 @@ const PriorityMatrix = () => {
 
   return (
     <div className="priority-matrix-container">
-      <h3 className="matrix-title">Priority Matrix</h3>
+      <div className="matrix-header">
+        <h3 className="matrix-title">Action Plan</h3>
+        <p className="matrix-subtitle">Identify your weakest areas to guide your practice sessions.</p>
+      </div>
+      <div className="matrix-toolbar">
+        <span className="info-icon">ⓘ</span>
+        <span>Each dot represents the rolling average for a subcategory.</span>
+      </div>
       {matrixData.length > 0 ? (
         <div className="matrix-wrapper">
           <div className="y-axis-label">Avg. Time (s)</div>
