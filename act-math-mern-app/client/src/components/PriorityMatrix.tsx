@@ -57,76 +57,83 @@ const PriorityMatrix = () => {
         <span>Each dot represents the rolling average for a subcategory.</span>
       </div>
       {matrixData.length > 0 ? (
-        <div className="matrix-wrapper">
+        <div className="matrix-grid-container">
+          {/* Y-Axis Label */}
           <div className="y-axis-label">Avg. Time (s)</div>
+
+          {/* Y-Axis Ticks */}
           <div className="y-axis">
             <span>{maxTime}s</span>
             <span>60s</span>
             <span>0s</span>
           </div>
-          <div className="matrix-content">
-            <div className="matrix">
-              {/* Background Quadrants */}
-              <div className="quadrant-bg high-priority-bg"></div>
-              <div className="quadrant-bg drill-for-speed-bg"></div>
-              <div className="quadrant-bg review-concepts-bg"></div>
-              <div className="quadrant-bg strengths-bg"></div>
 
-              {/* Labels */}
-              <OverlayTrigger
-                placement="top"
-                overlay={<Tooltip id="high-priority-tooltip">Low accuracy and high time. Focus here first!</Tooltip>}
-              >
-                <div className="quadrant-label high-priority-label"><span>High Priority</span></div>
-              </OverlayTrigger>
-              <OverlayTrigger
-                placement="top"
-                overlay={<Tooltip id="drill-for-speed-tooltip">High accuracy but high time. Practice for speed!</Tooltip>}
-              >
-                <div className="quadrant-label drill-for-speed-label"><span>Drill for Speed</span></div>
-              </OverlayTrigger>
-              <OverlayTrigger
-                placement="top"
-                overlay={<Tooltip id="review-concepts-tooltip">Low accuracy but low time. Review the underlying concepts.</Tooltip>}
-              >
-                <div className="quadrant-label review-concepts-label"><span>Review Concepts</span></div>
-              </OverlayTrigger>
-              <OverlayTrigger
-                placement="top"
-                overlay={<Tooltip id="strengths-tooltip">High accuracy and low time. Your strong areas!</Tooltip>}
-              >
-                <div className="quadrant-label strengths-label"><span>Strengths</span></div>
-              </OverlayTrigger>
+          {/* Main Matrix Plot */}
+          <div className="matrix">
+            {/* Background Quadrants */}
+            <div className="quadrant-bg high-priority-bg"></div>
+            <div className="quadrant-bg drill-for-speed-bg"></div>
+            <div className="quadrant-bg review-concepts-bg"></div>
+            <div className="quadrant-bg strengths-bg"></div>
 
-              {matrixData.map(data => (
-                <OverlayTrigger
-                  key={data.subcategory}
-                  placement="top"
-                  overlay={
-                    <Tooltip id={`tooltip-${data.subcategory}`}>
-                      <strong>{data.subcategory}</strong><br/>
-                      Accuracy: {data.accuracy.toFixed(0)}%<br/>
-                      Avg Time: {data.avgTime.toFixed(1)}s
-                    </Tooltip>
-                  }
-                >
-                  <div
-                    className="matrix-dot"
-                    style={{
-                      left: `${data.accuracy}%`,
-                      bottom: `${Math.min(100, (data.avgTime / maxTime) * 100)}%`,
-                    }}
-                  ></div>
-                </OverlayTrigger>
-              ))}
-            </div>
-            <div className="x-axis">
-              <span>0</span>
-              <span>80</span>
-              <span>100</span>
-            </div>
-            <div className="x-axis-label">Accuracy (%)</div>
+            {/* Labels */}
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip id="high-priority-tooltip">Low accuracy and high time. Focus here first!</Tooltip>}
+            >
+              <div className="quadrant-label high-priority-label"><span>High Priority</span></div>
+            </OverlayTrigger>
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip id="drill-for-speed-tooltip">High accuracy but high time. Practice for speed!</Tooltip>}
+            >
+              <div className="quadrant-label drill-for-speed-label"><span>Drill for Speed</span></div>
+            </OverlayTrigger>
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip id="review-concepts-tooltip">Low accuracy but low time. Review the underlying concepts.</Tooltip>}
+            >
+              <div className="quadrant-label review-concepts-label"><span>Review Concepts</span></div>
+            </OverlayTrigger>
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip id="strengths-tooltip">High accuracy and low time. Your strong areas!</Tooltip>}
+            >
+              <div className="quadrant-label strengths-label"><span>Strengths</span></div>
+            </OverlayTrigger>
+
+            {matrixData.map(data => (
+              <OverlayTrigger
+                key={data.subcategory}
+                placement="top"
+                overlay={
+                  <Tooltip id={`tooltip-${data.subcategory}`}>
+                    <strong>{data.subcategory}</strong><br/>
+                    Accuracy: {data.accuracy.toFixed(0)}%<br/>
+                    Avg Time: {data.avgTime.toFixed(1)}s
+                  </Tooltip>
+                }
+              >
+                <div
+                  className="matrix-dot"
+                  style={{
+                    left: `${data.accuracy}%`,
+                    bottom: `${Math.min(100, (data.avgTime / maxTime) * 100)}%`,
+                  }}
+                ></div>
+              </OverlayTrigger>
+            ))}
           </div>
+
+          {/* X-Axis Ticks */}
+          <div className="x-axis">
+            <span>0</span>
+            <span>80</span>
+            <span>100</span>
+          </div>
+
+          {/* X-Axis Label */}
+          <div className="x-axis-label">Accuracy (%)</div>
         </div>
       ) : (
         <div className="matrix-placeholder">
