@@ -7,113 +7,36 @@
   margin-top: 2rem;
 }
 
-.matrix-header {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
 .matrix-title {
+  text-align: center;
   font-weight: bold;
+  margin-bottom: 2.5rem;
   color: #333;
 }
 
-.matrix-subtitle {
-  color: #6c757d;
-}
-
-.matrix-toolbar {
+.matrix-wrapper {
+  /* --- Layout Variables --- */
+  --accuracy-threshold: 80%;
+  --time-threshold-percent: 50%; /* 60s of 120s maxTime */
+  --y-axis-width: 40px;
+  --x-axis-height: 25px;
+  
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  color: #6c757d;
-  margin-bottom: 1.5rem;
-}
-
-.matrix-toolbar .info-icon {
-  font-weight: bold;
-  border: 1px solid #6c757d;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  font-style: normal;
-}
-
-/* --- Grid Layout --- */
-.matrix-grid-container {
-  display: grid;
-  grid-template-areas:
-    ". y-axis-ticks"
-    "y-axis-label matrix"
-    ". x-axis-ticks"
-    ". x-axis-label";
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr auto auto;
-  align-items: center;
-}
-
-.y-axis-label {
-  grid-area: y-axis-label;
-  transform: rotate(-90deg);
-  white-space: nowrap;
-  color: #6c757d;
-  font-weight: 500;
-  justify-self: center;
-}
-
-.y-axis {
-  grid-area: y-axis-ticks;
   position: relative;
-  height: 400px; /* Same as matrix height */
-  width: 40px;
-  color: #6c757d;
-  font-size: 0.9rem;
+  padding-left: var(--y-axis-width);
+  padding-bottom: var(--x-axis-height);
 }
 
-.y-axis span {
-  position: absolute;
-  right: 10px;
+.matrix-content {
+  flex-grow: 1;
+  position: relative;
 }
-.y-axis span:nth-child(1) { top: 0; transform: translateY(-50%); }
-.y-axis span:nth-child(2) { top: 50%; transform: translateY(-50%); }
-.y-axis span:nth-child(3) { bottom: 0; transform: translateY(50%); }
 
 .matrix {
-  grid-area: matrix;
   height: 400px;
   position: relative;
   width: 100%;
 }
-
-.x-axis {
-  grid-area: x-axis-ticks;
-  position: relative;
-  width: 100%;
-  color: #6c757d;
-  font-size: 0.9rem;
-  margin-left: 40px; /* Align with matrix start */
-}
-
-.x-axis span {
-  position: absolute;
-  top: 0;
-}
-.x-axis span:nth-child(1) { left: 0; transform: translateX(-50%); }
-.x-axis span:nth-child(2) { left: 80%; transform: translateX(-50%); }
-.x-axis span:nth-child(3) { right: 0; transform: translateX(50%); }
-
-.x-axis-label {
-  grid-area: x-axis-label;
-  text-align: center;
-  padding-top: 0.5rem;
-  color: #6c757d;
-  font-weight: 500;
-  margin-left: 40px; /* Align with matrix start */
-}
-
 
 /* --- Quadrant Backgrounds --- */
 .quadrant-bg {
@@ -121,32 +44,32 @@
   z-index: 1;
 }
 .high-priority-bg {
-  background-color: rgba(239, 154, 154, 0.3); /* Light Red */
+  background-color: #ef9a9a; /* Light Red */
   top: 0;
   left: 0;
-  width: 80%;
-  height: 50%;
+  width: var(--accuracy-threshold);
+  height: var(--time-threshold-percent);
 }
 .drill-for-speed-bg {
-  background-color: rgba(255, 245, 157, 0.3); /* Light Yellow */
+  background-color: #fff59d; /* Light Yellow */
   top: 0;
   right: 0;
-  width: 20%;
-  height: 50%;
+  width: calc(100% - var(--accuracy-threshold));
+  height: var(--time-threshold-percent);
 }
 .review-concepts-bg {
-  background-color: rgba(255, 204, 128, 0.3); /* Light Orange */
+  background-color: #ffcc80; /* Light Orange */
   bottom: 0;
   left: 0;
-  width: 80%;
-  height: 50%;
+  width: var(--accuracy-threshold);
+  height: calc(100% - var(--time-threshold-percent));
 }
 .strengths-bg {
-  background-color: rgba(165, 214, 167, 0.3); /* Light Green */
+  background-color: #a5d6a7; /* Light Green */
   bottom: 0;
   right: 0;
-  width: 20%;
-  height: 50%;
+  width: calc(100% - var(--accuracy-threshold));
+  height: calc(100% - var(--time-threshold-percent));
 }
 
 /* --- Quadrant Labels --- */
@@ -155,18 +78,18 @@
   z-index: 2;
 }
 .quadrant-label span {
-  color: rgba(0, 0, 0, 0.6);
-  background-color: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 0.7);
   padding: 0.1rem 0.4rem;
   border-radius: 4px;
   font-weight: bold;
   font-size: 0.8rem;
   white-space: nowrap;
 }
-.high-priority-label { top: 25%; left: 40%; transform: translate(-50%, -50%); }
-.drill-for-speed-label { top: 25%; left: 90%; transform: translate(-50%, -50%); }
-.review-concepts-label { top: 75%; left: 40%; transform: translate(-50%, -50%); }
-.strengths-label { top: 75%; left: 90%; transform: translate(-50%, -50%); }
+.high-priority-label { top: 25%; left: calc(var(--accuracy-threshold) / 2); transform: translate(-50%, -50%); }
+.drill-for-speed-label { top: 25%; left: calc(var(--accuracy-threshold) + (100% - var(--accuracy-threshold)) / 2); transform: translate(-50%, -50%); }
+.review-concepts-label { top: 75%; left: calc(var(--accuracy-threshold) / 2); transform: translate(-50%, -50%); }
+.strengths-label { top: 75%; left: calc(var(--accuracy-threshold) + (100% - var(--accuracy-threshold)) / 2); transform: translate(-50%, -50%); }
 
 /* --- Dots --- */
 .matrix-dot {
@@ -183,6 +106,71 @@
 }
 .matrix-dot:hover {
   transform: translate(-50%, 50%) scale(1.6);
+}
+
+/* --- Axes --- */
+.y-axis, .x-axis {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.y-axis {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: var(--y-axis-width);
+  text-align: right;
+  padding-right: 10px;
+}
+.y-axis span {
+  position: absolute;
+  right: 10px;
+}
+.y-axis span:nth-child(1) { /* 120s */
+  top: 0;
+  transform: translateY(-50%);
+}
+.y-axis span:nth-child(2) { /* 60s */
+  top: var(--time-threshold-percent);
+  transform: translateY(-50%);
+}
+.y-axis span:nth-child(3) { /* 0s */
+  bottom: 20px;
+  transform: translateY(50%);
+}
+
+.x-axis {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--x-axis-height);
+}
+.x-axis span {
+  position: absolute;
+  bottom: -15px;
+}
+.x-axis span:nth-child(1) { left: 0; transform: translateX(-50%); bottom: -25px}
+.x-axis span:nth-child(2) { left: var(--accuracy-threshold); transform: translateX(-50%); bottom: -25px}
+.x-axis span:nth-child(3) { right: 0; transform: translateX(50%); bottom: -25px}
+
+.y-axis-label {
+  position: absolute;
+  left: -50px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.x-axis-label {
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #6c757d;
+  font-weight: 500;
 }
 
 .matrix-placeholder {
