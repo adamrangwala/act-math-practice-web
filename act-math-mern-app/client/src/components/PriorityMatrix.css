@@ -157,7 +157,7 @@
 
 .y-axis-label {
   position: absolute;
-  left: -50px;
+  left: -60px;
   top: 50%;
   transform: translateY(-50%) rotate(-90deg);
   color: #6c757d;
@@ -166,7 +166,7 @@
 
 .x-axis-label {
   position: absolute;
-  bottom: -5px;
+  bottom: -40px;
   left: 50%;
   transform: translateX(-50%);
   color: #6c757d;
