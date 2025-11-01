@@ -58,7 +58,7 @@ const PriorityMatrix = () => {
       </div>
       {matrixData.length > 0 ? (
         <div className="matrix-wrapper">
-          <div className="y-axis-label">Avg. Time (s)</div>
+          <div className="y-axis-label">Average Time</div>
           <div className="y-axis">
             <span>{maxTime}s</span>
             <span>60s</span>
@@ -113,7 +113,7 @@ const PriorityMatrix = () => {
                   <div
                     className="matrix-dot"
                     style={{
-                      left: `${data.accuracy}%`,
+                      left: `${data.accuracy}`,
                       bottom: `${Math.min(100, (data.avgTime / maxTime) * 100)}%`,
                     }}
                   ></div>
@@ -121,9 +121,9 @@ const PriorityMatrix = () => {
               ))}
             </div>
             <div className="x-axis">
-              <span>0</span>
-              <span>80</span>
-              <span>100</span>
+              <span>0%</span>
+              <span>80%</span>
+              <span>100%</span>
             </div>
             <div className="x-axis-label">Accuracy (%)</div>
           </div>
