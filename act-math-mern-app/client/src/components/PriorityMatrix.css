@@ -136,7 +136,7 @@
   transform: translateY(-50%);
 }
 .y-axis span:nth-child(3) { /* 0s */
-  bottom: 20px;
+  bottom: 30px;
   transform: translateY(50%);
 }
 
