@@ -1,14 +1,20 @@
-index-DyWHQ_S2.js:1441 Firebase Config: Object
-securepubads.g.doubleclick.net/pagead/ppub_config?ippd=ibotta.com:1  Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
-securepubads.g.doubleclick.net/pagead/managed/dict/m202510140101/gpt:1  Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
-connect.facebook.net/en_US/fbevents.js:1  Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
-Refused to frame 'https://authenticate.ibotta.com/' because an ancestor violates the following Content Security Policy directive: "frame-ancestors 'none'".
-
-index-DyWHQ_S2.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
-e @ index-DyWHQ_S2.js:1261
-index-DyWHQ_S2.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
-e @ index-DyWHQ_S2.js:1261
-index-DyWHQ_S2.js:1366 Cross-Origin-Opener-Policy policy would block the window.close call.
-close @ index-DyWHQ_S2.js:1366
-index-DyWHQ_S2.js:1366 Cross-Origin-Opener-Policy policy would block the window.close call.
-close @ index-DyWHQ_S2.js:1366
+found 0 vulnerabilities
+> server@1.0.0 build
+> tsc
+==> Uploading build...
+==> Uploaded in 4.9s. Compression took 6.7s
+==> Build successful 🎉
+==> Deploying...
+==> Running 'node act-math-mern-app/server/dist/server.js'
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+Firebase Admin SDK initialized for 'staging' via environment variable.
+Server is running on port 10000
+Incoming request origin: undefined
+==> Your service is live 🎉
+==> 
+==> ///////////////////////////////////////////////////////////
+==> 
+==> Available at your primary URL https://act-math-app-staging.onrender.com
+==> 
+==> ///////////////////////////////////////////////////////////
+Incoming request origin: undefined
