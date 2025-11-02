@@ -71,25 +71,25 @@ const PriorityMatrix = () => {
               {/* Labels */}
               <OverlayTrigger
                 placement="top"
-                overlay={<Tooltip id="high-priority-tooltip">Low accuracy and high time. Focus here first!</Tooltip>}
+                overlay={<Tooltip id="high-priority-tooltip">Low accuracy and high time. Focus on understanding the core concepts for these topics first.</Tooltip>}
               >
                 <div className="quadrant-label high-priority-label"><span>High Priority</span></div>
               </OverlayTrigger>
               <OverlayTrigger
                 placement="top"
-                overlay={<Tooltip id="drill-for-speed-tooltip">High accuracy but high time. Practice for speed!</Tooltip>}
+                overlay={<Tooltip id="drill-for-speed-tooltip">High accuracy but high time. Use timed drills on these topics to improve your speed.</Tooltip>}
               >
                 <div className="quadrant-label drill-for-speed-label"><span>Drill for Speed</span></div>
               </OverlayTrigger>
               <OverlayTrigger
                 placement="top"
-                overlay={<Tooltip id="review-concepts-tooltip">Low accuracy but low time. Review the underlying concepts.</Tooltip>}
+                overlay={<Tooltip id="review-concepts-tooltip">Low accuracy but low time. Slow down and review the fundamental concepts before practicing more.</Tooltip>}
               >
                 <div className="quadrant-label review-concepts-label"><span>Review Concepts</span></div>
               </OverlayTrigger>
               <OverlayTrigger
                 placement="top"
-                overlay={<Tooltip id="strengths-tooltip">High accuracy and low time. Your strong areas!</Tooltip>}
+                overlay={<Tooltip id="strengths-tooltip">High accuracy and low time. These are your strengths! Maintain them with occasional practice.</Tooltip>}
               >
                 <div className="quadrant-label strengths-label"><span>Strengths</span></div>
               </OverlayTrigger>
