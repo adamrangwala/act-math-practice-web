@@ -47,6 +47,7 @@
 .quadrant-bg {
   position: absolute;
   z-index: 1;
+  pointer-events: none; /* Allow mouse events to pass through */
 }
 .high-priority-bg {
   background-color: #ef9a9a; /* Light Red */
