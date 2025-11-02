@@ -1,26 +1,14 @@
-vite v7.1.10 building for production...
-transforming...
-✓ 41 modules transformed.
-✗ Build failed in 797ms
-error during build:
-[vite:esbuild] Transform failed with 1 error:
-/vercel/path0/act-math-mern-app/client/src/components/PriorityMatrix.tsx:49:15: ERROR: Expected ";" but found "className"
-file: /vercel/path0/act-math-mern-app/client/src/components/PriorityMatrix.tsx:49:15
-Expected ";" but found "className"
-47 |    if (error) return <Alert variant="danger" className="my-4">{error}</Alert>;
-48 |            <div className="divider-x" style={{ bottom: `${(60 / maxTime) * 100}%` }}></div>
-49 |            <div className="divider-y" style={{ left: '80%' }}></div>
-   |                 ^
-50 |          </div>
-51 |        ) : (
-    at failureErrorWithLog (/vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:1467:15)
-    at /vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:736:50
-    at responseCallbacks.<computed> (/vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:603:9)
-    at handleIncomingPacket (/vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:658:12)
-    at Socket.readFromStdout (/vercel/path0/act-math-mern-app/client/node_modules/esbuild/lib/main.js:581:7)
-    at Socket.emit (node:events:519:28)
-    at addChunk (node:internal/streams/readable:561:12)
-    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
-    at Readable.push (node:internal/streams/readable:392:5)
-    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
-Error: Command "npm run build" exited with 1
+index-DyWHQ_S2.js:1441 Firebase Config: Object
+securepubads.g.doubleclick.net/pagead/ppub_config?ippd=ibotta.com:1  Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+securepubads.g.doubleclick.net/pagead/managed/dict/m202510140101/gpt:1  Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+connect.facebook.net/en_US/fbevents.js:1  Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+Refused to frame 'https://authenticate.ibotta.com/' because an ancestor violates the following Content Security Policy directive: "frame-ancestors 'none'".
+
+index-DyWHQ_S2.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
+e @ index-DyWHQ_S2.js:1261
+index-DyWHQ_S2.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
+e @ index-DyWHQ_S2.js:1261
+index-DyWHQ_S2.js:1366 Cross-Origin-Opener-Policy policy would block the window.close call.
+close @ index-DyWHQ_S2.js:1366
+index-DyWHQ_S2.js:1366 Cross-Origin-Opener-Policy policy would block the window.close call.
+close @ index-DyWHQ_S2.js:1366

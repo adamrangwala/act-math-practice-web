@@ -31,36 +31,28 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, user => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setCurrentUser(user);
-      // The loading state will be managed by the initializeUser effect
-    });
-    return unsubscribe;
-  }, []);
-
-  useEffect(() => {
-    const initializeUser = async (user: User) => {
-      try {
-        const response = await authenticatedFetch('/api/init-user', { method: 'POST' });
-        setIsNewUser(response.isNewUser);
-      } catch (error) {
-        console.error("Failed to initialize user:", error);
-        // If init fails, user might be logged out or there's a server issue.
-        // In either case, we should stop loading.
-        setIsNewUser(null); 
-      } finally {
+      if (user) {
+        // If there is a user, fetch their status from our backend
+        try {
+          const response = await authenticatedFetch('/api/init-user', { method: 'POST' });
+          setIsNewUser(response.isNewUser);
+        } catch (error) {
+          console.error("Failed to initialize user:", error);
+          setIsNewUser(null); // Reset on error
+        } finally {
+          setLoading(false);
+        }
+      } else {
+        // If there is no user, we're done loading
+        setIsNewUser(null);
         setLoading(false);
       }
-    };
+    });
 
-    if (currentUser) {
-      initializeUser(currentUser);
-    } else {
-      // If there's no user, we are not loading anymore.
-      setLoading(false);
-      setIsNewUser(null);
-    }
-  }, [currentUser]);
+    return () => unsubscribe();
+  }, []);
 
   const logout = () => {
     return signOut(auth);
