@@ -137,7 +137,7 @@
   transform: translateY(-50%);
 }
 .y-axis span:nth-child(2) { /* 60s */
-  top: var(--time-threshold-percent);
+  top: var(--time-threshold-percent) + 10px;
   transform: translateY(-50%);
 }
 .y-axis span:nth-child(3) { /* 0s */
@@ -156,9 +156,9 @@
   position: absolute;
   bottom: -15px;
 }
-.x-axis span:nth-child(1) { left: 5px; transform: translateX(-50%); bottom: -25px}
-.x-axis span:nth-child(2) { left: calc(var(--accuracy-threshold) + 5px); transform: translateX(-50%); bottom: -25px}
-.x-axis span:nth-child(3) { right: -5px; transform: translateX(50%); bottom: -25px}
+.x-axis span:nth-child(1) { left: 10px; transform: translateX(-50%); bottom: -25px}
+.x-axis span:nth-child(2) { left: calc(var(--accuracy-threshold) + 10px); transform: translateX(-50%); bottom: -25px}
+.x-axis span:nth-child(3) { right: -8px; transform: translateX(50%); bottom: -25px}
 
 .y-axis-label {
   position: absolute;
