@@ -68,7 +68,7 @@
 
 .stat-icon.accuracy {
   background-color: #e0f7fa; /* Light Cyan */
-  background-image: url('https://img.icons8.com/?size=100&id=42428&format=png&color=000000'); /* Trend Up Icon */
+  background-image: url('https://img.icons8.com/?size=100&id=undefined&format=png&color=000000'); /* Trend Up Icon */
 }
 
 .stat-icon.streak {
@@ -78,7 +78,7 @@
 
 .stat-icon.sessions {
   background-color: #ede7f6; /* Light Purple */
-  background-image: url('https://img.icons8.com/?size=100&id=13362&format=png&color=000000'); /* Checklist Icon */
+  background-image: url('https://img.icons8.com/?size=100&id=VDKuEs5C0vXa&format=png&color=000000'); /* Checklist Icon */
 }
 
 .stat-info {
