@@ -38,46 +38,66 @@ const PracticeScreen = () => {
   
   const [isFlipped, setIsFlipped] = useState(false);
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number | null>(null);
-  const startTimeRef = useRef<number>(Date.now());
-  const [timer, setTimer] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  
+  // --- New Robust Timer State & Refs ---
+  const [timer, setTimer] = useState(0); // The displayed time in seconds
+  const [isTimerActive, setIsTimerActive] = useState(true);
+  const elapsedTimeRef = useRef<number>(0); // Accumulated time in ms before the current active period
+  const startTimeRef = useRef<number>(Date.now()); // `Date.now()` when the timer starts or resumes
+  
   const [showCalculator, setShowCalculator] = useState(false);
 
   const frontRef = useRef<HTMLDivElement>(null);
   const backRef = useRef<HTMLDivElement>(null);
   const [cardHeight, setCardHeight] = useState<number | undefined>(undefined);
 
+  // --- Timer Logic ---
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.hidden) {
-        setIsPaused(true);
+        // Tab is hidden, pause the timer
+        if (isTimerActive) {
+          elapsedTimeRef.current += (Date.now() - startTimeRef.current);
+          setIsTimerActive(false);
+        }
       } else {
-        setIsPaused(false);
-        // Adjust start time to account for the time spent away
-        // This is a simplified approach; a more robust solution might track elapsed time.
+        // Tab is visible, resume the timer
+        if (!isTimerActive) {
+          startTimeRef.current = Date.now();
+          setIsTimerActive(true);
+        }
       }
     };
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
+    // Also pause when the card is flipped
+    if (isFlipped && isTimerActive) {
+      elapsedTimeRef.current += (Date.now() - startTimeRef.current);
+      setIsTimerActive(false);
+    }
+
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  }, []);
+  }, [isTimerActive, isFlipped]);
 
   useEffect(() => {
     let timerInterval: NodeJS.Timeout | null = null;
-    if (!isFlipped && !isPaused) {
+
+    if (isTimerActive) {
       timerInterval = setInterval(() => {
-        setTimer(Math.floor((Date.now() - startTimeRef.current) / 1000));
+        const totalElapsedTime = elapsedTimeRef.current + (Date.now() - startTimeRef.current);
+        setTimer(Math.floor(totalElapsedTime / 1000));
       }, 1000);
     }
+
     return () => {
       if (timerInterval) {
         clearInterval(timerInterval);
       }
     };
-  }, [isFlipped, isPaused]);
+  }, [isTimerActive]);
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -96,8 +116,11 @@ const PracticeScreen = () => {
         setSessionData([]);
         setSelectedAnswerIndex(null);
         setIsFlipped(false);
+        // Reset timer state for the new session
+        elapsedTimeRef.current = 0;
         startTimeRef.current = Date.now();
         setTimer(0);
+        setIsTimerActive(true);
       } catch (err: any) {
         setError(err.message);
       } finally {
@@ -134,7 +157,11 @@ const PracticeScreen = () => {
 
   const handleAnswerSelect = (selectedIndex: number) => {
     if (isFlipped) return;
-    const timeSpent = (Date.now() - startTimeRef.current) / 1000;
+
+    // Pause timer and calculate final time
+    setIsTimerActive(false);
+    const timeSpent = (elapsedTimeRef.current + (Date.now() - startTimeRef.current)) / 1000;
+    
     const isCorrect = selectedIndex === questions[currentQuestionIndex].correctAnswerIndex;
     
     setSessionData(prev => [...prev, { isCorrect, timeSpent, subcategories: questions[currentQuestionIndex].subcategories }]);
@@ -204,8 +231,11 @@ const PracticeScreen = () => {
     setTimeout(() => {
       setSelectedAnswerIndex(null);
       setCurrentQuestionIndex(nextIndex);
+      // Reset timer for the next question
+      elapsedTimeRef.current = 0;
       startTimeRef.current = Date.now();
       setTimer(0);
+      setIsTimerActive(true);
     }, 300);
   };
 
