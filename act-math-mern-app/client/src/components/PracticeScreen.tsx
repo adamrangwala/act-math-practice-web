@@ -40,6 +40,7 @@ const PracticeScreen = () => {
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number | null>(null);
   const startTimeRef = useRef<number>(Date.now());
   const [timer, setTimer] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const [showCalculator, setShowCalculator] = useState(false);
 
   const frontRef = useRef<HTMLDivElement>(null);
@@ -47,13 +48,36 @@ const PracticeScreen = () => {
   const [cardHeight, setCardHeight] = useState<number | undefined>(undefined);
 
   useEffect(() => {
-    const timerInterval = setInterval(() => {
-      if (!isFlipped) {
-        setTimer(Math.floor((Date.now() - startTimeRef.current) / 1000));
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        setIsPaused(true);
+      } else {
+        setIsPaused(false);
+        // Adjust start time to account for the time spent away
+        // This is a simplified approach; a more robust solution might track elapsed time.
       }
-    }, 1000);
-    return () => clearInterval(timerInterval);
-  }, [isFlipped]);
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    let timerInterval: NodeJS.Timeout | null = null;
+    if (!isFlipped && !isPaused) {
+      timerInterval = setInterval(() => {
+        setTimer(Math.floor((Date.now() - startTimeRef.current) / 1000));
+      }, 1000);
+    }
+    return () => {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+      }
+    };
+  }, [isFlipped, isPaused]);
 
   useEffect(() => {
     const fetchQuestions = async () => {

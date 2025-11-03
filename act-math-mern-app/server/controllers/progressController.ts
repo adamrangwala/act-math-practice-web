@@ -73,8 +73,15 @@ export const submitProgress = async (req: AuthRequest, res: Response) => {
     return res.status(401).send({ message: 'Unauthorized' });
   }
 
-  const { questionId, performanceRating, timeSpent, context, selectedAnswerIndex }: ProgressSubmission = req.body;
+  const { questionId, performanceRating, context, selectedAnswerIndex }: ProgressSubmission = req.body;
+  let { timeSpent } = req.body;
   const userId = req.user.uid;
+
+  // --- Data Integrity: Cap the time spent to prevent skewed averages ---
+  const MAX_TIME_SECONDS = 600; // 10 minutes
+  if (timeSpent > MAX_TIME_SECONDS) {
+    timeSpent = MAX_TIME_SECONDS;
+  }
 
   if (!questionId || performanceRating === undefined || !context || timeSpent === undefined || selectedAnswerIndex === undefined) {
     return res.status(400).send({ message: 'Missing required progress data.' });

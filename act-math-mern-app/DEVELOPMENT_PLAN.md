@@ -46,6 +46,9 @@ To ensure a collaborative, stable, and easily debuggable process, we will follow
   - [ ] **Data:** Populate `seed-data/questions.json` with at least 50 high-quality questions.
 
 - [ ] **Phase 8: MVP Finalization**
+  - [ ] **Data Integrity:** Implement timer auto-pause and backend time cap.
+    - [ ] **Frontend:** Auto-pause practice timer when the browser tab is inactive.
+    - [ ] **Backend:** Add a maximum time threshold to prevent skewed global stats.
   - [ ] **Backend:** Implement logic to dynamically calculate question difficulty from global stats.
   - [ ] **Frontend:** Add comparative feedback (user vs. global average) to the practice screen/dashboard.
   - [ ] **Docs:** Finalize `README.md` with full setup and deployment instructions.
