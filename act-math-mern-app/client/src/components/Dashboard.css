@@ -67,12 +67,12 @@
 }
 
 .stat-icon.accuracy {
-  background-color: #e0f7fa; /* Light Cyan */
+  background-color: #b2e8f0; /* Light Cyan */
   background-image: url('https://img.icons8.com/?size=100&id=HshIQgiZ35nI&format=png&color=000000'); /* Trend Up Icon */
 }
 
 .stat-icon.streak {
-  background-color: #fff3e0; /* Light Orange */
+  background-color: #85f99c; /* Light Green */
   background-image: url('https://img.icons8.com/?size=100&id=houGsYyNpCbu&format=png&color=000000'); /* Flame Icon */
 }
 
