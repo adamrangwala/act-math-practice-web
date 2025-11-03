@@ -22,7 +22,7 @@
     "questionText": "For a work project, Maria tracked the number of items she sold on 4 consecutive days. The numbers were: 10, 15, 25, and 20. On the fifth day, she sold x items. The mean number of items she sold over these 5 days was 22. What is the value of x?", 
     "options": ["18", "22", "35", "40", "70"],
     "correctAnswerIndex": 3,
-    "solutionText": "The mean is the sum of the values divided by the count of the values. The equation for the mean is (10 + 15 + 25 + 20 + x) / 5 = 22. First, sum the known values: 10 + 15 + 25 + 20 = 70. The equation becomes (70 + x) / 5 = 22. Multiply both sides by 5 to get 70 + x = 110. Subtract 70 from both sides to find x = 40.",
+    "solutionText": "The mean (average) is the sum of the values divided by the number of values. We can set up an equation to solve for x.<br/><br/><math display='block'><mtable columnalign='right center left' rowspacing='2ex'><mtr><mtd><mfrac><mrow><mn>10</mn><mo>+</mo><mn>15</mn><mo>+</mo><mn>25</mn><mo>+</mo><mn>20</mn><mo>+</mo><mi>x</mi></mrow><mn>5</mn></mfrac></mtd><mtd><mo>=</mo></mtd><mtd><mn>22</mn></mtd></mtr><mtr><mtd><mfrac><mrow><mn>70</mn><mo>+</mo><mi>x</mi></mrow><mn>5</mn></mfrac></mtd><mtd><mo>=</mo></mtd><mtd><mn>22</mn></mtd></mtr><mtr><mtd><mn>70</mn><mo>+</mo><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>110</mn></mtd></mtr><mtr><mtd><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>40</mn></mtd></mtr></mtable></math>",
     "difficulty": 1,
     "diagramUrl": null,
     "diagramSvg": null,
@@ -713,7 +713,7 @@
       "Arithmetic & Geometric Sequences",
       "Translating Word Problems to Equations"
     ],
-    "questionText": "A student starts a savings account. They deposit the same amount of money from their part-time job each week. At the end of the 1st week, the account has \\$50. At the end of the 4th week, the account has \\$87.50. What is the total amount of money in the account at the end of the 10th week?",
+    "questionText": "A student starts a savings account. They deposit the same amount of money from their part-time job each week. At the end of the 1st week, the account has $50. At the end of the 4th week, the account has $87.50. What is the total amount of money in the account at the end of the 10th week?",
     "options": [
       "$150.00",
       "$162.50",

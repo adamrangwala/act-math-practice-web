@@ -1,20 +1,3 @@
-found 0 vulnerabilities
-> server@1.0.0 build
-> tsc
-==> Uploading build...
-==> Uploaded in 4.9s. Compression took 6.7s
-==> Build successful 🎉
-==> Deploying...
-==> Running 'node act-math-mern-app/server/dist/server.js'
-[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
-Firebase Admin SDK initialized for 'staging' via environment variable.
-Server is running on port 10000
-Incoming request origin: undefined
-==> Your service is live 🎉
-==> 
-==> ///////////////////////////////////////////////////////////
-==> 
-==> Available at your primary URL https://act-math-app-staging.onrender.com
-==> 
-==> ///////////////////////////////////////////////////////////
-Incoming request origin: undefined
+A student starts a savings account. They deposit the same amount of money from their part-time job each week. At the end of the 1st week, the account has \$50. At the end of the 4th week, the account has \$87.50. What is the total amount of money in the account at the end of the 10th week?
+
+

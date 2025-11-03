@@ -1,0 +1,24 @@
+[
+{
+    "questionId": "algebra-function-evaluation-01",
+    "category": "Algebra",
+    "subcategories": ["Function Notation & Operations"],
+    "questionText": "A diver jumps from a 10-meter high platform. The height of the diver, <math><mi>h</mi></math>, in meters, above the water <math><mi>t</mi></math> seconds after jumping is modeled by the equation <math><mi>h</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><mo>-</mo><mn>4.9</mn><msup><mi>t</mi><mn>2</mn></msup><mo>+</mo><mn>8</mn><mi>t</mi><mo>+</mo><mn>10</mn></math>. What is the height of the diver, in meters, after 1.5 seconds?",
+    "options": [
+      "<math><mn>8.95</mn></math>",
+      "<math><mn>10.975</mn></math>",
+      "<math><mn>12</mn></math>",
+      "<math><mn>15.525</mn></math>",
+      "<math><mn>22</mn></math>"
+    ],
+    "correctAnswerIndex": 1,
+    "solutionText": "To find the height of the diver after 1.5 seconds, we need to evaluate the function <math><mi>h</mi><mo>(</mo><mi>t</mi><mo>)</mo></math> at <math><mi>t</mi><mo>=</mo><mn>1.5</mn></math>. We substitute 1.5 for <math><mi>t</mi></math> in the equation: <math display='block'><mi>h</mi><mo>(</mo><mn>1.5</mn><mo>)</mo><mo>=</mo><mo>-</mo><mn>4.9</mn><mo>(</mo><mn>1.5</mn><msup><mo>)</mo><mn>2</mn></msup><mo>+</mo><mn>8</mn><mo>(</mo><mn>1.5</mn><mo>)</mo><mo>+</mo><mn>10</mn></math><math display='block'><mo>=</mo><mo>-</mo><mn>4.9</mn><mo>(</mo><mn>2.25</mn><mo>)</mo><mo>+</mo><mn>12</mn><mo>+</mo><mn>10</mn></math><math display='block'><mo>=</mo><mo>-</mo><mn>11.025</mn><mo>+</mo><mn>22</mn></math><math display='block'><mo>=</mo><mn>10.975</mn></math> Thus, the height of the diver after 1.5 seconds is 10.975 meters.",
+    "difficulty": 2,
+    "diagramUrl": null,
+    "diagramSvg": null,
+    "solutionDiagramSvg": null,
+    "isActive": true,
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [0, 0, 0, 0, 0]
+  }
+]

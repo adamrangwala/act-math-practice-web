@@ -46,9 +46,9 @@ To ensure a collaborative, stable, and easily debuggable process, we will follow
   - [ ] **Data:** Populate `seed-data/questions.json` with at least 50 high-quality questions.
 
 - [ ] **Phase 8: MVP Finalization**
-  - [ ] **Data Integrity:** Implement timer auto-pause and backend time cap.
-    - [ ] **Frontend:** Auto-pause practice timer when the browser tab is inactive.
-    - [ ] **Backend:** Add a maximum time threshold to prevent skewed global stats.
+  - [x] **Data Integrity:** Implement timer auto-pause and backend time cap.
+    - [x] **Frontend:** Auto-pause practice timer when the browser tab is inactive.
+    - [x] **Backend:** Add a maximum time threshold to prevent skewed global stats.
   - [ ] **Backend:** Implement logic to dynamically calculate question difficulty from global stats.
   - [ ] **Frontend:** Add comparative feedback (user vs. global average) to the practice screen/dashboard.
   - [ ] **Docs:** Finalize `README.md` with full setup and deployment instructions.
@@ -85,3 +85,6 @@ This section documents notable technical challenges encountered during developme
 
 6.  **Challenge:** Several race conditions were causing bugs, including the first practice session being counted twice and the onboarding screen looping instead of navigating away.
     -   **Solution:** The fixes involved making state updates and navigation more declarative and sequential. The double-counting was resolved by consolidating the session-counting logic into a single backend function. The onboarding loop was fixed by removing a manual `navigate()` call and instead letting the top-level router in `App.tsx` handle the redirection automatically after the `isNewUser` state was updated.
+
+7.  **Challenge:** The practice session timer continued to run when the user switched tabs or minimized the window, leading to highly skewed and inaccurate time data.
+    -   **Solution:** A two-part solution was implemented. 1) **Frontend:** The timer logic in `PracticeScreen.tsx` was refactored to use the browser's `visibilitychange` event. This pauses the timer by tracking accumulated elapsed time and only restarting the interval when the tab is active. 2) **Backend:** A safety net was added to the `progressController.ts` to cap the maximum `timeSpent` for any single question at 10 minutes, ensuring the integrity of global statistics against any client-side anomalies.
