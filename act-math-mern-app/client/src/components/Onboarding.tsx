@@ -61,7 +61,7 @@ const Onboarding = () => {
       <div className="onboarding-card">
         {step === 1 && (
           <>
-            <h1>Welcome to ACT Math Practice!</h1>
+            <h1>Welcome to ACT Math Sprint!</h1>
             <p>To help personalize your experience, please select the option that best describes you.</p>
             <div className="role-selection-container">
               <button onClick={() => handleRoleSelect('ms_student')} className="role-button">I am a Middle School Student</button>

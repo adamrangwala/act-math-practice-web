@@ -19,7 +19,7 @@ const Navbar = () => {
 
   return (
     <nav className="app-navbar">
-      <Link to="/dashboard" className="navbar-brand">ACT Math Practice</Link>
+      <Link to="/dashboard" className="navbar-brand">ACT Math Sprint</Link>
       <div className="navbar-nav">
         <Link to="/settings" className="nav-link">Settings</Link>
         <a href="#" onClick={handleSignOut} className="nav-link">Sign Out</a>

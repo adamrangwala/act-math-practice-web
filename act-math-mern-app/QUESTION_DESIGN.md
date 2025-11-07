@@ -92,27 +92,47 @@ If a question requires a table, the data must be embedded directly into the `que
 
 ### Solution Text Best Practices
 
--   **Algebraic Steps:** For solutions involving a multi-step equation, the steps should be centered on their own lines for maximum clarity. Use a `<math display='block'>` tag containing an `<mtable>` tag. To ensure proper alignment and spacing, add the following attributes to the `<mtable>` tag: `columnalign='right center left'` and `rowspacing='1ex'`.
+To ensure every solution is clear, consistent, and pedagogically effective, the following structure must be followed.
 
-    -   **Example:**
-        ```html
-        ...so we can set up the equation: <br/><br/>
-        <math display='block'>
-          <mtable columnalign='right center left' rowspacing='1ex'>
-            <mtr><mtd><mn>7</x><mo>+</mo><mn>5</x><mo>+</mo><mn>3</x></mtd><mtd><mo>=</mo></mtd><mtd><mn>180</mn></mtd></mtr>
-            <mtr><mtd><mn>15</x></mtd><mtd><mo>=</mo></mtd><mtd><mn>180</mn></mtd></mtr>
-            <mtr><mtd><mi>x</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>12</mn></mtd></mtr>
-          </mtable>
-        </math>
-        <br/>The question asks for...
-        ```
--   **Spacing:** To improve readability, add a `<br/>` tag between consecutive `<math display='block'>` elements or between the final line of text and the start of a math block.
--   **Pro Tips:** To provide helpful test-taking strategies, add a "Pro Tip" at the end of the solution text, formatted in bold.
-    -   **Example:** `...Therefore, the answer is 10.<br/><br/><b>Pro Tip:</b> The 3-4-5 triangle is a common Pythagorean triple.`
+1.  **Equation-Centric Approach:** Prioritize showing mathematical steps over long descriptive text. For *all* calculations, including single-line sums, use a centered `<math display='block'>` containing an `<mtable>` with `rowspacing='1ex'` for optimal readability.
+
+2.  **Structured Steps:** Break down every solution into logical parts using bolded headings like `<b>1. Find the common difference (d):</b>` or `<b>2. Calculate the area of the circle:</b>`. For very straightforward problems, a single, consolidated step is preferred to minimize line count.
+
+3.  **Consistent Spacing:**
+    *   Use **two** `<br/>` tags (`<br/><br/>`) to create a clean visual separation between major blocks of text (e.g., between an introductory sentence and the first step, or between two distinct methods).
+    *   Use a **single** `<br/>` tag to separate a step heading from its subsequent `<math display='block'>` element, or after a `<math display='block'>` element to create a tighter, more connected flow into the next line of text (e.g., before a `<b>Pro Tip:</b>`).
+
+4.  **Lists:** For any lists within the solution text (e.g., listing factors, properties, or steps that don't involve equations), use HTML bullet point entities (`&bull;`) for clear and consistent formatting.
+
+4.  **Actionable Pro-Tips:** Conclude the solution with a `<b>Pro Tip:</b>` that offers a genuine **test-taking strategy or shortcut**. These tips are crucial for helping students work faster and smarter. *However, for exceptionally straightforward problems where a truly valuable and non-obvious tip is not apparent, the Pro Tip may be omitted.*
+
+    *   **Good Examples:**
+        *   `<b>Pro Tip:</b> Instead of complex algebra, you can solve this by "Plugging In The Answers." Start with option C or H. If it's too small, try a larger number.` (Teaches a new strategy)
+        *   `<b>Pro Tip:</b> The 3-4-5 triangle is a common Pythagorean triple. Recognizing it can save you from having to do the full Pythagorean theorem calculation.` (Highlights a shortcut)
+        *   `<b>Pro Tip:</b> When a question asks for who is NOT in a certain group on a Venn diagram, a good strategy is to cover that entire circle with your finger. The numbers you can still see are the ones you need to add up.` (Provides a visual strategy)
+        *   `<b>Pro Tip:</b> Always check your units! Many ACT problems try to trick you by giving information in different units (like quarts and ounces, or feet and inches). Converting everything to a consistent unit at the very beginning is the safest way to avoid errors.` (Emphasizes a common pitfall and best practice)
 
 ---
 
-## 4. Frontend Formatting and Rendering
+**Complete Example of a Well-Formatted Solution:**
+
+```json
+"solutionText": "<b>1. Solve for 'b' in terms of 'a':</b><br/><math display='block'><mtable columnalign='right center left' rowspacing='1ex'><mtr><mtd><mn>4</mn><mi>a</mi></mtd><mtd><mo>=</mo></mtd><mtd><mn>3</mn><mi>b</mi><mo>+</mo><mn>5</mn></mtd></mtr><mtr><mtd><mn>4</mn><mi>a</mi><mo>-</mo><mn>5</mn></mtd><mtd><mo>=</mo></mtd><mtd><mn>3</mn><mi>b</mi></mtd></mtr><mtr><mtd><mfrac><mrow><mn>4</mn><mi>a</mi><mo>-</mo><mn>5</mn></mrow><mn>3</mn></mfrac></mtd><mtd><mo>=</mo></mtd><mtd><mi>b</mi></mtd></mtr></mtable></math><br/>Therefore, the correct expression for <math><mi>b</mi></math> is <math><mfrac><mrow><mn>4</mn><mi>a</mi><mo>-</mo><mn>5</mn></mrow><mn>3</mn></mfrac></math>."
+```
+
+---
+
+## 4. Data Validation & Schema
+
+To ensure data integrity and prevent application errors, all new questions must be validated against two sources of truth:
+
+1.  **JSON Schema:** Every new question object **must** contain all the keys present in the `example.json` file. While some keys can have a `null` value (e.g., `diagramSvg`), the key itself must be present.
+
+2.  **Subcategory Vocabulary:** All strings in the `subcategories` array **must** be an exact match to an entry in the `ACT_MATH_TOPICS.md` file. This ensures a controlled and consistent taxonomy for targeted practice and data analysis.
+
+---
+
+## 5. Frontend Formatting and Rendering
 
 While the JSON data is raw, the frontend is responsible for rendering it in a specific format to mimic a real ACT test.
 

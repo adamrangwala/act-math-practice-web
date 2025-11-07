@@ -98,8 +98,10 @@ export const submitProgress = async (req: AuthRequest, res: Response) => {
 
     const isCorrect = performanceRating > 0;
 
-    // --- NEW: Update the aggregate dashboard stats ---
-    await updateUserDashboardStats(userId, isCorrect);
+    // --- Update aggregate dashboard stats only for main practice modes ---
+    if (context === 'practice_session' || context === 'mock_test') {
+      await updateUserDashboardStats(userId, isCorrect);
+    }
 
     // Only update the user's core spaced repetition progress if it's a standard practice session.
     if (context === 'practice_session') {
