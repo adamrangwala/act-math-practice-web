@@ -21,6 +21,7 @@ const Navbar = () => {
     <nav className="app-navbar">
       <Link to="/dashboard" className="navbar-brand">ACT Math Sprint</Link>
       <div className="navbar-nav">
+        <a href="https://forms.gle/TK8SzBRTmBstKPow9" target="_blank" rel="noopener noreferrer" className="nav-link">Feedback</a>
         <Link to="/settings" className="nav-link">Settings</Link>
         <a href="#" onClick={handleSignOut} className="nav-link">Sign Out</a>
       </div>
