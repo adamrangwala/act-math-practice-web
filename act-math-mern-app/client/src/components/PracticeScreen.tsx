@@ -201,12 +201,14 @@ const PracticeScreen = () => {
       // This is the end of the session.
       (async () => {
         try {
-          // Increment the session count on the backend before navigating away.
-          await authenticatedFetch('/api/stats/complete-session', { method: 'POST' });
-          
-          // If the user was new, this is their first session, so mark them as not new.
-          if (isNewUser) {
-            setIsNewUser(false);
+          // Only mark the session as complete if it's a standard practice session
+          if (!subcategory) {
+            await authenticatedFetch('/api/stats/complete-session', { method: 'POST' });
+            
+            // If the user was new, this is their first session, so mark them as not new.
+            if (isNewUser) {
+              setIsNewUser(false);
+            }
           }
         } catch (error) {
           console.error("Failed to mark session as complete:", error);
