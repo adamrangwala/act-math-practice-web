@@ -186,11 +186,9 @@ const Dashboard = () => {
                     >
                       <span className={`quadrant-badge ${quadrant.className}`}>{quadrant.label}</span>
                     </OverlayTrigger>
-                    <span className="skill-name">{skill.subcategory}</span>
-                  </div>
-                  {getPerformanceTier(skill.accuracy)}
-                </div>
-                <div className="skill-details">
+                                      <span className="skill-name">{skill.subcategory}</span>
+                                    </div>
+                                  </div>                <div className="skill-details">
                   <span>🎯 Accuracy: {skill.accuracy.toFixed(0)}%</span>
                   <span>⏱️ Avg Time: {skill.avgTime.toFixed(1)}s</span>
                   <span>✏️ Problems: {skill.totalAttempts}</span>
