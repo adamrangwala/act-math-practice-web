@@ -1,26 +1,33 @@
 [
   {
-    "questionId": "number-quantity-integers-between-fractions-01",
-    "category": "Number & Quantity",
+    "questionId": "statistics-mode-from-frequency-01",
+    "category": "Statistics & Probability",
     "subcategories": [
-      "Operations with Fractions, Decimals, & Integers"
+      "Mean, Median, Mode, & Range",
+      "Data Interpretation (Graphs & Tables)"
     ],
-    "questionText": "On the real number line, how many integers are between <math><mo>-</mo><mfrac><mn>29</mn><mn>4</mn></mfrac></math> and <math><mfrac><mn>31</mn><mn>5</mn></mfrac></math>?",
+    "questionText": "A restaurant manager recorded the number of customers at each table for a lunch service. The table below shows the number of customers at a table and the number of tables with that many customers. What is the mode of the number of customers at a table?<br/><br/><table class='table table-bordered' style='width: auto; margin: 0 auto;'><thead><tr><th>Customers at Table</th><th>Number of Tables</th></tr></thead><tbody><tr><td>1</td><td>5</td></tr><tr><td>2</td><td>12</td></tr><tr><td>3</td><td>4</td></tr><tr><td>4</td><td>9</td></tr><tr><td>5</td><td>2</td></tr></tbody></table>",
     "options": [
+      "1",
       "2",
-      "3",
-      "12",
-      "13",
-      "14"
+      "4",
+      "5",
+      "12"
     ],
-    "correctAnswerIndex": 4,
-    "solutionText": "The first step is to convert the improper fractions into decimals to define the boundaries of our range.<br/><br/><b>1. Convert the fractions:</b><br/><math display='block'><mtable columnalign='right center left' rowspacing='1ex'><mtr><mtd><mo>-</mo><mfrac><mn>29</mn><mn>4</mn></mfrac></mtd><mtd><mo>=</mo></mtd><mtd><mo>-</mo><mn>7.25</mn></mtd></mtr></mtable></math><br/><math display='block'><mtable columnalign='right center left' rowspacing='1ex'><mtr><mtd><mfrac><mn>31</mn><mn>5</mn></mfrac></mtd><mtd><mo>=</mo></mtd><mtd><mn>6.2</mn></mtd></mtr></mtable></math><br/><br/><b>2. Identify the boundary integers:</b><br/>The integers must be greater than -7.25 and less than 6.2.<br/>The smallest integer in this range (the 'first') is -7.<br/>The largest integer in this range (the 'last') is 6.<br/><br/><b>3. Use the counting formula:</b><br/>To count the number of integers in an inclusive range, the most reliable method is the formula: <math><mtext>Last</mtext><mo>-</mo><mtext>First</mtext><mo>+</mo><mn>1</mn></math>.<br/><math display='block'><mtable columnalign='right center left' rowspacing='1ex'><mtr><mtd><mn>6</mn><mo>-</mo><mrow><mo>(</mo><mo>-</mo><mn>7</mn><mo>)</mo></mrow><mo>+</mo><mn>1</mn></mtd><mtd><mo>=</mo></mtd><mtd><mn>6</mn><mo>+</mo><mn>7</mn><mo>+</mo><mn>1</mn></mtd></mtr><mtr><mtd></mtd><mtd><mo>=</mo></mtd><mtd><mn>14</mn></mtd></mtr></mtable></math><br/>There are 14 integers in this range.<br/><b>",
-    "difficulty": 2,
+    "correctAnswerIndex": 1,
+    "solutionText": "<b>1. Understand the Mode:</b><br/>The mode is the value that appears most often in a data set. In this question, we are looking for the 'Customers at Table' value that has the highest 'Number of Tables' (its frequency).<br/><br/><b>2. Find the highest frequency:</b><br/>Looking at the 'Number of Tables' column, the highest frequency is 12.<br/><br/><b>3. Determine the mode:</b><br/>The value in the 'Customers at Table' column that corresponds to the highest frequency is the mode. The frequency of 12 corresponds to 2 customers at a table.<br/><br/>Therefore, the mode is 2.<br/><br/><b>Pro Tip:</b> A common trap is to choose the highest frequency itself (12) as the answer. Remember, the mode is the *data value* that occurs most often, not the frequency count.",
+    "difficulty": 1,
     "diagramUrl": null,
     "diagramSvg": null,
     "solutionDiagramSvg": null,
     "isActive": true,
     "avgTimeSeconds": null,
-    "optionSelectionCounts": [0,0,0,0,0]
+    "optionSelectionCounts": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
   }
 ]

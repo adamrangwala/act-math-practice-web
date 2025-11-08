@@ -35,10 +35,10 @@ To ensure a collaborative, stable, and easily debuggable process, we will follow
   - [x] **Ops:** Debug and resolve all deployment, CORS, and build issues.
 
 - [ ] **Phase 7: Beta Readiness**
-  - [ ] **Onboarding Enhancements**
+  - [x] **Onboarding Enhancements**
     - [x] **Frontend & Backend:** Implement multi-step onboarding to capture user role.
-    - [ ] **Frontend & Backend:** Add step to capture user's official ACT test date.
-    - [ ] **Frontend & Backend:** Add optional step for current and target Math scores.
+    - [x] **Frontend & Backend:** Add step to capture user's official ACT test date.
+    - [x] **Frontend & Backend:** Add optional step for current and target Math scores.
   - [x] **Frontend:** Overhaul Dashboard UI with stat cards and detailed skills breakdown.
   - [x] **Frontend:** Implement logic for targeted practice drills from dashboard.
   - [x] **Frontend:** Enhance Practice Screen UI (animations, timer, calculator, progress bar).

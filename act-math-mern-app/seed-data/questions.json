@@ -861,5 +861,67 @@
     "isActive": true,
     "avgTimeSeconds": null,
     "optionSelectionCounts": [0,0,0,0,0]
+  },
+  {
+    "questionId": "statistics-mean-from-frequency-01",
+    "category": "Statistics & Probability",
+    "subcategories": [
+      "Mean, Median, Mode, & Range",
+      "Data Interpretation (Graphs & Tables)"
+    ],
+    "questionText": "A small business tracked the number of customer complaints received each day over a 20-day period. The table below shows the number of complaints and the number of days that count occurred. What is the mean number of complaints per day over this period?<br/><br/><table class='table table-bordered' style='width: auto; margin: 0 auto;'><thead><tr><th>Complaints per Day</th><th>Number of Days</th></tr></thead><tbody><tr><td>0</td><td>2</td></tr><tr><td>1</td><td>5</td></tr><tr><td>2</td><td>8</td></tr><tr><td>3</td><td>3</td></tr><tr><td>4</td><td>2</td></tr></tbody></table>",
+    "options": [
+      "1.5",
+      "1.9",
+      "2",
+      "2.2",
+      "2.5"
+    ],
+    "correctAnswerIndex": 1,
+    "solutionText": "To find the mean from a frequency table, we need to calculate the total sum of all values and divide it by the total number of data points.<br/><br/><b>1. Calculate the total sum of complaints:</b><br/>Multiply each 'Complaints per Day' by its corresponding 'Number of Days' and sum the results.<br/><br/><math display='block'><mtable columnalign='right center left' rowspacing='1ex'><mtr><mtd><mtext>Total Complaints</mtext></mtd><mtd><mo>=</mo></mtd><mtd><mo>(</mo><mn>0</mn><mo>×</mo><mn>2</mn><mo>)</mo><mo>+</mo><mo>(</mo><mn>1</mn><mo>×</mo><mn>5</mn><mo>)</mo><mo>+</mo><mo>(</mo><mn>2</mn><mo>×</mo><mn>8</mn><mo>)</mo><mo>+</mo><mo>(</mo><mn>3</mn><mo>×</mo><mn>3</mn><mo>)</mo><mo>+</mo><mo>(</mo><mn>4</mn><mo>×</mo><mn>2</mn><mo>)</mo></mtd></mtr><mtr><mtd></mtd><mtd><mo>=</mo></mtd><mtd><mn>0</mn><mo>+</mo><mn>5</mn><mo>+</mo><mn>16</mn><mo>+</mo><mn>9</mn><mo>+</mo><mn>8</mn></mtd></mtr><mtr><mtd></mtd><mtd><mo>=</mo></mtd><mtd><mn>38</mn></mtd></mtr></mtable></math><br/><br/><b>2. Confirm the total number of days:</b><br/>Sum the 'Number of Days' column: <math><mn>2</mn><mo>+</mo><mn>5</mn><mo>+</mo><mn>8</mn><mo>+</mo><mn>3</mn><mo>+</mo><mn>2</mn><mo>=</mo><mn>20</mn></math> days.<br/><br/><b>3. Calculate the mean:</b><br/>Divide the total complaints by the total number of days.<br/><br/><math display='block'><mtable columnalign='right center left' rowspacing='1ex'><mtr><mtd><mtext>Mean</mtext></mtd><mtd><mo>=</mo></mtd><mtd><mfrac><mrow><mtext>Total Complaints</mtext></mrow><mrow><mtext>Total Days</mtext></mrow></mfrac></mtd></mtr><mtr><mtd></mtd><mtd><mo>=</mo></mtd><mtd><mfrac><mn>38</mn><mn>20</mn></mfrac></mtd></mtr><mtr><mtd></mtd><mtd><mo>=</mo></mtd><mtd><mn>1.9</mn></mtd></mtr></mtable></math><br/>The mean number of complaints per day is 1.9.<br/><br/><b>Pro Tip:</b> Be careful not to simply average the 'Complaints per Day' values (0, 1, 2, 3, 4). You must account for the frequency (number of days) of each value to calculate the correct weighted average.",
+    "difficulty": 2,
+    "diagramUrl": null,
+    "diagramSvg": null,
+    "solutionDiagramSvg": null,
+    "isActive": true,
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "questionId": "statistics-mode-from-frequency-01",
+    "category": "Statistics & Probability",
+    "subcategories": [
+      "Mean, Median, Mode, & Range",
+      "Data Interpretation (Graphs & Tables)"
+    ],
+    "questionText": "A restaurant manager recorded the number of customers at each table for a lunch service. The table below shows the number of customers at a table and the number of tables with that many customers. What is the mode of the number of customers at a table?<br/><br/><table class='table table-bordered' style='width: auto; margin: 0 auto;'><thead><tr><th>Customers at Table</th><th>Number of Tables</th></tr></thead><tbody><tr><td>1</td><td>5</td></tr><tr><td>2</td><td>12</td></tr><tr><td>3</td><td>4</td></tr><tr><td>4</td><td>9</td></tr><tr><td>5</td><td>2</td></tr></tbody></table>",
+    "options": [
+      "1",
+      "2",
+      "4",
+      "5",
+      "12"
+    ],
+    "correctAnswerIndex": 1,
+    "solutionText": "<b>1. Understand the Mode:</b><br/>The mode is the value that appears most often in a data set. In this question, we are looking for the 'Customers at Table' value that has the highest 'Number of Tables' (its frequency).<br/><br/><b>2. Find the highest frequency:</b><br/>Looking at the 'Number of Tables' column, the highest frequency is 12.<br/><br/><b>3. Determine the mode:</b><br/>The value in the 'Customers at Table' column that corresponds to the highest frequency is the mode. The frequency of 12 corresponds to 2 customers at a table.<br/><br/>Therefore, the mode is 2.<br/><br/><b>Pro Tip:</b> A common trap is to choose the highest frequency itself (12) as the answer. Remember, the mode is the *data value* that occurs most often, not the frequency count.",
+    "difficulty": 1,
+    "diagramUrl": null,
+    "diagramSvg": null,
+    "solutionDiagramSvg": null,
+    "isActive": true,
+    "avgTimeSeconds": null,
+    "optionSelectionCounts": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
   }
 ]
