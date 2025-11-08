@@ -1,16 +1,12 @@
-# Dependencies
-node_modules
 
-# Environment variables
-.env
+# Ignore node_modules
+node_modules/
 
-# Service Account Keys
-serviceAccountKey.json
-serviceAccountKey-dev.json
-serviceAccountKey-staging.json
-serviceAccountKey-prod.json
+# Ignore .env files
+.env*
 
-# Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Ignore build output
+dist/
+
+# Ignore ALL service account keys
+serviceAccountKey*.json

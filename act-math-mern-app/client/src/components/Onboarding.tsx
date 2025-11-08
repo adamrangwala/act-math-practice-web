@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { authenticatedFetch } from '../utils/api';
@@ -10,6 +10,7 @@ const Onboarding = () => {
   const [testDate, setTestDate] = useState('');
   const [currentScore, setCurrentScore] = useState('');
   const [targetScore, setTargetScore] = useState('');
+  const [scoreError, setScoreError] = useState('');
   const [limit, setLimit] = useState(10);
   const [loading, setLoading] = useState(false);
   const { setIsNewUser } = useAuth();
@@ -28,9 +29,44 @@ const Onboarding = () => {
     setStep(3);
   };
 
-  const handleScoresContinue = () => {
-    setStep(4);
+  const validateScores = () => {
+    const current = currentScore ? parseInt(currentScore, 10) : 0;
+    const target = targetScore ? parseInt(targetScore, 10) : 0;
+
+    if ((currentScore && (current < 1 || current > 36)) || (targetScore && (target < 1 || target > 36))) {
+      setScoreError('Please enter scores between 1 and 36.');
+      return false;
+    }
+    setScoreError('');
+    return true;
   };
+
+  const handleScoresContinue = () => {
+    if (validateScores()) {
+      setStep(4);
+    }
+  };
+
+  const handleCurrentScoreChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrentScore(e.target.value);
+    if (scoreError) {
+      validateScores();
+    }
+  };
+
+  const handleTargetScoreChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTargetScore(e.target.value);
+    if (scoreError) {
+      validateScores();
+    }
+  };
+
+  const isScoresStepValid = useMemo(() => {
+    const current = currentScore ? parseInt(currentScore, 10) : 0;
+    const target = targetScore ? parseInt(targetScore, 10) : 0;
+    return (!currentScore || (current >= 1 && current <= 36)) && (!targetScore || (target >= 1 && target <= 36));
+  }, [currentScore, targetScore]);
+
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -103,7 +139,8 @@ const Onboarding = () => {
                   min="1"
                   max="36"
                   value={currentScore}
-                  onChange={(e) => setCurrentScore(e.target.value)}
+                  onChange={handleCurrentScoreChange}
+                  onBlur={validateScores}
                   placeholder="e.g., 22"
                 />
               </div>
@@ -115,12 +152,14 @@ const Onboarding = () => {
                   min="1"
                   max="36"
                   value={targetScore}
-                  onChange={(e) => setTargetScore(e.target.value)}
+                  onChange={handleTargetScoreChange}
+                  onBlur={validateScores}
                   placeholder="e.g., 28"
                 />
               </div>
             </div>
-            <button onClick={handleScoresContinue} className="continue-button">
+            {scoreError && <p className="error-message">{scoreError}</p>}
+            <button onClick={handleScoresContinue} disabled={!isScoresStepValid} className="continue-button">
               Continue
             </button>
           </>
