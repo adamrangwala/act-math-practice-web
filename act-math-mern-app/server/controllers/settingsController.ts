@@ -11,12 +11,16 @@ export const getSettings = async (req: AuthRequest, res: Response) => {
   try {
     const userDoc = await db.collection('users').doc(userId).get();
     if (!userDoc.exists) {
-      // This case should ideally not happen if user is initialized at login
       return res.status(404).send({ message: 'User not found.' });
     }
     const userData = userDoc.data();
     res.status(200).json({
       dailyQuestionLimit: userData?.dailyQuestionLimit || 10,
+      role: userData?.role,
+      testDate: userData?.testDate,
+      currentScore: userData?.currentScore,
+      targetScore: userData?.targetScore,
+      hasSeenDashboardGuide: userData?.hasSeenDashboardGuide || false,
     });
   } catch (error) {
     console.error('Error fetching settings:', error);
@@ -29,33 +33,25 @@ export const updateSettings = async (req: AuthRequest, res: Response) => {
     return res.status(401).send({ message: 'Unauthorized' });
   }
   
-  console.log('Received settings update request with body:', req.body); // Debugging line
-
   const userId = req.user.uid;
-  const { dailyQuestionLimit, role, testDate } = req.body;
+  const { dailyQuestionLimit, role, testDate, currentScore, targetScore } = req.body;
 
   const updateData: { [key: string]: any } = {};
 
   if (dailyQuestionLimit !== undefined) {
-    if (typeof dailyQuestionLimit !== 'number' || dailyQuestionLimit < 5 || dailyQuestionLimit > 50) {
-      return res.status(400).send({ message: 'Invalid daily question limit.' });
-    }
     updateData.dailyQuestionLimit = dailyQuestionLimit;
   }
-
   if (role !== undefined) {
-    const allowedRoles = ['ms_student', 'hs_student', 'teacher', 'other'];
-    if (typeof role !== 'string' || !allowedRoles.includes(role)) {
-      return res.status(400).send({ message: 'Invalid role specified.' });
-    }
     updateData.role = role;
   }
-
   if (testDate !== undefined) {
-    if (testDate !== '' && !/^\d{4}-\d{2}-\d{2}$/.test(testDate)) {
-      return res.status(400).send({ message: 'Invalid test date format.' });
-    }
     updateData.testDate = testDate;
+  }
+  if (currentScore !== undefined) {
+    updateData.currentScore = currentScore;
+  }
+  if (targetScore !== undefined) {
+    updateData.targetScore = targetScore;
   }
 
   if (Object.keys(updateData).length === 0) {
@@ -71,3 +67,20 @@ export const updateSettings = async (req: AuthRequest, res: Response) => {
     res.status(500).send({ message: 'Internal Server Error' });
   }
 };
+
+export const markDashboardGuideSeen = async (req: AuthRequest, res: Response) => {
+  if (!req.user) {
+    return res.status(401).send({ message: 'Unauthorized' });
+  }
+  const userId = req.user.uid;
+
+  try {
+    const userRef = db.collection('users').doc(userId);
+    await userRef.set({ hasSeenDashboardGuide: true }, { merge: true });
+    res.status(200).json({ message: 'Dashboard guide marked as seen.' });
+  } catch (error) {
+    console.error('Error marking dashboard guide as seen:', error);
+    res.status(500).send({ message: 'Internal Server Error' });
+  }
+};
+

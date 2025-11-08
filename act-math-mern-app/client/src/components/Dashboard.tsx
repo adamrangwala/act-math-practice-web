@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { authenticatedFetch } from '../utils/api';
 import PriorityMatrix from './PriorityMatrix';
+import DashboardGuide from './DashboardGuide';
 import './Dashboard.css';
 
 interface SubcategoryStat {
@@ -20,35 +21,51 @@ interface DashboardStats {
   previousRollingAccuracy: number;
 }
 
+interface UserSettings {
+  hasSeenDashboardGuide: boolean;
+}
+
 const Dashboard = () => {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
   const [skillStats, setSkillStats] = useState<SubcategoryStat[] | null>(null);
   const [dashboardStats, setDashboardStats] = useState<DashboardStats | null>(null);
+  const [settings, setSettings] = useState<UserSettings | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [showGuide, setShowGuide] = useState(false);
 
   useEffect(() => {
-    const fetchAllStats = async () => {
+    const fetchAllData = async () => {
       if (!currentUser) {
         setLoading(false);
         return;
       }
       try {
-        const [priorityData, dashboardData] = await Promise.all([
+        const [priorityData, dashboardData, settingsData] = await Promise.all([
           authenticatedFetch('/api/stats/priority-matrix'),
-          authenticatedFetch('/api/stats/dashboard')
+          authenticatedFetch('/api/stats/dashboard'),
+          authenticatedFetch('/api/settings')
         ]);
         setSkillStats(priorityData);
         setDashboardStats(dashboardData);
+        setSettings(settingsData);
+        if (!settingsData.hasSeenDashboardGuide) {
+          setShowGuide(true);
+        }
       } catch (err: any) {
         setError(err.message);
       } finally {
         setLoading(false);
       }
     };
-    fetchAllStats();
+    fetchAllData();
   }, [currentUser]);
+
+  const handleGuideComplete = () => {
+    setShowGuide(false);
+    setSettings(prev => prev ? { ...prev, hasSeenDashboardGuide: true } : null);
+  };
 
   const getPerformanceTier = (accuracy: number) => {
     if (accuracy < 60) return <span className="tier-badge fair">Fair</span>;
@@ -58,7 +75,6 @@ const Dashboard = () => {
 
   const getQuadrantInfo = (stat: SubcategoryStat) => {
     const { accuracy, avgTime } = stat;
-    // These thresholds should ideally match the ones used in the PriorityMatrix component
     const accuracyThreshold = 75;
     const timeThreshold = 60;
 
@@ -74,7 +90,7 @@ const Dashboard = () => {
         className: "quadrant-speed",
         tooltip: "You're accurate but slow. Practice these to improve your timing and confidence."
       };
-    } else { // accuracy >= accuracyThreshold && avgTime <= timeThreshold
+    } else {
       return { 
         label: "Strength", 
         className: "quadrant-strength",
@@ -103,6 +119,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
+      {showGuide && <DashboardGuide onComplete={handleGuideComplete} />}
       <div className="welcome-header">
         <h2>Welcome back, {currentUser?.displayName}! 👋</h2>
         <p>Ready to practice some math today?</p>
@@ -186,9 +203,10 @@ const Dashboard = () => {
                     >
                       <span className={`quadrant-badge ${quadrant.className}`}>{quadrant.label}</span>
                     </OverlayTrigger>
-                                      <span className="skill-name">{skill.subcategory}</span>
-                                    </div>
-                                  </div>                <div className="skill-details">
+                    <span className="skill-name">{skill.subcategory}</span>
+                  </div>
+                </div>
+                <div className="skill-details">
                   <span>🎯 Accuracy: {skill.accuracy.toFixed(0)}%</span>
                   <span>⏱️ Avg Time: {skill.avgTime.toFixed(1)}s</span>
                   <span>✏️ Problems: {skill.totalAttempts}</span>

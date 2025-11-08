@@ -25,6 +25,7 @@ Do this yourself in an incognito browser window to simulate a brand new user.
 2.  **First Dashboard Load:** After logging in, do you land on the dashboard?
     *   Are the **Rolling Accuracy**, **Day Streak**, and **Total Sessions** all displayed as **0**?
     *   Does the "Skills Breakdown" section show the placeholder message: "Your Skills Breakdown will appear here..."?
+    *   Does the **Dashboard Guide** appear and function correctly?
 3.  **Start a Session:** Click "Begin Daily Practice." Does a practice session start and show the first question?
 4.  **Complete a Full Session:**
     *   Answer every question in the session.
@@ -50,4 +51,14 @@ Do this yourself in an incognito browser window to simulate a brand new user.
 
 *   **Review All Questions:** Open `preview.html` one last time and quickly scroll through every question. Look for any obvious formatting errors in the math or diagrams. It's better for you to catch a typo now than for a tester to get confused by it.
 
-If everything in this checklist works as described, you have a stable, test-ready application. The core user journey is confirmed to be working from end to end.
+---
+
+### Step 5: Pre-Launch Readiness 🚀
+
+These are the final steps before going live.
+
+1.  [x] **Connect Custom Domain:** Ensure `actmathsprint.com` is pointing to your production Vercel frontend.
+2.  [x] **Implement User Feedback Mechanism:** Confirm the "Feedback" button in the Navbar links to the Google Form.
+3.  [x] **Finalize User Onboarding:** Verify the multi-step onboarding (Role, Test Date, Scores, Dashboard Guide) is fully functional and persists data.
+4.  [ ] **Wipe Production Database:** (Manual step for you) Clear all user and progress data from the production Firebase database before launch.
+5.  [ ] **Increase Question Count:** Ensure `seed-data/questions.json` has at least 50-100 high-quality questions.

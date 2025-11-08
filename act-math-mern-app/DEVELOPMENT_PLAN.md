@@ -39,10 +39,13 @@ To ensure a collaborative, stable, and easily debuggable process, we will follow
     - [x] **Frontend & Backend:** Implement multi-step onboarding to capture user role.
     - [x] **Frontend & Backend:** Add step to capture user's official ACT test date.
     - [x] **Frontend & Backend:** Add optional step for current and target Math scores.
+    - [x] **Frontend & Backend:** Implement one-time interactive Dashboard Guide.
   - [x] **Frontend:** Overhaul Dashboard UI with stat cards and detailed skills breakdown.
   - [x] **Frontend:** Implement logic for targeted practice drills from dashboard.
   - [x] **Frontend:** Enhance Practice Screen UI (animations, timer, calculator, progress bar).
-  - [ ] **Frontend:** Polish the Priority Matrix with quadrant backgrounds and a simplified color scheme.
+  - [x] **Frontend:** Improve Practice Screen feedback with "Correct!" pop and confetti animation.
+  - [x] **Frontend:** Refactor PracticeScreen.tsx into smaller components and hooks.
+  - [ ] **Frontend:** Polish the Priority Matrix visual design (quadrant backgrounds, simplified color scheme).
   - [ ] **Data:** Populate `seed-data/questions.json` with at least 50 high-quality questions.
 
 - [ ] **Phase 8: MVP Finalization**

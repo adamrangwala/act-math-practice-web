@@ -2,17 +2,21 @@ import express from 'express';
 import authMiddleware from '../middleware/authMiddleware';
 
 // Import all controller functions
-import { initUser, getUserSettings, updateUserSettings } from '../controllers/authController';
+import { initUser } from '../controllers/authController';
 import { getTodaysQuestions, getPracticeMoreQuestions, getTargetedPracticeQuestions } from '../controllers/questionController';
 import { submitProgress, resetAllProgress } from '../controllers/progressController';
+import { getSettings, updateSettings, markDashboardGuideSeen } from '../controllers/settingsController';
 import { getDashboardStats, getHeatmapStats, getPriorityMatrixStats, getStreakData, completePracticeSession } from '../controllers/statsController';
 
 const router = express.Router();
 
 // Auth & User
 router.post('/init-user', authMiddleware, initUser);
-router.get('/settings', authMiddleware, getUserSettings);
-router.put('/settings', authMiddleware, updateUserSettings);
+
+// Settings
+router.get('/settings', authMiddleware, getSettings);
+router.put('/settings', authMiddleware, updateSettings);
+router.put('/settings/viewed-dashboard-guide', authMiddleware, markDashboardGuideSeen);
 
 // Practice
 router.get('/questions/today', authMiddleware, getTodaysQuestions);
