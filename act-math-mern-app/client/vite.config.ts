@@ -18,4 +18,7 @@ export default defineConfig({
       'react': path.resolve(__dirname, 'node_modules/react'),
     },
   },
+  esbuild: {
+    logOverride: { 'css-syntax-error': 'silent' }
+  }
 })

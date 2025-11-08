@@ -13,7 +13,9 @@ const PORT = process.env.PORT || 5000;
 const allowedOrigins = [
   'http://localhost:3000', // Your local dev frontend
   'https://act-math-app-staging.vercel.app',
-  'https://act-math-app-staging-git-develop-adamrangwalas-projects.vercel.app'
+  'https://act-math-app-staging-git-develop-adamrangwalas-projects.vercel.app',
+  'https://act-math-app-production.vercel.app',
+  'https://actmathsprint.com'
 ];
 
 const corsOptions = {
