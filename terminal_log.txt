@@ -1,11 +1,20 @@
-> client@0.0.0 build
-> vite build
 vite v7.1.10 building for production...
 transforming...
 ✓ 2 modules transformed.
-✗ Build failed in 56ms
+✗ Build failed in 48ms
 error during build:
 [vite]: Rollup failed to resolve import "react-router-dom" from "/vercel/path0/act-math-mern-app/client/src/main.tsx".
 This is most likely unintended because it can break your application at runtime.
 If you do want to externalize this module explicitly add it to
 `build.rollupOptions.external`
+    at viteLog (file:///vercel/path0/act-math-mern-app/client/node_modules/vite/dist/node/chunks/dep-B0GuR2De.js:33864:57)
+    at file:///vercel/path0/act-math-mern-app/client/node_modules/vite/dist/node/chunks/dep-B0GuR2De.js:33898:73
+    at onwarn (file:///vercel/path0/act-math-mern-app/client/node_modules/@vitejs/plugin-react/dist/index.js:55:7)
+    at file:///vercel/path0/act-math-mern-app/client/node_modules/vite/dist/node/chunks/dep-B0GuR2De.js:33898:28
+    at onRollupLog (file:///vercel/path0/act-math-mern-app/client/node_modules/vite/dist/node/chunks/dep-B0GuR2De.js:33893:63)
+    at onLog (file:///vercel/path0/act-math-mern-app/client/node_modules/vite/dist/node/chunks/dep-B0GuR2De.js:33696:4)
+    at file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/node-entry.js:20937:32
+    at Object.logger [as onLog] (file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/node-entry.js:22823:9)
+    at ModuleLoader.handleInvalidResolvedId (file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/node-entry.js:21567:26)
+    at file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/node-entry.js:21525:26
+Error: Command "npm run build" exited with 1
