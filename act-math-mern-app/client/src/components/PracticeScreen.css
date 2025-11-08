@@ -42,3 +42,60 @@
   border-color: #6a1b9a;
   background-color: #f9f5fc;
 }
+
+/* --- Correct Answer Animation --- */
+.feedback-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.feedback-text {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #28a745; /* Bootstrap success green */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  animation: pop-in 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* --- Confetti --- */
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #f00; /* Example color */
+  opacity: 0;
+  animation: confetti-fall 1s ease-out forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(200px) rotate(360deg);
+    opacity: 0;
+  }
+}

@@ -1,20 +1,78 @@
-console:
-index-DO-E8Nve.js:1441 Firebase Config: Object
-index-DO-E8Nve.js:1441 Failed to initialize user: TypeError: Failed to fetch
-    at $n (index-DO-E8Nve.js:1441:2017)
-    at async index-DO-E8Nve.js:1441:2543
-(anonymous) @ index-DO-E8Nve.js:1441
+C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp>git push
+Enumerating objects: 18, done.
+Counting objects: 100% (18/18), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (10/10), done.
+Writing objects: 100% (10/10), 2.94 KiB | 753.00 KiB/s, done.
+Total 10 (delta 5), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (5/5), completed with 5 local objects.
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+remote: 
+remote: - GITHUB PUSH PROTECTION
+remote:   ΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇö
+remote:     Resolve the following violations before pushing again
+remote:
+remote:     - Push cannot contain secrets
+remote:
+remote:
+remote:      (?) Learn how to resolve a blocked push
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
+remote:
+remote:
+remote:       ΓÇöΓÇö Google Cloud Service Account Credentials ΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇö
+remote:        locations:
+remote:          - commit: 17384a8c1efa7ab5a676f29321411fc905199f16
+remote:            path: act-math-mern-app/server/config/serviceAccountKey-production.json:1
+remote:
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/adamrangwala/act-math-practice-web/security/secret-scanning/unblock-secret/35D8g1RQEbIbFybkRRZDSAYKyfI
+remote:
+remote:
+remote:
+To https://github.com/adamrangwala/act-math-practice-web.git
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'https://github.com/adamrangwala/act-math-practice-web.git'
 
-render:
-Incoming request origin: https://act-math-app-production.vercel.app
-Error: Not allowed by CORS
-    at origin (/opt/render/project/src/act-math-mern-app/server/dist/server.js:27:22)
-    at /opt/render/project/src/act-math-mern-app/server/node_modules/cors/lib/index.js:219:13
-    at optionsCallback (/opt/render/project/src/act-math-mern-app/server/node_modules/cors/lib/index.js:199:9)
-    at corsMiddleware (/opt/render/project/src/act-math-mern-app/server/node_modules/cors/lib/index.js:204:7)
-    at Layer.handleRequest (/opt/render/project/src/act-math-mern-app/server/node_modules/router/lib/layer.js:152:17)
-    at trimPrefix (/opt/render/project/src/act-math-mern-app/server/node_modules/router/index.js:342:13)
-    at /opt/render/project/src/act-math-mern-app/server/node_modules/router/index.js:297:9
-    at processParams (/opt/render/project/src/act-math-mern-app/server/node_modules/router/index.js:582:12)
-    at next (/opt/render/project/src/act-math-mern-app/server/node_modules/router/index.js:291:5)
-    at /opt/render/project/src/act-math-mern-app/server/dist/server.js:34:5
+C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp>git add .
+warning: in the working copy of 'act-math-mern-app/server/.gitignore', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'act-math-mern-app/server/serviceAccountKey.json', LF will be replaced by CRLF the next time Git touches it
+
+C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp>git commit -m "Onboarding: set max score of 36 and min of 1"
+[main 3de0d53] Onboarding: set max score of 36 and min of 1
+ 4 files changed, 152 insertions(+), 20 deletions(-)
+ create mode 100644 act-math-mern-app/server/serviceAccountKey.json
+
+C:\Users\rangw\Dropbox\Websites\ACT_Math_webapp>git push
+Enumerating objects: 20, done.
+Counting objects: 100% (20/20), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (11/11), done.
+Writing objects: 100% (11/11), 4.12 KiB | 1.03 MiB/s, done.
+Total 11 (delta 6), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (6/6), completed with 6 local objects.
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+remote:
+remote: - GITHUB PUSH PROTECTION
+remote:   ΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇö
+remote:     Resolve the following violations before pushing again
+remote:
+remote:     - Push cannot contain secrets
+remote:
+remote:
+remote:      (?) Learn how to resolve a blocked push
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
+remote:
+remote:
+remote:       ΓÇöΓÇö Google Cloud Service Account Credentials ΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇöΓÇö
+remote:        locations:
+remote:          - commit: 3de0d5392cc2b9176e1d1089a0ef439e25275255
+remote:            path: act-math-mern-app/server/serviceAccountKey.json:1
+remote:
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/adamrangwala/act-math-practice-web/security/secret-scanning/unblock-secret/35DAPyNtn0KLXNMwSMTouUW9XRx
+remote:
+remote:
+remote:
+To https://github.com/adamrangwala/act-math-practice-web.git
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'https://github.com/adamrangwala/act-math-practice-web.git'

@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Container, Card, Button, Spinner, ListGroup, Alert } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Container, Button, Spinner, Alert } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import { authenticatedFetch } from '../utils/api';
-import './PracticeScreen.css'; // Import the new styles
-import Calculator from './Calculator'; // Import the Calculator component
+import './PracticeScreen.css';
+import Calculator from './Calculator';
+import { usePracticeTimer } from '../hooks/usePracticeTimer';
+import QuestionCard from './QuestionCard';
 
 interface Question {
   questionId: string;
@@ -24,8 +26,6 @@ interface SessionData {
   subcategories: string[];
 }
 
-const getOptionLetter = (index: number) => ['F', 'G', 'H', 'J', 'K'][index];
-
 const PracticeScreen = () => {
   const { currentUser, isNewUser, setIsNewUser } = useAuth();
   const navigate = useNavigate();
@@ -38,66 +38,11 @@ const PracticeScreen = () => {
   
   const [isFlipped, setIsFlipped] = useState(false);
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number | null>(null);
+  const [feedback, setFeedback] = useState<string | null>(null);
   
-  // --- New Robust Timer State & Refs ---
-  const [timer, setTimer] = useState(0); // The displayed time in seconds
-  const [isTimerActive, setIsTimerActive] = useState(true);
-  const elapsedTimeRef = useRef<number>(0); // Accumulated time in ms before the current active period
-  const startTimeRef = useRef<number>(Date.now()); // `Date.now()` when the timer starts or resumes
+  const { timer, pauseTimer, resetTimer } = usePracticeTimer();
   
   const [showCalculator, setShowCalculator] = useState(false);
-
-  const frontRef = useRef<HTMLDivElement>(null);
-  const backRef = useRef<HTMLDivElement>(null);
-  const [cardHeight, setCardHeight] = useState<number | undefined>(undefined);
-
-  // --- Timer Logic ---
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        // Tab is hidden, pause the timer
-        if (isTimerActive) {
-          elapsedTimeRef.current += (Date.now() - startTimeRef.current);
-          setIsTimerActive(false);
-        }
-      } else {
-        // Tab is visible, resume the timer
-        if (!isTimerActive) {
-          startTimeRef.current = Date.now();
-          setIsTimerActive(true);
-        }
-      }
-    };
-
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-
-    // Also pause when the card is flipped
-    if (isFlipped && isTimerActive) {
-      elapsedTimeRef.current += (Date.now() - startTimeRef.current);
-      setIsTimerActive(false);
-    }
-
-    return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-    };
-  }, [isTimerActive, isFlipped]);
-
-  useEffect(() => {
-    let timerInterval: NodeJS.Timeout | null = null;
-
-    if (isTimerActive) {
-      timerInterval = setInterval(() => {
-        const totalElapsedTime = elapsedTimeRef.current + (Date.now() - startTimeRef.current);
-        setTimer(Math.floor(totalElapsedTime / 1000));
-      }, 1000);
-    }
-
-    return () => {
-      if (timerInterval) {
-        clearInterval(timerInterval);
-      }
-    };
-  }, [isTimerActive]);
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -116,11 +61,8 @@ const PracticeScreen = () => {
         setSessionData([]);
         setSelectedAnswerIndex(null);
         setIsFlipped(false);
-        // Reset timer state for the new session
-        elapsedTimeRef.current = 0;
-        startTimeRef.current = Date.now();
-        setTimer(0);
-        setIsTimerActive(true);
+        setFeedback(null);
+        resetTimer();
       } catch (err: any) {
         setError(err.message);
       } finally {
@@ -131,41 +73,19 @@ const PracticeScreen = () => {
     if (currentUser) {
       fetchQuestions();
     }
-  }, [currentUser, subcategory, navigate]);
-
-  useEffect(() => {
-    if (window.MathJax) {
-      window.MathJax.typeset();
-    }
-  }, [currentQuestionIndex, isFlipped, questions]);
-
-  useEffect(() => {
-    const calculateHeight = () => {
-      const frontHeight = frontRef.current?.scrollHeight || 0;
-      const backHeight = backRef.current?.scrollHeight || 0;
-      
-      if (isFlipped) {
-        setCardHeight(backHeight > 0 ? backHeight : undefined);
-      } else {
-        setCardHeight(frontHeight > 0 ? frontHeight : undefined);
-      }
-    };
-    
-    const timer = setTimeout(calculateHeight, 50);
-    return () => clearTimeout(timer);
-  }, [currentQuestionIndex, questions, isFlipped]);
+  }, [currentUser, subcategory, navigate, resetTimer]);
 
   const handleAnswerSelect = (selectedIndex: number) => {
     if (isFlipped) return;
 
-    // Pause timer and calculate final time
-    setIsTimerActive(false);
-    const timeSpent = (elapsedTimeRef.current + (Date.now() - startTimeRef.current)) / 1000;
+    const timeSpent = timer;
+    pauseTimer();
     
     const isCorrect = selectedIndex === questions[currentQuestionIndex].correctAnswerIndex;
     
     setSessionData(prev => [...prev, { isCorrect, timeSpent, subcategories: questions[currentQuestionIndex].subcategories }]);
     setSelectedAnswerIndex(selectedIndex);
+    setFeedback(isCorrect ? 'Correct!' : 'Incorrect');
     
     let performanceRating = 0.0;
     if (isCorrect) {
@@ -233,20 +153,9 @@ const PracticeScreen = () => {
     setTimeout(() => {
       setSelectedAnswerIndex(null);
       setCurrentQuestionIndex(nextIndex);
-      // Reset timer for the next question
-      elapsedTimeRef.current = 0;
-      startTimeRef.current = Date.now();
-      setTimer(0);
-      setIsTimerActive(true);
+      setFeedback(null);
+      resetTimer();
     }, 300);
-  };
-
-  const getVariant = (index: number) => {
-    if (!isFlipped) return undefined;
-    const isCorrect = questions[currentQuestionIndex].correctAnswerIndex === index;
-    if (isCorrect) return 'success';
-    if (selectedAnswerIndex === index) return 'danger';
-    return 'light';
   };
 
   if (loading) return <Container className="text-center mt-5"><Spinner animation="border" /></Container>;
@@ -265,157 +174,41 @@ const PracticeScreen = () => {
   const currentQuestion = questions[currentQuestionIndex];
   if (!currentQuestion) return null;
 
-        const progressPercentage = (currentQuestionIndex / questions.length) * 100;
-
-      
-
-        return (
-
-          <>
-
-            {showCalculator && <Calculator onClose={() => setShowCalculator(false)} />}
-
-            <button className="calculator-btn-floating" onClick={() => setShowCalculator(true)}>
-
-              🧮
-
-            </button>
-
-      
-
-            <div className="d-flex justify-content-between align-items-center my-3">
-
-              <div className="timer-widget">
-
-                <span>⏱️</span>
-
-                <span>{timer}s</span>
-
-              </div>
-
-              <div>
-
-                <strong>{questions.length - currentQuestionIndex}</strong> questions left
-
-              </div>
-
-            </div>
-
-      
-
-            {subcategory && (
-
-              <Alert variant="info" className="mt-3 text-center">
-
-                You're in a targeted practice session for <strong>{decodeURIComponent(subcategory)}</strong>. Progress here won't affect your overall stats.
-
-              </Alert>
-
-            )}
-
-            <div className={`flip-card-container mt-4 ${isFlipped ? 'is-flipped' : ''}`} style={{ minHeight: cardHeight }}>
-
-              <div className="flip-card-inner">
-
-                <div className="flip-card-front" ref={frontRef}>
-
-                  <Card>
-
-                    <Card.Body>
-
-                      <Card.Title>Question {currentQuestionIndex + 1} of {questions.length}</Card.Title>
-
-                      <hr />
-
-                      {currentQuestion.diagramSvg && <div className="text-center mb-3" dangerouslySetInnerHTML={{ __html: currentQuestion.diagramSvg }} />}
-
-                      <Card.Text style={{ fontSize: '1.2rem' }} dangerouslySetInnerHTML={{ __html: currentQuestion.questionText }} />
-
-                      <ListGroup variant="flush">
-
-                        {currentQuestion.options.map((option, index) => (
-
-                          <ListGroup.Item action key={index} as="button" onClick={() => handleAnswerSelect(index)} className="text-start d-flex align-items-baseline">
-
-                            <strong className="me-2" style={{ minWidth: '25px' }}>{getOptionLetter(index)}.</strong>
-
-                            <span dangerouslySetInnerHTML={{ __html: option }} />
-
-                          </ListGroup.Item>
-
-                        ))}
-
-                      </ListGroup>
-
-                    </Card.Body>
-
-                  </Card>
-
-                </div>
-
-                <div className="flip-card-back" ref={backRef}>
-
-                  <Card>
-
-                    <Card.Body>
-
-                      <Card.Title>Solution for Question {currentQuestionIndex + 1}</Card.Title>
-
-                      <hr />
-
-                      {currentQuestion.diagramSvg && <div className="text-center mb-3" dangerouslySetInnerHTML={{ __html: currentQuestion.diagramSvg }} />}
-
-                      <Card.Text style={{ fontSize: '1.2rem' }} dangerouslySetInnerHTML={{ __html: currentQuestion.questionText }} />
-
-                      <ListGroup variant="flush">
-
-                        {currentQuestion.options.map((option, index) => (
-
-                          <ListGroup.Item key={index} variant={getVariant(index)} className="text-start d-flex align-items-baseline">
-
-                            <strong className="me-2" style={{ minWidth: '25px' }}>{getOptionLetter(index)}.</strong>
-
-                            <span dangerouslySetInnerHTML={{ __html: option }} />
-
-                          </ListGroup.Item>
-
-                        ))}
-
-                      </ListGroup>
-
-                      <Alert variant="info" className="mt-4">
-
-                        <strong>Solution:</strong>
-
-                        <div dangerouslySetInnerHTML={{ __html: currentQuestion.solutionText }} />
-
-                        {currentQuestion.solutionDiagramSvg && <div className="text-center mt-3" dangerouslySetInnerHTML={{ __html: currentQuestion.solutionDiagramSvg }} />}
-
-                      </Alert>
-
-                      <div className="text-end">
-
-                        <Button variant="primary" onClick={handleNextQuestion}>
-
-                          {currentQuestionIndex + 1 >= questions.length ? 'Finish Session' : 'Next Question'}
-
-                        </Button>
-
-                      </div>
-
-                    </Card.Body>
-
-                  </Card>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </>
-
-        );
+  return (
+    <>
+      {showCalculator && <Calculator onClose={() => setShowCalculator(false)} />}
+      <button className="calculator-btn-floating" onClick={() => setShowCalculator(true)}>
+        🧮
+      </button>
+
+      <div className="d-flex justify-content-between align-items-center my-3">
+        <div className="timer-widget">
+          <span>⏱️</span>
+          <span>{timer}s</span>
+        </div>
+        <div>
+          <strong>{questions.length - currentQuestionIndex}</strong> questions left
+        </div>
+      </div>
+
+      {subcategory && (
+        <Alert variant="info" className="mt-3 text-center">
+          You're in a targeted practice session for <strong>{decodeURIComponent(subcategory)}</strong>. Progress here won't affect your overall stats.
+        </Alert>
+      )}
+
+      <QuestionCard
+        question={currentQuestion}
+        questionNumber={currentQuestionIndex + 1}
+        totalQuestions={questions.length}
+        isFlipped={isFlipped}
+        feedback={feedback}
+        selectedAnswerIndex={selectedAnswerIndex}
+        onAnswerSelect={handleAnswerSelect}
+        onNextQuestion={handleNextQuestion}
+      />
+    </>
+  );
 };
 
 export default PracticeScreen;
