@@ -56,6 +56,33 @@ const Dashboard = () => {
     return <span className="tier-badge great">Great</span>;
   };
 
+  const getQuadrantInfo = (stat: SubcategoryStat) => {
+    const { accuracy, avgTime } = stat;
+    // These thresholds should ideally match the ones used in the PriorityMatrix component
+    const accuracyThreshold = 75;
+    const timeThreshold = 60;
+
+    if (accuracy < accuracyThreshold) {
+      return { 
+        label: "High Priority", 
+        className: "quadrant-priority",
+        tooltip: "These are your top priority topics. Focus here to see the biggest score improvement." 
+      };
+    } else if (accuracy >= accuracyThreshold && avgTime > timeThreshold) {
+      return { 
+        label: "Build Speed", 
+        className: "quadrant-speed",
+        tooltip: "You're accurate but slow. Practice these to improve your timing and confidence."
+      };
+    } else { // accuracy >= accuracyThreshold && avgTime <= timeThreshold
+      return { 
+        label: "Strength", 
+        className: "quadrant-strength",
+        tooltip: "You've mastered these topics! Keep them fresh with occasional review."
+      };
+    }
+  };
+
   const renderTrendArrow = (current: number, previous: number) => {
     if (!previous || current === previous) {
       return <span className="trend-arrow neutral">—</span>;
@@ -147,28 +174,36 @@ const Dashboard = () => {
       </div>
       <div className="skills-list">
         {skillStats && skillStats.length > 0 ? (
-          skillStats.map((skill) => (
-            <div key={skill.subcategory} className="skill-item" onClick={() => navigate(`/practice/${encodeURIComponent(skill.subcategory)}`)}>
-              <div className="skill-item-header">
-                <div className="skill-name-group">
-                  <div className="skill-icon"></div>
-                  <span className="skill-name">{skill.subcategory}</span>
+          skillStats.map((skill) => {
+            const quadrant = getQuadrantInfo(skill);
+            return (
+              <div key={skill.subcategory} className="skill-item" onClick={() => navigate(`/practice/${encodeURIComponent(skill.subcategory)}`)}>
+                <div className="skill-item-header">
+                  <div className="skill-name-group">
+                    <OverlayTrigger
+                      placement="top"
+                      overlay={<Tooltip id={`quadrant-tooltip-${skill.subcategory}`}>{quadrant.tooltip}</Tooltip>}
+                    >
+                      <span className={`quadrant-badge ${quadrant.className}`}>{quadrant.label}</span>
+                    </OverlayTrigger>
+                    <span className="skill-name">{skill.subcategory}</span>
+                  </div>
+                  {getPerformanceTier(skill.accuracy)}
                 </div>
-                {getPerformanceTier(skill.accuracy)}
+                <div className="skill-details">
+                  <span>🎯 Accuracy: {skill.accuracy.toFixed(0)}%</span>
+                  <span>⏱️ Avg Time: {skill.avgTime.toFixed(1)}s</span>
+                  <span>✏️ Problems: {skill.totalAttempts}</span>
+                </div>
+                <div className="progress-bar">
+                  <div
+                    className="progress-bar-inner"
+                    style={{ width: `${skill.accuracy}%` }}
+                  ></div>
+                </div>
               </div>
-              <div className="skill-details">
-                <span>🎯 Accuracy: {skill.accuracy.toFixed(0)}%</span>
-                <span>⏱️ Avg Time: {skill.avgTime.toFixed(1)}s</span>
-                <span>✏️ Problems: {skill.totalAttempts}</span>
-              </div>
-              <div className="progress-bar">
-                <div
-                  className="progress-bar-inner"
-                  style={{ width: `${skill.accuracy}%` }}
-                ></div>
-              </div>
-            </div>
-          ))
+            );
+          })
         ) : (
           <div className="skills-list-placeholder">
             <h4>Your Skills Breakdown will appear here.</h4>
