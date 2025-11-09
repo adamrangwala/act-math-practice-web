@@ -30,7 +30,6 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [skillStats, setSkillStats] = useState<SubcategoryStat[] | null>(null);
   const [dashboardStats, setDashboardStats] = useState<DashboardStats | null>(null);
-  const [settings, setSettings] = useState<UserSettings | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showGuide, setShowGuide] = useState(false);
@@ -49,7 +48,8 @@ const Dashboard = () => {
         ]);
         setSkillStats(priorityData);
         setDashboardStats(dashboardData);
-        setSettings(settingsData);
+        
+        // Show the guide if the user hasn't seen it before
         if (!settingsData.hasSeenDashboardGuide) {
           setShowGuide(true);
         }
@@ -64,7 +64,6 @@ const Dashboard = () => {
 
   const handleGuideComplete = () => {
     setShowGuide(false);
-    setSettings(prev => prev ? { ...prev, hasSeenDashboardGuide: true } : null);
   };
 
   const getPerformanceTier = (accuracy: number) => {
@@ -123,7 +122,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      {showGuide && <DashboardGuide onComplete={handleGuideComplete} />}
+      <DashboardGuide show={showGuide} onComplete={handleGuideComplete} />
       <div className="welcome-header">
         <h2>Welcome back, {currentUser?.displayName}! 👋</h2>
         <p>Ready to practice some math today?</p>
