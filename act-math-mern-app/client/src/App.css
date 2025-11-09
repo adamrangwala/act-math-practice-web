@@ -90,51 +90,45 @@ body {
 
 
 
-/* Matrix Styling - Final Attempt */
+/* Matrix Styling - Corrected */
 .matrix-container {
-  display: inline-flex;
-  align-items: center;
-  vertical-align: middle;
-  margin: 0 0.4em;
-  position: relative;
-}
-
-.matrix-container::before,
-.matrix-container::after {
-  content: '';
   display: inline-block;
   vertical-align: middle;
-  border: 1.5px solid currentColor;
-  width: 0.3em;
-  height: 1.2em; /* Adjust height to control vertical stretch */
-  border-radius: 0.2em;
-}
-
-.matrix-container::before {
-  border-right: none;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.matrix-container::after {
-  border-left: none;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+  position: relative;
+  margin: 0 0.2em;
 }
 
 .matrix {
   border-collapse: collapse;
-  border: none;
-  padding: 0;
-  display: inline-block; /* Ensure it behaves like text */
-  vertical-align: middle;
+  margin: 0 0.4em; /* Space for brackets */
 }
 
 .matrix td {
-  padding: 0.1em 0.4em; /* Reduced padding for compression */
+  padding: 0.1em 0.3em; /* Tighter padding */
   text-align: center;
-  font-size: 1em;
-  line-height: 1.2; /* Compact line height */
+  line-height: 1.2;
+}
+
+.matrix-container::before,
+.matrix-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0.4em; /* Width of the bracket curve */
+  border: 1.5px solid currentColor; /* Thickness */
+}
+
+.matrix-container::before {
+  left: 0;
+  border-right: none;
+  border-radius: 0.3em 0 0 0.3em;
+}
+
+.matrix-container::after {
+  right: 0;
+  border-left: none;
+  border-radius: 0 0.3em 0.3em 0;
 }
 
 /* Priority Matrix Quadrant Labels */

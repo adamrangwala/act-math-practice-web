@@ -17,8 +17,48 @@
     .solution { border-top: 1px solid #dee2e6; padding-top: 1.5rem; margin-top: 2rem; }
     .solution h5 { font-weight: bold; }
     .category-badge { font-size: 0.9rem; }
-    .matrix, .matrix td { border: 1px solid #ccc; border-collapse: collapse; padding: 4px 8px; text-align: center; }
-    .matrix { margin: 0 4px; display: inline-block; vertical-align: middle; }
+
+    /* Matrix Styling - Corrected for Preview */
+    .matrix-container {
+      display: inline-block;
+      vertical-align: middle;
+      position: relative;
+      margin: 0 0.2em;
+    }
+
+    .matrix {
+      border-collapse: collapse;
+      margin: 0 0.4em; /* Space for brackets */
+    }
+
+    .matrix td {
+      padding: 0.1em 0.3em; /* Tighter padding */
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .matrix-container::before,
+    .matrix-container::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 0.4em; /* Width of the bracket curve */
+      border: 1.5px solid currentColor; /* Thickness */
+    }
+
+    .matrix-container::before {
+      left: 0;
+      border-right: none;
+      border-radius: 0.3em 0 0 0.3em;
+    }
+
+    .matrix-container::after {
+      right: 0;
+      border-left: none;
+      border-radius: 0 0.3em 0.3em 0;
+    }
+
     math { font-size: 1.1rem; }
   </style>
   <script>
