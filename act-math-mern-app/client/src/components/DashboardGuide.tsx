@@ -46,3 +46,62 @@ const steps = [
     ),
   },
 ];
+
+interface DashboardGuideProps {
+  show: boolean;
+  onComplete: () => void;
+}
+
+const DashboardGuide: React.FC<DashboardGuideProps> = ({ show, onComplete }) => {
+  const [currentStep, setCurrentStep] = useState(0);
+
+  const handleNext = () => {
+    if (currentStep < steps.length - 1) {
+      setCurrentStep(currentStep + 1);
+    } else {
+      handleComplete();
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  
+  const handleComplete = async () => {
+    try {
+      // We still mark this permanently. The user can re-trigger from a settings menu later if needed.
+      await authenticatedFetch('/api/settings/viewed-dashboard-guide', { method: 'PUT' });
+    } catch (error) {
+      console.error("Failed to mark dashboard guide as seen:", error);
+    } finally {
+      onComplete();
+    }
+  };
+
+  const progress = ((currentStep + 1) / steps.length) * 100;
+
+  return (
+    <Modal show={show} onHide={handleComplete} centered backdrop="static" keyboard={false}>
+      <Modal.Header>
+        <Modal.Title>{steps[currentStep].title}</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <div className="guide-visual mb-3">
+          {steps[currentStep].visual}
+        </div>
+        <p className="guide-content">{steps[currentStep].content}</p>
+        <ProgressBar now={progress} className="guide-progress mt-4" />
+      </Modal.Body>
+      <Modal.Footer>
+        {currentStep > 0 && <Button variant="outline-secondary" onClick={handlePrev}>Previous</Button>}
+        <Button variant="primary" onClick={handleNext}>
+          {currentStep === steps.length - 1 ? 'Finish' : 'Next'}
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+};
+
+export default DashboardGuide;
