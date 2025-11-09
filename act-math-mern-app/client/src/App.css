@@ -90,48 +90,49 @@ body {
 
 
 
-/* Matrix Styling - High Specificity */
+/* Matrix Styling - Definitive Override */
 .card .matrix-container {
-  display: inline-block;
-  vertical-align: middle;
-  position: relative;
-  margin: 0 0.2em;
-  line-height: 1; /* Prevent parent line-height from stretching the container */
+  display: inline-block !important;
+  vertical-align: middle !important;
+  position: relative !important;
+  margin: 0 0.2em !important;
+  line-height: 1 !important;
 }
 
 .card .matrix {
-  border-collapse: collapse;
-  margin: 0 0.4em; /* Space for brackets */
+  border-collapse: collapse !important;
+  margin: 0 0.4em !important;
 }
 
 .card .matrix td {
-  padding: 0.1em 0.3em !important; /* Use !important as a final measure to override Bootstrap */
-  text-align: center;
-  line-height: 1.2 !important; /* Override any inherited line-height */
-  height: auto !important; /* Override any inherited height */
-  border: none !important; /* Ensure no borders from global table styles */
+  padding: 0.1em 0.3em !important;
+  text-align: center !important;
+  line-height: 1.2 !important;
+  height: auto !important;
+  border: none !important;
+  background-color: transparent !important; /* Override potential Bootstrap backgrounds */
 }
 
 .card .matrix-container::before,
 .card .matrix-container::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 0.4em; /* Width of the bracket curve */
-  border: 1.5px solid currentColor; /* Thickness */
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 0.4em !important;
+  border: 1.5px solid currentColor !important;
 }
 
 .card .matrix-container::before {
-  left: 0;
-  border-right: none;
-  border-radius: 0.3em 0 0 0.3em;
+  left: 0 !important;
+  border-right: none !important;
+  border-radius: 0.3em 0 0 0.3em !important;
 }
 
 .card .matrix-container::after {
-  right: 0;
-  border-left: none;
-  border-radius: 0 0.3em 0.3em 0;
+  right: 0 !important;
+  border-left: none !important;
+  border-radius: 0 0.3em 0.3em 0 !important;
 }
 
 /* Priority Matrix Quadrant Labels */
