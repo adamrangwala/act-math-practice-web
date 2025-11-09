@@ -90,26 +90,49 @@ body {
 
 
 
-/* Matrix Styling */
+/* Matrix Styling - Refined */
 .matrix-container {
-  display: inline-flex;
-  align-items: center;
+  display: inline-block;
+  position: relative;
   vertical-align: middle;
-  margin: 0 4px;
+  margin: 0 0.5em;
+  padding: 0 6px; /* Space for the brackets */
+}
+
+.matrix-container::before,
+.matrix-container::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px; /* Width of the bracket's corner */
+  height: 100%; /* Full height of the container */
+  border: 1.5px solid currentColor; /* Bracket thickness */
+}
+
+.matrix-container::before {
+  left: 0;
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+}
+
+.matrix-container::after {
+  right: 0;
+  border-left: none;
+  border-radius: 0 4px 4px 0;
 }
 
 .matrix {
   border-collapse: collapse;
-  border-left: 2px solid #000;
-  border-right: 2px solid #000;
-  border-radius: 6px;
-  padding: 0 6px;
+  border: none;
+  padding: 0;
 }
 
 .matrix td {
-  padding: 4px 8px;
+  padding: 0 5px; /* Minimal vertical padding, some horizontal */
   text-align: center;
-  font-size: 1.1rem;
+  font-size: 1em; /* Match surrounding text */
+  line-height: 1.2; /* Prevent excessive height */
 }
 
 /* Priority Matrix Quadrant Labels */
