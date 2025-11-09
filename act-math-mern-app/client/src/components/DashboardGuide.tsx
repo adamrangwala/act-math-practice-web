@@ -19,13 +19,13 @@ const steps: TooltipStep[] = [
   {
     targetSelector: '.practice-button',
     title: 'Your Daily Workout',
-    content: "This is your most important button. Complete one Daily Practice session every day to build your streak. These sessions are random, just like the real ACT.",
+    content: "This is your most important button. Complete one Daily Practice session every day to build your streak. These sessions are random, just like the real ACT. Only these practice sessions will affect your stats!",
     position: 'bottom',
   },
   {
     targetSelector: '.skills-list',
     title: 'Target Your Weaknesses',
-    content: "After a few sessions, your skills will appear here. Click any card to start a targeted drill and improve that specific topic.",
+    content: "After a few practice sessions, your skills will appear here. Click any card to start a targeted drill and improve that specific topic.",
     position: 'top',
   },
 ];

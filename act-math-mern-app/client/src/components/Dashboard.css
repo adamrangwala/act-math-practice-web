@@ -262,6 +262,12 @@
   border: 1px solid #bbdefb;
 }
 
+.quadrant-review {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border: 1px solid #ffecb3;
+}
+
 .quadrant-strength {
   background-color: #e8f5e9;
   color: #388e3c;

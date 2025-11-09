@@ -75,26 +75,30 @@ const Dashboard = () => {
 
   const getQuadrantInfo = (stat: SubcategoryStat) => {
     const { accuracy, avgTime } = stat;
-    const accuracyThreshold = 75;
-    const timeThreshold = 60;
-
-    if (accuracy < accuracyThreshold) {
-      return { 
-        label: "High Priority", 
-        className: "quadrant-priority",
-        tooltip: "These are your top priority topics. Focus here to see the biggest score improvement." 
-      };
-    } else if (accuracy >= accuracyThreshold && avgTime > timeThreshold) {
-      return { 
-        label: "Build Speed", 
-        className: "quadrant-speed",
-        tooltip: "You're accurate but slow. Practice these to improve your timing and confidence."
-      };
-    } else {
+    
+    if (accuracy >= 80 && avgTime < 60) {
       return { 
         label: "Strength", 
         className: "quadrant-strength",
-        tooltip: "You've mastered these topics! Keep them fresh with occasional review."
+        tooltip: "High accuracy and low time. These are your strengths! Maintain them with occasional practice."
+      };
+    } else if (accuracy >= 80 && avgTime >= 60) {
+      return { 
+        label: "Drill for Speed", 
+        className: "quadrant-speed",
+        tooltip: "High accuracy but high time. Use timed drills on these topics to improve your speed."
+      };
+    } else if (accuracy < 80 && avgTime < 60) {
+      return { 
+        label: "Review Concepts", 
+        className: "quadrant-review",
+        tooltip: "Low accuracy but low time. Slow down and review the fundamental concepts before practicing more."
+      };
+    } else { // accuracy < 80 && avgTime >= 60
+      return { 
+        label: "High Priority", 
+        className: "quadrant-priority",
+        tooltip: "Low accuracy and high time. Focus on understanding the core concepts for these topics first."
       };
     }
   };
