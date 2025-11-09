@@ -19,7 +19,7 @@ const Step1SVG = () => (
   </svg>
 );
 
-const steps = [
+const steps = [ // Ensure correct video assignment for guide steps
   {
     title: 'Welcome to Your Dashboard!',
     content: "This is your mission control. Get a high-level view of your progress and decide what to focus on.",
