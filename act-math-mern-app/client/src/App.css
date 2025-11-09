@@ -90,27 +90,30 @@ body {
 
 
 
-/* Matrix Styling - Synced with Preview */
-.matrix-container {
+/* Matrix Styling - High Specificity */
+.card .matrix-container {
   display: inline-block;
   vertical-align: middle;
   position: relative;
   margin: 0 0.2em;
+  line-height: 1; /* Prevent parent line-height from stretching the container */
 }
 
-.matrix {
+.card .matrix {
   border-collapse: collapse;
   margin: 0 0.4em; /* Space for brackets */
 }
 
-.matrix td {
-  padding: 0.1em 0.3em; /* Tighter padding */
+.card .matrix td {
+  padding: 0.1em 0.3em !important; /* Use !important as a final measure to override Bootstrap */
   text-align: center;
-  line-height: 1.2;
+  line-height: 1.2 !important; /* Override any inherited line-height */
+  height: auto !important; /* Override any inherited height */
+  border: none !important; /* Ensure no borders from global table styles */
 }
 
-.matrix-container::before,
-.matrix-container::after {
+.card .matrix-container::before,
+.card .matrix-container::after {
   content: "";
   position: absolute;
   top: 0;
@@ -119,13 +122,13 @@ body {
   border: 1.5px solid currentColor; /* Thickness */
 }
 
-.matrix-container::before {
+.card .matrix-container::before {
   left: 0;
   border-right: none;
   border-radius: 0.3em 0 0 0.3em;
 }
 
-.matrix-container::after {
+.card .matrix-container::after {
   right: 0;
   border-left: none;
   border-radius: 0 0.3em 0.3em 0;
