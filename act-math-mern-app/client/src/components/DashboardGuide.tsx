@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { authenticatedFetch } from '../utils/api';
 import './DashboardGuide.css';
 
@@ -36,6 +36,21 @@ interface DashboardGuideProps {
 
 const DashboardGuide: React.FC<DashboardGuideProps> = ({ onComplete }) => {
   const [currentStep, setCurrentStep] = useState(0);
+  const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
+
+  useEffect(() => {
+    const findTarget = () => {
+      const currentStepData = steps[currentStep];
+      const targetElement = document.querySelector(currentStepData.targetSelector);
+      if (targetElement) {
+        setTargetRect(targetElement.getBoundingClientRect());
+      } else {
+        // Retry if the element isn't found yet
+        setTimeout(findTarget, 100);
+      }
+    };
+    findTarget();
+  }, [currentStep]);
 
   const handleNext = () => {
     if (currentStep < steps.length - 1) {
@@ -55,28 +70,26 @@ const DashboardGuide: React.FC<DashboardGuideProps> = ({ onComplete }) => {
     }
   };
 
-  const currentStepData = steps[currentStep];
-  const targetElement = document.querySelector(currentStepData.targetSelector);
-  if (!targetElement) return null;
+  if (!targetRect) return null;
 
-  const rect = targetElement.getBoundingClientRect();
+  const currentStepData = steps[currentStep];
   const tooltipStyle: React.CSSProperties = {
     position: 'absolute',
-    top: rect.bottom + 10, // Default to bottom
-    left: rect.left + rect.width / 2,
+    top: targetRect.bottom + 10, // Default to bottom
+    left: targetRect.left + targetRect.width / 2,
     transform: 'translateX(-50%)',
     zIndex: 1001,
   };
 
   // Adjust position based on step data
   if (currentStepData.position === 'top') {
-    tooltipStyle.top = rect.top - 10;
+    tooltipStyle.top = targetRect.top - 10;
     tooltipStyle.transform = 'translate(-50%, -100%)';
   }
 
   return (
     <div className="dashboard-guide-overlay">
-      <div className="spotlight" style={{ top: rect.top, left: rect.left, width: rect.width, height: rect.height }}></div>
+      <div className="spotlight" style={{ top: targetRect.top, left: targetRect.left, width: targetRect.width, height: targetRect.height }}></div>
       <div className="tooltip-box" style={tooltipStyle}>
         <h4>{currentStepData.title}</h4>
         <p>{currentStepData.content}</p>
