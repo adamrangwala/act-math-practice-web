@@ -3,9 +3,6 @@ import { Modal, Button, ProgressBar } from 'react-bootstrap';
 import { authenticatedFetch } from '../utils/api';
 import './DashboardGuide.css';
 
-import beginPracticeVideo from '../assets/begin_practice_dashboard.mp4';
-import skillsAnimationVideo from '../assets/skills_animation.mp4';
-
 // --- SVG Placeholders for each step ---
 
 const Step1SVG = () => (
@@ -30,7 +27,7 @@ const steps = [ // Ensure correct video assignment for guide steps
     content: "This is your most important button. Daily sessions contain a random mix of questions, just like the real ACT, and are the best way to improve your stats.",
     visual: (
       <video autoPlay loop muted playsInline width="100%">
-        <source src={beginPracticeVideo} type="video/mp4" />
+        <source src="/begin_practice_dashboard.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     ),
@@ -40,7 +37,7 @@ const steps = [ // Ensure correct video assignment for guide steps
     content: "After a few sessions, your skills will appear here. Click any skill to start a targeted drill and turn that weakness into a strength.",
     visual: (
       <video autoPlay loop muted playsInline width="100%">
-        <source src={skillsAnimationVideo} type="video/mp4" />
+        <source src="/skills_animation.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     ),
