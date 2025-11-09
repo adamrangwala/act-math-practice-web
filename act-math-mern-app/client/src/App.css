@@ -91,59 +91,25 @@ body {
 
 
 /* Matrix Styling */
+.matrix-container {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  margin: 0 4px;
+}
 
 .matrix {
-
-  position: relative;
-
-  display: inline-table;
-
-  vertical-align: middle;
-
-  margin: 0 0.5em;
-
   border-collapse: collapse;
-
-}
-
-.matrix::before, .matrix::after {
-
-  content: "";
-
-  position: absolute;
-
-  top: -2px;
-
-  bottom: -2px;
-
-  width: 5px;
-
-  border: 2px solid currentColor;
-
-}
-
-.matrix::before {
-
-  left: -8px;
-
-  border-right: none;
-
-}
-
-.matrix::after {
-
-  right: -8px;
-
-  border-left: none;
-
+  border-left: 2px solid #000;
+  border-right: 2px solid #000;
+  border-radius: 6px;
+  padding: 0 6px;
 }
 
 .matrix td {
-
-  padding: 2px 8px;
-
+  padding: 4px 8px;
   text-align: center;
-
+  font-size: 1.1rem;
 }
 
 /* Priority Matrix Quadrant Labels */

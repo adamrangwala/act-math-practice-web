@@ -3,16 +3,16 @@
     "questionId": "number_quantity_001",
     "category": "Number & Quantity",
     "subcategories": ["Matrices"],
-    "questionText": "Which of the following matrices is equal to 3<table class='matrix'><tbody><tr><td>6</td><td>-1</td></tr><tr><td>4</td><td>0</td></tr></tbody></table>?",
+    "questionText": "Which of the following matrices is equal to 3<div class='matrix-container'><table class='matrix'><tbody><tr><td>6</td><td>-1</td></tr><tr><td>4</td><td>0</td></tr></tbody></table></div>?",
     "options": [
-      "<table class='matrix'><tbody><tr><td>9</td><td>2</td></tr><tr><td>7</td><td>3</td></tr></tbody></table>",
-      "<table class='matrix'><tbody><tr><td>18</td><td>-1</td></tr><tr><td>12</td><td>0</td></tr></tbody></table>",
-      "<table class='matrix'><tbody><tr><td>18</td><td>-3</td></tr><tr><td>12</td><td>0</td></tr></tbody></table>",
-      "<table class='matrix'><tbody><tr><td>18</td><td>-3</td></tr><tr><td>4</td><td>0</td></tr></tbody></table>",
-      "<table class='matrix'><tbody><tr><td>18</td><td>-3</td></tr><tr><td>12</td><td>3</td></tr></tbody></table>"
+      "<div class='matrix-container'><table class='matrix'><tbody><tr><td>9</td><td>2</td></tr><tr><td>7</td><td>3</td></tr></tbody></table></div>",
+      "<div class='matrix-container'><table class='matrix'><tbody><tr><td>18</td><td>-1</td></tr><tr><td>12</td><td>0</td></tr></tbody></table></div>",
+      "<div class='matrix-container'><table class='matrix'><tbody><tr><td>18</td><td>-3</td></tr><tr><td>12</td><td>0</td></tr></tbody></table></div>",
+      "<div class='matrix-container'><table class='matrix'><tbody><tr><td>18</td><td>-3</td></tr><tr><td>4</td><td>0</td></tr></tbody></table></div>",
+      "<div class='matrix-container'><table class='matrix'><tbody><tr><td>18</td><td>-3</td></tr><tr><td>12</td><td>3</td></tr></tbody></table></div>"
     ],
     "correctAnswerIndex": 2,
-    "solutionText": "Scalar multiplication of a matrix involves multiplying each element of the matrix by the scalar value.<br/><br/><b>1. Multiply each element by the scalar (3):</b><br/><br/><table class='matrix'><tbody><tr><td>3 × 6</td><td>3 × -1</td></tr><tr><td>3 × 4</td><td>3 × 0</td></tr></tbody></table><br/><br/><b>2. Perform the multiplication:</b><br/><br/><table class='matrix'><tbody><tr><td>18</td><td>-3</td></tr><tr><td>12</td><td>0</td></tr></tbody></table>",
+    "solutionText": "Scalar multiplication of a matrix involves multiplying each element of the matrix by the scalar value.<br/><br/><b>1. Multiply each element by the scalar (3):</b><br/><br/><div class='matrix-container'><table class='matrix'><tbody><tr><td>3 × 6</td><td>3 × -1</td></tr><tr><td>3 × 4</td><td>3 × 0</td></tr></tbody></table></div><br/><br/><b>2. Perform the multiplication:</b><br/><br/><div class='matrix-container'><table class='matrix'><tbody><tr><td>18</td><td>-3</td></tr><tr><td>12</td><td>0</td></tr></tbody></table></div>",
     "difficulty": 1,
     "diagramUrl": null,
     "diagramSvg": null,
