@@ -90,49 +90,51 @@ body {
 
 
 
-/* Matrix Styling - Refined */
+/* Matrix Styling - Final Attempt */
 .matrix-container {
-  display: inline-block;
-  position: relative;
+  display: inline-flex;
+  align-items: center;
   vertical-align: middle;
-  margin: 0 0.5em;
-  padding: 0 6px; /* Space for the brackets */
+  margin: 0 0.4em;
+  position: relative;
 }
 
 .matrix-container::before,
 .matrix-container::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 5px; /* Width of the bracket's corner */
-  height: 100%; /* Full height of the container */
-  border: 1.5px solid currentColor; /* Bracket thickness */
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  border: 1.5px solid currentColor;
+  width: 0.3em;
+  height: 1.2em; /* Adjust height to control vertical stretch */
+  border-radius: 0.2em;
 }
 
 .matrix-container::before {
-  left: 0;
   border-right: none;
-  border-radius: 4px 0 0 4px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .matrix-container::after {
-  right: 0;
   border-left: none;
-  border-radius: 0 4px 4px 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 .matrix {
   border-collapse: collapse;
   border: none;
   padding: 0;
+  display: inline-block; /* Ensure it behaves like text */
+  vertical-align: middle;
 }
 
 .matrix td {
-  padding: 0 5px; /* Minimal vertical padding, some horizontal */
+  padding: 0.1em 0.4em; /* Reduced padding for compression */
   text-align: center;
-  font-size: 1em; /* Match surrounding text */
-  line-height: 1.2; /* Prevent excessive height */
+  font-size: 1em;
+  line-height: 1.2; /* Compact line height */
 }
 
 /* Priority Matrix Quadrant Labels */
