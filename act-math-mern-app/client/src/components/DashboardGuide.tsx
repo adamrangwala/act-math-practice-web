@@ -25,22 +25,12 @@ const steps = [
   {
     title: 'Start a Daily Practice',
     content: "This is your most important button. Daily sessions contain a random mix of questions, just like the real ACT, and are the best way to improve your stats.",
-    visual: (
-      <video autoPlay loop muted playsInline width="100%">
-        <source src="/begin_practice_dashboard.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    ),
+    visual: <img src="/begin_daily_practice.png" alt="Animation of clicking the begin practice button" style={{ width: '100%', borderRadius: '8px' }} />,
   },
   {
     title: 'Drill Down on Weaknesses',
     content: "After a few sessions, your skills will appear here. Click any skill to start a targeted drill and turn that weakness into a strength.",
-    visual: (
-      <video autoPlay loop muted playsInline width="100%">
-        <source src="/skills_drill_down.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    ),
+    visual: <img src="/skills_breakdown.png" alt="Animation of clicking a skill card" style={{ width: '100%', borderRadius: '8px' }} />,
   },
 ];
 
