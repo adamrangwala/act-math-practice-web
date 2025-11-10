@@ -5,22 +5,11 @@ import './DashboardGuide.css';
 
 // --- SVG Placeholders for each step ---
 
-const Step1SVG = () => (
-  <svg width="100%" viewBox="0 0 280 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="280" height="150" rx="8" fill="#F0F2F5"/>
-    <rect x="20" y="20" width="240" height="25" rx="4" fill="#E3E8EE"/>
-    <rect x="20" y="55" width="75" height="40" rx="4" fill="#D4DAE3"/>
-    <rect x="105" y="55" width="70" height="40" rx="4" fill="#D4DAE3"/>
-    <rect x="185" y="55" width="75" height="40" rx="4" fill="#D4DAE3"/>
-    <rect x="20" y="105" width="240" height="25" rx="4" fill="#C5CED8"/>
-  </svg>
-);
-
-const steps = [
+const steps = [ // Ensure correct video assignment for guide steps
   {
     title: 'Welcome to Your Dashboard!',
     content: "This is your mission control. Get a high-level view of your progress and decide what to focus on.",
-    visual: <Step1SVG />,
+    visual: <img src="/dashboard_view.png" alt="Dashboard Overview" style={{ width: '100%', borderRadius: '8px' }} />,
   },
   {
     title: 'Start a Daily Practice',
