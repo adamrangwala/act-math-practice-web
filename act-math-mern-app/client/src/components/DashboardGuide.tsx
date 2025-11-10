@@ -37,7 +37,7 @@ const steps = [
     content: "After a few sessions, your skills will appear here. Click any skill to start a targeted drill and turn that weakness into a strength.",
     visual: (
       <video autoPlay loop muted playsInline width="100%">
-        <source src="/skills_animation.mp4" type="video/mp4" />
+        <source src="/skills_drill_down.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     ),
