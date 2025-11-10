@@ -15,7 +15,8 @@ const allowedOrigins = [
   'https://act-math-app-staging.vercel.app',
   'https://act-math-app-staging-git-develop-adamrangwalas-projects.vercel.app',
   'https://act-math-app-production.vercel.app',
-  'https://actmathsprint.com'
+  'https://actmathsprint.com',
+  'https://www.actmathsprint.com'
 ];
 
 const corsOptions = {
