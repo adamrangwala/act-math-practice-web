@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { authenticatedFetch } from '../utils/api';
 import PriorityMatrix from './PriorityMatrix';
-import DashboardGuide from './DashboardGuide';
+import { DashboardGuide } from './DashboardGuide';
 import './Dashboard.css';
 
 interface SubcategoryStat {

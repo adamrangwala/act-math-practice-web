@@ -16,7 +16,7 @@ const Step1SVG = () => (
   </svg>
 );
 
-const steps = [ // Ensure correct video assignment for guide steps
+const steps = [
   {
     title: 'Welcome to Your Dashboard!',
     content: "This is your mission control. Get a high-level view of your progress and decide what to focus on.",
@@ -49,7 +49,7 @@ interface DashboardGuideProps {
   onComplete: () => void;
 }
 
-const DashboardGuide: React.FC<DashboardGuideProps> = ({ show, onComplete }) => {
+export const DashboardGuide: React.FC<DashboardGuideProps> = ({ show, onComplete }) => {
   const [currentStep, setCurrentStep] = useState(0);
 
   const handleNext = () => {
@@ -68,7 +68,6 @@ const DashboardGuide: React.FC<DashboardGuideProps> = ({ show, onComplete }) => 
   
   const handleComplete = async () => {
     try {
-      // We still mark this permanently. The user can re-trigger from a settings menu later if needed.
       await authenticatedFetch('/api/settings/viewed-dashboard-guide', { method: 'PUT' });
     } catch (error) {
       console.error("Failed to mark dashboard guide as seen:", error);
@@ -100,5 +99,3 @@ const DashboardGuide: React.FC<DashboardGuideProps> = ({ show, onComplete }) => 
     </Modal>
   );
 };
-
-export default DashboardGuide;
