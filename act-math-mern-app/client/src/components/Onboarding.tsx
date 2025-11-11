@@ -71,8 +71,8 @@ const Onboarding = () => {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      await authenticatedFetch('/api/settings', {
-        method: 'PUT',
+      await authenticatedFetch('/api/user/onboarding', {
+        method: 'POST',
         body: JSON.stringify({ 
           dailyQuestionLimit: limit, 
           role: role, 

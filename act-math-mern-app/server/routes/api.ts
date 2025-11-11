@@ -2,7 +2,7 @@ import express from 'express';
 import authMiddleware from '../middleware/authMiddleware';
 
 // Import all controller functions
-import { initUser, deleteUser } from '../controllers/authController';
+import { initUser, deleteUser, completeOnboarding } from '../controllers/authController';
 import { getTodaysQuestions, getPracticeMoreQuestions, getTargetedPracticeQuestions } from '../controllers/questionController';
 import { submitProgress, resetAllProgress } from '../controllers/progressController';
 import { getSettings, updateSettings, markDashboardGuideSeen } from '../controllers/settingsController';
@@ -13,6 +13,7 @@ const router = express.Router();
 // Auth & User
 router.post('/init-user', authMiddleware, initUser);
 router.delete('/user', authMiddleware, deleteUser);
+router.post('/user/onboarding', authMiddleware, completeOnboarding);
 
 // Settings
 router.get('/settings', authMiddleware, getSettings);
