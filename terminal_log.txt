@@ -1,39 +1,12 @@
 index-C6Qx6XnZ.js:1441 Firebase Config: Object
-index-C6Qx6XnZ.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
-e @ index-C6Qx6XnZ.js:1261
-index-C6Qx6XnZ.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
-e @ index-C6Qx6XnZ.js:1261
-index-C6Qx6XnZ.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
-e @ index-C6Qx6XnZ.js:1261
-index-C6Qx6XnZ.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
-e @ index-C6Qx6XnZ.js:1261
-index-C6Qx6XnZ.js:1366 Cross-Origin-Opener-Policy policy would block the window.close call.
-close @ index-C6Qx6XnZ.js:1366
-index-C6Qx6XnZ.js:1366 Cross-Origin-Opener-Policy policy would block the window.close call.
-close @ index-C6Qx6XnZ.js:1366
-index-C6Qx6XnZ.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
-e @ index-C6Qx6XnZ.js:1261
-index-C6Qx6XnZ.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
-e @ index-C6Qx6XnZ.js:1261
-index-C6Qx6XnZ.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
-e @ index-C6Qx6XnZ.js:1261
-index-C6Qx6XnZ.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
-e @ index-C6Qx6XnZ.js:1261
-
-Render log:
-Firebase Admin SDK initialized for 'production' via environment variable.
-Server is running on port 10000
-Incoming request origin: undefined
-     ==> Your service is live 🎉
-     ==> 
-     ==> ///////////////////////////////////////////////////////////
-     ==> 
-     ==> Available at your primary URL https://act-math-app-production.onrender.com
-     ==> 
-     ==> ///////////////////////////////////////////////////////////
-Incoming request origin: undefined
-Incoming request origin: https://www.actmathsprint.com
-Incoming request origin: https://www.actmathsprint.com
-     ==> Detected service running on port 10000
-     ==> Docs on specifying a port: https://render.com/docs/web-services#port-binding
-Incoming request origin: https://www.actmathsprint.com
+index-C6Qx6XnZ.js:1497 Uncaught TypeError: Cannot read properties of undefined (reading 'toFixed')
+    at hte (index-C6Qx6XnZ.js:1497:162194)
+    at sh (index-C6Qx6XnZ.js:48:48773)
+    at Ah (index-C6Qx6XnZ.js:48:71663)
+    at m1 (index-C6Qx6XnZ.js:48:82079)
+    at P1 (index-C6Qx6XnZ.js:48:117993)
+    at a3 (index-C6Qx6XnZ.js:48:117030)
+    at Xh (index-C6Qx6XnZ.js:48:116860)
+    at U1 (index-C6Qx6XnZ.js:48:113626)
+    at rb (index-C6Qx6XnZ.js:48:125535)
+    at MessagePort.z (index-C6Qx6XnZ.js:25:1580)

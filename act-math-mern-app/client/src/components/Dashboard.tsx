@@ -146,10 +146,11 @@ const Dashboard = () => {
                           </OverlayTrigger>
                         </div>
                         <div className="stat-value-with-trend">
-                          <span className="stat-value">{dashboardStats?.currentRollingAccuracy.toFixed(0) ?? 0}%</span>
-                          {dashboardStats && renderTrendArrow(dashboardStats.currentRollingAccuracy, dashboardStats.previousRollingAccuracy)}
+                          <span className="stat-value">{(dashboardStats?.currentRollingAccuracy ?? 0).toFixed(0)}%</span>
+                          {dashboardStats && renderTrendArrow(dashboardStats.currentRollingAccuracy ?? 0, dashboardStats.previousRollingAccuracy ?? 0)}
                         </div>
-                      </div>        </div>
+                      </div>
+        </div>
         <div className="stat-card">
           <div className="stat-icon streak"></div>
           <div className="stat-info">
@@ -210,14 +211,14 @@ const Dashboard = () => {
                   </div>
                 </div>
                 <div className="skill-details">
-                  <span>🎯 Accuracy: {skill.accuracy.toFixed(0)}%</span>
-                  <span>⏱️ Avg Time: {skill.avgTime.toFixed(1)}s</span>
-                  <span>✏️ Problems: {skill.totalAttempts}</span>
+                  <span>🎯 Accuracy: {(skill.accuracy ?? 0).toFixed(0)}%</span>
+                  <span>⏱️ Avg Time: {(skill.avgTime ?? 0).toFixed(1)}s</span>
+                  <span>✏️ Problems: {skill.totalAttempts ?? 0}</span>
                 </div>
                 <div className="progress-bar">
                   <div
                     className="progress-bar-inner"
-                    style={{ width: `${skill.accuracy}%` }}
+                    style={{ width: `${skill.accuracy ?? 0}%` }}
                   ></div>
                 </div>
               </div>
