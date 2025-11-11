@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { auth, googleProvider } from '../config/firebase';
 import { signInWithPopup } from 'firebase/auth';
 import { Button, Container, Card } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext'; // Import useAuth
 
 const Login = () => {
-  const navigate = useNavigate(); // Initialize the navigate function
+  const navigate = useNavigate();
+  const { currentUser } = useAuth(); // Get the currentUser from context
+
+  // This effect will run whenever the currentUser state changes.
+  useEffect(() => {
+    // If the currentUser exists, it means login was successful and the context is updated.
+    // Now it's safe to navigate away from the login page.
+    if (currentUser) {
+      navigate('/'); // Navigate to the root, App.tsx will handle the rest.
+    }
+  }, [currentUser, navigate]); // Dependencies for the effect
 
   const signInWithGoogle = async () => {
     try {
+      // We just need to trigger the sign-in, the useEffect will handle the redirect.
       await signInWithPopup(auth, googleProvider);
-      // On successful sign-in, navigate to the root.
-      // The AuthContext and App router will handle the rest.
-      navigate('/'); 
     } catch (error) {
       console.error("Error signing in with Google: ", error);
     }
