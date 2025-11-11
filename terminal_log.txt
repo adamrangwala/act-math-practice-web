@@ -1,23 +1,66 @@
-vite v7.1.10 building for production...
-transforming...
-✓ 1436 modules transformed.
-✗ Build failed in 2.87s
-error during build:
-src/components/Dashboard.tsx (7:7): "default" is not exported by "src/components/DashboardGuide.tsx", imported by "src/components/Dashboard.tsx".
-file: /vercel/path0/act-math-mern-app/client/src/components/Dashboard.tsx:7:7
-5: import { authenticatedFetch } from '../utils/api';
-6: import PriorityMatrix from './PriorityMatrix';
-7: import DashboardGuide from './DashboardGuide';
-          ^
-8: import './Dashboard.css';
-    at getRollupError (file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/parseAst.js:401:41)
-    at error (file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/parseAst.js:397:42)
-    at Module.error (file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/node-entry.js:16939:16)
-    at Module.traceVariable (file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/node-entry.js:17391:29)
-    at ModuleScope.findVariable (file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/node-entry.js:15061:39)
-    at ReturnValueScope.findVariable (file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/node-entry.js:5642:38)
-    at FunctionBodyScope.findVariable (file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/node-entry.js:5642:38)
-    at Identifier.bind (file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/node-entry.js:5413:40)
-    at CallExpression.bind (file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/node-entry.js:2800:28)
-    at CallExpression.bind (file:///vercel/path0/act-math-mern-app/client/node_modules/rollup/dist/es/shared/node-entry.js:12108:15)
-Error: Command "npm run build" exited with 1
+> server@1.0.0 build
+> tsc
+controllers/authController.ts(14,13): error TS2339: Property 'role' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
+controllers/authController.ts(14,19): error TS2339: Property 'testDate' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
+controllers/authController.ts(14,29): error TS2339: Property 'currentScore' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
+controllers/authController.ts(14,43): error TS2339: Property 'targetScore' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
+controllers/authController.ts(121,11): error TS2339: Property 'dailyQuestionLimit' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
+controllers/authController.ts(121,31): error TS2339: Property 'role' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
+controllers/authController.ts(121,37): error TS2339: Property 'testDate' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
+controllers/authController.ts(121,47): error TS2339: Property 'currentScore' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
+controllers/authController.ts(121,61): error TS2339: Property 'targetScore' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
+controllers/progressController.ts(76,9): error TS2322: Type 'ReadableStream<Uint8Array<ArrayBuffer>> | null' is not assignable to type 'ProgressSubmission'.
+  Type 'null' is not assignable to type 'ProgressSubmission'.
+controllers/progressController.ts(77,9): error TS2339: Property 'timeSpent' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
+controllers/questionController.ts(134,31): error TS2339: Property 'query' does not exist on type 'AuthRequest'.
+controllers/settingsController.ts(37,11): error TS2339: Property 'dailyQuestionLimit' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
+controllers/settingsController.ts(37,31): error TS2339: Property 'role' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
+controllers/settingsController.ts(37,37): error TS2339: Property 'testDate' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
+controllers/settingsController.ts(37,47): error TS2339: Property 'currentScore' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
+controllers/settingsController.ts(37,61): error TS2339: Property 'targetScore' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
+middleware/authMiddleware.ts(7,11): error TS2339: Property 'authorization' does not exist on type 'Headers'.
+routes/api.ts(14,27): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'AuthRequest': cache, credentials, destination, integrity, and 14 more.
+routes/api.ts(15,24): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'AuthRequest': cache, credentials, destination, integrity, and 14 more.
+routes/api.ts(18,25): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'AuthRequest': cache, credentials, destination, integrity, and 14 more.
+routes/api.ts(19,25): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'AuthRequest': cache, credentials, destination, integrity, and 14 more.
+routes/api.ts(20,48): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'AuthRequest': cache, credentials, destination, integrity, and 14 more.
+routes/api.ts(23,32): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'AuthRequest': cache, credentials, destination, integrity, and 14 more.
+routes/api.ts(24,40): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Types of parameters 'req' and 'req' are incompatible.
+          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'AuthRequest': cache, credentials, destination, integrity, and 14 more.
+routes/api.ts(25,44): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: AuthRequest, res: Response, next: NextFunction) => Pr4

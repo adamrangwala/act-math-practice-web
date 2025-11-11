@@ -1,4 +1,4 @@
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { auth, db } from '../config/firebase';
 import { DecodedIdToken } from 'firebase-admin/auth';
 
