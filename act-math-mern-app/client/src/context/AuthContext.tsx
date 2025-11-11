@@ -32,20 +32,23 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      setCurrentUser(user);
       if (user) {
-        // If there is a user, fetch their status from our backend
+        // If there is a user, ensure they are initialized before setting state
         try {
           const response = await authenticatedFetch('/api/init-user', { method: 'POST' });
           setIsNewUser(response.isNewUser);
+          setCurrentUser(user); // Set user only after successful init
         } catch (error) {
           console.error("Failed to initialize user:", error);
-          setIsNewUser(null); // Reset on error
+          // If init fails, don't treat the user as logged in
+          setCurrentUser(null);
+          setIsNewUser(null);
         } finally {
           setLoading(false);
         }
       } else {
-        // If there is no user, we're done loading
+        // If there is no user, clear state and finish loading
+        setCurrentUser(null);
         setIsNewUser(null);
         setLoading(false);
       }
