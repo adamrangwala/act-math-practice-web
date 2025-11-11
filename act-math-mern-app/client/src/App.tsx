@@ -12,7 +12,7 @@ import { Routes, Route, Navigate, Link, Outlet } from 'react-router-dom';
 import './App.css';
 
 // A layout component for authenticated users
-const AppLayout = () => (
+const AppLayout: React.FC = () => (
   <>
     <Navbar />
     <div className="app-container">
@@ -25,52 +25,56 @@ const AppLayout = () => (
   </>
 );
 
-// A component to handle routing for authenticated users
-const AuthenticatedRoutes = () => {
-  const { isNewUser } = useAuth();
+// A component to guard routes that require authentication
+const ProtectedRoute: React.FC<{ children: React.ReactElement }> = ({ children }) => {
+  const { currentUser } = useAuth();
+  if (currentUser === undefined) {
+    // Auth state is still loading
+    return <div className="text-center mt-5">Loading...</div>;
+  }
+  return currentUser ? children : <Navigate to="/login" />;
+};
 
-  if (isNewUser === null) {
-    // Still loading user status, show a loading spinner or nothing
+function App() {
+  const { currentUser, isNewUser } = useAuth();
+
+  if (currentUser === undefined) {
     return <div className="text-center mt-5">Loading...</div>;
   }
 
   return (
     <Routes>
-      <Route element={<AppLayout />}>
-        {isNewUser ? (
-          <>
-            <Route path="/onboarding" element={<Onboarding />} />
-            <Route path="/practice" element={<PracticeScreen />} />
-            <Route path="*" element={<Navigate to="/onboarding" />} />
-          </>
-        ) : (
-          <>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/practice/:subcategory" element={<PracticeScreen />} />
-            <Route path="/practice" element={<PracticeScreen />} />
-            <Route path="/summary" element={<SessionSummary />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="*" element={<Navigate to="/dashboard" />} />
-          </>
-        )}
-      </Route>
-    </Routes>
-  );
-};
-
-function App() {
-  const { currentUser } = useAuth();
-
-  return (
-    <Routes>
-      {/* Publicly Accessible Routes */}
-      <Route path="/privacy" element={<PrivacyPolicy />} />
+      {/* Public Routes */}
       <Route path="/login" element={<Login />} />
+      <Route path="/privacy" element={<PrivacyPolicy />} />
 
-      {/* Authenticated Routes */}
+      {/* Protected Routes */}
       <Route
         path="/*"
-        element={currentUser ? <AuthenticatedRoutes /> : <Navigate to="/login" />}
+        element={
+          <ProtectedRoute>
+            <Routes>
+              <Route element={<AppLayout />}>
+                {isNewUser ? (
+                  <>
+                    <Route path="onboarding" element={<Onboarding />} />
+                    <Route path="practice" element={<PracticeScreen />} />
+                    <Route path="*" element={<Navigate to="/onboarding" />} />
+                  </>
+                ) : (
+                  <>
+                    <Route path="dashboard" element={<Dashboard />} />
+                    <Route path="practice/:subcategory" element={<PracticeScreen />} />
+                    <Route path="practice" element={<PracticeScreen />} />
+                    <Route path="summary" element={<SessionSummary />} />
+                    <Route path="settings" element={<Settings />} />
+                    <Route path="*" element={<Navigate to="/dashboard" />} />
+                  </>
+                )}
+              </Route>
+            </Routes>
+          </ProtectedRoute>
+        }
       />
     </Routes>
   );
