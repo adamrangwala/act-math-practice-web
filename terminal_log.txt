@@ -1,66 +1,27 @@
-> server@1.0.0 build
-> tsc
-controllers/authController.ts(14,13): error TS2339: Property 'role' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
-controllers/authController.ts(14,19): error TS2339: Property 'testDate' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
-controllers/authController.ts(14,29): error TS2339: Property 'currentScore' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
-controllers/authController.ts(14,43): error TS2339: Property 'targetScore' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
-controllers/authController.ts(121,11): error TS2339: Property 'dailyQuestionLimit' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
-controllers/authController.ts(121,31): error TS2339: Property 'role' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
-controllers/authController.ts(121,37): error TS2339: Property 'testDate' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
-controllers/authController.ts(121,47): error TS2339: Property 'currentScore' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
-controllers/authController.ts(121,61): error TS2339: Property 'targetScore' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
-controllers/progressController.ts(76,9): error TS2322: Type 'ReadableStream<Uint8Array<ArrayBuffer>> | null' is not assignable to type 'ProgressSubmission'.
-  Type 'null' is not assignable to type 'ProgressSubmission'.
-controllers/progressController.ts(77,9): error TS2339: Property 'timeSpent' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
-controllers/questionController.ts(134,31): error TS2339: Property 'query' does not exist on type 'AuthRequest'.
-controllers/settingsController.ts(37,11): error TS2339: Property 'dailyQuestionLimit' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
-controllers/settingsController.ts(37,31): error TS2339: Property 'role' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
-controllers/settingsController.ts(37,37): error TS2339: Property 'testDate' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
-controllers/settingsController.ts(37,47): error TS2339: Property 'currentScore' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
-controllers/settingsController.ts(37,61): error TS2339: Property 'targetScore' does not exist on type 'ReadableStream<Uint8Array<ArrayBuffer>> | null'.
-middleware/authMiddleware.ts(7,11): error TS2339: Property 'authorization' does not exist on type 'Headers'.
-routes/api.ts(14,27): error TS2769: No overload matches this call.
-  The last overload gave the following error.
-    Argument of type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
-      Type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
-        Types of parameters 'req' and 'req' are incompatible.
-          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'AuthRequest': cache, credentials, destination, integrity, and 14 more.
-routes/api.ts(15,24): error TS2769: No overload matches this call.
-  The last overload gave the following error.
-    Argument of type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
-      Type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
-        Types of parameters 'req' and 'req' are incompatible.
-          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'AuthRequest': cache, credentials, destination, integrity, and 14 more.
-routes/api.ts(18,25): error TS2769: No overload matches this call.
-  The last overload gave the following error.
-    Argument of type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
-      Type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
-        Types of parameters 'req' and 'req' are incompatible.
-          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'AuthRequest': cache, credentials, destination, integrity, and 14 more.
-routes/api.ts(19,25): error TS2769: No overload matches this call.
-  The last overload gave the following error.
-    Argument of type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
-      Type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
-        Types of parameters 'req' and 'req' are incompatible.
-          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'AuthRequest': cache, credentials, destination, integrity, and 14 more.
-routes/api.ts(20,48): error TS2769: No overload matches this call.
-  The last overload gave the following error.
-    Argument of type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
-      Type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
-        Types of parameters 'req' and 'req' are incompatible.
-          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'AuthRequest': cache, credentials, destination, integrity, and 14 more.
-routes/api.ts(23,32): error TS2769: No overload matches this call.
-  The last overload gave the following error.
-    Argument of type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
-      Type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
-        Types of parameters 'req' and 'req' are incompatible.
-          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'AuthRequest': cache, credentials, destination, integrity, and 14 more.
-routes/api.ts(24,40): error TS2769: No overload matches this call.
-  The last overload gave the following error.
-    Argument of type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
-      Type '(req: AuthRequest, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
-        Types of parameters 'req' and 'req' are incompatible.
-          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'AuthRequest': cache, credentials, destination, integrity, and 14 more.
-routes/api.ts(25,44): error TS2769: No overload matches this call.
-  The last overload gave the following error.
-    Argument of type '(req: AuthRequest, res: Response, next: NextFunction) => Pr4
+index-aN_gwos_.js:1441 Firebase Config: Object
+index-aN_gwos_.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
+e @ index-aN_gwos_.js:1261
+index-aN_gwos_.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
+e @ index-aN_gwos_.js:1261
+index-aN_gwos_.js:1366 Cross-Origin-Opener-Policy policy would block the window.close call.
+close @ index-aN_gwos_.js:1366
+index-aN_gwos_.js:1366 Cross-Origin-Opener-Policy policy would block the window.close call.
+close @ index-aN_gwos_.js:1366
+act-math-app-production.onrender.com/api/init-user:1  Failed to load resource: the server responded with a status of 500 ()
+index-aN_gwos_.js:1441 Failed to initialize user: Error: Internal Server Error
+    at cn (index-aN_gwos_.js:1441:2144)
+    at async Object.next (index-aN_gwos_.js:1441:2532)
+(anonymous) @ index-aN_gwos_.js:1441
+index-aN_gwos_.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
+e @ index-aN_gwos_.js:1261
+index-aN_gwos_.js:1261 Cross-Origin-Opener-Policy policy would block the window.closed call.
+e @ index-aN_gwos_.js:1261
+index-aN_gwos_.js:1366 Cross-Origin-Opener-Policy policy would block the window.close call.
+close @ index-aN_gwos_.js:1366
+index-aN_gwos_.js:1366 Cross-Origin-Opener-Policy policy would block the window.close call.
+close @ index-aN_gwos_.js:1366
+act-math-app-production.onrender.com/api/init-user:1  Failed to load resource: the server responded with a status of 500 ()
+index-aN_gwos_.js:1441 Failed to initialize user: Error: Internal Server Error
+    at cn (index-aN_gwos_.js:1441:2144)
+    at async Object.next (index-aN_gwos_.js:1441:2532)
+(anonymous) @ index-aN_gwos_.js:1441
