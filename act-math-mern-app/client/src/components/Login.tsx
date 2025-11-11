@@ -2,12 +2,17 @@ import React from 'react';
 import { auth, googleProvider } from '../config/firebase';
 import { signInWithPopup } from 'firebase/auth';
 import { Button, Container, Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom'; // Import Link
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const Login = () => {
+  const navigate = useNavigate(); // Initialize the navigate function
+
   const signInWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
+      // On successful sign-in, navigate to the root.
+      // The AuthContext and App router will handle the rest.
+      navigate('/'); 
     } catch (error) {
       console.error("Error signing in with Google: ", error);
     }
