@@ -1,64 +1,77 @@
-# Pre-Flight Checklist for Preliminary Testing
+# Pre-Flight Checklist for Beta Release
 
-This document outlines the critical steps to perform on the `staging` environment before sharing the application with preliminary testers. Following this checklist ensures that the core user experience is stable and data is clean.
+This document outlines the critical user paths to test on the **production** environment (`actmathsprint.com`) before the beta release.
 
 ---
 
-### Step 1: Finalize and Seed Your Data 🎯
+### Step 1: Finalize and Seed Production Data 🎯
 
-This ensures your testers have questions to answer.
+This ensures testers have a clean and correct set of questions.
 
-1.  **Finalize `questions.json`:** Make sure all the questions you want to test with are in `act-math-mern-app/seed-data/questions.json`.
-2.  **Clean the Database:** In your **staging** Firebase console, delete the `users`, `userSubcategoryProgress`, and `userStats` collections entirely. This guarantees you are testing the "new user" experience from a truly clean slate.
-3.  **Seed the Questions:** Run the seed command from the `server` directory to populate the `questions` collection.
+1.  **Finalize `questions.json`:** Ensure `act-math-mern-app/seed-data/questions.json` contains all questions for the beta.
+2.  **Clean the Production Database:** In your **production** Firebase console (`act-math-prod`), manually delete the `users`, `userSubcategoryProgress`, `userStats`, and `userDailyActivity` collections. This guarantees all testers start with the "new user" experience.
+3.  **Seed the Questions:** From the `server` directory, run the seed script targeting the production environment.
     ```bash
-    npm run seed -- --env=staging
+    npm run seed -- --env=production
     ```
 
 ---
 
 ### Step 2: The "New User" Critical Path Test 🚶‍♂️
 
-Do this yourself in an incognito browser window to simulate a brand new user.
+**Instructions:** Use a fresh incognito browser window for this entire test.
 
-1.  **Login:** Go to your Vercel URL. Does the login page appear correctly? Can you sign in with a Google account?
-2.  **First Dashboard Load:** After logging in, do you land on the dashboard?
-    *   Are the **Rolling Accuracy**, **Day Streak**, and **Total Sessions** all displayed as **0**?
-    *   Does the "Skills Breakdown" section show the placeholder message: "Your Skills Breakdown will appear here..."?
-    *   Does the **Dashboard Guide** appear and function correctly?
-3.  **Start a Session:** Click "Begin Daily Practice." Does a practice session start and show the first question?
-4.  **Complete a Full Session:**
-    *   Answer every question in the session.
-    *   On the very last question, click the "Finish Session" button.
-5.  **Check the Summary:** Are you correctly navigated to the `/summary` page? Do the stats on that page seem reasonable for the session you just completed?
-6.  **Return to Dashboard:** Navigate back to the dashboard. Now, check the key metrics:
-    *   **Total Sessions:** Does it now show **1**? (This is the most important check for our last fix).
-    *   **Rolling Accuracy:** Does it show a non-zero percentage?
-    *   **Day Streak:** Does it show **1**?
-
----
-
-### Step 3: The "Returning User" Check 🔄
-
-1.  **Close the browser and wait a minute.**
-2.  **Re-open the app** and go to your Vercel URL. You should be automatically logged in.
-3.  **Check the Dashboard:** Do all the stats from your first session (Accuracy, Streak, Sessions) appear correctly?
-4.  **Start a Second Session:** Click "Begin Daily Practice" again. This confirms the logic for a returning user works. You don't have to complete this session, just ensure it starts.
+1.  **Navigate to Login:** Go to `https://www.actmathsprint.com`. You should be redirected to the `/login` page.
+2.  **Sign In:** Sign in with a Google account.
+3.  **Onboarding Flow:** You should be redirected to the `/onboarding` page.
+    *   Complete all steps: Role selection, test date, score goals, and daily question limit.
+    *   Click "Start Practicing" at the end.
+4.  **First Practice Session:** You should be navigated to the `/practice` screen.
+    *   Complete the entire session by answering all questions.
+    *   After the last question, you should be taken to the `/summary` page.
+5.  **Session Summary:** Verify the stats on the summary page are reasonable.
+6.  **First Dashboard Load:** Navigate to the dashboard.
+    *   **Total Sessions:** Should be **1**.
+    *   **Day Streak:** Should be **1**.
+    *   **Rolling Accuracy:** Should show a non-zero percentage.
+    *   **Dashboard Guide:** The guide/modal should appear. Dismiss it.
 
 ---
 
-### Step 4: Final Sanity Check ✅
+### Step 3: The "No Repeat Questions" Test 🔄
 
-*   **Review All Questions:** Open `preview.html` one last time and quickly scroll through every question. Look for any obvious formatting errors in the math or diagrams. It's better for you to catch a typo now than for a tester to get confused by it.
+1.  **Start a Second Session:** From the dashboard, click "Begin Daily Practice" again.
+2.  **Verify New Questions:** You should be presented with a **different** set of questions than your first session.
+3.  **Complete All Questions (Optional but Recommended):** If you have enough unique questions, keep doing sessions until the question pool is exhausted.
+4.  **Verify "All Done" Message:** Once you have answered every unique question in the database for the day, starting a new session should **not** show a question. Instead, it should display the message: "Great work! You've answered all available questions for today."
 
 ---
 
-### Step 5: Pre-Launch Readiness 🚀
+### Step 4: The "Account Deletion & Re-registration" Test 🗑️
 
-These are the final steps before going live.
+1.  **Navigate to Settings:** Go to the `/settings` page.
+2.  **Delete Account:** Click the "Delete Account" button and confirm the action in the modal.
+3.  **Verify Redirect:** You should be logged out and redirected to the `/login` page.
+4.  **Verify Data Deletion (Manual):** In the Firebase console, confirm the user record and all associated data (in `users`, `userStats`, etc.) for that user have been deleted.
+5.  **Re-register:** Sign in again with the **exact same Google account**.
+6.  **Verify Onboarding:** You should be treated as a brand new user and be taken directly to the `/onboarding` flow again. This is the most critical check for this test.
 
-1.  [x] **Connect Custom Domain:** Ensure `actmathsprint.com` is pointing to your production Vercel frontend.
-2.  [x] **Implement User Feedback Mechanism:** Confirm the "Feedback" button in the Navbar links to the Google Form.
-3.  [x] **Finalize User Onboarding:** Verify the multi-step onboarding (Role, Test Date, Scores, Dashboard Guide) is fully functional and persists data.
-4.  [ ] **Wipe Production Database:** (Manual step for you) Clear all user and progress data from the production Firebase database before launch.
-5.  [ ] **Increase Question Count:** Ensure `seed-data/questions.json` has at least 50-100 high-quality questions.
+---
+
+### Step 5: Final Sanity Checks ✅
+
+*   **Privacy Policy:** Can you access the Privacy Policy from the footer and the login page?
+*   **Targeted Practice:** Go to the dashboard, and from the "Skills Breakdown," click on a specific skill. Does it correctly start a 5-question targeted practice session for that skill?
+*   **Visual Polish:** Click through all pages. Are there any obvious visual bugs, formatting errors, or typos?
+
+---
+
+### Step 6: Beta Readiness 🚀
+
+*   [x] **Custom Domain Connected:** `actmathsprint.com` points to the Vercel frontend.
+*   [x] **Production Backend Live:** The Render backend is running and accessible.
+*   [x] **CORS Configured:** The backend correctly accepts requests from `actmathsprint.com`.
+*   [x] **Firebase Auth Domain Authorized:** `actmathsprint.com` and Vercel domains are authorized in Firebase Auth.
+*   [x] **`vercel.json` Deployed:** The cross-origin policy fix is live.
+*   [ ] **User Feedback Mechanism:** Implement a "Feedback" button or link.
+*   [ ] **Google Analytics:** Add your GA4 Measurement ID to the application.
