@@ -1,60 +1,95 @@
-import { Request, Response } from 'express';
-import { db } from '../config/firebase';
+import { Response } from 'express';
+import { auth, db } from '../config/firebase';
 import { DecodedIdToken } from 'firebase-admin/auth';
 
-// Extend the Express Request interface to include the user property
 export interface AuthRequest extends Request {
-  user?: DecodedIdToken;
+    user?: DecodedIdToken;
 }
 
 export const initUser = async (req: AuthRequest, res: Response) => {
-  if (!req.user) {
-    return res.status(401).send({ message: 'Unauthorized' });
-  }
-
-  const { uid, email, name, picture } = req.user;
-
-  try {
-    const userRef = db.collection('users').doc(uid);
-    const doc = await userRef.get();
-
-    if (!doc.exists) {
-      await userRef.set({
-        email,
-        displayName: name,
-        photoURL: picture,
-        dailyQuestionLimit: 10, // Default value
-        createdAt: new Date(),
-        lastActiveAt: new Date(),
-      });
-      res.status(201).json({ message: 'User profile created.', isNewUser: true });
-    } else {
-      // Existing user
-      const userData = doc.data();
-      if (!userData?.role) {
-        // Role is missing. Differentiate between a legacy user and a reset user.
-        const statsRef = db.collection('userStats').doc(uid);
-        const statsDoc = await statsRef.get();
-
-        if (statsDoc.exists) {
-          // Legacy user: They have stats but no role. Silently migrate them.
-          await userRef.update({ role: 'hs_student', lastActiveAt: new Date() });
-          res.status(200).json({ message: 'User profile migrated and updated.', isNewUser: false });
-        } else {
-          // Reset user: They have no stats and no role. Send to onboarding.
-          res.status(200).json({ message: 'User requires onboarding.', isNewUser: true });
-        }
-      } else {
-        // Normal login for an existing, onboarded user
-        await userRef.update({ lastActiveAt: new Date() });
-        res.status(200).json({ message: 'User profile updated.', isNewUser: false });
-      }
+    if (!req.user) {
+        return res.status(401).send({ message: 'Unauthorized' });
     }
-  } catch (error) {
-    console.error('Error initializing user:', error);
-    res.status(500).send({ message: 'Internal Server Error' });
-  }
+    const { uid, email, name } = req.user;
+    const { role, testDate, currentScore, targetScore } = req.body;
+
+    try {
+        const userRef = db.collection('users').doc(uid);
+        const userDoc = await userRef.get();
+
+        if (userDoc.exists) {
+            // User exists, check if it's a legacy user needing a role
+            const userData = userDoc.data();
+            if (!userData?.role) {
+                const statsRef = db.collection('userStats').doc(uid);
+                const statsDoc = await statsRef.get();
+                if (statsDoc.exists) {
+                    // This is a legacy user, assign default role and bypass onboarding
+                    await userRef.set({ role: 'self-studier' }, { merge: true });
+                    return res.status(200).json({ isNewUser: false });
+                }
+            }
+            return res.status(200).json({ isNewUser: false });
+        } else {
+            // New user, create documents
+            const newUser = {
+                email,
+                name,
+                createdAt: new Date(),
+                role,
+                testDate: testDate || null,
+                currentScore: currentScore || null,
+                targetScore: targetScore || null,
+            };
+            await userRef.set(newUser);
+
+            // Initialize stats
+            const statsRef = db.collection('userStats').doc(uid);
+            await statsRef.set({
+                totalCorrect: 0,
+                totalIncorrect: 0,
+                totalTimeSpent: 0,
+                completedSessions: 0,
+                practiceStreak: 0,
+                lastSessionCompleted: null,
+            });
+
+            return res.status(201).json({ isNewUser: true });
+        }
+    } catch (error) {
+        console.error('Error initializing user:', error);
+        res.status(500).send({ message: 'Internal Server Error' });
+    }
 };
+
+export const deleteUser = async (req: AuthRequest, res: Response) => {
+    if (!req.user) {
+        return res.status(401).send({ message: 'Unauthorized' });
+    }
+    const { uid } = req.user;
+
+    try {
+        // Firestore collections to delete from
+        const collections = ['users', 'userStats', 'userSubcategoryProgress'];
+        const batch = db.batch();
+
+        for (const collection of collections) {
+            const docRef = db.collection(collection).doc(uid);
+            batch.delete(docRef);
+        }
+
+        await batch.commit();
+
+        // Now delete the user from Firebase Authentication
+        await auth.deleteUser(uid);
+
+        res.status(200).json({ message: 'User account deleted successfully.' });
+    } catch (error) {
+        console.error('Error deleting user:', error);
+        res.status(500).send({ message: 'Internal Server Error' });
+    }
+};
+
 
 export const getUserSettings = async (req: AuthRequest, res: Response) => {
   if (!req.user) {

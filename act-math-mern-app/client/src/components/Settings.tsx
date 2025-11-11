@@ -53,7 +53,7 @@ const Settings = () => {
     }
   };
 
-  const handleResetProgress = async () => {
+  const handleDeleteAccount = async () => {
     setShowConfirmModal(false);
     setSaving(true);
     setError(null);
@@ -61,11 +61,14 @@ const Settings = () => {
     if (!currentUser) return;
 
     try {
-      await authenticatedFetch('/api/progress/all', {
+      // This will be the new endpoint
+      await authenticatedFetch('/api/user', {
         method: 'DELETE',
       });
-      setIsNewUser(true);
-      setSuccess('Your progress has been successfully reset.');
+      // Log the user out on the client-side after successful deletion
+      await currentUser.getIdToken(true); // Force refresh token
+      await currentUser.delete();
+      navigate('/login');
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -107,9 +110,9 @@ const Settings = () => {
             <hr />
             <div className="mt-4">
               <h4>Danger Zone</h4>
-              <p>This action is irreversible and will delete all your practice history.</p>
+              <p>This action is irreversible. It will permanently delete your account and all associated data.</p>
               <Button variant="danger" onClick={() => setShowConfirmModal(true)}>
-                Reset All Progress
+                Delete My Account
               </Button>
             </div>
           </Card.Body>
@@ -118,17 +121,17 @@ const Settings = () => {
 
       <Modal show={showConfirmModal} onHide={() => setShowConfirmModal(false)} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Are you sure?</Modal.Title>
+          <Modal.Title>Are you absolutely sure?</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          This will permanently delete all your progress, including mastery scores and review schedules. This action cannot be undone.
+          This will permanently delete your account, including all practice history and stats. This action cannot be undone.
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowConfirmModal(false)}>
             Cancel
           </Button>
-          <Button variant="danger" onClick={handleResetProgress}>
-            Yes, Reset My Progress
+          <Button variant="danger" onClick={handleDeleteAccount}>
+            Yes, Delete My Account
           </Button>
         </Modal.Footer>
       </Modal>
