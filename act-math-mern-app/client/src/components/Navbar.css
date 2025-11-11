@@ -17,18 +17,20 @@
   text-decoration: none;
 }
 
-.navbar-nav {
+/* Increased specificity to prevent overrides */
+.app-navbar .navbar-nav {
   display: flex;
-  flex-direction: row; /* Ensures items are in a row */
+  flex-direction: row;
   align-items: center;
+  gap: 1.5rem; /* Use gap for consistent spacing */
 }
 
 .nav-link {
-  margin-left: 1.5rem;
   text-decoration: none;
   color: #555;
   font-weight: 500;
   cursor: pointer;
+  padding: 0.5rem; /* Add some padding for easier clicking */
 }
 
 .nav-link:hover {
