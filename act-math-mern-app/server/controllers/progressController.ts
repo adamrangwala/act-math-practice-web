@@ -98,6 +98,17 @@ export const submitProgress = async (req: AuthRequest, res: Response) => {
 
     const isCorrect = performanceRating > 0;
 
+    // --- Track seen questions for the day ---
+    if (context === 'practice_session') {
+      const today = new Date().toISOString().split('T')[0]; // Get YYYY-MM-DD
+      const dailyActivityRef = db.collection('userDailyActivity').doc(`${userId}_${today}`);
+      await dailyActivityRef.set({
+        userId,
+        date: today,
+        seenQuestionIds: FieldValue.arrayUnion(questionId)
+      }, { merge: true });
+    }
+
     // --- Update aggregate dashboard stats only for main practice modes ---
     if (context === 'practice_session' || context === 'mock_test') {
       await updateUserDashboardStats(userId, isCorrect);

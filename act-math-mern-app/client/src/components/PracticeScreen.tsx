@@ -35,7 +35,8 @@ const PracticeScreen = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [sessionData, setSessionData] = useState<SessionData[]>([]);
-  
+  const [allQuestionsCompleted, setAllQuestionsCompleted] = useState(false); // New state
+
   const [isFlipped, setIsFlipped] = useState(false);
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number | null>(null);
   const [feedback, setFeedback] = useState<string | null>(null);
@@ -48,6 +49,7 @@ const PracticeScreen = () => {
     const fetchQuestions = async () => {
       if (!currentUser) return;
       setLoading(true);
+      setAllQuestionsCompleted(false);
       
       let endpoint = '/api/questions/today';
       if (subcategory) {
@@ -56,7 +58,11 @@ const PracticeScreen = () => {
 
       try {
         const data = await authenticatedFetch(endpoint);
-        setQuestions(data);
+        if (data.length === 0 && !subcategory) {
+          setAllQuestionsCompleted(true);
+        } else {
+          setQuestions(data);
+        }
         setCurrentQuestionIndex(0);
         setSessionData([]);
         setSelectedAnswerIndex(null);
@@ -121,11 +127,8 @@ const PracticeScreen = () => {
       // This is the end of the session.
       (async () => {
         try {
-          // Only mark the session as complete if it's a standard practice session
           if (!subcategory) {
             await authenticatedFetch('/api/stats/complete-session', { method: 'POST' });
-            
-            // If the user was new, this is their first session, so mark them as not new.
             if (isNewUser) {
               setIsNewUser(false);
             }
@@ -133,7 +136,6 @@ const PracticeScreen = () => {
         } catch (error) {
           console.error("Failed to mark session as complete:", error);
         } finally {
-          // Navigate to the summary screen regardless of whether the API call succeeded.
           const totalCorrect = sessionData.filter(d => d.isCorrect).length;
           const totalTime = sessionData.reduce((acc, d) => acc + d.timeSpent, 0);
           const sessionStats = {
@@ -161,6 +163,16 @@ const PracticeScreen = () => {
   if (loading) return <Container className="text-center mt-5"><Spinner animation="border" /></Container>;
   if (error) return <Container className="text-center mt-5"><Alert variant="danger">{error}</Alert></Container>;
   
+  if (allQuestionsCompleted) {
+    return (
+      <Container className="text-center mt-5 all-done-container">
+        <h2>Great work!</h2>
+        <p className="lead">You've answered all available questions for today. Come back tomorrow for more.</p>
+        <Button variant="primary" size="lg" onClick={() => navigate('/dashboard')}>Back to Dashboard</Button>
+      </Container>
+    );
+  }
+
   if (questions.length === 0 && !loading) {
     return (
       <Container className="text-center mt-5">

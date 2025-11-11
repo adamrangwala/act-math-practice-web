@@ -11,7 +11,7 @@ export const getTodaysQuestions = async (req: AuthRequest, res: Response) => {
   const userId = req.user.uid;
 
   try {
-    // --- NEW: Snapshot accuracy at the start of a session for trend arrow ---
+    // --- Snapshot accuracy at the start of a session for trend arrow ---
     const statsRef = db.collection('userStats').doc(userId);
     const statsDoc = await statsRef.get();
     if (statsDoc.exists) {
@@ -20,11 +20,15 @@ export const getTodaysQuestions = async (req: AuthRequest, res: Response) => {
         previousRollingAccuracy: statsData.currentRollingAccuracy || 0
       });
     }
-    // --- End of new logic ---
+
+    // --- Get questions seen today to exclude them ---
+    const today = new Date().toISOString().split('T')[0]; // Get YYYY-MM-DD
+    const dailyActivityRef = db.collection('userDailyActivity').doc(`${userId}_${today}`);
+    const dailyActivityDoc = await dailyActivityRef.get();
+    const seenQuestionIds = new Set<string>(dailyActivityDoc.exists ? dailyActivityDoc.data()!.seenQuestionIds : []);
 
     const userDoc = await db.collection('users').doc(userId).get();
     const userData = userDoc.data();
-
     const practiceSessionSize = userData?.dailyQuestionLimit || 10;
 
     const progressSnapshot = await db.collection('userSubcategoryProgress').where('userId', '==', userId).get();
@@ -49,7 +53,7 @@ export const getTodaysQuestions = async (req: AuthRequest, res: Response) => {
     prioritizedList.sort((a, b) => b.priority - a.priority);
     
     const sessionQuestions: DocumentData[] = [];
-    const usedQuestionIds = new Set<string>();
+    const usedQuestionIds = new Set<string>(seenQuestionIds); // Initialize with already seen questions
 
     for (const item of prioritizedList) {
       if (sessionQuestions.length >= practiceSessionSize) break;
@@ -70,13 +74,12 @@ export const getTodaysQuestions = async (req: AuthRequest, res: Response) => {
 
     if (sessionQuestions.length < practiceSessionSize) {
       const allQuestions = (await db.collection('questions').get()).docs;
-      while (sessionQuestions.length < practiceSessionSize && allQuestions.length > 0) {
-        const randomIndex = Math.floor(Math.random() * allQuestions.length);
-        const randomDoc = allQuestions.splice(randomIndex, 1)[0];
-        if (!usedQuestionIds.has(randomDoc.id)) {
-          sessionQuestions.push(randomDoc.data());
-          usedQuestionIds.add(randomDoc.id);
-        }
+      const unseenQuestions = allQuestions.filter(doc => !usedQuestionIds.has(doc.id));
+
+      while (sessionQuestions.length < practiceSessionSize && unseenQuestions.length > 0) {
+        const randomIndex = Math.floor(Math.random() * unseenQuestions.length);
+        const randomDoc = unseenQuestions.splice(randomIndex, 1)[0];
+        sessionQuestions.push(randomDoc.data());
       }
     }
 
@@ -98,11 +101,8 @@ export const getPracticeMoreQuestions = async (req: AuthRequest, res: Response) 
   }
   try {
     const questionsRef = db.collection('questions');
-    // Firestore doesn't have a built-in random operator, so we simulate it.
-    // 1. Generate a random ID
     const randomId = db.collection('questions').doc().id;
 
-    // 2. Query for documents "greater than" the random ID and take the first few
     const snapshot = await questionsRef
       .where(admin.firestore.FieldPath.documentId(), '>=', randomId)
       .limit(10)
@@ -110,7 +110,6 @@ export const getPracticeMoreQuestions = async (req: AuthRequest, res: Response) 
 
     let questions = snapshot.docs.map(doc => doc.data());
 
-    // 3. If we didn't get enough, query "less than" to wrap around
     if (questions.length < 10) {
       const remaining = 10 - questions.length;
       const remainingSnapshot = await questionsRef
@@ -147,8 +146,6 @@ export const getTargetedPracticeQuestions = async (req: AuthRequest, res: Respon
     }
 
     const allQuestions = snapshot.docs.map(doc => doc.data());
-
-    // Shuffle the array and take the first 5
     const shuffled = allQuestions.sort(() => 0.5 - Math.random());
     const selectedQuestions = shuffled.slice(0, 5);
 
