@@ -2,6 +2,7 @@ import React from 'react';
 import { auth, googleProvider } from '../config/firebase';
 import { signInWithPopup } from 'firebase/auth';
 import { Button, Container, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom'; // Import Link
 
 const Login = () => {
   const signInWithGoogle = async () => {
@@ -23,6 +24,9 @@ const Login = () => {
           <Button variant="primary" size="lg" onClick={signInWithGoogle}>
             Sign in with Google
           </Button>
+          <p className="mt-3 text-muted" style={{ fontSize: '0.8rem' }}>
+            By signing in, you agree to our <Link to="/privacy">Privacy Policy</Link>.
+          </p>
         </Card.Body>
       </Card>
     </Container>
