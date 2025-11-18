@@ -31,8 +31,14 @@ service cloud.firestore {
     // --- NEW RULE FOR FEEDBACK ---
     // Any authenticated user can create (submit) feedback.
     // No one can read, update, or delete feedback from the client-side.
+    // Allow 'message' and 'category' fields to be written.
     match /feedback/{feedbackId} {
-      allow create: if request.auth != null;
+      allow create: if request.auth != null && request.resource.data.keys().hasAll(['userId', 'message', 'category', 'createdAt', 'status'])
+                                        && request.resource.data.userId == request.auth.uid
+                                        && request.resource.data.message is string
+                                        && request.resource.data.category is string
+                                        && request.resource.data.createdAt is timestamp
+                                        && request.resource.data.status == 'new';
       allow read, update, delete: if false;
     }
   }
