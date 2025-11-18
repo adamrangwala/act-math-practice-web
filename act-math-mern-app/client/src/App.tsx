@@ -11,19 +11,31 @@ import Onboarding from './components/Onboarding';
 import { Routes, Route, Navigate, Link, Outlet } from 'react-router-dom';
 import './App.css';
 
+import FeedbackModal from './components/FeedbackModal';
+import { useState } from 'react';
+
 // A layout component for authenticated users
-const AppLayout: React.FC = () => (
-  <>
-    <Navbar />
-    <div className="app-container">
-      <Outlet /> {/* Nested routes will render here */}
-    </div>
-    <footer className="app-footer">
-      <p>ACT® is a registered trademark of ACT, Inc. This website is not endorsed or approved by ACT, Inc.</p>
-      <p><Link to="/privacy">Privacy Policy</Link></p>
-    </footer>
-  </>
-);
+const AppLayout = () => {
+  const [showFeedbackModal, setShowFeedbackModal] = useState(false);
+
+  const handleOpenFeedbackModal = () => setShowFeedbackModal(true);
+  const handleCloseFeedbackModal = () => setShowFeedbackModal(false);
+
+  return (
+    <>
+      <Navbar onOpenFeedbackModal={handleOpenFeedbackModal} />
+      <div className="app-container">
+        <Outlet context={{ openFeedbackModal: handleOpenFeedbackModal }} /> {/* Pass function via context */}
+      </div>
+      <footer className="app-footer">
+        <p>ACT® is a registered trademark of ACT, Inc. This website is not endorsed or approved by ACT, Inc.</p>
+        <p><Link to="/privacy">Privacy Policy</Link></p>
+      </footer>
+      <FeedbackModal show={showFeedbackModal} onClose={handleCloseFeedbackModal} />
+    </>
+  );
+};
+
 
 // A component to guard routes that require authentication
 const ProtectedRoute: React.FC<{ children: React.ReactElement }> = ({ children }) => {

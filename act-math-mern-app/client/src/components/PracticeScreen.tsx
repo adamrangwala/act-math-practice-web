@@ -126,9 +126,11 @@ const PracticeScreen = () => {
     if (nextIndex >= questions.length) {
       // This is the end of the session.
       (async () => {
+        let completedSessions = 0;
         try {
           if (!subcategory) {
-            await authenticatedFetch('/api/stats/complete-session', { method: 'POST' });
+            const response = await authenticatedFetch('/api/stats/complete-session', { method: 'POST' });
+            completedSessions = response.completedSessions; // Capture the count from the API response
             if (isNewUser) {
               setIsNewUser(false);
             }
@@ -144,7 +146,8 @@ const PracticeScreen = () => {
             correctCount: totalCorrect,
             totalCount: sessionData.length,
           };
-          navigate('/summary', { state: { sessionStats, practiceQuestions: sessionData } });
+          // Pass the completedSessions count in the navigation state
+          navigate('/summary', { state: { sessionStats, practiceQuestions: sessionData, completedSessions } });
         }
       })();
       return;

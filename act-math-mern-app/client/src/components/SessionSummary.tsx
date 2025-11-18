@@ -1,12 +1,24 @@
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useLocation, useNavigate, useOutletContext } from 'react-router-dom'; // Import useOutletContext
 import { Card, Button, Container, Row, Col, ListGroup, Badge, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { CheckCircleFill, XCircleFill } from 'react-bootstrap-icons';
+
+interface OutletContextType {
+  openFeedbackModal: () => void;
+}
 
 const SessionSummary = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { sessionStats, practiceQuestions } = location.state || { sessionStats: { accuracy: 0, avgTime: 0 }, practiceQuestions: [] };
+  const { openFeedbackModal } = useOutletContext<OutletContextType>(); // Get openFeedbackModal from context
+  const { sessionStats, practiceQuestions, completedSessions } = location.state || { sessionStats: { accuracy: 0, avgTime: 0 }, practiceQuestions: [], completedSessions: 0 };
+
+  useEffect(() => {
+    // Trigger feedback modal after the second completed session
+    if (completedSessions === 2) {
+      openFeedbackModal();
+    }
+  }, [completedSessions, openFeedbackModal]);
 
   const handleNewSession = () => {
     navigate('/practice');
