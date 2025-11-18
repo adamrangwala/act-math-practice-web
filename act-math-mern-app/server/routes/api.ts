@@ -7,6 +7,7 @@ import { getTodaysQuestions, getPracticeMoreQuestions, getTargetedPracticeQuesti
 import { submitProgress, resetAllProgress } from '../controllers/progressController';
 import { getSettings, updateSettings, markDashboardGuideSeen } from '../controllers/settingsController';
 import { getDashboardStats, getHeatmapStats, getPriorityMatrixStats, getStreakData, completePracticeSession } from '../controllers/statsController';
+import { submitFeedback } from '../controllers/feedbackController'; // Import new feedback controller
 
 const router = express.Router();
 
@@ -33,5 +34,8 @@ router.get('/stats/heatmap', authMiddleware, getHeatmapStats);
 router.get('/stats/priority-matrix', authMiddleware, getPriorityMatrixStats);
 router.get('/stats/streak', authMiddleware, getStreakData);
 router.post('/stats/complete-session', authMiddleware, completePracticeSession);
+
+// Feedback
+router.post('/feedback', authMiddleware, submitFeedback); // New feedback route
 
 export default router;
