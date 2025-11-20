@@ -36,13 +36,6 @@ const PriorityMatrix = () => {
 
   const maxTime = 120; // Static max time for a stable Y-axis
 
-  const getQuadrant = (accuracy: number, avgTime: number) => {
-    if (accuracy >= 80 && avgTime < 60) return 'strengths';
-    if (accuracy >= 80 && avgTime >= 60) return 'drill-for-speed';
-    if (accuracy < 80 && avgTime < 60) return 'review-concepts';
-    return 'high-priority'; // accuracy < 80 && avgTime >= 60
-  };
-
   if (loading) return <div className="text-center my-4"><Spinner animation="border" /></div>;
   if (error) return <Alert variant="danger" className="my-4">{error}</Alert>;
 
@@ -71,7 +64,7 @@ const PriorityMatrix = () => {
               {/* Labels */}
               <OverlayTrigger
                 placement="top"
-                overlay={<Tooltip id="high-priority-tooltip">Low accuracy and high time. Focus on understanding the core concepts for these topics first.</Tooltip>}
+                overlay={<Tooltip id="high-priority-tooltip">Accuracy is below 50%. Focus on understanding the core concepts for these topics first.</Tooltip>}
               >
                 <div className="quadrant-label high-priority-label"><span>High Priority</span></div>
               </OverlayTrigger>
@@ -83,7 +76,7 @@ const PriorityMatrix = () => {
               </OverlayTrigger>
               <OverlayTrigger
                 placement="top"
-                overlay={<Tooltip id="review-concepts-tooltip">Low accuracy but low time. Slow down and review the fundamental concepts before practicing more.</Tooltip>}
+                overlay={<Tooltip id="review-concepts-tooltip">Inconsistent accuracy. Slow down and review the fundamental concepts before practicing more.</Tooltip>}
               >
                 <div className="quadrant-label review-concepts-label"><span>Review Concepts</span></div>
               </OverlayTrigger>
@@ -118,6 +111,7 @@ const PriorityMatrix = () => {
             </div>
             <div className="x-axis">
               <span>0%</span>
+              <span>50%</span>
               <span>80%</span>
               <span>100%</span>
             </div>
