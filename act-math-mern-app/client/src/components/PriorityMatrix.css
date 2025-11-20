@@ -21,6 +21,7 @@
 
 .matrix-wrapper {
   /* --- Layout Variables --- */
+  --low-accuracy-threshold: 50%; /* New threshold */
   --accuracy-threshold: 80%;
   --time-threshold-percent: 50%; /* 60s of 120s maxTime */
   --y-axis-width: 40px;
@@ -53,28 +54,28 @@
   background-color: #ef9a9a; /* Light Red */
   top: 0;
   left: 0;
-  width: var(--accuracy-threshold);
-  height: var(--time-threshold-percent);
+  width: var(--low-accuracy-threshold);
+  height: 100%; /* Full height */
+}
+.review-concepts-bg {
+  background-color: #ffcc80; /* Light Orange */
+  top: 0;
+  left: var(--low-accuracy-threshold); /* Starts after high-priority */
+  width: calc(var(--accuracy-threshold) - var(--low-accuracy-threshold)); /* 50% to 80% */
+  height: 100%; /* Full height */
 }
 .drill-for-speed-bg {
   background-color: #fff59d; /* Light Yellow */
   top: 0;
-  right: 0;
-  width: calc(100% - var(--accuracy-threshold));
+  left: var(--accuracy-threshold); /* Starts after review-concepts */
+  width: calc(100% - var(--accuracy-threshold)); /* 80% to 100% */
   height: var(--time-threshold-percent);
-}
-.review-concepts-bg {
-  background-color: #ffcc80; /* Light Orange */
-  bottom: 0;
-  left: 0;
-  width: var(--accuracy-threshold);
-  height: calc(100% - var(--time-threshold-percent));
 }
 .strengths-bg {
   background-color: #a5d6a7; /* Light Green */
   bottom: 0;
-  right: 0;
-  width: calc(100% - var(--accuracy-threshold));
+  left: var(--accuracy-threshold); /* Starts after review-concepts */
+  width: calc(100% - var(--accuracy-threshold)); /* 80% to 100% */
   height: calc(100% - var(--time-threshold-percent));
 }
 
@@ -92,9 +93,10 @@
   font-size: 0.8rem;
   white-space: nowrap;
 }
-.high-priority-label { top: 25%; left: calc(var(--accuracy-threshold) / 2); transform: translate(-50%, -50%); }
+/* Adjust label positions for new layout */
+.high-priority-label { top: 50%; left: calc(var(--low-accuracy-threshold) / 2); transform: translate(-50%, -50%); }
+.review-concepts-label { top: 50%; left: calc(var(--low-accuracy-threshold) + (var(--accuracy-threshold) - var(--low-accuracy-threshold)) / 2); transform: translate(-50%, -50%); }
 .drill-for-speed-label { top: 25%; left: calc(var(--accuracy-threshold) + (100% - var(--accuracy-threshold)) / 2); transform: translate(-50%, -50%); }
-.review-concepts-label { top: 75%; left: calc(var(--accuracy-threshold) / 2); transform: translate(-50%, -50%); }
 .strengths-label { top: 75%; left: calc(var(--accuracy-threshold) + (100% - var(--accuracy-threshold)) / 2); transform: translate(-50%, -50%); }
 
 /* --- Dots --- */
@@ -158,8 +160,9 @@
   bottom: -15px;
 }
 .x-axis span:nth-child(1) { left: 10px; transform: translateX(-50%); bottom: -25px}
-.x-axis span:nth-child(2) { left: calc(var(--accuracy-threshold) + 10px); transform: translateX(-50%); bottom: -25px}
-.x-axis span:nth-child(3) { right: -8px; transform: translateX(50%); bottom: -25px}
+.x-axis span:nth-child(2) { left: var(--low-accuracy-threshold); transform: translateX(-50%); bottom: -25px} /* New 50% label */
+.x-axis span:nth-child(3) { left: var(--accuracy-threshold); transform: translateX(-50%); bottom: -25px} /* 80% label */
+.x-axis span:nth-child(4) { right: -8px; transform: translateX(50%); bottom: -25px} /* 100% label */
 
 .y-axis-label {
   position: absolute;
