@@ -14,6 +14,8 @@ import './App.css';
 import FeedbackModal from './components/FeedbackModal';
 import { useState } from 'react';
 
+import PracticePrimer from './components/PracticePrimer'; // Import the new component
+
 // A layout component for authenticated users
 const AppLayout = () => {
   const [showFeedbackModal, setShowFeedbackModal] = useState(false);
@@ -70,6 +72,7 @@ function App() {
                 {isNewUser ? (
                   <>
                     <Route path="onboarding" element={<Onboarding />} />
+                    <Route path="primer" element={<PracticePrimer />} />
                     <Route path="practice" element={<PracticeScreen />} />
                     <Route path="*" element={<Navigate to="/onboarding" />} />
                   </>

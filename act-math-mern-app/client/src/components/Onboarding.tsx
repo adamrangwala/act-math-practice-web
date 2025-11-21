@@ -83,9 +83,10 @@ const Onboarding = () => {
       });
       
       if (setIsNewUser) {
-        setIsNewUser(false);
+        // We keep the user as "isNewUser" until after the primer
+        // setIsNewUser(false); 
       }
-      navigate('/practice');
+      navigate('/primer'); // Navigate to the new primer page
     } catch (error) {
       console.error("Failed to save settings:", error);
       setLoading(false);
@@ -189,7 +190,7 @@ const Onboarding = () => {
             </div>
 
             <button onClick={handleSubmit} disabled={loading} className="continue-button">
-              {loading ? 'Saving...' : 'Start Practicing'}
+              {loading ? 'Saving...' : 'Set Goal'}
             </button>
           </>
         )}
