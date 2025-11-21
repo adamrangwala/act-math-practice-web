@@ -120,7 +120,7 @@ const PriorityMatrix = () => {
         </div>
       ) : (
         <div className="matrix-placeholder">
-          <p>Complete a practice session to see your Priority Matrix!</p>
+          <p>Complete a few more practice sessions to see your Action Plan!</p>
         </div>
       )}
     </div>

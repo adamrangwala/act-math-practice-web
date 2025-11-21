@@ -226,7 +226,7 @@ const Dashboard = () => {
           })
         ) : (
           <div className="skills-list-placeholder">
-            <h4>Your Skills Breakdown will appear here.</h4>
+            <h4>Complete a few more practice sessions to unlock detailed analysis of your strengths and weaknesses.</h4>
             <p>Answer a few more questions in each category to unlock a detailed analysis of your strengths and weaknesses.</p>
           </div>
         )}

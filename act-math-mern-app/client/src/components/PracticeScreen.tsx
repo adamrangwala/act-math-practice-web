@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Container, Button, Spinner, Alert } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -44,6 +44,7 @@ const PracticeScreen = () => {
   const { timer, pauseTimer, resetTimer } = usePracticeTimer();
   
   const [showCalculator, setShowCalculator] = useState(false);
+  const practiceScreenTopRef = useRef<HTMLDivElement>(null); // Create a ref
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -160,7 +161,7 @@ const PracticeScreen = () => {
       setCurrentQuestionIndex(nextIndex);
       setFeedback(null);
       resetTimer();
-      window.scrollTo(0, 0); // Scroll to top after next question loads
+      practiceScreenTopRef.current?.scrollIntoView({ behavior: 'smooth' }); // Use the ref to scroll
     }, 300);
   };
 
@@ -191,7 +192,7 @@ const PracticeScreen = () => {
   if (!currentQuestion) return null;
 
   return (
-    <>
+    <div ref={practiceScreenTopRef}> {/* Attach the ref to a top-level element */}
       {showCalculator && <Calculator onClose={() => setShowCalculator(false)} />}
       <button className="calculator-btn-floating" onClick={() => setShowCalculator(true)}>
         🧮
@@ -223,7 +224,7 @@ const PracticeScreen = () => {
         onAnswerSelect={handleAnswerSelect}
         onNextQuestion={handleNextQuestion}
       />
-    </>
+    </div>
   );
 };
 
