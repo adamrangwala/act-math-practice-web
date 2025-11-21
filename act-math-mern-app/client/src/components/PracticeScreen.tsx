@@ -160,6 +160,7 @@ const PracticeScreen = () => {
       setCurrentQuestionIndex(nextIndex);
       setFeedback(null);
       resetTimer();
+      window.scrollTo(0, 0); // Scroll to top after next question loads
     }, 300);
   };
 

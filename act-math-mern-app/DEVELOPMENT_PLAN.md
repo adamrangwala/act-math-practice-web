@@ -63,6 +63,47 @@ To ensure a collaborative, stable, and easily debuggable process, we will follow
 
 ---
 
+## Tiered Learning & Practice Plan (Post-MVP)
+
+This feature will transform the app from a simple practice tool into a smart study system by providing different calls to action based on user performance in a specific subcategory.
+
+| User Category | Criteria | User Need | Call to Action | Implementation |
+| :--- | :--- | :--- | :--- | :--- |
+| **High Priority** | Accuracy < 50% | Foundational Learning | "Learn Concept" | Opens a modal with an embedded instructional video or a link to a high-quality article (e.g., Khan Academy). |
+| **Review Concepts** | 50% <= Accuracy < 80% | Guided Practice | "Practice Skill" | Navigates to a targeted practice session with only "easy" difficulty problems for that subcategory. |
+| **Drill for Speed** | Accuracy >= 80%, Avg. Time >= 60s | Speed & Repetition | "Drill for Speed" | Navigates to a targeted practice session with a mix of all difficulty levels for that subcategory. |
+
+### Implementation Steps:
+
+1.  **[TODO] Create `learningResources.json`:**
+    -   **File:** `client/src/data/learningResources.json`
+    -   **Action:** Create a JSON file that maps subcategory names to instructional video/article URLs. This will provide the content for the "High Priority" learning modal.
+
+2.  **[TODO] Enhance Backend API:**
+    -   **File:** `server/controllers/questionController.ts`
+    -   **Action:** Modify the `getTargetedPracticeQuestions` function to accept an optional `difficulty` parameter (e.g., "easy", "medium", "hard") in the request body. The function will then filter the questions it returns based on this parameter.
+
+3.  **[TODO] Update Frontend API Call:**
+    -   **File:** `client/src/components/PracticeScreen.tsx`
+    -   **Action:** Update the `fetchQuestions` logic to pass the `difficulty` parameter to the backend when initiating a targeted practice session.
+
+4.  **[TODO] Create Learning Modal:**
+    -   **File:** `client/src/components/LearningModal.tsx` (new file)
+    -   **Action:** Build a new modal component that can accept a resource (title, URL, description) and display it nicely, likely with an embedded video player for YouTube links.
+
+5.  **[TODO] Centralize Modal Control:**
+    -   **File:** `client/src/App.tsx`
+    -   **Action:** The main `AppLayout` component will manage the state for the new `LearningModal` and pass an `openLearningModal` function down to the rest of the app via React Router's `Outlet` context.
+
+6.  **[TODO] Implement Conditional UI Logic:**
+    -   **Files:** `client/src/components/Dashboard.tsx`, `client/src/components/PriorityMatrix.tsx`
+    -   **Action:** Update the `onClick` handlers for the skill items. Based on the quadrant category, the handler will either:
+        -   Call `openLearningModal` with the correct resource.
+        -   Navigate to targeted practice with `difficulty: 'easy'`.
+        -   Navigate to targeted practice with the default (mixed) difficulty.
+
+---
+
 ## Challenges & Solutions
 
 This section documents notable technical challenges encountered during development and the solutions implemented.
